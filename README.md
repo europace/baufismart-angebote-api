@@ -27,3 +27,43 @@ curl -X POST \
   -H 'content-type: application/x-www-form-urlencoded' \
   -d 'username={{BaufiSmart Nutzername (Mail-Adresse)}}&password={{BaufiSmart Passwort}}'
 ```
+
+Der in der Antwort enthaltene Access-Token muss bei allen Folge-Requests im Header `Authorization` im Bearer-Format mit gesendet
+werden. Beispiel:
+
+```
+curl -X POST \
+  https://baufismart.api.europace.de/v1test/finanzierungsvorschlaege \
+  -H 'authorization: Bearer {{access_token}}' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	"vorhaben": {
+		"finanzbedarf": {
+			"kaufpreis": 100000
+		}
+	}
+}'
+```
+
+# Finanzierungsvorschläge abrufen
+
+Für erste Finanzierungsvorschläge benötigen wir nur einen Betrag im Finanzbedarf. Ein möglicher Beispiel-Request wäre:
+
+```
+curl -X POST \
+  https://baufismart.api.europace.de/v1test/finanzierungsvorschlaege \
+  -H 'authorization: Bearer {{access_token}}' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	"vorhaben": {
+		"finanzbedarf": {
+			"kaufpreis": 100000
+		}
+	}
+}'
+```
+
+Ansonsten sind die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/europace2-api/tree/master/BaufiSmart/vorgaenge-api)
+valide Eingaben für diese Schnittstelle.
