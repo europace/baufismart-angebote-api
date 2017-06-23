@@ -178,6 +178,9 @@ definitions:
         description: "nur wenn verheiratet"
       id:
         type: "string"
+      inDeutschlandSeit:
+        type: "string"
+        format: "date"
       legitimationsDaten:
         description: "Pauschale für die Beleihungswertberechnung manuell überschreiben.\
           \ Dieses Feld ist eine produktanbieterspezifische Zusatzangabe, sie wird\
@@ -243,9 +246,19 @@ definitions:
     properties:
       aktuellerWert:
         $ref: "#/definitions/Euro"
+      ertrag:
+        $ref: "#/definitions/Euro"
       maximalAufzuloesenderWert:
         $ref: "#/definitions/Euro"
+      vermoegensEinsatz:
+        type: "string"
+        enum:
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       zinsertragJaehrlich:
+        $ref: "#/definitions/Euro"
+      zukuenftigeEinnahmen:
         $ref: "#/definitions/Euro"
   Bankverbindung:
     type: "object"
@@ -303,12 +316,14 @@ definitions:
         $ref: "#/definitions/Euro"
       bausparSummeRelativ:
         $ref: "#/definitions/Prozent"
+      id:
+        type: "string"
       sonderZahlungEinmalig:
         $ref: "#/definitions/Euro"
       sparBeitragMonatlichAbsolut:
         $ref: "#/definitions/Euro"
       sparBeitragMonatlichRelativ:
-        $ref: "#/definitions/Euro"
+        $ref: "#/definitions/Prozent"
       tilgungsBeitragMonatlich:
         $ref: "#/definitions/Euro"
       zuteilungsDatum:
@@ -350,6 +365,8 @@ definitions:
         type: "boolean"
         example: false
         description: "nur bei art==ANGESTELLTER,ARBEITER,BEAMTER"
+      arbeitgeberLand:
+        $ref: "#/definitions/Staat"
       art:
         type: "string"
         description: "Erlaubte Werte sind: ANGESTELLTER, ARBEITER, ARBEITSLOSER, BEAMTER,\
@@ -457,6 +474,10 @@ definitions:
     properties:
       aktuellerWert:
         $ref: "#/definitions/Euro"
+      ertrag:
+        $ref: "#/definitions/Euro"
+      id:
+        type: "string"
       maximalAufzuloesenderBetrag:
         $ref: "#/definitions/Euro"
       sparBeitragMonatlich:
@@ -467,6 +488,8 @@ definitions:
         - "KEIN_EINSATZ"
         - "ABTRETEN"
         - "AUFLOESEN"
+      zukuenftigeEinnahmen:
+        $ref: "#/definitions/Euro"
   BestehendesDarlehen:
     type: "object"
     properties:
@@ -481,7 +504,7 @@ definitions:
           \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
           \ mit unbekannten Werten umgehen können."
       darlehensGeber:
-        $ref: "#/definitions/Produktanbieter"
+        $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
         $ref: "#/definitions/Euro"
       id:
@@ -505,7 +528,7 @@ definitions:
           \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
           \ mit unbekannten Werten umgehen können."
       darlehensGeber:
-        $ref: "#/definitions/Produktanbieter"
+        $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
         $ref: "#/definitions/Euro"
       id:
@@ -545,7 +568,7 @@ definitions:
       effektivZins:
         $ref: "#/definitions/Prozent"
       produktanbieter:
-        $ref: "#/definitions/Produktanbieter"
+        $ref: "#/definitions/ProduktAnbieter"
       provision:
         $ref: "#/definitions/Provision"
       rateMonatlich:
@@ -558,7 +581,7 @@ definitions:
         type: "string"
         format: "date"
       zinsbindung:
-        $ref: "#/definitions/Zinsbindung"
+        $ref: "#/definitions/ZinsBindung"
   DarlehensWunsch:
     type: "object"
     properties:
@@ -573,6 +596,8 @@ definitions:
         - "PRIVAT_DARLEHENS_WUNSCH"
         - "ZWISCHEN_FINANZIERUNGS_WUNSCH"
         - "VARIABLES_DARLEHENS_WUNSCH"
+      id:
+        type: "string"
       kfwDarlehen:
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
         $ref: "#/definitions/KfwDarlehensWunsch"
@@ -640,12 +665,16 @@ definitions:
       scale:
         type: "integer"
         format: "int32"
+    description: "JSON Number type ohne Währungssymbol, siehe http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf.\
+      \ Vorkomma ist der Eurobetrag und zwei Nachkommastellen - Cents 0-99."
   Finanzbedarf:
     type: "object"
     properties:
       aussenAnlagen:
         $ref: "#/definitions/Euro"
       bauNebenkosten:
+        $ref: "#/definitions/Euro"
+      beratungsHonorar:
         $ref: "#/definitions/Euro"
       bereitsBeglichen:
         $ref: "#/definitions/Euro"
@@ -756,6 +785,8 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/DarlehensWunsch"
+      id:
+        type: "string"
   Flaeche:
     type: "object"
     properties:
@@ -907,6 +938,8 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/BestehendeImmobilie"
+      id:
+        type: "string"
       kfzAnzahl:
         type: "integer"
         format: "int32"
@@ -1023,12 +1056,6 @@ definitions:
         type: "string"
   Jahreszahl:
     type: "object"
-    properties:
-      jahreszahl:
-        type: "integer"
-        format: "int32"
-        example: 2016
-        description: "Vierstellige Jahresangabe"
     description: "Die Jahreszahl wird als vierstellig repräsentiert."
   KfwDarlehensWunsch:
     type: "object"
@@ -1063,6 +1090,8 @@ definitions:
       geburtsdatum:
         type: "string"
         format: "date"
+      id:
+        type: "string"
       kindergeldWirdBezogen:
         type: "boolean"
       name:
@@ -1190,7 +1219,7 @@ definitions:
         - "MACHBAR_UNTER_VORBEHALT_PRODUZENT"
         - "NICHT_MACHBAR"
         - "NICHT_ANBIETBAR"
-      produktanbieterId:
+      produktAnbieterId:
         type: "string"
       text:
         type: "string"
@@ -1243,8 +1272,6 @@ definitions:
   Partner:
     type: "object"
     properties:
-      partnerId:
-        type: "string"
       vorname:
         type: "string"
       nachname:
@@ -1300,34 +1327,15 @@ definitions:
   ProduktAnbieter:
     type: "object"
     properties:
+      email:
+        type: "string"
+      firmierung:
+        type: "string"
+      nachname:
+        type: "string"
       partnerId:
         type: "string"
       produktAnbieterId:
-        type: "string"
-      vorname:
-        type: "string"
-      nachname:
-        type: "string"
-      firmierung:
-        type: "string"
-      email:
-        type: "string"
-      telefonnummer:
-        type: "string"
-      externerKreditSachbearbeiterId:
-        type: "string"
-  Produktanbieter:
-    type: "object"
-    properties:
-      email:
-        type: "string"
-      firmierung:
-        type: "string"
-      nachname:
-        type: "string"
-      partnerId:
-        type: "string"
-      produktanbieterId:
         type: "string"
       telefonnummer:
         type: "string"
@@ -1412,7 +1420,17 @@ definitions:
         $ref: "#/definitions/Euro"
       beitragMonatlich:
         $ref: "#/definitions/Euro"
+      ertrag:
+        $ref: "#/definitions/Euro"
       maximalAufzuloesenderWert:
+        $ref: "#/definitions/Euro"
+      vermoegensEinsatz:
+        type: "string"
+        enum:
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
+      zukuenftigeEinnahmen:
         $ref: "#/definitions/Euro"
   Staat:
     type: "object"
@@ -1505,6 +1523,11 @@ definitions:
       rate:
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
         $ref: "#/definitions/Euro"
+      tilgungsBeginn:
+        type: "string"
+        format: "date"
+      tilgungsErsatzProduktId:
+        type: "string"
       volltilgerWennAnnuitaetenOderForward:
         type: "boolean"
         example: false
@@ -1548,7 +1571,17 @@ definitions:
     properties:
       aktuellerWert:
         $ref: "#/definitions/Euro"
+      ertrag:
+        $ref: "#/definitions/Euro"
       maximalAufzuloesenderWert:
+        $ref: "#/definitions/Euro"
+      vermoegensEinsatz:
+        type: "string"
+        enum:
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
+      zukuenftigeEinnahmen:
         $ref: "#/definitions/Euro"
   Vorgang:
     type: "object"
@@ -1596,6 +1629,8 @@ definitions:
         $ref: "#/definitions/Finanzbedarf"
       finanzierungswunsch:
         $ref: "#/definitions/Finanzierungswunsch"
+      id:
+        type: "string"
       nachrangigeExterneDarlehen:
         type: "array"
         items:
@@ -1618,7 +1653,17 @@ definitions:
         $ref: "#/definitions/Euro"
       dividendenJaehrlich:
         $ref: "#/definitions/Euro"
+      ertrag:
+        $ref: "#/definitions/Euro"
       maximalAufzuloesenderWert:
+        $ref: "#/definitions/Euro"
+      vermoegensEinsatz:
+        type: "string"
+        enum:
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
+      zukuenftigeEinnahmen:
         $ref: "#/definitions/Euro"
   ZeitlicherRahmenPraeferenz:
     type: "object"
@@ -1670,20 +1715,6 @@ definitions:
         description: "wenn praeferenzAuswahl==ZWISCHEN_BIS_JAHREN"
       zusatzlicheKommentare:
         type: "string"
-  Zinsbindung:
-    type: "object"
-    properties:
-      endetAm:
-        type: "string"
-        format: "date"
-      jahre:
-        type: "integer"
-        format: "int32"
-      monate:
-        type: "integer"
-        format: "int32"
-      restschuldNachZinsBindungsEnde:
-        $ref: "#/definitions/Euro"
   ZwischenFinanzierungsWunsch:
     type: "object"
     properties:
