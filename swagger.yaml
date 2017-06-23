@@ -662,9 +662,9 @@ definitions:
   Euro:
     type: "object"
     properties:
-      scale:
-        type: "integer"
-        format: "int32"
+      value:
+        type: "number"
+        example: "50000 oder 1234.56"
     description: "JSON Number type ohne Währungssymbol, siehe http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf.\
       \ Vorkomma ist der Eurobetrag und zwei Nachkommastellen - Cents 0-99."
   Finanzbedarf:
