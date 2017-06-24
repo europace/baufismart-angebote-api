@@ -683,6 +683,8 @@ definitions:
       grunderwerbsteuer:
         description: "Nebenkosten"
         $ref: "#/definitions/Euro"
+      grundstueckBereitsBezahlt:
+        type: "boolean"
       grundstuecksKaufpreis:
         $ref: "#/definitions/Euro"
       herstellung:
