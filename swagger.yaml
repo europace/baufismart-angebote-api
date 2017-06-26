@@ -72,11 +72,11 @@ definitions:
         type: "integer"
         format: "int32"
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       provision:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       sondertilgungOptionalJaehrlich:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       tilgungsWunsch:
         $ref: "#/definitions/TilgungsWunsch"
       typ:
@@ -226,12 +226,12 @@ definitions:
     type: "object"
     properties:
       ausgabenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   Autostellplatz:
     type: "object"
     properties:
       mieteinnahmenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       typ:
         type: "string"
         enum:
@@ -245,11 +245,11 @@ definitions:
     type: "object"
     properties:
       aktuellerWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       ertrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       maximalAufzuloesenderWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -257,9 +257,9 @@ definitions:
         - "ABTRETEN"
         - "AUFLOESEN"
       zinsertragJaehrlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       zukuenftigeEinnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
   Bankverbindung:
     type: "object"
     properties:
@@ -281,14 +281,14 @@ definitions:
     type: "object"
     properties:
       abschlussGebuehr:
-        $ref: "#/definitions/Euro"
+        type: "number"
       angebotsHinweisFuerAntragsteller:
         type: "string"
         description: "nur bei neuen extern berechneten Bausparverträgen und bei Gegenangeboten"
       bausparSumme:
-        $ref: "#/definitions/Euro"
+        type: "number"
       einmalzahlung:
-        $ref: "#/definitions/Euro"
+        type: "number"
       id:
         type: "string"
       produktAnbieter:
@@ -305,7 +305,7 @@ definitions:
       vertragsNummer:
         type: "string"
       verwaltungsgebuehrenJaehrlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       zuteilungsDatum:
         type: "string"
         format: "date"
@@ -313,19 +313,19 @@ definitions:
     type: "object"
     properties:
       bausparSummeAbsolut:
-        $ref: "#/definitions/Euro"
+        type: "number"
       bausparSummeRelativ:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       id:
         type: "string"
       sonderZahlungEinmalig:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sparBeitragMonatlichAbsolut:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sparBeitragMonatlichRelativ:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       tilgungsBeitragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       zuteilungsDatum:
         type: "string"
         format: "date"
@@ -333,7 +333,7 @@ definitions:
     type: "object"
     properties:
       bereitstellungsZins:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       bereitstellungsZinsfreieZeitInMonaten:
         type: "integer"
         format: "int32"
@@ -385,11 +385,11 @@ definitions:
         format: "date"
         description: "nur bei art==ANGESTELLTER,ARBEITER,BEAMTER,FREIBERUFLER,SELBSTAENDIGER"
       einkommenNettoJaehrlich:
+        type: "number"
         description: "nur bei art==FREIBERUFLER,SELBSTAENDIGER"
-        $ref: "#/definitions/Euro"
       einkommenNettoMonatlich:
+        type: "number"
         description: "nur bei art==ANGESTELLTER,ARBEITER,BEAMTER"
-        $ref: "#/definitions/Euro"
       inProbezeit:
         type: "boolean"
         example: false
@@ -398,11 +398,11 @@ definitions:
         description: "nur bei art!=RENTNER"
         $ref: "#/definitions/SituationNachRenteneintritt"
       sonstigesRegelmaessigesEinkommenNettoMonatlich:
+        type: "number"
         description: "nur bei art==ARBEITSLOSER,HAUSFRAU"
-        $ref: "#/definitions/Euro"
       staatlicheRenteNettoMonatlich:
+        type: "number"
         description: "nur bei art==RENTNER"
-        $ref: "#/definitions/Euro"
       taetigkeit:
         type: "string"
         description: "nur bei art==FREIBERUFLER,SELBSTAENDIGER. Erlaubte Werte sind:\
@@ -458,7 +458,7 @@ definitions:
       keineBestehendenDarlehenVorhanden:
         type: "boolean"
       maximalEinzusetzenderBetragWennVerkauf:
-        $ref: "#/definitions/Euro"
+        type: "number"
       objektArt:
         type: "string"
         enum:
@@ -466,22 +466,22 @@ definitions:
         - "EIGENTUMSWOHNUNG"
         - "HAUS"
       verkehrswert:
+        type: "number"
         description: "Nur relevant bei Finanzbedarf AnschlussFinanzierung, Modernisierung\
           \ und Kapitalbeschaffung"
-        $ref: "#/definitions/Euro"
   BestehenderBausparvertrag:
     type: "object"
     properties:
       aktuellerWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       ertrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       id:
         type: "string"
       maximalAufzuloesenderBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sparBeitragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -489,15 +489,15 @@ definitions:
         - "ABTRETEN"
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
   BestehendesDarlehen:
     type: "object"
     properties:
       abzuloesendeRestschuld:
-        $ref: "#/definitions/Euro"
+        type: "number"
       aktuelleRestschuldWennNichtAbzuloesen:
+        type: "number"
         description: "nur wenn wirdAbgeloest==true"
-        $ref: "#/definitions/Euro"
       darlehensArt:
         type: "string"
         description: "Erlaubte Werte sind: BAUSPARDARLEHEN,FOERDERDARLEHEN,IMMOBILIENDARLEHEN,SONSTIGES_DARLEHEN.\
@@ -506,11 +506,11 @@ definitions:
       darlehensGeber:
         $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
-        $ref: "#/definitions/Euro"
+        type: "number"
       id:
         type: "string"
       rateMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       zinsBindungEndetAm:
         type: "string"
         format: "date"
@@ -518,10 +518,10 @@ definitions:
     type: "object"
     properties:
       abzuloesendeRestschuld:
-        $ref: "#/definitions/Euro"
+        type: "number"
       aktuelleRestschuldWennNichtAbzuloesen:
+        type: "number"
         description: "nur wenn wirdAbgeloest==true"
-        $ref: "#/definitions/Euro"
       darlehensArt:
         type: "string"
         description: "Erlaubte Werte sind: BAUSPARDARLEHEN,FOERDERDARLEHEN,IMMOBILIENDARLEHEN,SONSTIGES_DARLEHEN.\
@@ -530,11 +530,11 @@ definitions:
       darlehensGeber:
         $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
-        $ref: "#/definitions/Euro"
+        type: "number"
       id:
         type: "string"
       rateMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       verwendenAls:
         type: "string"
         description: "Beschreibt wie das Darlehen im Zusammenhang mit dem Vorhaben,\
@@ -550,12 +550,12 @@ definitions:
     type: "object"
     properties:
       auszahlungsBetrag:
+        type: "number"
         description: "Der Auszahlungsbetrag ist der Nettodarlehensbetrag"
-        $ref: "#/definitions/Euro"
       bereitstellung:
         $ref: "#/definitions/Bereitstellung"
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       darlehensTyp:
         type: "string"
         enum:
@@ -566,15 +566,15 @@ definitions:
         - "ZWISCHEN_FINANZIERUNG"
         - "VARIABLES_DARLEHEN"
       effektivZins:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       produktanbieter:
         $ref: "#/definitions/ProduktAnbieter"
       provision:
         $ref: "#/definitions/Provision"
       rateMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sollZins:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       tilgung:
         $ref: "#/definitions/Tilgung"
       zinsZahlungsBeginnAm:
@@ -617,17 +617,17 @@ definitions:
         type: "string"
         format: "date"
       einnahmenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   EinnahmenMonatlich:
     type: "object"
     properties:
       einnahmenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   Erbbaurecht:
     type: "object"
     properties:
       erbbauzinsJaehrlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       grundstuecksEigentuemer:
         type: "string"
         enum:
@@ -659,59 +659,51 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Throwable"
-  Euro:
-    type: "object"
-    properties:
-      value:
-        type: "number"
-        example: "50000 oder 1234.56"
-    description: "JSON Number type ohne Währungssymbol, siehe http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf.\
-      \ Vorkomma ist der Eurobetrag und zwei Nachkommastellen - Cents 0-99."
   Finanzbedarf:
     type: "object"
     properties:
       aussenAnlagen:
-        $ref: "#/definitions/Euro"
+        type: "number"
       bauNebenkosten:
-        $ref: "#/definitions/Euro"
+        type: "number"
       beratungsHonorar:
-        $ref: "#/definitions/Euro"
+        type: "number"
       bereitsBeglichen:
-        $ref: "#/definitions/Euro"
+        type: "number"
       erschliessung:
-        $ref: "#/definitions/Euro"
+        type: "number"
       grunderwerbsteuer:
+        type: "number"
         description: "Nebenkosten"
-        $ref: "#/definitions/Euro"
       grundstueckBereitsBezahlt:
         type: "boolean"
       grundstuecksKaufpreis:
-        $ref: "#/definitions/Euro"
+        type: "number"
       herstellung:
+        type: "number"
         description: "inklusive Eigenleistungen"
-        $ref: "#/definitions/Euro"
       kapitalBeschaffung:
-        $ref: "#/definitions/Euro"
+        type: "number"
       kaufpreis:
+        type: "number"
         description: "inklusive Eigenleistungen"
-        $ref: "#/definitions/Euro"
       maklergebuehr:
+        type: "number"
         description: "Nebenkosten"
-        $ref: "#/definitions/Euro"
       mobiliar:
-        $ref: "#/definitions/Euro"
+        type: "number"
       modernisierung:
+        type: "number"
         description: "inklusive Eigenleistungen"
-        $ref: "#/definitions/Euro"
       notargebuehr:
+        type: "number"
         description: "Nebenkosten"
-        $ref: "#/definitions/Euro"
       renovierung:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sonstigeKosten:
-        $ref: "#/definitions/Euro"
+        type: "number"
       zusaetzlichesKapital:
-        $ref: "#/definitions/Euro"
+        type: "number"
   FinanzierungsObjekt:
     type: "object"
     properties:
@@ -742,9 +734,9 @@ definitions:
         - "EIGENTUMSWOHNUNG"
         - "HAUS"
       verkehrswert:
+        type: "number"
         description: "Nur relevant bei Finanzbedarf AnschlussFinanzierung, Modernisierung\
           \ und Kapitalbeschaffung"
-        $ref: "#/definitions/Euro"
   FinanzierungsVorschlag:
     type: "object"
     properties:
@@ -756,9 +748,9 @@ definitions:
         items:
           $ref: "#/definitions/Darlehen"
       darlehensSumme:
-        $ref: "#/definitions/Euro"
+        type: "number"
       effektivZins:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       erzeugtAm:
         type: "string"
         format: "date-time"
@@ -775,7 +767,7 @@ definitions:
         items:
           $ref: "#/definitions/Meldung"
       sollZins:
-        $ref: "#/definitions/Prozent"
+        type: "number"
   Finanzierungswunsch:
     type: "object"
     properties:
@@ -953,10 +945,10 @@ definitions:
         items:
           $ref: "#/definitions/Kind"
       lebenshaltungsKostenMonatlich:
+        type: "number"
         description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
           \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
           cksichtigt. (DSL Bank)"
-        $ref: "#/definitions/Euro"
       positionen:
         $ref: "#/definitions/HaushaltsPositionen"
   HaushaltsPositionen:
@@ -1048,7 +1040,7 @@ definitions:
     type: "object"
     properties:
       betrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       praeferenzAuswahl:
         type: "string"
         description: "Erlaubt sind: MEINE_MIETAUSGABEN_VON_HEUTE,BETRAG,MOEGLICHST_KLEIN,VERFUEGBARES_EINKOMMEN_AUSSCHOEPFEN,EGAL.\
@@ -1063,7 +1055,7 @@ definitions:
     type: "object"
     properties:
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       kfwEnergieEffizienzStandard:
         type: "string"
         description: "Nur bei Programm 153. Erlaubt sind STANDARD_40_PLUS, STANDARD_40,\
@@ -1099,7 +1091,7 @@ definitions:
       name:
         type: "string"
       unterhaltsEinnahmenBetragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   LaufzeitPraeferenz:
     type: "object"
     properties:
@@ -1137,11 +1129,11 @@ definitions:
       id:
         type: "string"
       maximalAufzuloesenderBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       praemieMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       rueckkaufsWertAktuell:
-        $ref: "#/definitions/Euro"
+        type: "number"
       tarif:
         type: "string"
       typ:
@@ -1161,7 +1153,7 @@ definitions:
       versicherungsGesellschaft:
         type: "string"
       versicherungsSumme:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vertragsBeginn:
         type: "string"
         format: "date"
@@ -1171,7 +1163,7 @@ definitions:
       vertragsNummer:
         type: "string"
       verwaltungsgebuehrenJaehrlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   LegitimationsDaten:
     type: "object"
     properties:
@@ -1229,7 +1221,7 @@ definitions:
     type: "object"
     properties:
       ausgabenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       entfallenMitFinanzierung:
         type: "boolean"
   MiteigentumsAnteil:
@@ -1255,7 +1247,7 @@ definitions:
     type: "object"
     properties:
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       darlehensGeber:
         type: "string"
         description: "Der Name des externen Darlehensgebers (Firmierung). Es gibt\
@@ -1263,7 +1255,7 @@ definitions:
       id:
         type: "string"
       rateMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       typ:
         type: "string"
         description: "Erlaubte Werte sind: ARBEITGEBERDARLEHEN,BAUSPARDARLEHEN,OEFFENTLICHES_DARLEHEN,RATENKREDIT.\
@@ -1322,7 +1314,7 @@ definitions:
     type: "object"
     properties:
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       laufzeitInMonaten:
         type: "integer"
         format: "int32"
@@ -1347,22 +1339,16 @@ definitions:
     type: "object"
     properties:
       provisionAbsolut:
-        $ref: "#/definitions/Euro"
+        type: "number"
       provisionRelativ:
-        $ref: "#/definitions/Prozent"
-  Prozent:
-    type: "object"
-    properties:
-      scale:
-        type: "integer"
-        format: "int32"
+        type: "number"
   RechteAbteilung2:
     type: "object"
     properties:
       beschreibung:
         type: "string"
       betrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
   SchufaErgebnis:
     type: "object"
     properties:
@@ -1381,23 +1367,23 @@ definitions:
     type: "object"
     properties:
       gesetzlicheRenteMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       privateRenteMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       rentenBeginn:
         type: "string"
         format: "date"
       sonstigesEinkommenMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
   SondertilgungPraeferenz:
     type: "object"
     properties:
       betragEinmalig:
+        type: "number"
         description: "wenn praeferenzAuswahl==EINMALIG"
-        $ref: "#/definitions/Euro"
       betragJaehrlich:
+        type: "number"
         description: "wenn praeferenzAuswahl==JAEHRLICH"
-        $ref: "#/definitions/Euro"
       praeferenzAuswahl:
         type: "string"
         description: "Erlaubt sind: JAEHRLICH,EINMALIG,DERZEIT_NICHT_GEPLANT,EGAL.\
@@ -1409,9 +1395,9 @@ definitions:
     type: "object"
     properties:
       guthabenBeiZuteilung:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sparBeitragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sparPhaseInJahren:
         type: "integer"
         format: "int32"
@@ -1419,13 +1405,13 @@ definitions:
     type: "object"
     properties:
       aktuellerWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       beitragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       ertrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       maximalAufzuloesenderWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -1433,7 +1419,7 @@ definitions:
         - "ABTRETEN"
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
   Staat:
     type: "object"
     properties:
@@ -1476,9 +1462,9 @@ definitions:
     type: "object"
     properties:
       anfaenglicheTilgung:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       sonderTilgungJaehrlich:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       tilgungsBeginn:
         type: "string"
         format: "date"
@@ -1486,11 +1472,11 @@ definitions:
     type: "object"
     properties:
       bausparDarlehenSumme:
-        $ref: "#/definitions/Euro"
+        type: "number"
       sollZinsNachZuteilung:
-        $ref: "#/definitions/Prozent"
+        type: "number"
       tilgungsBeitragMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       tilgungsPhaseInJahren:
         type: "integer"
         format: "int32"
@@ -1512,8 +1498,8 @@ definitions:
     type: "object"
     properties:
       anfaenglicheTilgung:
+        type: "number"
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
-        $ref: "#/definitions/Prozent"
       ausgesetztBerechnet:
         type: "boolean"
         example: false
@@ -1523,8 +1509,8 @@ definitions:
         example: false
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       rate:
+        type: "number"
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
-        $ref: "#/definitions/Euro"
       tilgungsBeginn:
         type: "string"
         format: "date"
@@ -1538,7 +1524,7 @@ definitions:
     type: "object"
     properties:
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       tilgungsWunsch:
         $ref: "#/definitions/TilgungsWunsch"
   Verbindlichkeit:
@@ -1550,16 +1536,16 @@ definitions:
         type: "string"
         format: "date"
       rateMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       restschuld:
-        $ref: "#/definitions/Euro"
+        type: "number"
       wirdAbgeloest:
         type: "boolean"
   VermietungsInformationen:
     type: "object"
     properties:
       mieteinnahmenNettoKaltMonatlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       nutzungsArt:
         type: "string"
         enum:
@@ -1572,11 +1558,11 @@ definitions:
     type: "object"
     properties:
       aktuellerWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       ertrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       maximalAufzuloesenderWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -1584,7 +1570,7 @@ definitions:
         - "ABTRETEN"
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
   Vorgang:
     type: "object"
     properties:
@@ -1622,7 +1608,7 @@ definitions:
     type: "object"
     properties:
       eigenleistungWennNeubauOderModernisierungsmassnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
       externeBausparAngebote:
         type: "array"
         items:
@@ -1652,13 +1638,13 @@ definitions:
     type: "object"
     properties:
       aktuellerWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       dividendenJaehrlich:
-        $ref: "#/definitions/Euro"
+        type: "number"
       ertrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       maximalAufzuloesenderWert:
-        $ref: "#/definitions/Euro"
+        type: "number"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -1666,7 +1652,7 @@ definitions:
         - "ABTRETEN"
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
-        $ref: "#/definitions/Euro"
+        type: "number"
   ZeitlicherRahmenPraeferenz:
     type: "object"
     properties:
@@ -1694,7 +1680,7 @@ definitions:
         type: "integer"
         format: "int32"
       restschuldNachZinsBindungsEnde:
-        $ref: "#/definitions/Euro"
+        type: "number"
   ZinsBindungPraeferenz:
     type: "object"
     properties:
@@ -1721,7 +1707,7 @@ definitions:
     type: "object"
     properties:
       darlehensBetrag:
-        $ref: "#/definitions/Euro"
+        type: "number"
       detailsZurVerwendung:
         type: "string"
       maximaleLaufzeitInMonaten:
