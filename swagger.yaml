@@ -62,7 +62,7 @@ securityDefinitions:
     scopes:
       API: "Authorisation Scope für die gesamte API."
 definitions:
-  AnnuitaetenOderForwardDarlehensWunsch:
+  AnnuitaetenDarlehensWunsch:
     type: "object"
     properties:
       auszahlungsDatumBeiForward:
@@ -79,11 +79,6 @@ definitions:
         type: "number"
       tilgungsWunsch:
         $ref: "#/definitions/TilgungsWunsch"
-      typ:
-        type: "string"
-        enum:
-        - "ANNUITAETENDARLEHEN"
-        - "FORWARDDARLEHEN"
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
@@ -282,28 +277,67 @@ definitions:
     properties:
       abschlussGebuehr:
         type: "number"
+      abschlussGebuehrenVerrechnung:
+        type: "string"
       angebotsHinweisFuerAntragsteller:
         type: "string"
         description: "nur bei neuen extern berechneten Bausparverträgen und bei Gegenangeboten"
+      antragEntscheider:
+        $ref: "#/definitions/ProduktAnbieter"
+      bausparDarlehenSumme:
+        type: "number"
       bausparSumme:
         type: "number"
+      bausparkasse:
+        $ref: "#/definitions/ProduktAnbieter"
+      effektivZinsNachZuteilungProzent:
+        type: "number"
       einmalzahlung:
+        type: "number"
+      europaceMargeAbsolut:
+        type: "number"
+      gesamtLaufzeitInJahren:
+        type: "integer"
+        format: "int32"
+      guthabenBeiZuteilung:
         type: "number"
       id:
         type: "string"
       produktAnbieter:
         $ref: "#/definitions/ProduktAnbieter"
+      provisionAbsolut:
+        type: "number"
+      sollZinsNachZuteilung:
+        type: "number"
+      sonderZahlungEinmalig:
+        type: "number"
+      sparBeitragMonatlich:
+        type: "number"
       sparPhase:
         $ref: "#/definitions/SparPhase"
+      sparPhaseInJahren:
+        type: "integer"
+        format: "int32"
       tarif:
         type: "string"
+      teilBausparSumme:
+        type: "number"
+      tilgungsBeitragMonatlich:
+        type: "number"
       tilgungsPhase:
         $ref: "#/definitions/TilgungsPhase"
+      tilgungsPhaseInJahren:
+        type: "integer"
+        format: "int32"
       vertragsBeginn:
         type: "string"
         format: "date"
       vertragsNummer:
         type: "string"
+      vertragsPartnerIds:
+        type: "array"
+        items:
+          type: "string"
       verwaltungsgebuehrenJaehrlich:
         type: "number"
       zuteilungsDatum:
@@ -312,10 +346,19 @@ definitions:
   BausparWunsch:
     type: "object"
     properties:
+      abschlussGebuehrenVerrechnung:
+        type: "string"
+        enum:
+        - "SOFORTZAHLUNG"
+        - "VERRECHNUNG"
       bausparSummeAbsolut:
         type: "number"
       bausparSummeRelativ:
         type: "number"
+      bausparTarife:
+        type: "array"
+        items:
+          type: "string"
       id:
         type: "string"
       sonderZahlungEinmalig:
@@ -326,9 +369,27 @@ definitions:
         type: "number"
       tilgungsBeitragMonatlich:
         type: "number"
+      vertragsPartnerIds:
+        type: "array"
+        items:
+          type: "string"
+      verwendung:
+        type: "string"
+        enum:
+        - "ZINS_ABSICHERUNG"
+        - "TILGUNGS_AUSGESETZT"
       zuteilungsDatum:
         type: "string"
         format: "date"
+  Beleihung:
+    type: "object"
+    properties:
+      auslauf:
+        type: "number"
+      produktanbieter:
+        $ref: "#/definitions/ProduktAnbieter"
+      summe:
+        type: "number"
   Bereitstellung:
     type: "object"
     properties:
@@ -507,6 +568,11 @@ definitions:
         $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
         type: "number"
+      grundschuldArt:
+        type: "string"
+        enum:
+        - "BRIEF_GRUNDSCHULD"
+        - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
       rateMonatlich:
@@ -531,6 +597,11 @@ definitions:
         $ref: "#/definitions/ProduktAnbieter"
       eingetrageneGrundschuld:
         type: "number"
+      grundschuldArt:
+        type: "string"
+        enum:
+        - "BRIEF_GRUNDSCHULD"
+        - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
       rateMonatlich:
@@ -567,6 +638,8 @@ definitions:
         - "VARIABLES_DARLEHEN"
       effektivZins:
         type: "number"
+      id:
+        type: "string"
       produktanbieter:
         $ref: "#/definitions/ProduktAnbieter"
       provision:
@@ -585,17 +658,12 @@ definitions:
   DarlehensWunsch:
     type: "object"
     properties:
-      annuitaetenOderForwardDarlehen:
+      annuitaetenDarlehen:
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
-        $ref: "#/definitions/AnnuitaetenOderForwardDarlehensWunsch"
-      darlehensWunschArt:
-        type: "string"
-        enum:
-        - "ANNUITAETEN_ODER_FORWARD_DARLEHENS_WUNSCH"
-        - "KFW_DARLEHENS_WUNSCH"
-        - "PRIVAT_DARLEHENS_WUNSCH"
-        - "ZWISCHEN_FINANZIERUNGS_WUNSCH"
-        - "VARIABLES_DARLEHENS_WUNSCH"
+        $ref: "#/definitions/AnnuitaetenDarlehensWunsch"
+      forwardDarlehen:
+        description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
+        $ref: "#/definitions/ForwardDarlehensWunsch"
       id:
         type: "string"
       kfwDarlehen:
@@ -743,6 +811,14 @@ definitions:
       annahmeFrist:
         type: "string"
         format: "date-time"
+      bausparAngebote:
+        type: "array"
+        items:
+          $ref: "#/definitions/BausparAngebot"
+      beleihung:
+        type: "array"
+        items:
+          $ref: "#/definitions/Beleihung"
       darlehen:
         type: "array"
         items:
@@ -797,6 +873,26 @@ definitions:
         type: "string"
       groesse:
         $ref: "#/definitions/Flaeche"
+  ForwardDarlehensWunsch:
+    type: "object"
+    properties:
+      auszahlungsDatumBeiForward:
+        type: "string"
+        format: "date"
+      bereitstellungsZinsFreieZeitInMonaten:
+        type: "integer"
+        format: "int32"
+      darlehensBetrag:
+        type: "number"
+      provision:
+        type: "number"
+      sondertilgungOptionalJaehrlich:
+        type: "number"
+      tilgungsWunsch:
+        $ref: "#/definitions/TilgungsWunsch"
+      zinsBindungInJahren:
+        type: "integer"
+        format: "int32"
   Gebaeude:
     type: "object"
     properties:
@@ -1266,17 +1362,43 @@ definitions:
   Partner:
     type: "object"
     properties:
-      vorname:
+      anrede:
         type: "string"
-      nachname:
+        enum:
+        - "FRAU"
+        - "HERR"
+      anschrift:
+        $ref: "#/definitions/Postadresse"
+      email:
+        type: "string"
+      externePartnerId:
+        type: "string"
+      externerKreditSachbearbeiterId:
+        type: "string"
+      fax:
+        type: "string"
+      firmenNameZusatz:
         type: "string"
       firmierung:
         type: "string"
-      email:
+      geburtsdatum:
+        type: "string"
+        format: "date"
+      id:
+        type: "string"
+      kreditsachbearbeiter:
+        type: "boolean"
+      mobilTelefon:
+        type: "string"
+      nachname:
         type: "string"
       telefonnummer:
         type: "string"
-      externerKreditSachbearbeiterId:
+      vertriebsOrganisation:
+        $ref: "#/definitions/VertriebsOrganisation"
+      vorname:
+        type: "string"
+      webseite:
         type: "string"
   Postadresse:
     type: "object"
@@ -1349,6 +1471,8 @@ definitions:
         type: "string"
       betrag:
         type: "number"
+      vorhanden:
+        type: "boolean"
   SchufaErgebnis:
     type: "object"
     properties:
@@ -1508,6 +1632,8 @@ definitions:
         type: "boolean"
         example: false
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
+      bausparWunsch:
+        $ref: "#/definitions/BausparWunsch"
       rate:
         type: "number"
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
@@ -1571,6 +1697,21 @@ definitions:
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
+  VertriebsOrganisation:
+    type: "object"
+    properties:
+      firmenName:
+        type: "string"
+      id:
+        type: "string"
+      organisationsName:
+        type: "string"
+      organisationsNameFuerProvisionsClearing:
+        type: "string"
+      partner:
+        type: "string"
+      vertriebsOrganisationsId:
+        type: "string"
   Vorgang:
     type: "object"
     properties:
