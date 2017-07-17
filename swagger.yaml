@@ -7,7 +7,7 @@ info:
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
-    url: "www.europace2.de"
+    url: "http://www.europace2.de"
     email: "helpdesk@europace2.de"
 host: "baufismart.api.europace.de"
 basePath: "/v1test"
@@ -32,6 +32,12 @@ paths:
       produces:
       - "application/json;charset=UTF-8"
       parameters:
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
       - in: "body"
         name: "erfassteDaten"
         description: "erfassteDaten"
@@ -533,7 +539,13 @@ definitions:
   BestehenderBausparvertrag:
     type: "object"
     properties:
+      abschlussGebuehr:
+        type: "number"
       aktuellerWert:
+        type: "number"
+      bausparSumme:
+        type: "number"
+      einmalzahlung:
         type: "number"
       ertrag:
         type: "number"
@@ -541,16 +553,30 @@ definitions:
         type: "string"
       maximalAufzuloesenderBetrag:
         type: "number"
+      produktAnbieter:
+        $ref: "#/definitions/ProduktAnbieter"
       sparBeitragMonatlich:
         type: "number"
+      tarif:
+        type: "string"
       vermoegensEinsatz:
         type: "string"
         enum:
         - "KEIN_EINSATZ"
         - "ABTRETEN"
         - "AUFLOESEN"
+      vertragsBeginn:
+        type: "string"
+        format: "date"
+      vertragsNummer:
+        type: "string"
+      verwaltungsgebuehrenJaehrlich:
+        type: "number"
       zukuenftigeEinnahmen:
         type: "number"
+      zuteilungsDatum:
+        type: "string"
+        format: "date"
   BestehendesDarlehen:
     type: "object"
     properties:
@@ -564,8 +590,14 @@ definitions:
         description: "Erlaubte Werte sind: BAUSPARDARLEHEN,FOERDERDARLEHEN,IMMOBILIENDARLEHEN,SONSTIGES_DARLEHEN.\
           \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
           \ mit unbekannten Werten umgehen können."
+      darlehensBetrag:
+        type: "number"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       darlehensGeber:
         $ref: "#/definitions/ProduktAnbieter"
+      darlehensKontonummer:
+        type: "string"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       eingetrageneGrundschuld:
         type: "number"
       grundschuldArt:
@@ -575,8 +607,19 @@ definitions:
         - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
+      laufzeitEnde:
+        type: "string"
+        format: "date"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (DSL Bank)"
       rateMonatlich:
         type: "number"
+      sollZins:
+        type: "number"
+      sondertilgungZumZinsBindungsEnde:
+        type: "number"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       zinsBindungEndetAm:
         type: "string"
         format: "date"
@@ -593,8 +636,14 @@ definitions:
         description: "Erlaubte Werte sind: BAUSPARDARLEHEN,FOERDERDARLEHEN,IMMOBILIENDARLEHEN,SONSTIGES_DARLEHEN.\
           \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
           \ mit unbekannten Werten umgehen können."
+      darlehensBetrag:
+        type: "number"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       darlehensGeber:
         $ref: "#/definitions/ProduktAnbieter"
+      darlehensKontonummer:
+        type: "string"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       eingetrageneGrundschuld:
         type: "number"
       grundschuldArt:
@@ -604,8 +653,19 @@ definitions:
         - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
+      laufzeitEnde:
+        type: "string"
+        format: "date"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (DSL Bank)"
       rateMonatlich:
         type: "number"
+      sollZins:
+        type: "number"
+      sondertilgungZumZinsBindungsEnde:
+        type: "number"
+        description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
       verwendenAls:
         type: "string"
         description: "Beschreibt wie das Darlehen im Zusammenhang mit dem Vorhaben,\
@@ -636,6 +696,7 @@ definitions:
         - "PRIVAT_DARLEHEN"
         - "ZWISCHEN_FINANZIERUNG"
         - "VARIABLES_DARLEHEN"
+        - "BAUSPARVERTRAG"
       effektivZins:
         type: "number"
       id:
@@ -1166,6 +1227,8 @@ definitions:
       laufzeitInJahren:
         type: "integer"
         format: "int32"
+      provision:
+        type: "number"
       tilgungsfreieAnlaufjahre:
         type: "integer"
         format: "int32"
@@ -1440,6 +1503,8 @@ definitions:
       laufzeitInMonaten:
         type: "integer"
         format: "int32"
+      provision:
+        type: "number"
   ProduktAnbieter:
     type: "object"
     properties:
@@ -1651,6 +1716,8 @@ definitions:
     properties:
       darlehensBetrag:
         type: "number"
+      provision:
+        type: "number"
       tilgungsWunsch:
         $ref: "#/definitions/TilgungsWunsch"
   Verbindlichkeit:
@@ -1854,6 +1921,8 @@ definitions:
       maximaleLaufzeitInMonaten:
         type: "integer"
         format: "int32"
+      provision:
+        type: "number"
       verwendungszweck:
         type: "string"
         enum:
