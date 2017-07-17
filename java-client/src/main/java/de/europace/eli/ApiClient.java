@@ -13,7 +13,6 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 
 import feign.Feign;
 import feign.RequestInterceptor;
-import feign.form.FormEncoder;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
 import feign.slf4j.Slf4jLogger;
@@ -33,16 +32,16 @@ public class ApiClient {
     objectMapper = createObjectMapper();
     apiAuthorizations = new LinkedHashMap<String, RequestInterceptor>();
     feignBuilder = Feign.builder()
-                .encoder(new FormEncoder(new JacksonEncoder(objectMapper)))
+                .encoder(new FormAwareEncoder(new JacksonEncoder(objectMapper)))
                 .decoder(new JacksonDecoder(objectMapper))
                 .logger(new Slf4jLogger());
   }
 
   public ApiClient(String[] authNames) {
     this();
-    for(String authName : authNames) {
+    for(String authName : authNames) { 
       RequestInterceptor auth;
-      if ("oauth2".equals(authName)) {
+      if (authName == "oauth2") { 
         auth = new OAuth(OAuthFlow.password, "", "https://api.europace.de/login", "API");
       } else {
         throw new RuntimeException("auth name \"" + authName + "\" not found in available auth names");
@@ -129,7 +128,6 @@ public class ApiClient {
     objectMapper.enable(DeserializationFeature.READ_ENUMS_USING_TO_STRING);
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    objectMapper.setDateFormat(new RFC3339DateFormat());
     objectMapper.registerModule(new JodaModule());
     return objectMapper;
   }
@@ -146,9 +144,6 @@ public class ApiClient {
    *    apiClient.setBasePath("http://localhost:8080");
    *    XYZApi api = apiClient.buildClient(XYZApi.class);
    *    XYZResponse response = api.someMethod(...);
-   * @param <T> Type
-   * @param clientClass Client class
-   * @return The Client
    */
   public <T extends Api> T buildClient(Class<T> clientClass) {
     return feignBuilder.target(clientClass, basePath);
@@ -186,7 +181,7 @@ public class ApiClient {
 
   /**
    * Helper method to configure the first api key found
-   * @param apiKey API key
+   * @param apiKey
    */
   public void setApiKey(String apiKey) {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -201,8 +196,8 @@ public class ApiClient {
 
   /**
    * Helper method to configure the username/password for basic auth or password OAuth
-   * @param username Username
-   * @param password Password
+   * @param username
+   * @param password
    */
   public void setCredentials(String username, String password) {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -222,7 +217,7 @@ public class ApiClient {
 
   /**
    * Helper method to configure the token endpoint of the first oauth found in the apiAuthorizations (there should be only one)
-   * @return Token request builder
+   * @return
    */
   public TokenRequestBuilder getTokenEndPoint() {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -236,7 +231,7 @@ public class ApiClient {
 
   /**
    * Helper method to configure authorization endpoint of the first oauth found in the apiAuthorizations (there should be only one)
-   * @return Authentication request builder
+   * @return
    */
   public AuthenticationRequestBuilder getAuthorizationEndPoint() {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -250,8 +245,8 @@ public class ApiClient {
 
   /**
    * Helper method to pre-set the oauth access token of the first oauth found in the apiAuthorizations (there should be only one)
-   * @param accessToken Access Token
-   * @param expiresIn Validity period in seconds
+   * @param accessToken
+   * @param expiresIn : validity period in seconds
    */
   public void setAccessToken(String accessToken, Long expiresIn) {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -265,9 +260,9 @@ public class ApiClient {
 
   /**
    * Helper method to configure the oauth accessCode/implicit flow parameters
-   * @param clientId Client ID
-   * @param clientSecret Client secret
-   * @param redirectURI Redirect URI
+   * @param clientId
+   * @param clientSecret
+   * @param redirectURI
    */
   public void configureAuthorizationFlow(String clientId, String clientSecret, String redirectURI) {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -287,7 +282,7 @@ public class ApiClient {
 
   /**
    * Configures a listener which is notified when a new access token is received.
-   * @param accessTokenListener Acesss token listener
+   * @param accessTokenListener
    */
   public void registerAccessTokenListener(AccessTokenListener accessTokenListener) {
     for(RequestInterceptor apiAuthorization : apiAuthorizations.values()) {
@@ -299,19 +294,14 @@ public class ApiClient {
     }
   }
 
-  /**
-   * Gets request interceptor based on authentication name
-   * @param authName Authentiation name
-   * @return Request Interceptor
-   */
   public RequestInterceptor getAuthorization(String authName) {
     return apiAuthorizations.get(authName);
   }
 
   /**
    * Adds an authorization to be used by the client
-   * @param authName Authentication name
-   * @param authorization Request interceptor
+   * @param authName
+   * @param authorization
    */
   public void addAuthorization(String authName, RequestInterceptor authorization) {
     if (apiAuthorizations.containsKey(authName)) {

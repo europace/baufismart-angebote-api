@@ -12,19 +12,20 @@ import java.util.Map;
 import feign.*;
 
 
-public interface ErgebnisListeRestControllerApi extends ApiClient.Api {
+public interface ErgebnislisterestcontrollerApi extends ApiClient.Api {
 
 
   /**
    * getFinanzierungsVorschlaege
    * 
-    * @param erfassteDaten erfassteDaten (required)
+   * @param erfassteDaten erfassteDaten (required)
+   * @param alternativen alternativen (optional, default to false)
    * @return ErgebnisListeResource
    */
-  @RequestLine("POST /finanzierungsvorschlaege")
+  @RequestLine("POST /finanzierungsvorschlaege?alternativen={alternativen}")
   @Headers({
-    "Content-Type: application/json",
+    "Content-type: application/json",
     "Accept: application/json;charset&#x3D;UTF-8",
   })
-  ErgebnisListeResource getFinanzierungsVorschlaegeUsingPOST(Vorgang erfassteDaten);
+  ErgebnisListeResource getFinanzierungsVorschlaegeUsingPOST(Vorgang erfassteDaten, @Param("alternativen") Boolean alternativen);
 }
