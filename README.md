@@ -69,5 +69,7 @@ curl -X POST \
 }'
 ```
 
-Ansonsten sind die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/europace2-api/tree/master/BaufiSmart/vorgaenge-api)
-valide Eingaben für diese Schnittstelle.
+Ansonsten werden die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/europace2-api/tree/master/BaufiSmart/vorgaenge-api)
+als valide Eingaben für diese Schnittstelle verwendet werden können.
+
+Aktuell ist dies nicht möglich, da es noch kein kompatibles Release der Vorgänge-API gibt.

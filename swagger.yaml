@@ -60,6 +60,56 @@ paths:
       security:
       - oauth2:
         - "API"
+  /finanzierungsvorschlaege/{vorgangsNummer}:
+    get:
+      tags:
+      - "ergebnis-liste-rest-controller"
+      summary: "getFinanzierungsVorschlaege"
+      operationId: "getFinanzierungsVorschlaegeUsingGET"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json;charset=UTF-8"
+      parameters:
+      - name: "vorgangsNummer"
+        in: "path"
+        description: "vorgangsNummer"
+        required: true
+        type: "string"
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ErgebnisListeResource"
+        400:
+          description: "Client Error"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
 securityDefinitions:
   oauth2:
     type: "oauth2"
@@ -118,38 +168,11 @@ definitions:
         type: "string"
         format: "date"
         description: "wenn Aufenthaltstitel befristet"
-      berufsgruppeBeiIngDiba:
-        type: "string"
-        description: "Berufsgruppe des Antragstellers (ING-DiBa) Dieses Feld ist eine\
-          \ produktanbieterspezifische Zusatzangabe, sie wird nicht von allen Produktanbietern\
-          \ bei der Angebotsermittlung berücksichtigt. (ING-DiBa). Erlaubte Werte\
-          \ sind:  ANGESTELLTER,ARBEITER,BEAMTER,FREIBERUFLER,SELBSTSTAENDIG,RENTNER,HAUSMANN,PRIVATIER,SOLDAT,SCHUELER,AZUBI,STUDENT,OHNE.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
       beschaeftigung:
         $ref: "#/definitions/Beschaeftigung"
-      brancheBeiIngDiba:
-        type: "string"
-        description: "Branche, in welcher der Antragsteller tätig ist. (ING-DiBa)\
-          \ Dieses Feld ist eine produktanbieterspezifische Zusatzangabe, sie wird\
-          \ nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.\
-          \ (ING-DiBa). Erlaubte Werte sind: BANKEN_VERSICHERUNGEN,BAUGEWERBE,DIENSTLEISTUNGEN_SONSTIGE,EDV_BERATUNG,ENERGIE,ERZIEHUNG_UNTERRICHT,GESUNDHEITSWESEN,HANDEL,HANDWERK,HOTEL_GASTRONOMIE,LANDWIRTSCHAFT,OEFFENTLICHER_DIENST,PRODUKTION_INDUSTRIE,VERKEHR.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
-      brancheBeiMhb:
-        type: "string"
-        description: "Branche, in welcher der Antragsteller tätig ist. (MHB) Dieses\
-          \ Feld ist eine produktanbieterspezifische Zusatzangabe, sie wird nicht\
-          \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.\
-          \ (ING-DiBa). Erlaubte Werte sind: VERARBEITENDES_GEWERBE,BAU,HANDEL,VERKEHR_INFORMATION,DIENSTLEISTUNG,SONSTIGES.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
-      brancheBeiSRating:
-        type: "string"
-        description: "Pauschale für die Beleihungswertberechnung manuell überschreiben.\
-          \ Dieses Feld ist eine produktanbieterspezifische Zusatzangabe, sie wird\
-          \ nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.\
-          \ (ING-DiBa) (Genopace ( Volks- und Raiffeisenbanken))"
+      bruttoVorjahresEinkommen:
+        type: "number"
+        description: "Vorjahreseinkommen (brutto)"
       email:
         type: "string"
         example: "max.mustermann@test.de"
@@ -392,7 +415,7 @@ definitions:
     properties:
       auslauf:
         type: "number"
-      produktanbieter:
+      produktAnbieter:
         $ref: "#/definitions/ProduktAnbieter"
       summe:
         type: "number"
@@ -436,8 +459,8 @@ definitions:
         $ref: "#/definitions/Staat"
       art:
         type: "string"
-        description: "Erlaubte Werte sind: ANGESTELLTER, ARBEITER, ARBEITSLOSER, BEAMTER,\
-          \ FREIBERUFLER, HAUSFRAU, RENTNER, SELBSTAENDIGER"
+        description: "AUch Berufsgruppe genannt. Erlaubte Werte sind: ANGESTELLTER,\
+          \ ARBEITER, ARBEITSLOSER, BEAMTER, FREIBERUFLER, HAUSFRAU, RENTNER, SELBSTAENDIGER,PRIVATIER,SOLDAT,SCHUELER,AZUBI,STUDENT,OHNE"
       befristungsStatus:
         type: "string"
         description: "nur bei art==ANGESTELLTER,ARBEITER"
@@ -447,10 +470,24 @@ definitions:
       beruf:
         type: "string"
         description: "nur bei art!=RENTNER"
+      berufsgruppeBeiIngDiba:
+        type: "string"
+        description: "Berufsgruppe des Antragstellers (ING-DiBa) Dieses Feld ist eine\
+          \ produktanbieterspezifische Zusatzangabe, sie wird nicht von allen Produktanbietern\
+          \ bei der Angebotsermittlung berücksichtigt. (ING-DiBa). Erlaubte Werte\
+          \ sind:  ANGESTELLTER,ARBEITER,BEAMTER,FREIBERUFLER,SELBSTSTAENDIG,RENTNER,HAUSMANN,PRIVATIER,SOLDAT,SCHUELER,AZUBI,STUDENT,OHNE.\
+          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
+          \ mit unbekannten Werten umgehen können."
       beschaeftigtSeit:
         type: "string"
         format: "date"
         description: "nur bei art==ANGESTELLTER,ARBEITER,BEAMTER,FREIBERUFLER,SELBSTAENDIGER"
+      branche:
+        type: "string"
+        description: "Allgemeine Branche des Antragstellers. Wird verwendet um fü\
+          r die verschiedenen Banken die Zusatzangabe Branche zu bilden. Kann der\
+          \ Werte: BANKEN_KREDITINSTITUTE,VERSICHERUNGEN,BAUGEWERBE,DIENSTLEISTUNGEN,EDV_BERATUNG,ENERGIE,ERZIEHUNG_UNTERRICHT,GESUNDHEITSWESEN,HANDEL,HANDWERK,HOTEL_GASTRONOMIE,LANDWIRTSCHAFT,FORSTWIRTSCHAFT,FISCHEREI,OEFFENTLICHER_DIENST,PRODUKTION_INDUSTRIE,VERKEHR,NACHRICHTENUEBERMITTLUNG,WASSERVERSORGUNG,BERGBAU,ORGANISATION_OHNE_ERWERBSZWECK,GEBIETSKOERPERSCHAFTEN,SOZIALVERSICHERUNGEN,SONSTIGES\
+          \ sein"
       einkommenNettoJaehrlich:
         type: "number"
         description: "nur bei art==FREIBERUFLER,SELBSTAENDIGER"
@@ -497,22 +534,37 @@ definitions:
     type: "object"
     properties:
       adresse:
+        description: "Anschrift der Immobilie"
         $ref: "#/definitions/Postadresse"
       autostellplaetze:
         type: "array"
+        description: "Angaben zu vorhandenen Autostellplätzen"
         items:
           $ref: "#/definitions/Autostellplatz"
       bestehendeDarlehen:
         type: "array"
         items:
           $ref: "#/definitions/BestehendesDarlehen"
+      bewirtschaftungsKostenJaehrlich:
+        type: "number"
+        description: "Jährliche Bewirtschaftungskosten"
+      bodenRichtwert:
+        type: "number"
+        description: "Angabe des Boden Richtwerts"
+      effektivZinsErhoehendeKosten:
+        description: "Effektivzinsbeeinflussende Kosten - Anpassungen nach PAngV"
+        $ref: "#/definitions/EffektivZinsErhoehendeKosten"
       erbbaurecht:
+        description: "Angaben zum Erbbaurecht"
         $ref: "#/definitions/Erbbaurecht"
       gebaeude:
+        description: "Angaben zum Gebäude"
         $ref: "#/definitions/Gebaeude"
       grundbuchAngabe:
+        description: "Grundbuch Angaben"
         $ref: "#/definitions/GrundbuchAngabe"
       grundstueck:
+        description: "Angaben zum Grundstück"
         $ref: "#/definitions/Grundstueck"
       id:
         type: "string"
@@ -522,20 +574,45 @@ definitions:
         - "KEIN_EINSATZ"
         - "VERKAUFEN"
         - "ALS_ZUSATZSICHERHEIT"
+      keinBaulandFlaecheInQm:
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+        $ref: "#/definitions/Flaeche"
       keineBestehendenDarlehenVorhanden:
         type: "boolean"
+      marktueblicherKaufpreisProQm:
+        type: "number"
+        description: "Marktüblicher Kaufpreis pro qm (bezieht sich auf die Wohnflä\
+          che, wenn's ein Grundstück ist, dann ist es nicht definiert.)"
       maximalEinzusetzenderBetragWennVerkauf:
         type: "number"
       objektArt:
         type: "string"
+        description: "Art der Immobilie"
         enum:
         - "GRUNDSTUECK"
         - "EIGENTUMSWOHNUNG"
         - "HAUS"
+      vergleichsmieteFuerGewerbeflaecheProQm:
+        type: "number"
+        description: "Angabe einer Vergleichsmiete für eine Gewerbefläche pro qm"
+      vergleichsmieteFuerWohnflaecheProQm:
+        type: "number"
+        description: "Angabe einer Vergleichsmiete für die Wohnfläche pro qm"
       verkehrswert:
         type: "number"
-        description: "Nur relevant bei Finanzbedarf AnschlussFinanzierung, Modernisierung\
-          \ und Kapitalbeschaffung"
+        description: "Verkehrswert, nur relevant bei Finanzbedarf AnschlussFinanzierung,\
+          \ Modernisierung und Kapitalbeschaffung"
+      wohnlage:
+        type: "string"
+        description: "Wohnlage - Erlaubte Werte sind: GEHOBEN,MITTEL,EINFACH. Neue\
+          \ Ausprägungen können kurzfristig hinzukommen. Der Client muss daher mit\
+          \ unbekannten Werten umgehen können."
+        enum:
+        - "GEHOBEN"
+        - "MITTEL"
+        - "EINFACH"
   BestehenderBausparvertrag:
     type: "object"
     properties:
@@ -701,7 +778,7 @@ definitions:
         type: "number"
       id:
         type: "string"
-      produktanbieter:
+      produktAnbieter:
         $ref: "#/definitions/ProduktAnbieter"
       provision:
         $ref: "#/definitions/Provision"
@@ -711,11 +788,11 @@ definitions:
         type: "number"
       tilgung:
         $ref: "#/definitions/Tilgung"
+      zinsBindung:
+        $ref: "#/definitions/ZinsBindung"
       zinsZahlungsBeginnAm:
         type: "string"
         format: "date"
-      zinsbindung:
-        $ref: "#/definitions/ZinsBindung"
   DarlehensWunsch:
     type: "object"
     properties:
@@ -739,6 +816,35 @@ definitions:
       zwischenFinanzierung:
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
         $ref: "#/definitions/ZwischenFinanzierungsWunsch"
+  EffektivZinsErhoehendeKosten:
+    type: "object"
+    properties:
+      anpassen:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+      grundbuchEintragungsKostenEinmalig:
+        type: "number"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+      sonstigeKostenBezeichnung:
+        type: "string"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+      sonstigeKostenEinmalig:
+        type: "number"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+      wohnGebaeudeVersicherungsKostenJaehrlich:
+        type: "number"
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
   EinkuenfteAusNebentaetigkeit:
     type: "object"
     properties:
@@ -755,14 +861,21 @@ definitions:
   Erbbaurecht:
     type: "object"
     properties:
+      erbbaurecht:
+        type: "boolean"
+        example: false
+        description: "Erbbaurecht vorhanden"
       erbbauzinsJaehrlich:
         type: "number"
+        description: "Jährlicher Erbbauzins"
       grundstuecksEigentuemer:
         type: "string"
+        description: "Angaben zum Grundstückseigentümer"
         enum:
         - "ANDERE"
         - "OEFFENTLICH_KIRCHLICH"
       laufzeitBisJahr:
+        description: "Laufzeit des Erbbaurechts"
         $ref: "#/definitions/Jahreszahl"
   ErgebnisListeResource:
     type: "object"
@@ -813,6 +926,8 @@ definitions:
         description: "inklusive Eigenleistungen"
       kapitalBeschaffung:
         type: "number"
+      kapitalWirdBeschafft:
+        type: "boolean"
       kaufpreis:
         type: "number"
         description: "inklusive Eigenleistungen"
@@ -821,6 +936,8 @@ definitions:
         description: "Nebenkosten"
       mobiliar:
         type: "number"
+      modernisieren:
+        type: "boolean"
       modernisierung:
         type: "number"
         description: "inklusive Eigenleistungen"
@@ -837,35 +954,75 @@ definitions:
     type: "object"
     properties:
       adresse:
+        description: "Anschrift der Immobilie"
         $ref: "#/definitions/Postadresse"
       autostellplaetze:
         type: "array"
+        description: "Angaben zu vorhandenen Autostellplätzen"
         items:
           $ref: "#/definitions/Autostellplatz"
       bestehendeDarlehen:
         type: "array"
         items:
           $ref: "#/definitions/BestehendesDarlehenDesFinanzierungsObjekts"
+      bewirtschaftungsKostenJaehrlich:
+        type: "number"
+        description: "Jährliche Bewirtschaftungskosten"
+      bodenRichtwert:
+        type: "number"
+        description: "Angabe des Boden Richtwerts"
+      effektivZinsErhoehendeKosten:
+        description: "Effektivzinsbeeinflussende Kosten - Anpassungen nach PAngV"
+        $ref: "#/definitions/EffektivZinsErhoehendeKosten"
       erbbaurecht:
+        description: "Angaben zum Erbbaurecht"
         $ref: "#/definitions/Erbbaurecht"
       gebaeude:
+        description: "Angaben zum Gebäude"
         $ref: "#/definitions/Gebaeude"
       grundbuchAngabe:
+        description: "Grundbuch Angaben"
         $ref: "#/definitions/GrundbuchAngabe"
       grundstueck:
+        description: "Angaben zum Grundstück"
         $ref: "#/definitions/Grundstueck"
       id:
         type: "string"
+      keinBaulandFlaecheInQm:
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt."
+        $ref: "#/definitions/Flaeche"
+      marktueblicherKaufpreisProQm:
+        type: "number"
+        description: "Marktüblicher Kaufpreis pro qm (bezieht sich auf die Wohnflä\
+          che, wenn's ein Grundstück ist, dann ist es nicht definiert.)"
       objektArt:
         type: "string"
+        description: "Art der Immobilie"
         enum:
         - "GRUNDSTUECK"
         - "EIGENTUMSWOHNUNG"
         - "HAUS"
+      vergleichsmieteFuerGewerbeflaecheProQm:
+        type: "number"
+        description: "Angabe einer Vergleichsmiete für eine Gewerbefläche pro qm"
+      vergleichsmieteFuerWohnflaecheProQm:
+        type: "number"
+        description: "Angabe einer Vergleichsmiete für die Wohnfläche pro qm"
       verkehrswert:
         type: "number"
-        description: "Nur relevant bei Finanzbedarf AnschlussFinanzierung, Modernisierung\
-          \ und Kapitalbeschaffung"
+        description: "Verkehrswert, nur relevant bei Finanzbedarf AnschlussFinanzierung,\
+          \ Modernisierung und Kapitalbeschaffung"
+      wohnlage:
+        type: "string"
+        description: "Wohnlage - Erlaubte Werte sind: GEHOBEN,MITTEL,EINFACH. Neue\
+          \ Ausprägungen können kurzfristig hinzukommen. Der Client muss daher mit\
+          \ unbekannten Werten umgehen können."
+        enum:
+        - "GEHOBEN"
+        - "MITTEL"
+        - "EINFACH"
   FinanzierungsVorschlag:
     type: "object"
     properties:
@@ -960,51 +1117,83 @@ definitions:
       anzahlDerGewerbeeinheiten:
         type: "integer"
         format: "int32"
-        description: "Nur bei ObjektArt == HAUS."
+        description: "Anzahl der Gewerbeeinheiten. Nur bei ObjektArt == HAUS."
       anzahlDerWohneinheitenImGebaeude:
         type: "integer"
         format: "int32"
+        description: "Anzahl der Wohneinheiten im Gebäude"
       anzahlVollgeschosse:
         type: "integer"
         format: "int32"
+        description: "Anzahl der Geschosse"
+      aufbauFinanzierung:
+        type: "boolean"
+        example: false
+      aufzugVorhanden:
+        type: "boolean"
+        example: false
+        description: "Ein Aufzug vorhanden"
       ausstattung:
         type: "string"
-        description: "Angaben zur Ausstattung für alle verschiedene Produktanbieter,\
-          \ aber nicht für ING-DiBa. Erlaubte Werte sind: EINFACH,MITTEL,GEHOBEN,STARK_GEHOBEN.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
+        description: "Angaben zur Ausstattung"
+        enum:
+        - "EINFACH"
+        - "MITTEL"
+        - "GEHOBEN"
+        - "STARK_GEHOBEN"
       baujahr:
         description: "Baujahr des Gebäudes. Bei verwendungszweck != NEUBAU; Vierstellige\
           \ Jahresangabe"
         $ref: "#/definitions/Jahreszahl"
       bauweise:
         type: "string"
-        description: "Erlaubte Werte sind: FACHWERK_MIT_STROH_LEHM,FACHWERK_MIT_ZIEGELN,GLAS_STAHL,HOLZ,MASSIV.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
+        description: "Angaben zur Bauweise"
+        enum:
+        - "FACHWERK_MIT_STROH_LEHM"
+        - "FACHWERK_MIT_ZIEGELN"
+        - "GLAS_STAHL"
+        - "HOLZ"
+        - "MASSIV"
       bezeichnungWohneinheit:
         type: "string"
-        description: "Nur bei ObjektArt == EIGENTUMSWOHNUNG."
+        description: "Bezeichnung der Wohneinheit. Nur bei ObjektArt == EIGENTUMSWOHNUNG."
       dachgeschossAusbau:
         type: "string"
-        description: "Nur bei ObjektArt == HAUS. Erlaubte Werte sind: FLACHDACH,NICHT_AUSGEBAUT,TEILWEISE_AUSGEBAUT,VOLL_AUSGEBAUT.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
+        description: "Angaben zum Ausbau des Dachgeschosses. Nur bei ObjektArt ==\
+          \ HAUS."
+        enum:
+        - "FLACHDACH"
+        - "NICHT_AUSGEBAUT"
+        - "TEILWEISE_AUSGEBAUT"
+        - "VOLL_AUSGEBAUT"
       einliegerwohnungVorhanden:
         type: "boolean"
         example: false
-        description: "Nur bei ObjektArt == HAUS."
+        description: "Ist eine Einliegerwohnung vorhanden. Nur bei ObjektArt == HAUS."
+      geschossLage:
+        type: "string"
+        description: "Angaben zur Lage. Nur bei ObjektArt == EIGENTUMSWOHNUNG."
+        enum:
+        - "UNTERGESCHOSS"
+        - "ERDGESCHOSS"
+        - "ERSTES_OBERGESCHOSS"
+        - "ZWEITES_OBERGESCHOSS"
+        - "DRITTES_BIS_FUENFTES_OBERGESCHOSS"
+        - "AB_SECHSTES_OBERGESCHOSS"
+        - "UNBEKANNT"
       gewerbeflaeche:
+        description: "Angaben zur Gewerbefläche"
         $ref: "#/definitions/GebaeudeFlaeche"
       hausAnordnung:
         type: "string"
+        description: "Angaben zur Anordnung des Hauses."
         enum:
         - "FREISTEHEND"
         - "KOPFHAUS"
         - "MITTELHAUS"
       hausTyp:
         type: "string"
-        description: "Nur bei ObjektArt == HAUS."
+        description: "Angaben zum Typ des Hauses. Nur bei ObjektArt == HAUS."
         enum:
         - "DOPPELHAUSHAELFTE"
         - "EINFAMILIENHAUS"
@@ -1014,18 +1203,32 @@ definitions:
       istFertighaus:
         type: "boolean"
         example: false
-        description: "Nur bei ObjektArt == HAUS."
+        description: "Handelt es sich um ein Fertighaus. Nur bei ObjektArt == HAUS."
+      kellerausbau:
+        type: "string"
+        description: "Angaben zum Kellerausbau."
+        enum:
+        - "AUSGEBAUT"
+        - "TEILWEISE_AUSGEBAUT"
+        - "VORHANDEN"
+      kubatur:
+        type: "number"
+        description: "Kubatur, Angabe in Kubikmetern."
       miteigentumsAnteil:
-        description: "Nur bei ObjektArt == EIGENTUMSWOHNUNG."
+        description: "Angaben zum Miteigentumsanteil. Nur bei ObjektArt == EIGENTUMSWOHNUNG."
         $ref: "#/definitions/MiteigentumsAnteil"
       modernisierungsAngaben:
+        description: "Angaben zur Modernisierung"
         $ref: "#/definitions/ModernisierungsAngaben"
       unterkellerung:
         type: "string"
-        description: "Nur bei ObjektArt == HAUS. Erlaubte Werte sind: NICHT_UNTERKELLERT,TEILWEISE_UNTERKELLERT,UNTERKELLERT.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
+        description: "Nur bei ObjektArt == HAUS."
+        enum:
+        - "NICHT_UNTERKELLERT"
+        - "TEILWEISE_UNTERKELLERT"
+        - "UNTERKELLERT"
       wohnflaeche:
+        description: "Angaben zur Wohnfläche"
         $ref: "#/definitions/GebaeudeFlaeche"
   GebaeudeFlaeche:
     type: "object"
@@ -1039,11 +1242,13 @@ definitions:
     properties:
       anmerkungen:
         type: "string"
+        description: "Feld für Anmerkungen"
       bandUndBlatt:
         type: "string"
         description: "Angabe von Band und Blatt"
       flurstuecke:
         type: "array"
+        description: "Angaben zu den Flustücken"
         items:
           $ref: "#/definitions/Flurstueck"
       ort:
@@ -1395,6 +1600,36 @@ definitions:
   ModernisierungsAngaben:
     type: "object"
     properties:
+      badWc:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      bodenWandTreppe:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      dach:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      fenster:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      heizungZentral:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
       modernisierungsGrad:
         type: "string"
         description: "erlaubt sind GERING,MITTEL,HOCH. Neue Ausprägungen können kurzfristig\
@@ -1402,6 +1637,26 @@ definitions:
       modernisierungsJahr:
         description: "Jahr der Modernisierung der Immobilie. Vierstellige Jahresangabe"
         $ref: "#/definitions/Jahreszahl"
+      raumaufteilung:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      stromAbwasserHeizkoerper:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      waermedaemmung:
+        type: "boolean"
+        example: false
+        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
+          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
+          cksichtigt. (ING-DiBa)"
+      wurdeModernisiert:
+        type: "boolean"
   NachrangigesExternesDarlehen:
     type: "object"
     properties:
@@ -1508,19 +1763,11 @@ definitions:
   ProduktAnbieter:
     type: "object"
     properties:
-      email:
-        type: "string"
-      firmierung:
-        type: "string"
-      nachname:
+      name:
         type: "string"
       partnerId:
         type: "string"
       produktAnbieterId:
-        type: "string"
-      telefonnummer:
-        type: "string"
-      vorname:
         type: "string"
   Provision:
     type: "object"
