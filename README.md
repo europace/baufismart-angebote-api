@@ -1,4 +1,4 @@
-# finanzierungsvorschlaege-api
+# Finanzierungsvorschläge API
 Eine API um Finanzierungsvorschläge zu ermitteln.
 
 # Vorsicht!
@@ -37,17 +37,32 @@ werden. Beispiel:
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v1test/finanzierungsvorschlaege \
+  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-	"vorhaben": {
-		"finanzbedarf": {
-			"kaufpreis": 100000
-		}
-	}
-}'
+        "vorhaben": {
+          "finanzierungswunsch": {
+            "darlehensWuensche": [
+              {
+                "id": "13674381840872074",
+                "annuitaetenDarlehen": {
+                  "darlehensBetrag": 350000,
+                  "provision": 2,
+                  "tilgungsWunsch": {
+                    "anfaenglicheTilgung": 2,
+                    "volltilgerWennAnnuitaetenOderForward": false
+                  },
+                  "bereitstellungsZinsFreieZeitInMonaten": 2,
+                  "sondertilgungOptionalJaehrlich": 0,
+                  "zinsBindungInJahren": 10
+                }
+              }
+            ]
+          }
+        }
+      }'
 ```
 
 # Finanzierungsvorschläge abrufen
@@ -56,20 +71,33 @@ Für erste Finanzierungsvorschläge benötigen wir nur einen Betrag im Finanzbed
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v1test/finanzierungsvorschlaege \
+  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-	"vorhaben": {
-		"finanzbedarf": {
-			"kaufpreis": 100000
-		}
-	}
-}'
+        "vorhaben": {
+          "finanzierungswunsch": {
+            "darlehensWuensche": [
+              {
+                "id": "13674381840872074",
+                "annuitaetenDarlehen": {
+                  "darlehensBetrag": 350000,
+                  "provision": 2,
+                  "tilgungsWunsch": {
+                    "anfaenglicheTilgung": 2,
+                    "volltilgerWennAnnuitaetenOderForward": false
+                  },
+                  "bereitstellungsZinsFreieZeitInMonaten": 2,
+                  "sondertilgungOptionalJaehrlich": 0,
+                  "zinsBindungInJahren": 10
+                }
+              }
+            ]
+          }
+        }
+      }'
 ```
 
 Ansonsten werden die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/europace2-api/tree/master/BaufiSmart/vorgaenge-api)
 als valide Eingaben für diese Schnittstelle verwendet werden können.
-
-Aktuell ist dies nicht möglich, da es noch kein kompatibles Release der Vorgänge-API gibt.

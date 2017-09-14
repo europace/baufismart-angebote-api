@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln."
-  version: "0.1"
+  version: "1.0"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -408,6 +408,10 @@ definitions:
           - "FUCHS_IMMO_2"
           - "FUCHS_IMMO_3"
           - "FUCHS_IMMO_4"
+          - "LBS_HT_CLASSIC_S_2015"
+          - "LBS_HT_CLASSIC_F_2015"
+          - "LBS_HT_CLASSIC_L_2015"
+          - "LBS_HT_CLASSIC_N_2015"
           - "LBS_OST_CLASSIC15_F5"
           - "LBS_OST_CLASSIC_F_H4"
           - "LBS_OST_CLASSIC_F_H5"
@@ -586,8 +590,15 @@ definitions:
         $ref: "#/definitions/Staat"
       art:
         type: "string"
-        description: "Auch Berufsgruppe genannt. Erlaubte Werte sind: ANGESTELLTER,\
-          \ ARBEITER, ARBEITSLOSER, BEAMTER, FREIBERUFLER, HAUSFRAU, RENTNER, SELBSTAENDIGER,PRIVATIER,SOLDAT,SCHUELER,AZUBI,STUDENT,OHNE"
+        enum:
+        - "ANGESTELLTER"
+        - "ARBEITER"
+        - "BEAMTER"
+        - "FREIBERUFLER"
+        - "SELBSTAENDIGER"
+        - "RENTNER"
+        - "HAUSFRAU"
+        - "ARBEITSLOSER"
       befristungsStatus:
         type: "string"
         description: "nur bei art == ANGESTELLTER, ARBEITER"
@@ -597,15 +608,6 @@ definitions:
       beruf:
         type: "string"
         description: "nur bei art != RENTNER"
-      berufsgruppeBeiIngDiba:
-        type: "string"
-        description: "Berufsgruppe des Antragstellers (ING-DiBa) Dieses Feld ist eine\
-          \ produktanbieterspezifische Zusatzangabe, sie wird nicht von allen Produktanbietern\
-          \ bei der Angebotsermittlung berücksichtigt. (ING-DiBa). Erlaubte Werte\
-          \ sind:  ANGESTELLTER, ARBEITER, BEAMTER, FREIBERUFLER, SELBSTSTAENDIG,\
-          \ RENTNER, HAUSMANN, PRIVATIER, SOLDAT, SCHUELER,A ZUBI, STUDENT, OHNE.\
-          \ Neue Ausprägungen können kurzfristig hinzukommen. Der Client muss daher\
-          \ mit unbekannten Werten umgehen können."
       beschaeftigtSeit:
         type: "string"
         format: "date"
@@ -616,30 +618,26 @@ definitions:
         description: "Allgemeine Branche des Antragstellers. Wird verwendet um fü\
           r die verschiedenen Banken die Zusatzangabe Branche zu bilden."
         enum:
-        - "BANKEN_KREDITINSTITUTE"
-        - "VERSICHERUNGEN"
-        - "BAUGEWERBE"
-        - "DIENSTLEISTUNGEN"
-        - "EDV_BERATUNG"
-        - "ENERGIE"
-        - "ERZIEHUNG_UNTERRICHT"
-        - "GESUNDHEITSWESEN"
-        - "HANDEL"
-        - "HANDWERK"
-        - "HOTEL_GASTRONOMIE"
-        - "LANDWIRTSCHAFT"
-        - "FORSTWIRTSCHAFT"
-        - "FISCHEREI"
-        - "OEFFENTLICHER_DIENST"
-        - "PRODUKTION_INDUSTRIE"
-        - "VERKEHR"
-        - "NACHRICHTENUEBERMITTLUNG"
+        - "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI"
+        - "BERGBAU_GEWINNUNG_VON_STEINEN_UND_ERDEN"
+        - "VERARBEITENDES_GEWERBE"
         - "WASSERVERSORGUNG"
-        - "BERGBAU"
-        - "ORGANISATION_OHNE_ERWERBSZWECK"
-        - "GEBIETSKOERPERSCHAFTEN"
-        - "SOZIALVERSICHERUNGEN"
-        - "SONSTIGES"
+        - "ENERGIEVERSORGUNG"
+        - "BAUGEWERBE"
+        - "HANDEL_INSTANDHALTUNG_VON_KRAFTFAHRZEUGEN"
+        - "VERKEHR_LOGISTIK"
+        - "GASTGEWERBE"
+        - "INFORMATION_KOMMUNIKATION"
+        - "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN"
+        - "GRUNDSTÜCKS_UND_WOHNUNGSWESEN"
+        - "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN"
+        - "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN"
+        - "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG"
+        - "ERZIEHUNG_UNTERRICHT"
+        - "GESUNDHEIT_UND_SOZIALWESEN"
+        - "KUNST_UNTERHALTUNG_ERHOLUNG"
+        - "SONSTIGE_DIENSTLEISTUNGEN"
+        - "PRIVATE_HAUSHALTE"
       einkommenNettoJaehrlich:
         type: "number"
         description: "nur bei art == FREIBERUFLER, SELBSTAENDIGER"
