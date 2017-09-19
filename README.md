@@ -67,7 +67,7 @@ curl -X POST \
 
 # Finanzierungsvorschläge abrufen
 
-Für erste Finanzierungsvorschläge benötigen wir nur einen Betrag im Finanzbedarf. Ein möglicher Beispiel-Request wäre:
+Für erste Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein möglicher Beispiel-Request wäre:
 
 ```
 curl -X POST \
@@ -99,5 +99,15 @@ curl -X POST \
       }'
 ```
 
-Ansonsten werden die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/europace2-api/tree/master/BaufiSmart/vorgaenge-api)
-als valide Eingaben für diese Schnittstelle verwendet werden können.
+Als valide Eingaben für diese Schnittstelle können die  Ergebnisse der [Vorgänge-API](https://github.com/hypoport/vorgaenge-api)
+verwendet werden.
+
+Desweiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorschläge abgerufen werden:
+
+```
+curl -X GET \
+  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer}  \
+  -H 'authorization: Bearer {{access_token}}' \
+  -H 'cache-control: no-cache' 
+```
+
