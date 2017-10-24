@@ -2,8 +2,8 @@
 swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
-    \ ermitteln."
-  version: "1.0"
+    \ ermitteln"
+  version: "1.1"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -38,6 +38,14 @@ paths:
         required: false
         type: "boolean"
         default: false
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       - in: "body"
         name: "erfassteDaten"
         description: "erfassteDaten"
@@ -100,6 +108,14 @@ paths:
         description: "vorgangsNummer"
         required: true
         type: "string"
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       - name: "alternativen"
         in: "query"
         description: "alternativen"
@@ -436,15 +452,23 @@ definitions:
           - "LBS_WEST_ZUHAUSE_FLEX_6_L"
           - "LBS_WEST_ZUHAUSE_FLEX_8_L"
           - "SIGNAL_IDUNA_FREIRAUM_F_30"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_35"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_40"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_45"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_50"
           - "SIGNAL_IDUNA_FREIRAUM_F_60"
           - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_50_MZ"
           - "SIGNAL_IDUNA_FREIRAUM_F_60_MZ"
           - "BHW_TARIF_FI1"
@@ -831,6 +855,7 @@ definitions:
         - "FOERDERDARLEHEN"
         - "IMMOBILIENDARLEHEN"
         - "SONSTIGES_DARLEHEN"
+        - "PRIVATDARLEHEN"
       darlehensBetrag:
         type: "number"
         description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck\
@@ -882,6 +907,7 @@ definitions:
         - "FOERDERDARLEHEN"
         - "IMMOBILIENDARLEHEN"
         - "SONSTIGES_DARLEHEN"
+        - "PRIVATDARLEHEN"
       darlehensBetrag:
         type: "number"
         description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck\
