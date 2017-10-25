@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "1.1"
+  version: "1.2"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -1243,6 +1243,12 @@ definitions:
       annahmeFrist:
         type: "string"
         format: "date-time"
+      anpassungsStatus:
+        type: "string"
+        enum:
+        - "NICHT_ANGEPASST"
+        - "ANGEPASST"
+        - "ALTERNATIV"
       bausparAngebote:
         type: "array"
         items:
