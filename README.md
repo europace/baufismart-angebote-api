@@ -8,6 +8,10 @@ Die API ist vollständig in Swagger spezifiziert: [swagger.yaml](swagger.yaml)
 Diese Spezifikation kann auch zur Generierung von Clients für diese API verwendet
 werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen)
 
+### API Documentation
+
+ - [statische HTML Seite](http://htmlpreview.github.io?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
+
 # Authentifizierung
 
 Gültige Login-Token können mit einem POST-Request auf https://api.europace.de/login mit Ihrem Nutzern-Namen und Passwort aus
