@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "1.2"
+  version: "1.3"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -424,6 +424,9 @@ definitions:
           - "FUCHS_IMMO_2"
           - "FUCHS_IMMO_3"
           - "FUCHS_IMMO_4"
+          - "FUCHS_IMMO_5"
+          - "FUCHS_IMMO_6"
+          - "FUCHS_IMMO_7"
           - "LBS_HT_CLASSIC_S_2015"
           - "LBS_HT_CLASSIC_F_2015"
           - "LBS_HT_CLASSIC_L_2015"
@@ -768,9 +771,8 @@ definitions:
         - "ALS_ZUSATZSICHERHEIT"
       keinBaulandFlaecheInQm:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       keineBestehendenDarlehenVorhanden:
         type: "boolean"
       marktueblicherKaufpreisProQm:
@@ -791,6 +793,10 @@ definitions:
         type: "number"
         description: "Verkehrswert, nur relevant bei Finanzbedarf AnschlussFinanzierung,\
           \ Modernisierung und Kapitalbeschaffung"
+      vorlaeufigerVerkehrswert:
+        type: "number"
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       wohnlage:
         type: "string"
         enum:
@@ -878,9 +884,8 @@ definitions:
       laufzeitEnde:
         type: "string"
         format: "date"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       rateMonatlich:
         type: "number"
       sollZins:
@@ -930,9 +935,8 @@ definitions:
       laufzeitEnde:
         type: "string"
         format: "date"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       rateMonatlich:
         type: "number"
       sollZins:
@@ -974,6 +978,13 @@ definitions:
         - "BAUSPARVERTRAG"
       effektivZins:
         type: "number"
+      effektivZinsRelevanteKosten:
+        $ref: "#/definitions/EffektivZinsRelevanteKosten"
+      gesamtkosten:
+        type: "number"
+      gesamtlaufzeitInMonaten:
+        type: "integer"
+        format: "int32"
       id:
         type: "string"
       produktAnbieter:
@@ -1022,29 +1033,39 @@ definitions:
       anpassen:
         type: "boolean"
         example: false
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       grundbuchEintragungsKostenEinmalig:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       sonstigeKostenBezeichnung:
         type: "string"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       sonstigeKostenEinmalig:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       wohnGebaeudeVersicherungsKostenJaehrlich:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
+  EffektivZinsRelevanteKosten:
+    type: "object"
+    properties:
+      beratungsHonorar:
+        type: "number"
+      grundbuchKosten:
+        type: "number"
+      sonstigeKosten:
+        type: "number"
+      tilgungsErsatzProduktKosten:
+        type: "number"
+      wohnGebaeudeVersicherungsKosten:
+        type: "number"
+      zusatzSicherheitsKosten:
+        type: "number"
   EinkuenfteAusNebentaetigkeit:
     type: "object"
     properties:
@@ -1212,9 +1233,8 @@ definitions:
         type: "string"
       keinBaulandFlaecheInQm:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       marktueblicherKaufpreisProQm:
         type: "number"
       objektArt:
@@ -1231,6 +1251,10 @@ definitions:
         type: "number"
         description: "Verkehrswert, nur relevant bei Finanzbedarf AnschlussFinanzierung,\
           \ Modernisierung und Kapitalbeschaffung"
+      vorlaeufigerVerkehrswert:
+        type: "number"
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       wohnlage:
         type: "string"
         enum:
@@ -1482,15 +1506,13 @@ definitions:
       anzahlErwachseneImHaushalt:
         type: "integer"
         format: "int32"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       anzahlKinderNichtImHaushalt:
         type: "integer"
         format: "int32"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       bestehendeImmobilien:
         type: "array"
         items:
@@ -1500,18 +1522,20 @@ definitions:
       kfzAnzahl:
         type: "integer"
         format: "int32"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       kinder:
         type: "array"
         items:
           $ref: "#/definitions/Kind"
       lebenshaltungsKostenMonatlich:
         type: "number"
-        description: "Dieses Feld ist eine produktanbieterspezifische Zusatzangabe,\
-          \ sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berü\
-          cksichtigt."
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
+      obligo:
+        description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
+          \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
+        $ref: "#/definitions/VermoegenVerbindlichkeiten"
       positionen:
         $ref: "#/definitions/HaushaltsPositionen"
   HaushaltsPositionen:
@@ -2093,6 +2117,29 @@ definitions:
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
+  VermoegenVerbindlichkeit:
+    type: "object"
+    properties:
+      aktuellerWert:
+        type: "number"
+      anrechnungFuerBlankoAnteil:
+        type: "number"
+      bezeichner:
+        type: "string"
+      kontonummer:
+        type: "string"
+      vermoegensTyp:
+        type: "string"
+        enum:
+        - "VERMOEGEN"
+        - "VERBINDLICHKEIT"
+  VermoegenVerbindlichkeiten:
+    type: "object"
+    properties:
+      vermoegenOderVerbindlichkeiten:
+        type: "array"
+        items:
+          $ref: "#/definitions/VermoegenVerbindlichkeit"
   VertriebsOrganisation:
     type: "object"
     properties:
