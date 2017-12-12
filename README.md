@@ -1,6 +1,6 @@
 # Finanzierungsvorschläge API
 
-##### Aktuelle Version: 1.3
+##### Aktuelle Version: 1.5
 
 Eine API um Finanzierungsvorschläge zu ermitteln.
 

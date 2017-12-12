@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "1.4"
+  version: "1.5"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -253,6 +253,8 @@ definitions:
         type: "string"
       staatsangehoerigkeit:
         $ref: "#/definitions/Staat"
+      steuerId:
+        type: "string"
       telefonnummer:
         type: "string"
       telefonnummerVorwahl:
