@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "1.5"
+  version: "2.0.0.RC1"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -12,8 +12,10 @@ info:
 host: "baufismart.api.europace.de"
 basePath: "/"
 tags:
-- name: "ergebnis-liste-rest-controller"
-  description: "Ergebnis Liste Rest Controller"
+- name: "eli-v-1-rest-controller"
+  description: "Eli V 1 Rest Controller"
+- name: "eli-v-2-rest-controller"
+  description: "Eli V 2 Rest Controller"
 schemes:
 - "https"
 consumes:
@@ -24,13 +26,11 @@ paths:
   /v1/finanzierungsvorschlaege:
     post:
       tags:
-      - "ergebnis-liste-rest-controller"
+      - "eli-v-1-rest-controller"
       summary: "getFinanzierungsVorschlaege"
       operationId: "getFinanzierungsVorschlaegeUsingPOST"
-      consumes:
-      - "application/json"
       produces:
-      - "application/json;charset=UTF-8"
+      - "application/json"
       parameters:
       - name: "alternativen"
         in: "query"
@@ -38,6 +38,12 @@ paths:
         required: false
         type: "boolean"
         default: false
+      - in: "body"
+        name: "erfassteDaten"
+        description: "erfassteDaten"
+        required: true
+        schema:
+          $ref: "#/definitions/ErfassteDaten"
       - name: "produktAnbieter"
         in: "query"
         description: "produktAnbieter"
@@ -46,17 +52,11 @@ paths:
         items:
           type: "string"
         collectionFormat: "multi"
-      - in: "body"
-        name: "erfassteDaten"
-        description: "erfassteDaten"
-        required: true
-        schema:
-          $ref: "#/definitions/ErfassteDaten"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/ErgebnisListeResource"
+            type: "string"
         400:
           description: "Bad Request"
           schema:
@@ -95,19 +95,18 @@ paths:
   /v1/finanzierungsvorschlaege/{vorgangsNummer}:
     get:
       tags:
-      - "ergebnis-liste-rest-controller"
+      - "eli-v-1-rest-controller"
       summary: "getFinanzierungsVorschlaege"
       operationId: "getFinanzierungsVorschlaegeUsingGET"
-      consumes:
-      - "application/json"
       produces:
-      - "application/json;charset=UTF-8"
+      - "application/json"
       parameters:
-      - name: "vorgangsNummer"
-        in: "path"
-        description: "vorgangsNummer"
-        required: true
-        type: "string"
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
       - name: "produktAnbieter"
         in: "query"
         description: "produktAnbieter"
@@ -116,17 +115,570 @@ paths:
         items:
           type: "string"
         collectionFormat: "multi"
+      - name: "vorgangsNummer"
+        in: "path"
+        description: "vorgangsNummer"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "string"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste:
+    post:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Ermittle Ergebnisse"
+      description: "Als Parameter wird eien Vorgangsnummer order der Vorgangs als\
+        \ JSOn im Body benötigt"
+      operationId: "ermittleErgebnisse"
+      parameters:
       - name: "alternativen"
         in: "query"
         description: "alternativen"
         required: false
         type: "boolean"
         default: false
+      - in: "body"
+        name: "erfassteDaten"
+        description: "erfassteDaten"
+        required: false
+        schema:
+          $ref: "#/definitions/ErfassteDaten"
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "vorgangsNummer"
+        in: "query"
+        description: "vorgangsNummer"
+        required: false
+        type: "string"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/ErgebnisListeResource"
+            $ref: "#/definitions/ErmittlungResource"
+        400:
+          description: "Bad Request"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Ermittlung abrufen"
+      description: "Als Parameter wird die ErmittlungsId benötigt."
+      operationId: "getErmittlung"
+      parameters:
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ErmittlungResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/erfassteDaten:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "getErfassteDaten"
+      operationId: "getErfassteDatenUsingGET"
+      parameters:
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ErfassteDaten"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Ergebnisse einer Ermittlung abrufen"
+      description: "Als Parameter wird die ErmittlungsAnfrageId  benötigt."
+      operationId: "getErgebnisListe"
+      parameters:
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ZahlungsplaeneResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Ein Ergebnis abrufen"
+      description: "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex\
+        \ benötigt."
+      operationId: "getErgebnis"
+      parameters:
+      - name: "ergebnisIndex"
+        in: "path"
+        description: "ergebnisIndex"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ZahlungsplaeneResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/meldungen:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Abrufen der Meldungen eines Finanzierungsvorschlags"
+      description: "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex\
+        \ benötigt."
+      operationId: "getMeldungen"
+      parameters:
+      - name: "ergebnisIndex"
+        in: "path"
+        description: "ergebnisIndex"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/MeldungenResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/unterlagen:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Abrufen der benötigten Unterlagen des Finanzierungsvorschlags"
+      description: "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex\
+        \ benötigt."
+      operationId: "getUnterlagen"
+      parameters:
+      - name: "ergebnisIndex"
+        in: "path"
+        description: "ergebnisIndex"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/UnterlagenResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/zahlungsplaene:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Zahlungsplaene eines Finanzierungsvorschlags abrufen"
+      description: "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex\
+        \ benötigt."
+      operationId: "getZahlungsplaene"
+      parameters:
+      - name: "ergebnisIndex"
+        in: "path"
+        description: "ergebnisIndex"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ZahlungsplaeneResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/zahlungsplaene/{zahlungsplanIndex}:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Den Tilgungsplan anhand einer Id abrufen"
+      description: "Als Parameter wird die ErmittlungsAnfrageId, der Ergebnisindex\
+        \ sowie der Index des Tilgunsplans benötigt."
+      operationId: "getZahlungsplaene_1"
+      parameters:
+      - name: "ergebnisIndex"
+        in: "path"
+        description: "ergebnisIndex"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      - name: "zahlungsplanIndex"
+        in: "path"
+        description: "zahlungsplanIndex"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ZahlungsplaeneResource"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+      - oauth2:
+        - "API"
+  /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage:
+    get:
+      tags:
+      - "eli-v-2-rest-controller"
+      summary: "Ermittlungsanfrage einer Ermittlung abrufen"
+      description: "Als Parameter wird die ErmittlungsId benötigt."
+      operationId: "getErmittlungsAnfrage"
+      parameters:
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ErmittlungsAnfrageResource"
         401:
           description: "Unauthorized"
           schema:
@@ -185,6 +737,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
+    title: "AnnuitaetenDarlehensWunsch"
   Antragsteller:
     type: "object"
     properties:
@@ -197,7 +750,6 @@ definitions:
         $ref: "#/definitions/Postadresse"
       arbeitserlaubnis:
         type: "boolean"
-        example: false
         description: "wenn keine deutsche Staatsangehörigkeit"
       arbeitserlaubnisBefristetBis:
         type: "string"
@@ -238,12 +790,12 @@ definitions:
         type: "string"
       guetertrennungVereinbartWennVerheiratet:
         type: "boolean"
-        example: false
         description: "nur wenn verheiratet"
       id:
         type: "string"
-        description: "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben,\
-          \ dann wird dieses Feld automatisch befüllt."
+        description: "Dient der Referenzierung um beispielsweise Unterlagenanforderungen\
+          \ dem richtigen Antragssteller zuzuordnen. Der Wert kann frei definiert\
+          \ werden."
       inDeutschlandSeit:
         type: "string"
         format: "date"
@@ -272,11 +824,13 @@ definitions:
       wohnhaftSeit:
         type: "string"
         format: "date"
+    title: "Antragsteller"
   AusgabenMonatlich:
     type: "object"
     properties:
       ausgabenMonatlich:
         type: "number"
+    title: "AusgabenMonatlich"
   Autostellplatz:
     type: "object"
     properties:
@@ -291,6 +845,7 @@ definitions:
         - "DOPPEL_GARAGE"
         - "KELLER_GARAGE"
         - "TIEFGARAGEN_STELLPLATZ"
+    title: "Autostellplatz"
   BankUndSparguthaben:
     type: "object"
     properties:
@@ -310,6 +865,7 @@ definitions:
         type: "number"
       zukuenftigeEinnahmen:
         type: "number"
+    title: "BankUndSparguthaben"
   Bankverbindung:
     type: "object"
     properties:
@@ -327,6 +883,7 @@ definitions:
         type: "string"
       kreditinstitut:
         type: "string"
+    title: "Bankverbindung"
   BausparAngebot:
     type: "object"
     properties:
@@ -383,6 +940,8 @@ definitions:
       tilgungsPhaseInJahren:
         type: "integer"
         format: "int32"
+      typ:
+        type: "string"
       vertragsBeginn:
         type: "string"
         format: "date"
@@ -397,6 +956,7 @@ definitions:
       zuteilungsDatum:
         type: "string"
         format: "date"
+    title: "BausparAngebot"
   BausparWunsch:
     type: "object"
     properties:
@@ -433,6 +993,17 @@ definitions:
           - "LBS_HT_CLASSIC_F_2015"
           - "LBS_HT_CLASSIC_L_2015"
           - "LBS_HT_CLASSIC_N_2015"
+          - "LBS_NORD_N_FINANZIERER_F3"
+          - "LBS_NORD_N_FINANZIERER_F4"
+          - "LBS_NORD_N_FINANZIERER_F5"
+          - "LBS_NORD_N_FINANZIERER_F6"
+          - "LBS_NORD_N_FINANZIERER_F7"
+          - "LBS_NORD_N_MODERNISIERER_M8"
+          - "LBS_NORD_N_MODERNISIERER_MX"
+          - "LBS_NORD_N_MODERNISIERER_MINIZINS"
+          - "LBS_NORD_N_STARTER_S4"
+          - "LBS_NORD_N_STARTER_Q5"
+          - "LBS_NORD_N_STARTER_S6"
           - "LBS_OST_CLASSIC15_F5"
           - "LBS_OST_CLASSIC_F_H4"
           - "LBS_OST_CLASSIC_F_H5"
@@ -456,6 +1027,28 @@ definitions:
           - "LBS_WEST_ZUHAUSE_FLEX_5_L"
           - "LBS_WEST_ZUHAUSE_FLEX_6_L"
           - "LBS_WEST_ZUHAUSE_FLEX_8_L"
+          - "LBS_WEST_ZUHAUSE_PRIMA"
+          - "LBS_WEST_ZUHAUSE_PRIMA_10"
+          - "LBS_WEST_ZUHAUSE_4"
+          - "LBS_WEST_ZUHAUSE_FLEX_4_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_5"
+          - "LBS_WEST_ZUHAUSE_FLEX_5_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_6"
+          - "LBS_WEST_ZUHAUSE_FLEX_6_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_8"
+          - "LBS_WEST_ZUHAUSE_FLEX_8_S"
+          - "LBS_WEST_ZUHAUSE_YOUNG"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L"
           - "SIGNAL_IDUNA_FREIRAUM_F_30"
           - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
           - "SIGNAL_IDUNA_FREIRAUM_F_35"
@@ -529,6 +1122,16 @@ definitions:
           - "ALTE_LEIPZIGER_180X_MZ"
           - "ALTE_LEIPZIGER_190X_MZ"
           - "ALTE_LEIPZIGER_200X_MZ"
+          - "ALTE_LEIPZIGER_ZG_21XX_20"
+          - "ALTE_LEIPZIGER_ZG_21XX_30"
+          - "ALTE_LEIPZIGER_21XX_27"
+          - "ALTE_LEIPZIGER_21XX_33"
+          - "ALTE_LEIPZIGER_21XX"
+          - "ALTE_LEIPZIGER_25XX_45"
+          - "ALTE_LEIPZIGER_22XX_27"
+          - "ALTE_LEIPZIGER_22XX_33"
+          - "ALTE_LEIPZIGER_22XX"
+          - "ALTE_LEIPZIGER_26XX_45"
           - "BKM_MAX_PREMIUM_OPTIMAL"
           - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
           - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
@@ -548,6 +1151,12 @@ definitions:
           - "WUESTENROT_01064_12"
           - "WUESTENROT_01061_10"
           - "WUESTENROT_01062_4"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2"
       id:
         type: "string"
         description: "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben,\
@@ -584,6 +1193,7 @@ definitions:
         description: "Von den Feldern bausparSummeAbsolut, bausparSummeRelativ, sparBeitragMonatlichAbsolut,\
           \ sparBeitragMonatlichRelativ, tilgungsBeitragMonatlich und zuteilungsDatum\
           \ können maximal zwei befüllt werden."
+    title: "BausparWunsch"
   Beleihung:
     type: "object"
     properties:
@@ -593,6 +1203,7 @@ definitions:
         $ref: "#/definitions/ProduktAnbieter"
       summe:
         type: "number"
+    title: "Beleihung"
   Bereitstellung:
     type: "object"
     properties:
@@ -601,6 +1212,7 @@ definitions:
       bereitstellungsZinsfreieZeitInMonaten:
         type: "integer"
         format: "int32"
+    title: "Bereitstellung"
   Beschaeftigung:
     type: "object"
     properties:
@@ -613,7 +1225,6 @@ definitions:
         description: "nur bei art == ANGESTELLTER, ARBEITER, BEAMTER"
       arbeitgeberInDeutschlandAnsaessig:
         type: "boolean"
-        example: false
         description: "nur bei art == ANGESTELLTER, ARBEITER, BEAMTER"
       arbeitgeberLand:
         $ref: "#/definitions/Staat"
@@ -675,7 +1286,6 @@ definitions:
         description: "nur bei art != FREIBERUFLER, SELBSTAENDIGER"
       inProbezeit:
         type: "boolean"
-        example: false
         description: "nur bei art == ANGESTELLTER, ARBEITER, BEAMTER"
       situationNachRenteneintritt:
         description: "nur bei art != RENTNER"
@@ -735,6 +1345,7 @@ definitions:
         - "ZAHNARZT"
         - "ZAHNTECHNIKER"
         - "SONSTIGES"
+    title: "Beschaeftigung"
   BestehendeImmobilie:
     type: "object"
     properties:
@@ -805,6 +1416,7 @@ definitions:
         - "GEHOBEN"
         - "MITTEL"
         - "EINFACH"
+    title: "BestehendeImmobilie"
   BestehenderBausparvertrag:
     type: "object"
     properties:
@@ -820,8 +1432,6 @@ definitions:
         type: "number"
       id:
         type: "string"
-        description: "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben,\
-          \ dann wird dieses Feld automatisch befüllt."
       maximalAufzuloesenderBetrag:
         type: "number"
       produktAnbieter:
@@ -829,6 +1439,8 @@ definitions:
       sparBeitragMonatlich:
         type: "number"
       tarif:
+        type: "string"
+      typ:
         type: "string"
       vermoegensEinsatz:
         type: "string"
@@ -848,6 +1460,7 @@ definitions:
       zuteilungsDatum:
         type: "string"
         format: "date"
+    title: "BestehenderBausparvertrag"
   BestehendesDarlehen:
     type: "object"
     properties:
@@ -899,6 +1512,7 @@ definitions:
       zinsBindungEndetAm:
         type: "string"
         format: "date"
+    title: "BestehendesDarlehen"
   BestehendesDarlehenDesFinanzierungsObjekts:
     type: "object"
     properties:
@@ -958,6 +1572,7 @@ definitions:
       zinsBindungEndetAm:
         type: "string"
         format: "date"
+    title: "BestehendesDarlehenDesFinanzierungsObjekts"
   Darlehen:
     type: "object"
     properties:
@@ -968,16 +1583,6 @@ definitions:
         $ref: "#/definitions/Bereitstellung"
       darlehensBetrag:
         type: "number"
-      darlehensTyp:
-        type: "string"
-        enum:
-        - "ANNUITAETEN_DARLEHEN"
-        - "FORWARD_DARLEHEN"
-        - "KFW_DARLEHEN"
-        - "PRIVAT_DARLEHEN"
-        - "ZWISCHEN_FINANZIERUNG"
-        - "VARIABLES_DARLEHEN"
-        - "BAUSPARVERTRAG"
       effektivZins:
         type: "number"
       effektivZinsRelevanteKosten:
@@ -1002,11 +1607,22 @@ definitions:
         type: "number"
       tilgung:
         $ref: "#/definitions/Tilgung"
+      typ:
+        type: "string"
+        enum:
+        - "ANNUITAETEN_DARLEHEN"
+        - "FORWARD_DARLEHEN"
+        - "KFW_DARLEHEN"
+        - "PRIVAT_DARLEHEN"
+        - "ZWISCHEN_FINANZIERUNG"
+        - "VARIABLES_DARLEHEN"
+        - "BAUSPARVERTRAG"
       zinsBindung:
         $ref: "#/definitions/ZinsBindung"
       zinsZahlungsBeginnAm:
         type: "string"
         format: "date"
+    title: "Darlehen"
   DarlehensWunsch:
     type: "object"
     properties:
@@ -1032,12 +1648,12 @@ definitions:
       zwischenFinanzierung:
         description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
         $ref: "#/definitions/ZwischenFinanzierungsWunsch"
+    title: "DarlehensWunsch"
   EffektivZinsErhoehendeKosten:
     type: "object"
     properties:
       anpassen:
         type: "boolean"
-        example: false
         description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
           \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       grundbuchEintragungsKostenEinmalig:
@@ -1056,6 +1672,7 @@ definitions:
         type: "number"
         description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
           \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
+    title: "EffektivZinsErhoehendeKosten"
   EffektivZinsRelevanteKosten:
     type: "object"
     properties:
@@ -1071,6 +1688,7 @@ definitions:
         type: "number"
       zusatzSicherheitsKosten:
         type: "number"
+    title: "EffektivZinsRelevanteKosten"
   EinkuenfteAusNebentaetigkeit:
     type: "object"
     properties:
@@ -1079,17 +1697,43 @@ definitions:
         format: "date"
       einnahmenMonatlich:
         type: "number"
+    title: "EinkuenfteAusNebentaetigkeit"
   EinnahmenMonatlich:
     type: "object"
     properties:
       einnahmenMonatlich:
         type: "number"
+    title: "EinnahmenMonatlich"
+  Eintrag:
+    type: "object"
+    properties:
+      abgeltungssteuer:
+        type: "number"
+      datum:
+        type: "string"
+        format: "date"
+      kontofuehrungsGebuehr:
+        type: "number"
+      laufendeGebuehr:
+        type: "number"
+      marker:
+        type: "array"
+        items:
+          type: "string"
+      saldo:
+        type: "number"
+      tilgung:
+        type: "number"
+      zahlung:
+        type: "number"
+      zinsen:
+        type: "number"
+    title: "Eintrag"
   Erbbaurecht:
     type: "object"
     properties:
       erbbaurecht:
         type: "boolean"
-        example: false
         description: "Erbbaurecht vorhanden"
       erbbauzinsJaehrlich:
         type: "number"
@@ -1101,6 +1745,7 @@ definitions:
       laufzeitBisJahr:
         type: "string"
         example: "2088"
+    title: "Erbbaurecht"
   ErfassteDaten:
     type: "object"
     required:
@@ -1133,13 +1778,102 @@ definitions:
         type: "string"
       vorhaben:
         $ref: "#/definitions/Vorhaben"
+    title: "ErfassteDaten"
   ErgebnisListeResource:
     type: "object"
     properties:
-      finanzierungsVorschlaege:
+      ergebnisse:
         type: "array"
         items:
-          $ref: "#/definitions/FinanzierungsVorschlag"
+          $ref: "#/definitions/ErgebnisResource"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "ErgebnisListeResource"
+  ErgebnisResource:
+    type: "object"
+    properties:
+      annahmeFrist:
+        type: "string"
+        format: "date-time"
+      anpassungsStatus:
+        type: "string"
+        enum:
+        - "NICHT_ANGEPASST"
+        - "ANGEPASST"
+        - "ALTERNATIV"
+      bausparAngebote:
+        type: "array"
+        items:
+          $ref: "#/definitions/BausparAngebot"
+      beleihung:
+        type: "array"
+        items:
+          $ref: "#/definitions/Beleihung"
+      darlehen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Darlehen"
+      darlehensSumme:
+        type: "number"
+      effektivZins:
+        type: "number"
+      erzeugtAm:
+        type: "string"
+        format: "date-time"
+      kennung:
+        type: "string"
+      links:
+        type: "array"
+        xml:
+          name: "link"
+          namespace: "http://www.w3.org/2005/Atom"
+          attribute: false
+          wrapped: false
+        items:
+          $ref: "#/definitions/Link"
+      machbarkeit:
+        type: "string"
+        enum:
+        - "MACHBAR"
+        - "UNTER_VORBEHALT"
+        - "NICHT_MACHBAR"
+      meldungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Meldung"
+      sollZins:
+        type: "number"
+    title: "ErgebnisResource"
+  ErmittlungResource:
+    type: "object"
+    properties:
+      ergebnisListe:
+        $ref: "#/definitions/ErgebnisListeResource"
+      erstelltAm:
+        type: "string"
+        format: "date-time"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "ErmittlungResource"
+  ErmittlungsAnfrageResource:
+    type: "object"
+    properties:
+      alternativen:
+        type: "boolean"
+      datenKontext:
+        type: "string"
+        enum:
+        - "TEST_MODUS"
+        - "ECHT_GESCHAEFT"
+      erfassteDaten:
+        $ref: "#/definitions/ErfassteDaten"
+      handelsbeziehungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Handelsbeziehung"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "ErmittlungsAnfrageResource"
   Error:
     type: "object"
     properties:
@@ -1157,6 +1891,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Throwable"
+    title: "Error"
   Finanzbedarf:
     type: "object"
     properties:
@@ -1206,6 +1941,7 @@ definitions:
         type: "number"
       zusaetzlichesKapital:
         type: "number"
+    title: "Finanzbedarf"
   FinanzierungsObjekt:
     type: "object"
     properties:
@@ -1266,51 +2002,7 @@ definitions:
         - "GEHOBEN"
         - "MITTEL"
         - "EINFACH"
-  FinanzierungsVorschlag:
-    type: "object"
-    properties:
-      annahmeFrist:
-        type: "string"
-        format: "date-time"
-      anpassungsStatus:
-        type: "string"
-        enum:
-        - "NICHT_ANGEPASST"
-        - "ANGEPASST"
-        - "ALTERNATIV"
-      bausparAngebote:
-        type: "array"
-        items:
-          $ref: "#/definitions/BausparAngebot"
-      beleihung:
-        type: "array"
-        items:
-          $ref: "#/definitions/Beleihung"
-      darlehen:
-        type: "array"
-        items:
-          $ref: "#/definitions/Darlehen"
-      darlehensSumme:
-        type: "number"
-      effektivZins:
-        type: "number"
-      erzeugtAm:
-        type: "string"
-        format: "date-time"
-      kennung:
-        type: "string"
-      machbarkeit:
-        type: "string"
-        enum:
-        - "MACHBAR"
-        - "UNTER_VORBEHALT"
-        - "NICHT_MACHBAR"
-      meldungen:
-        type: "array"
-        items:
-          $ref: "#/definitions/Meldung"
-      sollZins:
-        type: "number"
+    title: "FinanzierungsObjekt"
   Finanzierungswunsch:
     type: "object"
     properties:
@@ -1324,6 +2016,7 @@ definitions:
           $ref: "#/definitions/DarlehensWunsch"
       id:
         type: "string"
+    title: "Finanzierungswunsch"
   Flurstueck:
     type: "object"
     properties:
@@ -1335,6 +2028,7 @@ definitions:
         type: "string"
       groesse:
         type: "number"
+    title: "Flurstueck"
   ForwardDarlehensWunsch:
     type: "object"
     required:
@@ -1357,6 +2051,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
+    title: "ForwardDarlehensWunsch"
   Gebaeude:
     type: "object"
     properties:
@@ -1406,7 +2101,6 @@ definitions:
         - "VOLL_AUSGEBAUT"
       einliegerwohnungVorhanden:
         type: "boolean"
-        example: false
         description: "Nur bei ObjektArt == HAUS."
       geschossLage:
         type: "string"
@@ -1438,7 +2132,6 @@ definitions:
         - "ZWEIFAMILIENHAUS"
       istFertighaus:
         type: "boolean"
-        example: false
         description: "Nur bei ObjektArt == HAUS."
       kellerausbau:
         type: "string"
@@ -1463,6 +2156,7 @@ definitions:
         - "UNTERKELLERT"
       wohnflaeche:
         $ref: "#/definitions/GebaeudeFlaeche"
+    title: "Gebaeude"
   GebaeudeFlaeche:
     type: "object"
     properties:
@@ -1470,6 +2164,7 @@ definitions:
         type: "number"
       vermietungsInformationen:
         $ref: "#/definitions/VermietungsInformationen"
+    title: "GebaeudeFlaeche"
   GrundbuchAngabe:
     type: "object"
     properties:
@@ -1488,6 +2183,7 @@ definitions:
         description: "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstü\
           cks. Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
         $ref: "#/definitions/RechteAbteilung2"
+    title: "GrundbuchAngabe"
   Grundstueck:
     type: "object"
     properties:
@@ -1501,6 +2197,23 @@ definitions:
         - "UNBEBAUTES_GEWERBEGRUNDSTUECK"
         - "LANDWIRTSCHAFTLICHES_GRUNDSTUECK"
         - "SONSTIGES_GRUNDSTUECK"
+    title: "Grundstueck"
+  Handelsbeziehung:
+    type: "object"
+    properties:
+      annehmenErlaubt:
+        type: "boolean"
+      baufiVertriebsgruppe:
+        type: "string"
+      bausparVertriebsgruppe:
+        type: "string"
+      ermittelnErlaubt:
+        type: "boolean"
+      produktAnbieter:
+        type: "string"
+      ratenkreditVertriebsgruppe:
+        type: "string"
+    title: "Handelsbeziehung"
   Haushalt:
     type: "object"
     properties:
@@ -1543,6 +2256,7 @@ definitions:
         $ref: "#/definitions/VermoegenVerbindlichkeiten"
       positionen:
         $ref: "#/definitions/HaushaltsPositionen"
+    title: "Haushalt"
   HaushaltsPositionen:
     type: "object"
     properties:
@@ -1622,6 +2336,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Wertpapiere"
+    title: "HaushaltsPositionen"
   KfwDarlehensWunsch:
     type: "object"
     properties:
@@ -1658,6 +2373,7 @@ definitions:
         type: "integer"
         format: "int32"
         description: "Programm 124: 5 oder 10, sonst: 10 oder 20"
+    title: "KfwDarlehensWunsch"
   Kind:
     type: "object"
     properties:
@@ -1672,6 +2388,7 @@ definitions:
         type: "string"
       unterhaltsEinnahmenBetragMonatlich:
         type: "number"
+    title: "Kind"
   LeadTracking:
     type: "object"
     properties:
@@ -1683,6 +2400,7 @@ definitions:
         type: "boolean"
       trackingId:
         type: "string"
+    title: "LeadTracking"
   LebensOderRentenversicherungVermoegen:
     type: "object"
     properties:
@@ -1724,6 +2442,7 @@ definitions:
         type: "string"
       verwaltungsgebuehrenJaehrlich:
         type: "number"
+    title: "LebensOderRentenversicherungVermoegen"
   LegitimationsDaten:
     type: "object"
     properties:
@@ -1743,6 +2462,33 @@ definitions:
         description: "Nur wenn ausweisArt = ANDERE"
       ausweisNummer:
         type: "string"
+    title: "LegitimationsDaten"
+  Link:
+    type: "object"
+    properties:
+      href:
+        type: "string"
+        xml:
+          name: "href"
+          attribute: true
+          wrapped: false
+      rel:
+        type: "string"
+        xml:
+          name: "rel"
+          attribute: true
+          wrapped: false
+      templated:
+        type: "boolean"
+      type:
+        type: "string"
+    title: "Link"
+  Links:
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+    title: "Links"
   Meldung:
     type: "object"
     properties:
@@ -1777,6 +2523,17 @@ definitions:
         type: "string"
       text:
         type: "string"
+    title: "Meldung"
+  MeldungenResource:
+    type: "object"
+    properties:
+      meldungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Meldung"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "MeldungenResource"
   MietAusgaben:
     type: "object"
     properties:
@@ -1784,6 +2541,7 @@ definitions:
         type: "number"
       entfallenMitFinanzierung:
         type: "boolean"
+    title: "MietAusgaben"
   MiteigentumsAnteil:
     type: "object"
     properties:
@@ -1793,6 +2551,7 @@ definitions:
       gesamt:
         type: "integer"
         format: "int32"
+    title: "MiteigentumsAnteil"
   ModernisierungsAngaben:
     type: "object"
     properties:
@@ -1824,6 +2583,7 @@ definitions:
         type: "boolean"
       wurdeModernisiert:
         type: "boolean"
+    title: "ModernisierungsAngaben"
   NachrangigesExternesDarlehen:
     type: "object"
     properties:
@@ -1846,6 +2606,7 @@ definitions:
         - "RATENKREDIT"
       zinsBindung:
         $ref: "#/definitions/ZinsBindung"
+    title: "NachrangigesExternesDarlehen"
   Partner:
     type: "object"
     properties:
@@ -1887,6 +2648,7 @@ definitions:
         type: "string"
       webseite:
         type: "string"
+    title: "Partner"
   Postadresse:
     type: "object"
     properties:
@@ -1898,6 +2660,7 @@ definitions:
         type: "string"
       strasse:
         type: "string"
+    title: "Postadresse"
   PrivatDarlehensWunsch:
     type: "object"
     properties:
@@ -1908,6 +2671,7 @@ definitions:
         format: "int32"
       provision:
         type: "number"
+    title: "PrivatDarlehensWunsch"
   ProduktAnbieter:
     type: "object"
     properties:
@@ -1917,6 +2681,7 @@ definitions:
         type: "string"
       produktAnbieterId:
         type: "string"
+    title: "ProduktAnbieter"
   Provision:
     type: "object"
     properties:
@@ -1924,6 +2689,7 @@ definitions:
         type: "number"
       provisionRelativ:
         type: "number"
+    title: "Provision"
   RechteAbteilung2:
     type: "object"
     properties:
@@ -1933,6 +2699,7 @@ definitions:
         type: "number"
       vorhanden:
         type: "boolean"
+    title: "RechteAbteilung2"
   SituationNachRenteneintritt:
     type: "object"
     properties:
@@ -1945,6 +2712,7 @@ definitions:
         format: "date"
       sonstigesEinkommenMonatlich:
         type: "number"
+    title: "SituationNachRenteneintritt"
   SparPhase:
     type: "object"
     properties:
@@ -1955,6 +2723,7 @@ definitions:
       sparPhaseInJahren:
         type: "integer"
         format: "int32"
+    title: "SparPhase"
   Sparplaene:
     type: "object"
     properties:
@@ -1974,6 +2743,7 @@ definitions:
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
+    title: "Sparplaene"
   Staat:
     type: "object"
     properties:
@@ -1981,6 +2751,7 @@ definitions:
         type: "string"
       name:
         type: "string"
+    title: "Staat"
   StackTraceElement:
     type: "object"
     properties:
@@ -1995,6 +2766,7 @@ definitions:
         type: "string"
       nativeMethod:
         type: "boolean"
+    title: "StackTraceElement"
   Throwable:
     type: "object"
     properties:
@@ -2012,6 +2784,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Throwable"
+    title: "Throwable"
   Tilgung:
     type: "object"
     properties:
@@ -2022,6 +2795,7 @@ definitions:
       tilgungsBeginn:
         type: "string"
         format: "date"
+    title: "Tilgung"
   TilgungsPhase:
     type: "object"
     properties:
@@ -2034,6 +2808,7 @@ definitions:
       tilgungsPhaseInJahren:
         type: "integer"
         format: "int32"
+    title: "TilgungsPhase"
   TilgungsWunsch:
     type: "object"
     properties:
@@ -2043,12 +2818,10 @@ definitions:
           \ und rate darf gefüllt sein"
       ausgesetztBerechnet:
         type: "boolean"
-        example: false
         description: "ausgesetztBerechnet und ausgesetztEigenesAngebot dürfen nicht\
           \ beide true sein"
       ausgesetztEigenesAngebot:
         type: "boolean"
-        example: false
         description: "ausgesetztBerechnet und ausgesetztEigenesAngebot dürfen nicht\
           \ beide true sein"
       bausparWunsch:
@@ -2064,9 +2837,48 @@ definitions:
         type: "string"
       volltilgerWennAnnuitaetenOderForward:
         type: "boolean"
-        example: false
         description: "nur eines der Felder anfaenglicheTilgung, volltilgerWennAnnuitaetenOderForward\
           \ und rate darf gefüllt sein"
+    title: "TilgungsWunsch"
+  Unterlage:
+    type: "object"
+    properties:
+      bezugsObjektId:
+        type: "string"
+      code:
+        type: "string"
+      faelligkeit:
+        type: "string"
+        enum:
+        - "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME"
+        - "VOR_DER_ERSTEN_AUSZAHLUNG"
+        - "VOR_JEDER_AUSZAHLUNG"
+        - "VOR_AUSZAHLUNG_LETZTE_RATE"
+        - "NACHZUREICHEN_SOBALD_VERFUEGBAR"
+      produktAnbieterId:
+        type: "string"
+      text:
+        type: "string"
+      zuordnung:
+        type: "string"
+        enum:
+        - "ANTRAGSTELLER"
+        - "OBJEKT"
+        - "VORHABEN"
+        - "ALTERNATIV"
+        - "ANPASSUNG"
+        - "UNBERUECKSICHTIGTE_ANGABE"
+    title: "Unterlage"
+  UnterlagenResource:
+    type: "object"
+    properties:
+      unterlagen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Unterlage"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "UnterlagenResource"
   VariablesDarlehensWunsch:
     type: "object"
     required:
@@ -2078,6 +2890,7 @@ definitions:
         type: "number"
       tilgungsWunsch:
         $ref: "#/definitions/TilgungsWunsch"
+    title: "VariablesDarlehensWunsch"
   Verbindlichkeit:
     type: "object"
     properties:
@@ -2092,6 +2905,7 @@ definitions:
         type: "number"
       wirdAbgeloest:
         type: "boolean"
+    title: "Verbindlichkeit"
   VermietungsInformationen:
     type: "object"
     properties:
@@ -2105,6 +2919,7 @@ definitions:
         - "VERMIETET"
       vermieteteFlaeche:
         type: "number"
+    title: "VermietungsInformationen"
   Vermoegen:
     type: "object"
     properties:
@@ -2122,6 +2937,7 @@ definitions:
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
+    title: "Vermoegen"
   VermoegenVerbindlichkeit:
     type: "object"
     properties:
@@ -2138,6 +2954,7 @@ definitions:
         enum:
         - "VERMOEGEN"
         - "VERBINDLICHKEIT"
+    title: "VermoegenVerbindlichkeit"
   VermoegenVerbindlichkeiten:
     type: "object"
     properties:
@@ -2145,6 +2962,7 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/VermoegenVerbindlichkeit"
+    title: "VermoegenVerbindlichkeiten"
   VertriebsOrganisation:
     type: "object"
     properties:
@@ -2160,6 +2978,7 @@ definitions:
         type: "string"
       vertriebsOrganisationsId:
         type: "string"
+    title: "VertriebsOrganisation"
   Vorhaben:
     type: "object"
     properties:
@@ -2188,6 +3007,7 @@ definitions:
         - "MODERNISIERUNG_UMBAU_ANBAU"
         - "NEUBAU"
         - "KAPITALBESCHAFFUNG"
+    title: "Vorhaben"
   Wertpapiere:
     type: "object"
     properties:
@@ -2207,6 +3027,57 @@ definitions:
         - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
+    title: "Wertpapiere"
+  ZahlungsplaeneResource:
+    type: "object"
+    properties:
+      links:
+        type: "array"
+        xml:
+          name: "link"
+          namespace: "http://www.w3.org/2005/Atom"
+          attribute: false
+          wrapped: false
+        items:
+          $ref: "#/definitions/Link"
+      zahlungsplaene:
+        type: "array"
+        items:
+          $ref: "#/definitions/ZahlungsplanResource"
+    title: "ZahlungsplaeneResource"
+  ZahlungsplanResource:
+    type: "object"
+    properties:
+      bausteinTyp:
+        type: "string"
+        enum:
+        - "ANNUITAETEN_DARLEHEN"
+        - "FORWARD_DARLEHEN"
+        - "KFW_DARLEHEN"
+        - "PRIVAT_DARLEHEN"
+        - "ZWISCHEN_FINANZIERUNG"
+        - "VARIABLES_DARLEHEN"
+        - "BAUSPARVERTRAG"
+      gesamtSumme:
+        $ref: "#/definitions/Eintrag"
+      id:
+        type: "string"
+      sparplanSummenEintragZumZuteilungsZeitpunkt:
+        $ref: "#/definitions/Eintrag"
+      summeEndeDerZinsbindung:
+        $ref: "#/definitions/Eintrag"
+      typ:
+        type: "string"
+        enum:
+        - "SPARPLAN"
+        - "TILGUNGSPLAN"
+      zahlungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/Eintrag"
+      _links:
+        $ref: "#/definitions/Links"
+    title: "ZahlungsplanResource"
   ZinsBindung:
     type: "object"
     properties:
@@ -2221,6 +3092,7 @@ definitions:
         format: "int32"
       restschuldNachZinsBindungsEnde:
         type: "number"
+    title: "ZinsBindung"
   ZwischenFinanzierungsWunsch:
     type: "object"
     properties:
@@ -2239,3 +3111,4 @@ definitions:
         - "VORFINANZIERUNG_OEFFENTLICHER_MITTEL"
         - "VERKAUF_EINES_ANDEREN_OBJEKTS"
         - "SONSTIGE_VERWENDUNG"
+    title: "ZwischenFinanzierungsWunsch"

@@ -1,8 +1,16 @@
 # Finanzierungsvorschläge API
 
-##### Aktuelle Version: 1.5
+Eine API um Finanzierungsvorschläge/Ergebnisse zu ermitteln.
 
-Eine API um Finanzierungsvorschläge zu ermitteln.
+##### Aktuelle Version: 2.0.0.RC1
+
+Wesentliche Änderungen zur Version 1.5.
+
+* Finanzierungsvorschläge werden in Ergebnisse umbenannt. Die Liste in Ergebnisliste.
+* Der REST Endpunkt (Post Method) zur Ermittlung von Ergebnissen lautet: https://baufismart.api.europace.de/v2/ergebnisliste
+* Man kann sich die Ermittlung mit den gelieferten Ergebnissen erneut anfordern
+* Ergebnisdetails wie Unterlagen, Meldungen und Zahlungspläne können zu einem Ergebnis ausgelesen werden.
+
 
 ### Swagger Spezifikation
 
@@ -86,7 +94,7 @@ Für erste Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein m�
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege \
+  https://baufismart.api.europace.de/v2/ergebnisliste \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
