@@ -72,6 +72,7 @@ curl -X POST \
   -d 'username={{BaufiSmart Nutzername (Mail-Adresse)}}&password={{BaufiSmart Passwort}}'
 ```
 
+
 Der in der Antwort enthaltene Access-Token muss bei allen Folge-Requests im Header `Authorization` im Bearer-Format mit gesendet
 werden. Beispiel:
 
@@ -88,9 +89,11 @@ curl -X POST \
       }'
 ```
 
-# Finanzierungsvorschläge abrufen
+# Ergebnisse abrufen
 
-Für erste Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein möglicher Beispiel-Request wäre:
+## Ermittlungsanfrage mit übermittlen
+
+Für Ergebnisse/Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein möglicher Beispiel-Request wäre:
 
 ```
 curl -X POST \
@@ -99,37 +102,40 @@ curl -X POST \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-        "vorhaben": {
-          "finanzierungswunsch": {
-            "darlehensWuensche": [
-              {
-                "id": "13674381840872074",
-                "annuitaetenDarlehen": {
-                  "darlehensBetrag": 350000,
-                  "provision": 2,
-                  "tilgungsWunsch": {
-                    "anfaenglicheTilgung": 2,
-                    "volltilgerWennAnnuitaetenOderForward": false
-                  },
-                  "bereitstellungsZinsFreieZeitInMonaten": 2,
-                  "sondertilgungOptionalJaehrlich": 0,
-                  "zinsBindungInJahren": 10
+       	"vorhaben": {
+       	  "finanzbedarf": {
+       			"kaufpreis": 100000
+       		},
+       		"finanzierungswunsch": {
+               "darlehensWuensche": [
+                   "annuitaetenDarlehen": {
+                       "darlehensBetrag": 150000,
+                       "provision": 1,
+                       "tilgungsWunsch": {
+                           "anfaenglicheTilgung": 2,
+                           "volltilgerWennAnnuitaetenOderForward": false
+                       },
+                       "bereitstellungsZinsFreieZeitInMonaten": 2,
+                       "sondertilgungOptionalJaehrlich": 100,
+                       "zinsBindungInJahren": 10
+                   }
                 }
-              }
-            ]
+               ]
           }
         }
       }'
 ```
 
-Als valide Eingaben für diese Schnittstelle können die  Ergebnisse der [Vorgänge-API](https://github.com/hypoport/vorgaenge-api)
+## Ermittlungsanfrage mit Vorgangsnummer
+
+Als valide Eingaben für diese Schnittstelle können die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/vorgaenge-api)
 verwendet werden.
 
 Desweiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorschläge abgerufen werden:
 
 ```
-curl -X GET \
-  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer}  \
+curl -X POST \
+  https://baufismart.api.europace.de/v2/ergebnisliste?vorgangsNummer={vorgangsNummer}  \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache'
 ```
