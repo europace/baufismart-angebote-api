@@ -91,7 +91,7 @@ curl -X POST \
 
 # Ergebnisse abrufen
 
-## Ermittlungsanfrage mit übermittlen
+## Ermittlungsanfrage mit übermitteln
 
 Für Ergebnisse/Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein möglicher Beispiel-Request wäre:
 
