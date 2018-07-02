@@ -78,7 +78,7 @@ werden. Beispiel:
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege \
+  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
@@ -97,7 +97,7 @@ Für Ergebnisse/Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. E
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v2/ergebnisliste \
+  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
@@ -135,7 +135,15 @@ Desweiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorsch
 
 ```
 curl -X POST \
-  https://baufismart.api.europace.de/v2/ergebnisliste?vorgangsNummer={vorgangsNummer}  \
+  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer}  \
+  -H 'authorization: Bearer {{access_token}}' \
+  -H 'cache-control: no-cache'
+```
+
+
+```
+curl -X POST \
+  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer={vorgangsNummer}  \
   -H 'authorization: Bearer {{access_token}}' \
   -H 'cache-control: no-cache'
 ```

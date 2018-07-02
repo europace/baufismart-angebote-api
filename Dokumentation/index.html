@@ -445,14 +445,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#_ermittleergebnisse">2.2.1. Ermittle Ergebnisse</a></li>
 <li><a href="#_getermittlung">2.2.2. Ermittlung abrufen</a></li>
-<li><a href="#_geterfasstedatenusingget">2.2.3. getErfassteDaten</a></li>
-<li><a href="#_getergebnisliste">2.2.4. Ergebnisse einer Ermittlung abrufen</a></li>
-<li><a href="#_getergebnis">2.2.5. Ein Ergebnis abrufen</a></li>
-<li><a href="#_getmeldungen">2.2.6. Abrufen der Meldungen eines Finanzierungsvorschlags</a></li>
-<li><a href="#_getunterlagen">2.2.7. Abrufen der benötigten Unterlagen des Finanzierungsvorschlags</a></li>
-<li><a href="#_getzahlungsplaene">2.2.8. Zahlungsplaene eines Finanzierungsvorschlags abrufen</a></li>
-<li><a href="#_getzahlungsplaene_1">2.2.9. Den Tilgungsplan anhand einer Id abrufen</a></li>
-<li><a href="#_getermittlungsanfrage">2.2.10. Ermittlungsanfrage einer Ermittlung abrufen</a></li>
+    <li><a href="#_getergebnisliste">2.2.3. Ergebnisse einer Ermittlung abrufen</a></li>
+    <li><a href="#_getergebnis">2.2.4. Ein Ergebnis abrufen</a></li>
+    <li><a href="#_getmeldungen">2.2.5. Abrufen der Meldungen eines Finanzierungsvorschlags</a></li>
+    <li><a href="#_getunterlagen">2.2.6. Abrufen der benötigten Unterlagen des Finanzierungsvorschlags</a></li>
+    <li><a href="#_getzahlungsplaene">2.2.7. Zahlungsplaene eines Finanzierungsvorschlags abrufen</a></li>
+    <li><a href="#_getzahlungsplan">2.2.8. Einen Zahlungsplan anhand einer Id abrufen</a></li>
+    <li><a href="#_getermittlungsanfrage">2.2.9. Ermittlungsanfrage einer Ermittlung abrufen</a></li>
+    <li><a href="#_geterfasstedaten">2.2.10. Die Daten er Ermittlungsanfrage abrufen</a></li>
 </ul>
 </li>
 </ul>
@@ -483,10 +483,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_eintrag">3.22. Eintrag</a></li>
 <li><a href="#_erbbaurecht">3.23. Erbbaurecht</a></li>
 <li><a href="#_erfasstedaten">3.24. ErfassteDaten</a></li>
-<li><a href="#_ergebnislisteresource">3.25. ErgebnisListeResource</a></li>
-<li><a href="#_ergebnisresource">3.26. ErgebnisResource</a></li>
-<li><a href="#_ermittlungresource">3.27. ErmittlungResource</a></li>
-<li><a href="#_ermittlungsanfrageresource">3.28. ErmittlungsAnfrageResource</a></li>
+    <li><a href="#_ergebnis">3.25. Ergebnis</a></li>
+    <li><a href="#_ergebnisliste">3.26. ErgebnisListe</a></li>
+    <li><a href="#_ermittlung">3.27. Ermittlung</a></li>
+    <li><a href="#_ermittlungsanfrage">3.28. ErmittlungsAnfrage</a></li>
 <li><a href="#_error">3.29. Error</a></li>
 <li><a href="#_finanzbedarf">3.30. Finanzbedarf</a></li>
 <li><a href="#_finanzierungsobjekt">3.31. FinanzierungsObjekt</a></li>
@@ -506,43 +506,42 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_lebensoderrentenversicherungvermoegen">3.45. LebensOderRentenversicherungVermoegen</a></li>
 <li><a href="#_legitimationsdaten">3.46. LegitimationsDaten</a></li>
 <li><a href="#_link">3.47. Link</a></li>
-<li><a href="#_links">3.48. Links</a></li>
-<li><a href="#_meldung">3.49. Meldung</a></li>
-<li><a href="#_meldungenresource">3.50. MeldungenResource</a></li>
-<li><a href="#_mietausgaben">3.51. MietAusgaben</a></li>
-<li><a href="#_miteigentumsanteil">3.52. MiteigentumsAnteil</a></li>
-<li><a href="#_modernisierungsangaben">3.53. ModernisierungsAngaben</a></li>
-<li><a href="#_nachrangigesexternesdarlehen">3.54. NachrangigesExternesDarlehen</a></li>
-<li><a href="#_partner">3.55. Partner</a></li>
-<li><a href="#_postadresse">3.56. Postadresse</a></li>
-<li><a href="#_privatdarlehenswunsch">3.57. PrivatDarlehensWunsch</a></li>
-<li><a href="#_produktanbieter">3.58. ProduktAnbieter</a></li>
-<li><a href="#_provision">3.59. Provision</a></li>
-<li><a href="#_rechteabteilung2">3.60. RechteAbteilung2</a></li>
-<li><a href="#_situationnachrenteneintritt">3.61. SituationNachRenteneintritt</a></li>
-<li><a href="#_sparphase">3.62. SparPhase</a></li>
-<li><a href="#_sparplaene">3.63. Sparplaene</a></li>
-<li><a href="#_staat">3.64. Staat</a></li>
-<li><a href="#_stacktraceelement">3.65. StackTraceElement</a></li>
-<li><a href="#_throwable">3.66. Throwable</a></li>
-<li><a href="#_tilgung">3.67. Tilgung</a></li>
-<li><a href="#_tilgungsphase">3.68. TilgungsPhase</a></li>
-<li><a href="#_tilgungswunsch">3.69. TilgungsWunsch</a></li>
-<li><a href="#_unterlage">3.70. Unterlage</a></li>
-<li><a href="#_unterlagenresource">3.71. UnterlagenResource</a></li>
-<li><a href="#_variablesdarlehenswunsch">3.72. VariablesDarlehensWunsch</a></li>
-<li><a href="#_verbindlichkeit">3.73. Verbindlichkeit</a></li>
-<li><a href="#_vermietungsinformationen">3.74. VermietungsInformationen</a></li>
-<li><a href="#_vermoegen">3.75. Vermoegen</a></li>
-<li><a href="#_vermoegenverbindlichkeit">3.76. VermoegenVerbindlichkeit</a></li>
-<li><a href="#_vermoegenverbindlichkeiten">3.77. VermoegenVerbindlichkeiten</a></li>
-<li><a href="#_vertriebsorganisation">3.78. VertriebsOrganisation</a></li>
-<li><a href="#_vorhaben">3.79. Vorhaben</a></li>
-<li><a href="#_wertpapiere">3.80. Wertpapiere</a></li>
-<li><a href="#_zahlungsplaeneresource">3.81. ZahlungsplaeneResource</a></li>
-<li><a href="#_zahlungsplanresource">3.82. ZahlungsplanResource</a></li>
-<li><a href="#_zinsbindung">3.83. ZinsBindung</a></li>
-<li><a href="#_zwischenfinanzierungswunsch">3.84. ZwischenFinanzierungsWunsch</a></li>
+    <li><a href="#_meldung">3.48. Meldung</a></li>
+    <li><a href="#_meldungen">3.49. Meldungen</a></li>
+    <li><a href="#_mietausgaben">3.50. MietAusgaben</a></li>
+    <li><a href="#_miteigentumsanteil">3.51. MiteigentumsAnteil</a></li>
+    <li><a href="#_modernisierungsangaben">3.52. ModernisierungsAngaben</a></li>
+    <li><a href="#_nachrangigesexternesdarlehen">3.53. NachrangigesExternesDarlehen</a></li>
+    <li><a href="#_partner">3.54. Partner</a></li>
+    <li><a href="#_postadresse">3.55. Postadresse</a></li>
+    <li><a href="#_privatdarlehenswunsch">3.56. PrivatDarlehensWunsch</a></li>
+    <li><a href="#_produktanbieter">3.57. ProduktAnbieter</a></li>
+    <li><a href="#_provision">3.58. Provision</a></li>
+    <li><a href="#_rechteabteilung2">3.59. RechteAbteilung2</a></li>
+    <li><a href="#_situationnachrenteneintritt">3.60. SituationNachRenteneintritt</a></li>
+    <li><a href="#_sparphase">3.61. SparPhase</a></li>
+    <li><a href="#_sparplaene">3.62. Sparplaene</a></li>
+    <li><a href="#_staat">3.63. Staat</a></li>
+    <li><a href="#_stacktraceelement">3.64. StackTraceElement</a></li>
+    <li><a href="#_throwable">3.65. Throwable</a></li>
+    <li><a href="#_tilgung">3.66. Tilgung</a></li>
+    <li><a href="#_tilgungsphase">3.67. TilgungsPhase</a></li>
+    <li><a href="#_tilgungswunsch">3.68. TilgungsWunsch</a></li>
+    <li><a href="#_unterlage">3.69. Unterlage</a></li>
+    <li><a href="#_unterlagen">3.70. Unterlagen</a></li>
+    <li><a href="#_variablesdarlehenswunsch">3.71. VariablesDarlehensWunsch</a></li>
+    <li><a href="#_verbindlichkeit">3.72. Verbindlichkeit</a></li>
+    <li><a href="#_vermietungsinformationen">3.73. VermietungsInformationen</a></li>
+    <li><a href="#_vermoegen">3.74. Vermoegen</a></li>
+    <li><a href="#_vermoegenverbindlichkeit">3.75. VermoegenVerbindlichkeit</a></li>
+    <li><a href="#_vermoegenverbindlichkeiten">3.76. VermoegenVerbindlichkeiten</a></li>
+    <li><a href="#_vertriebsorganisation">3.77. VertriebsOrganisation</a></li>
+    <li><a href="#_vorhaben">3.78. Vorhaben</a></li>
+    <li><a href="#_wertpapiere">3.79. Wertpapiere</a></li>
+    <li><a href="#_zahlungsplaene">3.80. Zahlungsplaene</a></li>
+    <li><a href="#_zahlungsplan">3.81. Zahlungsplan</a></li>
+    <li><a href="#_zinsbindung">3.82. ZinsBindung</a></li>
+    <li><a href="#_zwischenfinanzierungswunsch">3.83. ZwischenFinanzierungsWunsch</a></li>
 </ul>
 </li>
 <li><a href="#_securityscheme">4. Sicherheit</a>
@@ -568,7 +567,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_aktuelle_version">1.1. Aktuelle Version</h3>
 <div class="paragraph">
-<p><em>Version</em> : 2.0.0.RC1</p>
+    <p><em>Version</em> : 2.0.0.RC2</p>
 </div>
 </div>
 <div class="sect2">
@@ -940,7 +939,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h4 id="_ermittleergebnisse">2.2.1. Ermittle Ergebnisse</h4>
 <div class="literalblock">
 <div class="content">
-<pre>POST /v2/ergebnisliste</pre>
+    <pre>POST /v2/ergebnisliste/ermittlung</pre>
 </div>
 </div>
 <div class="sect4">
@@ -1023,7 +1022,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlungresource">ErmittlungResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlung">Ermittlung</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
@@ -1153,7 +1152,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlungresource">ErmittlungResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlung">Ermittlung</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1219,10 +1218,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_geterfasstedatenusingget">2.2.3. getErfassteDaten</h4>
+    <h4 id="_getergebnisliste">2.2.3. Ergebnisse einer Ermittlung abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/erfassteDaten</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse</pre>
+</div>
+</div>
+    <div class="sect4">
+        <h5 id="_beschreibung_3">Beschreibung</h5>
+        <div class="paragraph">
+            <p>Als Parameter wird die ErmittlungsAnfrageId benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1272,7 +1277,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_erfasstedaten">ErfassteDaten</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ergebnisliste">ErgebnisListe</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1338,16 +1343,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getergebnisliste">2.2.4. Ergebnisse einer Ermittlung abrufen</h4>
+    <h4 id="_getergebnis">2.2.4. Ein Ergebnis abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_3">Beschreibung</h5>
+    <h5 id="_beschreibung_4">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisnummer benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1370,6 +1375,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisNummer</strong><br>
+        <em>verpflichtend</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisNummer</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+</tr>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ermittlungsId</strong><br>
 <em>verpflichtend</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">ermittlungsId</p></td>
@@ -1397,7 +1409,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplaeneresource">ZahlungsplaeneResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ergebnis">Ergebnis</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1463,16 +1475,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getergebnis">2.2.5. Ein Ergebnis abrufen</h4>
+    <h4 id="_getmeldungen">2.2.5. Abrufen der Meldungen eines Finanzierungsvorschlags</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/meldungen</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_4">Beschreibung</h5>
+    <h5 id="_beschreibung_5">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1495,9 +1507,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisIndex</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisNummer</strong><br>
 <em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisIndex</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisNummer</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 <tr>
@@ -1529,7 +1541,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplaeneresource">ZahlungsplaeneResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_meldungen">Meldungen</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1595,16 +1607,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getmeldungen">2.2.6. Abrufen der Meldungen eines Finanzierungsvorschlags</h4>
+    <h4 id="_getunterlagen">2.2.6. Abrufen der benötigten Unterlagen des Finanzierungsvorschlags</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/meldungen</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/unterlagen</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_5">Beschreibung</h5>
+    <h5 id="_beschreibung_6">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1627,9 +1639,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisIndex</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisNummer</strong><br>
 <em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisIndex</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisNummer</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 <tr>
@@ -1661,7 +1673,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_meldungenresource">MeldungenResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_unterlagen">Unterlagen</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1727,16 +1739,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getunterlagen">2.2.7. Abrufen der benötigten Unterlagen des Finanzierungsvorschlags</h4>
+    <h4 id="_getzahlungsplaene">2.2.7. Zahlungsplaene eines Finanzierungsvorschlags abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/unterlagen</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_6">Beschreibung</h5>
+    <h5 id="_beschreibung_7">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1759,9 +1771,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisIndex</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisNummer</strong><br>
 <em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisIndex</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisNummer</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 <tr>
@@ -1793,7 +1805,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_unterlagenresource">UnterlagenResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplaene">Zahlungsplaene</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1859,16 +1871,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getzahlungsplaene">2.2.8. Zahlungsplaene eines Finanzierungsvorschlags abrufen</h4>
+    <h4 id="_getzahlungsplan">2.2.8. Einen Zahlungsplan anhand einer Id abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/zahlungsplaene</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene/{zahlungsplanIndex}</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_7">Beschreibung</h5>
+    <h5 id="_beschreibung_8">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisindex benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsAnfrageId, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1891,9 +1903,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisIndex</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisNummer</strong><br>
 <em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisIndex</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisNummer</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 <tr>
@@ -1902,6 +1914,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>verpflichtend</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">ermittlungsId</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>zahlungsplanIndex</strong><br>
+        <em>verpflichtend</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">zahlungsplanIndex</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
@@ -1925,7 +1944,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplaeneresource">ZahlungsplaeneResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplan">Zahlungsplan</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1991,16 +2010,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getzahlungsplaene_1">2.2.9. Den Tilgungsplan anhand einer Id abrufen</h4>
+    <h4 id="_getermittlungsanfrage">2.2.9. Ermittlungsanfrage einer Ermittlung abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisIndex}/zahlungsplaene/{zahlungsplanIndex}</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_8">Beschreibung</h5>
+    <h5 id="_beschreibung_9">Beschreibung</h5>
 <div class="paragraph">
-<p>Als Parameter wird die ErmittlungsAnfrageId, der Ergebnisindex sowie der Index des Tilgunsplans benötigt.</p>
+    <p>Als Parameter wird die ErmittlungsId benötigt.</p>
 </div>
 </div>
 <div class="sect4">
@@ -2023,23 +2042,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisIndex</strong><br>
-<em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">ergebnisIndex</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ermittlungsId</strong><br>
 <em>verpflichtend</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">ermittlungsId</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>zahlungsplanIndex</strong><br>
-<em>verpflichtend</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">zahlungsplanIndex</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -2064,7 +2069,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_zahlungsplaeneresource">ZahlungsplaeneResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlungsanfrage">ErmittlungsAnfrage</a>
+    </p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -2130,14 +2136,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_getermittlungsanfrage">2.2.10. Ermittlungsanfrage einer Ermittlung abrufen</h4>
+    <h4 id="_geterfasstedaten">2.2.10. Die Daten er Ermittlungsanfrage abrufen</h4>
 <div class="literalblock">
 <div class="content">
-<pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage</pre>
+    <pre>GET /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage/erfassteDaten</pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_beschreibung_9">Beschreibung</h5>
+    <h5 id="_beschreibung_10">Beschreibung</h5>
 <div class="paragraph">
 <p>Als Parameter wird die ErmittlungsId benötigt.</p>
 </div>
@@ -2189,7 +2195,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OK</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ermittlungsanfrageresource">ErmittlungsAnfrageResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_erfasstedaten">ErfassteDaten</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -2841,7 +2847,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>bausparTarife</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">siehe weitere Beschreibung unter Weitere Informationen -&gt; Bezeichnung Bauspartarife</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; enum (FUCHS_IMMO_1, FUCHS_IMMO_2, FUCHS_IMMO_3, FUCHS_IMMO_4, FUCHS_IMMO_5, FUCHS_IMMO_6, FUCHS_IMMO_7, LBS_HT_CLASSIC_S_2015, LBS_HT_CLASSIC_F_2015, LBS_HT_CLASSIC_L_2015, LBS_HT_CLASSIC_N_2015, LBS_NORD_N_FINANZIERER_F3, LBS_NORD_N_FINANZIERER_F4, LBS_NORD_N_FINANZIERER_F5, LBS_NORD_N_FINANZIERER_F6, LBS_NORD_N_FINANZIERER_F7, LBS_NORD_N_MODERNISIERER_M8, LBS_NORD_N_MODERNISIERER_MX, LBS_NORD_N_MODERNISIERER_MINIZINS, LBS_NORD_N_STARTER_S4, LBS_NORD_N_STARTER_Q5, LBS_NORD_N_STARTER_S6, LBS_OST_CLASSIC15_F5, LBS_OST_CLASSIC_F_H4, LBS_OST_CLASSIC_F_H5, LBS_OST_CLASSIC_12_C4, LBS_OST_CLASSIC_12_C9, LBS_OST_CLASSIC15_F3, LBS_OST_CLASSIC15_F4, LBS_OST_CLASSIC15_F6, LBS_OST_CLASSIC15_F8, LBS_OST_VARIO_FLEX, LBS_SHH_PRIMUS_SC, LBS_SHH_PRIMUS_SH, LBS_SHH_PRIMUS_SI, LBS_SHH_PRIMUS_SJ, LBS_SHH_TREND_SD, LBS_SHH_PRIMUS_SD, LBS_WEST_ZUHAUSE_DIREKT_10, LBS_WEST_ZUHAUSE_DIREKT_15, LBS_WEST_ZUHAUSE_PLUS, LBS_WEST_ZUHAUSE_FLEX_4_L, LBS_WEST_ZUHAUSE_FLEX_5_L, LBS_WEST_ZUHAUSE_FLEX_6_L, LBS_WEST_ZUHAUSE_FLEX_8_L, LBS_WEST_ZUHAUSE_PRIMA, LBS_WEST_ZUHAUSE_PRIMA_10, LBS_WEST_ZUHAUSE_4, LBS_WEST_ZUHAUSE_FLEX_4_S, LBS_WEST_ZUHAUSE_FLEX_5, LBS_WEST_ZUHAUSE_FLEX_5_S, LBS_WEST_ZUHAUSE_FLEX_6, LBS_WEST_ZUHAUSE_FLEX_6_S, LBS_WEST_ZUHAUSE_FLEX_8, LBS_WEST_ZUHAUSE_FLEX_8_S, LBS_WEST_ZUHAUSE_YOUNG, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS, LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L, SIGNAL_IDUNA_FREIRAUM_F_30, SIGNAL_IDUNA_FREIRAUM_F_30_16, SIGNAL_IDUNA_FREIRAUM_F_35, SIGNAL_IDUNA_FREIRAUM_F_35_16, SIGNAL_IDUNA_FREIRAUM_F_40, SIGNAL_IDUNA_FREIRAUM_F_40_16, SIGNAL_IDUNA_FREIRAUM_F_45, SIGNAL_IDUNA_FREIRAUM_F_45_16, SIGNAL_IDUNA_FREIRAUM_F_50, SIGNAL_IDUNA_FREIRAUM_F_60, SIGNAL_IDUNA_FREIRAUM_F_30_MZ, SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_35_MZ, SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_40_MZ, SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_45_MZ, SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_50_MZ, SIGNAL_IDUNA_FREIRAUM_F_60_MZ, BHW_TARIF_FI1, BHW_TARIF_FI1N, BHW_TARIF_FI2, BHW_TARIF_FI2N, BHW_TARIF_FI3, BHW_TARIF_FI4, BHW_TARIF_FX1, BHW_TARIF_FX1N, BHW_TARIF_FX2, BHW_TARIF_FX2N, BHW_TARIF_REN, DT_RING_TARIF_FT, DT_RING_TARIF_FT_0, DT_RING_TARIF_FT_1, DT_RING_TARIF_FT_2, DT_RING_TARIF_XT_0, DT_RING_TARIF_XT_1, ALTE_LEIPZIGER_1502, ALTE_LEIPZIGER_1602, ALTE_LEIPZIGER_1702, ALTE_LEIPZIGER_1802, ALTE_LEIPZIGER_1902, ALTE_LEIPZIGER_2002, ALTE_LEIPZIGER_1502_MZ, ALTE_LEIPZIGER_1602_MZ, ALTE_LEIPZIGER_1702_MZ, ALTE_LEIPZIGER_1802_MZ, ALTE_LEIPZIGER_1902_MZ, ALTE_LEIPZIGER_2002_MZ, ALTE_LEIPZIGER_1503, ALTE_LEIPZIGER_1603, ALTE_LEIPZIGER_1703, ALTE_LEIPZIGER_1803, ALTE_LEIPZIGER_1903, ALTE_LEIPZIGER_2003, ALTE_LEIPZIGER_1503_MZ, ALTE_LEIPZIGER_1603_MZ, ALTE_LEIPZIGER_1703_MZ, ALTE_LEIPZIGER_1803_MZ, ALTE_LEIPZIGER_1903_MZ, ALTE_LEIPZIGER_2003_MZ, ALTE_LEIPZIGER_150X, ALTE_LEIPZIGER_160X, ALTE_LEIPZIGER_170X, ALTE_LEIPZIGER_180X, ALTE_LEIPZIGER_190X, ALTE_LEIPZIGER_200X, ALTE_LEIPZIGER_150X_MZ, ALTE_LEIPZIGER_160X_MZ, ALTE_LEIPZIGER_170X_MZ, ALTE_LEIPZIGER_180X_MZ, ALTE_LEIPZIGER_190X_MZ, ALTE_LEIPZIGER_200X_MZ, ALTE_LEIPZIGER_ZG_21XX_20, ALTE_LEIPZIGER_ZG_21XX_30, ALTE_LEIPZIGER_21XX_27, ALTE_LEIPZIGER_21XX_33, ALTE_LEIPZIGER_21XX, ALTE_LEIPZIGER_25XX_45, ALTE_LEIPZIGER_22XX_27, ALTE_LEIPZIGER_22XX_33, ALTE_LEIPZIGER_22XX, ALTE_LEIPZIGER_26XX_45, BKM_MAX_PREMIUM_OPTIMAL, BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE, BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG, BKM_MAX_PREMIUM_BESTER_ZINS, WUESTENROT_01063_4, WUESTENROT_01063_5, WUESTENROT_01063_6, WUESTENROT_01063_7, WUESTENROT_01063_8, WUESTENROT_01063_9, WUESTENROT_01063_10, WUESTENROT_01063_12, WUESTENROT_01064_4, WUESTENROT_01064_6, WUESTENROT_01064_8, WUESTENROT_01064_10, WUESTENROT_01064_12, WUESTENROT_01061_10, WUESTENROT_01062_4, DEUTSCHE_BANK_BAUSPAR_TARIF_FI1, DEUTSCHE_BANK_BAUSPAR_TARIF_FI2, DEUTSCHE_BANK_BAUSPAR_TARIF_FI3, DEUTSCHE_BANK_BAUSPAR_TARIF_FI4, DEUTSCHE_BANK_BAUSPAR_TARIF_FX1, DEUTSCHE_BANK_BAUSPAR_TARIF_FX2) &gt; array</p></td>
+    <td class="tableblock halign-left valign-middle">
+        <p class="tableblock">&lt; enum (FUCHS_IMMO_1, FUCHS_IMMO_2, FUCHS_IMMO_3, FUCHS_IMMO_4, FUCHS_IMMO_5, FUCHS_IMMO_6, FUCHS_IMMO_7, LBS_HT_CLASSIC_S_2015, LBS_HT_CLASSIC_F_2015, LBS_HT_CLASSIC_L_2015, LBS_HT_CLASSIC_N_2015, LBS_NORD_N_FINANZIERER_F3, LBS_NORD_N_FINANZIERER_F4, LBS_NORD_N_FINANZIERER_F5, LBS_NORD_N_FINANZIERER_F6, LBS_NORD_N_FINANZIERER_F7, LBS_NORD_N_MODERNISIERER_M8, LBS_NORD_N_MODERNISIERER_MX, LBS_NORD_N_MODERNISIERER_MINIZINS, LBS_NORD_N_STARTER_S4, LBS_NORD_N_STARTER_Q5, LBS_NORD_N_STARTER_S6, LBS_OST_CLASSIC15_F5, LBS_OST_CLASSIC_F_H4, LBS_OST_CLASSIC_F_H5, LBS_OST_CLASSIC_12_C4, LBS_OST_CLASSIC_12_C9, LBS_OST_CLASSIC15_F3, LBS_OST_CLASSIC15_F4, LBS_OST_CLASSIC15_F6, LBS_OST_CLASSIC15_F8, LBS_OST_VARIO_FLEX, LBS_SHH_PRIMUS_SC, LBS_SHH_PRIMUS_SH, LBS_SHH_PRIMUS_SI, LBS_SHH_PRIMUS_SJ, LBS_SHH_TREND_SD, LBS_SHH_PRIMUS_SD, LBS_WEST_ZUHAUSE_DIREKT_10, LBS_WEST_ZUHAUSE_DIREKT_15, LBS_WEST_ZUHAUSE_PLUS, LBS_WEST_ZUHAUSE_FLEX_4, LBS_WEST_ZUHAUSE_FLEX_4_L, LBS_WEST_ZUHAUSE_FLEX_5_L, LBS_WEST_ZUHAUSE_FLEX_6_L, LBS_WEST_ZUHAUSE_FLEX_8_L, LBS_WEST_ZUHAUSE_PRIMA, LBS_WEST_ZUHAUSE_PRIMA_10, LBS_WEST_ZUHAUSE_FLEX_4_S, LBS_WEST_ZUHAUSE_FLEX_5, LBS_WEST_ZUHAUSE_FLEX_5_S, LBS_WEST_ZUHAUSE_FLEX_6, LBS_WEST_ZUHAUSE_FLEX_6_S, LBS_WEST_ZUHAUSE_FLEX_8, LBS_WEST_ZUHAUSE_FLEX_8_S, LBS_WEST_ZUHAUSE_YOUNG, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15, LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS, LBS_WEST_RIESTER_ZUHAUSE_FLEX_4, LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S, LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_5, LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_6, LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L, LBS_WEST_RIESTER_ZUHAUSE_FLEX_8, SIGNAL_IDUNA_FREIRAUM_F_30, SIGNAL_IDUNA_FREIRAUM_F_30_16, SIGNAL_IDUNA_FREIRAUM_F_35, SIGNAL_IDUNA_FREIRAUM_F_35_16, SIGNAL_IDUNA_FREIRAUM_F_40, SIGNAL_IDUNA_FREIRAUM_F_40_16, SIGNAL_IDUNA_FREIRAUM_F_45, SIGNAL_IDUNA_FREIRAUM_F_45_16, SIGNAL_IDUNA_FREIRAUM_F_50, SIGNAL_IDUNA_FREIRAUM_F_60, SIGNAL_IDUNA_FREIRAUM_F_30_MZ, SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_35_MZ, SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_40_MZ, SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_45_MZ, SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16, SIGNAL_IDUNA_FREIRAUM_F_50_MZ, SIGNAL_IDUNA_FREIRAUM_F_60_MZ, BHW_TARIF_FI1, BHW_TARIF_FI1N, BHW_TARIF_FI2, BHW_TARIF_FI2N, BHW_TARIF_FI3, BHW_TARIF_FI4, BHW_TARIF_FX1, BHW_TARIF_FX1N, BHW_TARIF_FX2, BHW_TARIF_FX2N, BHW_TARIF_REN, DT_RING_TARIF_FT, DT_RING_TARIF_FT_0, DT_RING_TARIF_FT_1, DT_RING_TARIF_FT_2, DT_RING_TARIF_XT_0, DT_RING_TARIF_XT_1, ALTE_LEIPZIGER_1502, ALTE_LEIPZIGER_1602, ALTE_LEIPZIGER_1702, ALTE_LEIPZIGER_1802, ALTE_LEIPZIGER_1902, ALTE_LEIPZIGER_2002, ALTE_LEIPZIGER_1502_MZ, ALTE_LEIPZIGER_1602_MZ, ALTE_LEIPZIGER_1702_MZ, ALTE_LEIPZIGER_1802_MZ, ALTE_LEIPZIGER_1902_MZ, ALTE_LEIPZIGER_2002_MZ, ALTE_LEIPZIGER_1503, ALTE_LEIPZIGER_1603, ALTE_LEIPZIGER_1703, ALTE_LEIPZIGER_1803, ALTE_LEIPZIGER_1903, ALTE_LEIPZIGER_2003, ALTE_LEIPZIGER_1503_MZ, ALTE_LEIPZIGER_1603_MZ, ALTE_LEIPZIGER_1703_MZ, ALTE_LEIPZIGER_1803_MZ, ALTE_LEIPZIGER_1903_MZ, ALTE_LEIPZIGER_2003_MZ, ALTE_LEIPZIGER_150X, ALTE_LEIPZIGER_160X, ALTE_LEIPZIGER_170X, ALTE_LEIPZIGER_180X, ALTE_LEIPZIGER_190X, ALTE_LEIPZIGER_200X, ALTE_LEIPZIGER_150X_MZ, ALTE_LEIPZIGER_160X_MZ, ALTE_LEIPZIGER_170X_MZ, ALTE_LEIPZIGER_180X_MZ, ALTE_LEIPZIGER_190X_MZ, ALTE_LEIPZIGER_200X_MZ, ALTE_LEIPZIGER_ZG_21XX_20, ALTE_LEIPZIGER_ZG_21XX_30, ALTE_LEIPZIGER_21XX_27, ALTE_LEIPZIGER_21XX_33, ALTE_LEIPZIGER_21XX, ALTE_LEIPZIGER_25XX_45, ALTE_LEIPZIGER_22XX_27, ALTE_LEIPZIGER_22XX_33, ALTE_LEIPZIGER_22XX, ALTE_LEIPZIGER_26XX_45, BKM_MAX_PREMIUM_OPTIMAL, BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE, BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG, BKM_MAX_PREMIUM_BESTER_ZINS, WUESTENROT_01063_4, WUESTENROT_01063_5, WUESTENROT_01063_6, WUESTENROT_01063_7, WUESTENROT_01063_8, WUESTENROT_01063_9, WUESTENROT_01063_10, WUESTENROT_01063_12, WUESTENROT_01064_4, WUESTENROT_01064_6, WUESTENROT_01064_8, WUESTENROT_01064_10, WUESTENROT_01064_12, WUESTENROT_01061_10, WUESTENROT_01062_4, DEUTSCHE_BANK_BAUSPAR_TARIF_FI1, DEUTSCHE_BANK_BAUSPAR_TARIF_FI2, DEUTSCHE_BANK_BAUSPAR_TARIF_FI3, DEUTSCHE_BANK_BAUSPAR_TARIF_FI4, DEUTSCHE_BANK_BAUSPAR_TARIF_FX1, DEUTSCHE_BANK_BAUSPAR_TARIF_FX2) &gt; array</p>
+    </td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
@@ -4003,6 +4011,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_leadtracking">LeadTracking</a></p></td>
 </tr>
 <tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
+        <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>tippGeber</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_partner">Partner</a></p></td>
@@ -4026,34 +4039,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_ergebnislisteresource">3.25. ErgebnisListeResource</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Typ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisse</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_ergebnisresource">ErgebnisResource</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_ergebnisresource">3.26. ErgebnisResource</h3>
+    <h3 id="_ergebnis">3.25. Ergebnis</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -4135,7 +4121,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_ermittlungresource">3.27. ErmittlungResource</h3>
+    <h3 id="_ergebnisliste">3.26. ErgebnisListe</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -4149,25 +4135,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisListe</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisse</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_ergebnislisteresource">ErgebnisListeResource</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_ergebnis">Ergebnis</a> &gt; array</p>
+    </td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>erstelltAm</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
 </tr>
+</tbody>
+</table>
+</div>
+    <div class="sect2">
+        <h3 id="_ermittlung">3.27. Ermittlung</h3>
+        <table class="tableblock frame-all grid-all spread">
+            <colgroup>
+                <col style="width: 42%;">
+                <col style="width: 57%;">
+            </colgroup>
+            <thead>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
+    <th class="tableblock halign-left valign-middle">Name</th>
+    <th class="tableblock halign-left valign-middle">Typ</th>
+</tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ergebnisse</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt;
+                    <a href="#_ergebnis">Ergebnis</a> &gt; array</p></td>
+            </tr>
+            <tr>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ermittlungsId</strong><br>
+                    <em>optional</em></p></td>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+            </tr>
+            <tr>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
+                    <em>optional</em></p></td>
+                <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array
+                </p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_ermittlungsanfrageresource">3.28. ErmittlungsAnfrageResource</h3>
+    <h3 id="_ermittlungsanfrage">3.28. ErmittlungsAnfrage</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -4186,14 +4202,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>datenKontext</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>erfassteDaten</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (TEST_MODUS, ECHT_GESCHAEFT)</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_erfasstedaten">ErfassteDaten</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>erfassteDaten</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>ermittlungsId</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_erfasstedaten">ErfassteDaten</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>erstelltAm</strong><br>
+        <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>handelsbeziehungen</strong><br>
@@ -4201,9 +4222,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_handelsbeziehung">Handelsbeziehung</a> &gt; array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
@@ -5436,38 +5457,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>type</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_links">3.48. Links</h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Typ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_link">Link</a></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_meldung">3.49. Meldung</h3>
+    <h3 id="_meldung">3.48. Meldung</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5509,7 +5503,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_meldungenresource">3.50. MeldungenResource</h3>
+    <h3 id="_meldungen">3.49. Meldungen</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5523,20 +5517,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>meldungen</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_meldung">Meldung</a> &gt; array</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>meldungen</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_meldung">Meldung</a> &gt; array</p>
+    </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_mietausgaben">3.51. MietAusgaben</h3>
+    <h3 id="_mietausgaben">3.50. MietAusgaben</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5563,7 +5558,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_miteigentumsanteil">3.52. MiteigentumsAnteil</h3>
+    <h3 id="_miteigentumsanteil">3.51. MiteigentumsAnteil</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5590,7 +5585,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_modernisierungsangaben">3.53. ModernisierungsAngaben</h3>
+    <h3 id="_modernisierungsangaben">3.52. ModernisierungsAngaben</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5676,7 +5671,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_nachrangigesexternesdarlehen">3.54. NachrangigesExternesDarlehen</h3>
+    <h3 id="_nachrangigesexternesdarlehen">3.53. NachrangigesExternesDarlehen</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -5731,7 +5726,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_partner">3.55. Partner</h3>
+    <h3 id="_partner">3.54. Partner</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5833,7 +5828,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_postadresse">3.56. Postadresse</h3>
+    <h3 id="_postadresse">3.55. Postadresse</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5870,7 +5865,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_privatdarlehenswunsch">3.57. PrivatDarlehensWunsch</h3>
+    <h3 id="_privatdarlehenswunsch">3.56. PrivatDarlehensWunsch</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5902,7 +5897,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_produktanbieter">3.58. ProduktAnbieter</h3>
+    <h3 id="_produktanbieter">3.57. ProduktAnbieter</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5915,6 +5910,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </thead>
 <tbody>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
+        <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>name</strong><br>
 <em>optional</em></p></td>
@@ -5934,7 +5934,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_provision">3.59. Provision</h3>
+    <h3 id="_provision">3.58. Provision</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5961,7 +5961,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_rechteabteilung2">3.60. RechteAbteilung2</h3>
+    <h3 id="_rechteabteilung2">3.59. RechteAbteilung2</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -5993,7 +5993,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_situationnachrenteneintritt">3.61. SituationNachRenteneintritt</h3>
+    <h3 id="_situationnachrenteneintritt">3.60. SituationNachRenteneintritt</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6030,7 +6030,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_sparphase">3.62. SparPhase</h3>
+    <h3 id="_sparphase">3.61. SparPhase</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6062,7 +6062,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_sparplaene">3.63. Sparplaene</h3>
+    <h3 id="_sparplaene">3.62. Sparplaene</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6109,7 +6109,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_staat">3.64. Staat</h3>
+    <h3 id="_staat">3.63. Staat</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6136,7 +6136,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_stacktraceelement">3.65. StackTraceElement</h3>
+    <h3 id="_stacktraceelement">3.64. StackTraceElement</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6178,7 +6178,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_throwable">3.66. Throwable</h3>
+    <h3 id="_throwable">3.65. Throwable</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6220,7 +6220,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tilgung">3.67. Tilgung</h3>
+    <h3 id="_tilgung">3.66. Tilgung</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6252,7 +6252,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tilgungsphase">3.68. TilgungsPhase</h3>
+    <h3 id="_tilgungsphase">3.67. TilgungsPhase</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6289,7 +6289,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_tilgungswunsch">3.69. TilgungsWunsch</h3>
+    <h3 id="_tilgungswunsch">3.68. TilgungsWunsch</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 16%;">
@@ -6356,7 +6356,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_unterlage">3.70. Unterlage</h3>
+    <h3 id="_unterlage">3.69. Unterlage</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6403,7 +6403,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_unterlagenresource">3.71. UnterlagenResource</h3>
+    <h3 id="_unterlagen">3.70. Unterlagen</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6417,20 +6417,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unterlagen</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_unterlage">Unterlage</a> &gt; array</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>unterlagen</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_unterlage">Unterlage</a> &gt; array</p>
+    </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_variablesdarlehenswunsch">3.72. VariablesDarlehensWunsch</h3>
+    <h3 id="_variablesdarlehenswunsch">3.71. VariablesDarlehensWunsch</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6462,7 +6463,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_verbindlichkeit">3.73. Verbindlichkeit</h3>
+    <h3 id="_verbindlichkeit">3.72. Verbindlichkeit</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6504,7 +6505,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vermietungsinformationen">3.74. VermietungsInformationen</h3>
+    <h3 id="_vermietungsinformationen">3.73. VermietungsInformationen</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6536,7 +6537,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vermoegen">3.75. Vermoegen</h3>
+    <h3 id="_vermoegen">3.74. Vermoegen</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6578,7 +6579,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vermoegenverbindlichkeit">3.76. VermoegenVerbindlichkeit</h3>
+    <h3 id="_vermoegenverbindlichkeit">3.75. VermoegenVerbindlichkeit</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6620,7 +6621,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vermoegenverbindlichkeiten">3.77. VermoegenVerbindlichkeiten</h3>
+    <h3 id="_vermoegenverbindlichkeiten">3.76. VermoegenVerbindlichkeiten</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6642,7 +6643,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vertriebsorganisation">3.78. VertriebsOrganisation</h3>
+    <h3 id="_vertriebsorganisation">3.77. VertriebsOrganisation</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6689,15 +6690,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_vorhaben">3.79. Vorhaben</h3>
+    <h3 id="_vorhaben">3.78. Vorhaben</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 42%;">
-<col style="width: 57%;">
+    <col style="width: 16%;">
+    <col style="width: 61%;">
+    <col style="width: 22%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-middle">Name</th>
+    <th class="tableblock halign-left valign-middle">Beschreibung</th>
 <th class="tableblock halign-left valign-middle">Typ</th>
 </tr>
 </thead>
@@ -6705,43 +6708,58 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>eigenleistungWennNeubauOderModernisierungsmassnahmen</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">number</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>externeBausparAngebote</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_bausparangebot">BausparAngebot</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>finanzbedarf</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_finanzbedarf">Finanzbedarf</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>finanzierungswunsch</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_finanzierungswunsch">Finanzierungswunsch</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nachfinanzierung</strong><br>
+        <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle">
+        <p class="tableblock">Wenn es sich um eine Nachfinanzierung handelt, dann dieses Feld auf true setzen. Wird z.Zt. nur von der DSL Bank ausgewertet. Nur setzen, wenn auch bestehende Darlehen in der Finanzierungsimmobilie vorhanden sind.</p>
+    </td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">boolean</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>nachrangigeExterneDarlehen</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_nachrangigesexternesdarlehen">NachrangigesExternesDarlehen</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>verwendungszweck</strong><br>
 <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (ANSCHLUSSFINANZIERUNG, KAUF, KAUF_NEUBAU_VOM_BAUTRAEGER, MODERNISIERUNG_UMBAU_ANBAU, NEUBAU, KAPITALBESCHAFFUNG)</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_wertpapiere">3.80. Wertpapiere</h3>
+    <h3 id="_wertpapiere">3.79. Wertpapiere</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6788,7 +6806,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_zahlungsplaeneresource">3.81. ZahlungsplaeneResource</h3>
+    <h3 id="_zahlungsplaene">3.80. Zahlungsplaene</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6809,13 +6827,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>zahlungsplaene</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_zahlungsplanresource">ZahlungsplanResource</a> &gt; array</p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt;
+        <a href="#_zahlungsplan">Zahlungsplan</a> &gt; array</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_zahlungsplanresource">3.82. ZahlungsplanResource</h3>
+    <h3 id="_zahlungsplan">3.81. Zahlungsplan</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6839,9 +6858,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_eintrag">Eintrag</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>id</strong><br>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>identifier</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>links</strong><br>
+        <em>optional</em></p></td>
+    <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_link">Link</a> &gt; array</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>sparplanSummenEintragZumZuteilungsZeitpunkt</strong><br>
@@ -6863,16 +6887,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_eintrag">Eintrag</a> &gt; array</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>_links</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_links">Links</a></p></td>
-</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_zinsbindung">3.83. ZinsBindung</h3>
+    <h3 id="_zinsbindung">3.82. ZinsBindung</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -6909,7 +6928,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect2">
-<h3 id="_zwischenfinanzierungswunsch">3.84. ZwischenFinanzierungsWunsch</h3>
+    <h3 id="_zwischenfinanzierungswunsch">3.83. ZwischenFinanzierungsWunsch</h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 42%;">
@@ -7265,7 +7284,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-05-15 12:02:41 +02:00
+    Last updated 2018-07-02 17:25:22 +02:00
 </div>
 </div>
 </body>
