@@ -6,8 +6,9 @@ Eine API um Finanzierungsvorschläge/Ergebnisse zu ermitteln.
 
 Wesentliche Änderungen zur Version 1.5.
 
+* Die Version v1 funktioniert wie bisher: https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer} 
 * Finanzierungsvorschläge werden in Ergebnisse umbenannt. Die Liste in Ergebnisliste.
-* Der REST Endpunkt (Post Method) zur Ermittlung von Ergebnissen lautet: https://baufismart.api.europace.de/v2/ergebnisliste
+* Der REST Endpunkt (Post Method) zur Ermittlung von Ergebnissen lautet: https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung
 * Man kann sich die Ermittlung mit den gelieferten Ergebnissen erneut anfordern
 * Ergebnisdetails wie Unterlagen, Meldungen und Zahlungspläne können zu einem Ergebnis ausgelesen werden.
 

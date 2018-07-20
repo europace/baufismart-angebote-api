@@ -3076,6 +3076,9 @@
         "produktAnbieter": {
           "type": "string"
         },
+        "provisionsWuensche": {
+          "$ref": "#/definitions/ProvisionsWuensche"
+        },
         "ratenkreditVertriebsgruppe": {
           "type": "string"
         }
@@ -3754,6 +3757,24 @@
         }
       },
       "title": "Provision"
+    },
+    "ProvisionsWuensche": {
+      "type": "object",
+      "properties": {
+        "darlehen": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Prozent"
+          }
+        },
+        "standard": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Prozent"
+          }
+        }
+      },
+      "title": "ProvisionsWuensche"
     },
     "RechteAbteilung2": {
       "type": "object",
