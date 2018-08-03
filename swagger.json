@@ -3764,13 +3764,13 @@
         "darlehen": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Prozent"
+            "type": "number"
           }
         },
         "standard": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Prozent"
+            "type": "number"
           }
         }
       },
