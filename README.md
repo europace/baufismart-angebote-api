@@ -103,28 +103,30 @@ curl -X POST \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{
-       	"vorhaben": {
-       	  "finanzbedarf": {
-       			"kaufpreis": 100000
-       		},
-       		"finanzierungswunsch": {
-               "darlehensWuensche": [
-                   "annuitaetenDarlehen": {
-                       "darlehensBetrag": 150000,
-                       "provision": 1,
-                       "tilgungsWunsch": {
-                           "anfaenglicheTilgung": 2,
-                           "volltilgerWennAnnuitaetenOderForward": false
-                       },
-                       "bereitstellungsZinsFreieZeitInMonaten": 2,
-                       "sondertilgungOptionalJaehrlich": 100,
-                       "zinsBindungInJahren": 10
-                   }
-                }
-               ]
-          }
+      "vorhaben": {
+        "finanzbedarf": {
+          "kaufpreis": 100000
+        },
+        "finanzierungswunsch": {
+             "darlehensWuensche": [
+               {
+                 "annuitaetenDarlehen": {
+                     "darlehensBetrag": 150000,
+                     "provision": 1,
+                     "tilgungsWunsch": {
+                         "anfaenglicheTilgung": 2,
+                         "volltilgerWennAnnuitaetenOderForward": false
+                     },
+                     "bereitstellungsZinsFreieZeitInMonaten": 2,
+                     "sondertilgungOptionalJaehrlich": 100,
+                     "zinsBindungInJahren": 10
+                 }
+               }
+
+             ]
         }
-      }'
+      }
+    }'
 ```
 
 ## Ermittlungsanfrage mit Vorgangsnummer
