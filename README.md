@@ -151,5 +151,11 @@ curl -X POST \
   -H 'cache-control: no-cache'
 ```
 
+## Häufige Fragen
+### Es kommen keine oder wenige Angebote, woran liegt das?
+Einige Anbieter sind nur regional aktiv -- um diese Angebote zu erhalten müssen "haushalte" und "finanzierungsobjekt" gefüllt sein
+
+
+
 ## Fragen und Anregungen
 Bei Fragen und Anregungen entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
