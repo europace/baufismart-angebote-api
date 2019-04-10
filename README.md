@@ -151,11 +151,12 @@ curl -X POST \
   -H 'cache-control: no-cache'
 ```
 
-## Häufige Fragen
+## Häufige Fragen / FAQ
 ### Es kommen keine oder wenige Angebote, woran liegt das?
 Einige Anbieter sind nur regional aktiv -- um diese Angebote zu erhalten müssen "haushalte" und "finanzierungsobjekt" gefüllt sein
 
-
+### Wie erhalte ich Angebote mit KfW Produkten?
+Hierfür müssen sie die Berechnung von Alternativen explizit anfordern: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
 
 ## Fragen und Anregungen
 Bei Fragen und Anregungen entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
