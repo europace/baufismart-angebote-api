@@ -1,6 +1,8 @@
-# Finanzierungsvorschläge API
+# Angebote API
 
-Eine API um Finanzierungsvorschläge/Ergebnisse zu ermitteln.
+Eine API um Finanzierungs-Angebote zu ermitteln.
+
+⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt)
 
 ##### Aktuelle Version: 2.0.1
 
