@@ -163,7 +163,7 @@ Hierfür müssen sie die Berechnung von Alternativen explizit anfordern: `https:
 ### Kann ich meine eigene TraceId beim absenden des Requests mitgeben?
 Ja. Der Vorteil dabei ist, dass wir Deinen Request in unserem System verfolgen und schneller und gezielter debuggen können.
 
-Es geht mittels einem HTTP Header: `x-TraceId`. Den Wert kannst Du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind.
+Es geht mittels einem HTTP Header: `x-TraceId`. Den Wert kannst Du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind. Punkt.
 
 
 
