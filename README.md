@@ -154,6 +154,12 @@ curl -X POST \
 ```
 
 ## Häufige Fragen / FAQ
+
+### Ich bekomme ein `302` als Antwort. Der Response ist leer.
+302 ist ein "Redirect". Der Client sollte dem Redirect folgen, indem er die URL aufruft, die im Header unter `Location` zurück kommt
+
+
+
 ### Es kommen keine oder wenige Angebote, woran liegt das?
 Einige Anbieter sind nur regional aktiv -- um diese Angebote zu erhalten müssen "haushalte" und "finanzierungsobjekt" gefüllt sein
 
