@@ -171,6 +171,25 @@ Ja. Der Vorteil dabei ist, dass wir Deinen Request in unserem System verfolgen u
 
 Es geht mittels einem HTTP Header: `x-TraceId`. Den Wert kannst Du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind. Punkt.
 
+## Kann ich die Provision eines Angebots bekommen?
+
+Um die Provisionsberechnung zu aktivieren, muss bei der Angebotsermittlung der Request-Parameter provisionsAusgabe auf true gesetzt werden.
+
+Bsp: `POST https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
+
+Als Antwort erhält man eine Ermittlungs-ID. Anschließend kann man die Ermittlungs-ID nutzen, um die Provsion zu einem Angebot abzufragen. Es handelt sich dabei immer um die Provision desjenigen, der die Angebote ermittelt hat.
+
+`GET https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
+
+Achtung: Die Berechnung der Provision ist teuer und erfolgt daher asynchron im Hintergrund. Sollte die Provisionsberechnung noch nicht abgeschlossen sein, so gibt es einen temporären Redirekt mit kurzer zeitlicher Verzögerung. Der Http-Client sollte den Abruf dann kurze Zeit später wiederholen.
+
+Struktur der Response:
+```
+{
+betrag: 100000,    // Betrag in Cents.
+partnerId: "WER03" // PartnerId des Empfängers
+}
+```
 
 
 
