@@ -158,6 +158,13 @@ curl -X POST \
 ### Ich bekomme ein `302` als Antwort. Der Response ist leer.
 302 ist ein "Redirect". Der Client sollte dem Redirect folgen, indem er die URL aufruft, die im Header unter `Location` zurück kommt
 
+### Wie funktioniert das Rate-Limiting? Wieso bekomme ich `429`als Antwort?
+Im Response gibt einen Custom-Header, der folgende Felder enthällt:
+
+`X-RateLimit-Remaining` —> wie viele Aufrufe habe ich noch im aktuellen Zeitfenster
+`X-RateLimit-Reset` —> wie lang, das das aktuelle Zeitfenster zu Ende ist.
+
+Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too Many Requests`zurück.
 
 
 ### Es kommen keine oder wenige Angebote, woran liegt das?
