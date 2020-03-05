@@ -161,10 +161,10 @@ curl -X POST \
 ### Wie funktioniert das Rate-Limiting? Wieso bekomme ich `429`als Antwort?
 Im Response gibt einen Custom-Header, der folgende Felder enthällt:
 
-`X-RateLimit-Remaining` —> wie viele Aufrufe habe ich noch im aktuellen Zeitfenster
-`X-RateLimit-Reset` —> wie lang, das das aktuelle Zeitfenster zu Ende ist.
+* `X-RateLimit-Remaining` —> wie viele Aufrufe habe ich noch im aktuellen Zeitfenster.
+* `X-RateLimit-Reset` —> wie viele Sekunden, bis das aktuelle Zeitfenster zu Ende ist und das nächste beginnt.
 
-Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too Many Requests`zurück.
+Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too Many Requests` zurück und es können keine Requests mehr gemacht werden. Es muss bis zum nächsten Zeitfenster gewartet werden.
 
 
 ### Es kommen keine oder wenige Angebote, woran liegt das?
