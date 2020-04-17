@@ -800,6 +800,9 @@ definitions:
     required:
     - "tilgungsWunsch"
     properties:
+      auszahlungsDatum:
+        type: "string"
+        format: "date"
       bereitstellungsZinsFreieZeitInMonaten:
         type: "integer"
         format: "int32"
