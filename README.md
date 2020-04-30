@@ -202,3 +202,9 @@ partnerId: "WER03" // PartnerId des Empfängers
 
 ## Fragen und Anregungen
 Bei Fragen und Anregungen entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
+
+
+## Nutzungsbedingungen
+Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt
+
+
