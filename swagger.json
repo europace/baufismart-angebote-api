@@ -2764,11 +2764,8 @@
           "type": "string",
           "format": "date-time"
         },
-        "handelsbeziehungen": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Handelsbeziehung"
-          }
+        "partnerId": {
+          "type": "string"
         },
         "provisionsAusgabe": {
           "type": "boolean"
@@ -3223,33 +3220,6 @@
         }
       },
       "title": "Grundstueck"
-    },
-    "Handelsbeziehung": {
-      "type": "object",
-      "properties": {
-        "annehmenErlaubt": {
-          "type": "boolean"
-        },
-        "baufiVertriebsgruppe": {
-          "type": "string"
-        },
-        "bausparVertriebsgruppe": {
-          "type": "string"
-        },
-        "ermittelnErlaubt": {
-          "type": "boolean"
-        },
-        "produktAnbieter": {
-          "type": "string"
-        },
-        "provisionsWuensche": {
-          "$ref": "#/definitions/ProvisionsWuensche"
-        },
-        "ratenkreditVertriebsgruppe": {
-          "type": "string"
-        }
-      },
-      "title": "Handelsbeziehung"
     },
     "Haushalt": {
       "type": "object",
@@ -3913,10 +3883,7 @@
       "type": "object",
       "properties": {
         "_links": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Link"
-          }
+          "$ref": "#/definitions/Links"
         },
         "name": {
           "type": "string"
@@ -3944,24 +3911,6 @@
         }
       },
       "title": "ProvisionsInfo"
-    },
-    "ProvisionsWuensche": {
-      "type": "object",
-      "properties": {
-        "darlehen": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number"
-          }
-        },
-        "standard": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number"
-          }
-        }
-      },
-      "title": "ProvisionsWuensche"
     },
     "RechteAbteilung2": {
       "type": "object",
