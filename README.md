@@ -1,8 +1,8 @@
 # Angebote API
 
-Eine API, um Finanzierungs-Angebote zu ermitteln
+Eine API um Finanzierungs-Angebote zu ermitteln.
 
-⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt).
+⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt)
 
 ##### Aktuelle Version: 2.1
 
@@ -15,9 +15,9 @@ Wesentliche Änderungen zur Version 1.5.
 * Ergebnisdetails wie Unterlagen, Meldungen und Zahlungspläne können zu einem Ergebnis ausgelesen werden.
 
 
-### Swagger-Spezifikation
+### Swagger Spezifikation
 
-Die API ist vollständig in Swagger definiert. Die Swagger-Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](swagger.yaml)
+Die API ist vollständig in Swagger definiert. Die Swagger Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](swagger.yaml)
 
 Diese Spezifikation kann auch zur Generierung von Clients für diese API verwendet
 werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). 
@@ -58,7 +58,7 @@ Die Authentifizierung läuft über den [OAuth2](https://oauth.net/2/) Flow vom T
 https://tools.ietf.org/html/rfc6749#section-1.3.3
 
 ##### Credentials
-Um die Credentials zu erhalten, wende dich bitte an das Helpdesk der Plattform. Hier bekommen du oder dein Auftraggeber die Zugangsdaten zur Auslesen API.
+Um die Credentials zu erhalten, erfagen Sie beim Helpdesk der Plattform die Zugangsdaten zur Auslesen API, bzw. bitten Ihren Auftraggeber dies zu tun.
 
 ##### Schritte
 1. Absenden eines POST Requests auf den [Login-Endpunkt](https://htmlpreview.github.io/?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html#_oauth2) mit Username und Password. Der Username entspricht der PartnerId und das Password ist der API-Key. Alternativ kann ein Login auch über einen GET Aufruf mit HTTP Basic Auth auf den Login-Endpunkt erfolgen.
@@ -136,7 +136,7 @@ curl -X POST \
 Als valide Eingaben für diese Schnittstelle können die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/vorgaenge-api)
 verwendet werden.
 
-Des Weiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorschläge abgerufen werden:
+Desweiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorschläge abgerufen werden:
 
 ```
 curl -X POST \
@@ -156,27 +156,27 @@ curl -X POST \
 ## Häufige Fragen / FAQ
 
 ### Ich bekomme ein `302` als Antwort. Der Response ist leer.
-302 ist ein "Redirect". Der Client sollte dem Redirect folgen, indem er die URL aufruft, die im Header unter `Location` zurückkommt.
+302 ist ein "Redirect". Der Client sollte dem Redirect folgen, indem er die URL aufruft, die im Header unter `Location` zurück kommt
 
 ### Wie funktioniert das Rate-Limiting? Wieso bekomme ich `429`als Antwort?
-Im Response gibt einen Custom-Header, der folgende Felder enthält:
+Im Response gibt einen Custom-Header, der folgende Felder enthällt:
 
-* `X-RateLimit-Remaining` —> Wie viele Aufrufe habe ich noch im aktuellen Zeitfenster?
-* `X-RateLimit-Reset` —> Wie viele Sekunden, bis sich das aktuelle Zeitfenster schließt und das nächste öffnet?
+* `X-RateLimit-Remaining` —> wie viele Aufrufe habe ich noch im aktuellen Zeitfenster.
+* `X-RateLimit-Reset` —> wie viele Sekunden, bis das aktuelle Zeitfenster zu Ende ist und das nächste beginnt.
 
 Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too Many Requests` zurück und es können keine Requests mehr gemacht werden. Es muss bis zum nächsten Zeitfenster gewartet werden.
 
 
 ### Es kommen keine oder wenige Angebote, woran liegt das?
-Einige Anbieter sind nur regional aktiv - um diese Angebote zu erhalten müssen "Haushalte" und "Finanzierungsobjekt" gefüllt sein.
+Einige Anbieter sind nur regional aktiv -- um diese Angebote zu erhalten müssen "haushalte" und "finanzierungsobjekt" gefüllt sein
 
 ### Wie erhalte ich Angebote mit KfW Produkten?
 Hierfür müssen sie die Berechnung von Alternativen explizit anfordern: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
 
-### Kann ich meine eigene TraceId beim Absenden des Requests mitgeben?
-Ja. Der Vorteil dabei ist, dass wir deinen Request in unserem System verfolgen und schneller und gezielter debuggen können.
+### Kann ich meine eigene TraceId beim absenden des Requests mitgeben?
+Ja. Der Vorteil dabei ist, dass wir Deinen Request in unserem System verfolgen und schneller und gezielter debuggen können.
 
-Es geht mittels eines HTTP Headers: `x-TraceId`. Den Wert kannst du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind.
+Es geht mittels einem HTTP Header: `x-TraceId`. Den Wert kannst Du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind. Punkt.
 
 ## Kann ich die Provision eines Angebots bekommen?
 
@@ -184,7 +184,7 @@ Um die Provisionsberechnung zu aktivieren, muss bei der Angebotsermittlung der R
 
 Bsp: `POST https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
 
-Als Antwort erhält man eine Ermittlungs-ID. Anschließend kann man die Ermittlungs-ID nutzen, um die Provision zu einem Angebot abzufragen. Es handelt sich dabei immer um die Provision desjenigen, der die Angebote ermittelt hat.
+Als Antwort erhält man eine Ermittlungs-ID. Anschließend kann man die Ermittlungs-ID nutzen, um die Provsion zu einem Angebot abzufragen. Es handelt sich dabei immer um die Provision desjenigen, der die Angebote ermittelt hat.
 
 `GET https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
 
@@ -201,10 +201,10 @@ partnerId: "WER03" // PartnerId des Empfängers
 
 
 ## Fragen und Anregungen
-Bei Fragen und Anregungen kannst du entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
+Bei Fragen und Anregungen entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
 
 
 ## Nutzungsbedingungen
-Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt.
+Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt
 
 
