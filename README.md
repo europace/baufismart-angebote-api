@@ -53,44 +53,10 @@ Example **codegen-config-file.json**:
 ```
 
 ### Authentifizierung
+Bitte benutze [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://github.com/europace/authorization-api), um Zugang zur API bekommen.
 
-Die Authentifizierung läuft über den [OAuth2](https://oauth.net/2/) Flow vom Typ *ressource owner password credentials flow*.
-https://tools.ietf.org/html/rfc6749#section-1.3.3
-
-##### Credentials
-Um die Credentials zu erhalten, erfagen Sie beim Helpdesk der Plattform die Zugangsdaten zur Auslesen API, bzw. bitten Ihren Auftraggeber dies zu tun.
-
-##### Schritte
-1. Absenden eines POST Requests auf den [Login-Endpunkt](https://htmlpreview.github.io/?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html#_oauth2) mit Username und Password. Der Username entspricht der PartnerId und das Password ist der API-Key. Alternativ kann ein Login auch über einen GET Aufruf mit HTTP Basic Auth auf den Login-Endpunkt erfolgen.
-2. Aus der JSON-Antwort das JWToken (access_token) entnehmen
-3. Bei weiteren Requests muss dieses JWToken als Authorization Header mitgeschickt werden.
-
-Ein Beispiel mit curl sähe wie folgt aus:
-
-```
-curl -X POST \
-  https://api.europace.de/login \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/x-www-form-urlencoded' \
-  -d 'username={{BaufiSmart Nutzername (Mail-Adresse)}}&password={{BaufiSmart Passwort}}'
-```
-
-
-Der in der Antwort enthaltene Access-Token muss bei allen Folge-Requests im Header `Authorization` im Bearer-Format mit gesendet
-werden. Beispiel:
-
-```
-curl -X POST \
-  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung \
-  -H 'authorization: Bearer {{access_token}}' \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/json' \
-  -d '{
-        "vorhaben": {
-          ...
-        }
-      }'
-```
+Um die API verwenden zu können, benötigt der OAuth2-Client folgende Scopes: \
+`baufinanzierung:angebot:ermitteln`
 
 # Ergebnisse abrufen
 
@@ -206,5 +172,3 @@ Bei Fragen und Anregungen entweder ein Issue in GitHub anlegen oder an [devsuppo
 
 ## Nutzungsbedingungen
 Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt
-
-
