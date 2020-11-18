@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Ein Service um eine Ergebnisliste mit FinanzierungsvorschlÃ¤gen zu ermitteln",
-    "version": "2.1",
+    "version": "2.3",
     "title": "Ergebnislisten API",
     "contact": {
       "name": "Europace AG",
@@ -242,7 +242,7 @@
           "eli-v-2-rest-controller"
         ],
         "summary": "Ermittle Ergebnisse",
-        "description": "Als Parameter wird eien Vorgangsnummer order der Vorgangs als JSOn im Body benÃ¶tigt",
+        "description": "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON im Body benÃ¶tigt",
         "operationId": "ermittleErgebnisse",
         "parameters": [
           {
@@ -1589,31 +1589,29 @@
             "type": "string",
             "enum": [
               "FUCHS_IMMO_1",
+              "FUCHS_IMMO_1_PLUS",
               "FUCHS_IMMO_2",
               "FUCHS_IMMO_3",
               "FUCHS_IMMO_4",
               "FUCHS_IMMO_5",
               "FUCHS_IMMO_6",
               "FUCHS_IMMO_7",
-              "FUCHS_IMMO_1_PLUS",
               "LBS_HT_CLASSIC_S_2015",
               "LBS_HT_CLASSIC_F_2015",
               "LBS_HT_CLASSIC_L_2015",
               "LBS_HT_CLASSIC_N_2015",
+              "LBS_NORD_N_STARTER_S4",
+              "LBS_NORD_N_STARTER_Q5",
+              "LBS_NORD_N_STARTER_S5",
+              "LBS_NORD_N_STARTER_S6",
               "LBS_NORD_N_FINANZIERER_F3",
               "LBS_NORD_N_FINANZIERER_F4",
               "LBS_NORD_N_FINANZIERER_F5",
               "LBS_NORD_N_FINANZIERER_F6",
               "LBS_NORD_N_FINANZIERER_F7",
+              "LBS_NORD_N_MODERNISIERER_MINIZINS",
               "LBS_NORD_N_MODERNISIERER_M8",
               "LBS_NORD_N_MODERNISIERER_MX",
-              "LBS_NORD_N_MODERNISIERER_MINIZINS",
-              "LBS_NORD_N_STARTER_S4",
-              "LBS_NORD_N_STARTER_Q5",
-              "LBS_NORD_N_STARTER_S5",
-              "LBS_NORD_N_STARTER_S6",
-              "LBS_OST_CLASSIC15_PLUS_F",
-              "LBS_OST_CLASSIC15_PLUS_S",
               "LBS_OST_CLASSIC15_F5",
               "LBS_OST_CLASSIC_F_H4",
               "LBS_OST_CLASSIC_F_H5",
@@ -1623,45 +1621,59 @@
               "LBS_OST_CLASSIC15_F4",
               "LBS_OST_CLASSIC15_F6",
               "LBS_OST_CLASSIC15_F8",
+              "LBS_OST_CLASSIC15_PLUS_F",
+              "LBS_OST_CLASSIC15_PLUS_S",
               "LBS_OST_VARIO_FLEX",
+              "LBS_OST_CLASSIC20_F3",
+              "LBS_OST_CLASSIC20_F8",
+              "LBS_OST_CLASSIC20_PLUS_F",
               "LBS_SHH_PRIMUS_SC",
               "LBS_SHH_PRIMUS_SH",
               "LBS_SHH_PRIMUS_SI",
               "LBS_SHH_PRIMUS_SJ",
               "LBS_SHH_TREND_SD",
+              "LBS_SHH_PRIMUS_SD",
+              "LBS_SHH_PRIMUS_TC",
+              "LBS_SHH_PRIMUS_TH",
+              "LBS_SHH_PRIMUS_TI",
+              "LBS_SHH_PRIMUS_TJ",
+              "LBS_SHH_PRIMUS_TD",
+              "LBS_SHH_TREND_TD",
               "LBS_WEST_ZUHAUSE_DIREKT_10",
               "LBS_WEST_ZUHAUSE_DIREKT_15",
               "LBS_WEST_ZUHAUSE_PLUS",
-              "LBS_WEST_ZUHAUSE_FLEX_4",
+              "LBS_WEST_ZUHAUSE_FLEX_4_S",
               "LBS_WEST_ZUHAUSE_FLEX_4_L",
+              "LBS_WEST_ZUHAUSE_FLEX_5_S",
               "LBS_WEST_ZUHAUSE_FLEX_5_L",
+              "LBS_WEST_ZUHAUSE_FLEX_6_S",
               "LBS_WEST_ZUHAUSE_FLEX_6_L",
+              "LBS_WEST_ZUHAUSE_FLEX_8_S",
               "LBS_WEST_ZUHAUSE_FLEX_8_L",
               "LBS_WEST_ZUHAUSE_PRIMA",
               "LBS_WEST_ZUHAUSE_PRIMA_10",
-              "LBS_WEST_ZUHAUSE_FLEX_4_S",
+              "LBS_WEST_ZUHAUSE_FLEX_4",
               "LBS_WEST_ZUHAUSE_FLEX_5",
-              "LBS_WEST_ZUHAUSE_FLEX_5_S",
               "LBS_WEST_ZUHAUSE_FLEX_6",
-              "LBS_WEST_ZUHAUSE_FLEX_6_S",
               "LBS_WEST_ZUHAUSE_FLEX_8",
-              "LBS_WEST_ZUHAUSE_FLEX_8_S",
               "LBS_WEST_ZUHAUSE_YOUNG",
+              "LBS_WEST_ZUHAUSE_SPEZIAL",
               "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10",
               "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15",
               "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4",
+              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5",
+              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6",
+              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L",
-              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L",
-              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L",
               "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L",
-              "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8",
+              "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL",
               "LBS_BAYERN_W4",
               "LBS_BAYERN_W4_X30",
               "LBS_BAYERN_W4_X35",
@@ -1670,12 +1682,29 @@
               "LBS_BAYERN_W9",
               "LBS_BAYERN_WF",
               "LBS_BAYERN_WU",
+              "LBS_BAYERN_Z35",
+              "LBS_BAYERN_Z5",
+              "LBS_BAYERN_Z8",
+              "LBS_BAYERN_ZF",
+              "LBS_BAYERN_ZF_X45",
+              "LBS_BAYERN_ZF_X40",
+              "LBS_BAYERN_ZF_X35",
               "LBS_HT_HOME_M",
               "LBS_HT_HOME_L",
               "LBS_HT_HOME_XL",
               "LBS_HT_COMFORT_S",
               "LBS_HT_COMFORT_N",
               "LBS_HT_FLEX",
+              "LBS_SUEDWEST_KLASSIK_PLUS_2018",
+              "LBS_SUEDWEST_LANGZEIT_PLUS_2019",
+              "LBS_SUEDWEST_KLASSIK_PLUS_2020",
+              "LBS_SUEDWEST_STANDARD_PLUS_2018",
+              "LBS_SAAR_PREMIUM_FLEX_18",
+              "LBS_SAAR_PREMIUM_SICHER_18",
+              "LBS_SAAR_PREMIUM_TOP_18",
+              "LBS_SAAR_EXTRA_GUENSTIG_18",
+              "LBS_SAAR_EXTRA_SICHER_18",
+              "LBS_SAAR_EXTRA_SPEZIAL_18",
               "SIGNAL_IDUNA_FREIRAUM_F_30",
               "SIGNAL_IDUNA_FREIRAUM_F_30_16",
               "SIGNAL_IDUNA_FREIRAUM_F_35",
@@ -1752,15 +1781,17 @@
               "ALTE_LEIPZIGER_200X_MZ",
               "ALTE_LEIPZIGER_ZG_21XX_20",
               "ALTE_LEIPZIGER_ZG_21XX_30",
+              "ALTE_LEIPZIGER_ZG_25XX_49",
               "ALTE_LEIPZIGER_21XX_27",
               "ALTE_LEIPZIGER_21XX_33",
               "ALTE_LEIPZIGER_21XX",
               "ALTE_LEIPZIGER_25XX_45",
+              "ALTE_LEIPZIGER_25XX_30",
+              "ALTE_LEIPZIGER_26XX_30",
               "ALTE_LEIPZIGER_22XX_27",
               "ALTE_LEIPZIGER_22XX_33",
               "ALTE_LEIPZIGER_22XX",
               "ALTE_LEIPZIGER_26XX_45",
-              "ALTE_LEIPZIGER_ZG_25XX_49",
               "BKM_MAX_PREMIUM_OPTIMAL",
               "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE",
               "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG",
@@ -1795,34 +1826,24 @@
               "WUESTENROT_01073_04_5000",
               "WUESTENROT_01073_05_9000",
               "WUESTENROT_01073_08_0000",
+              "WUESTENROT_01076_05_8633",
+              "WUESTENROT_01076_07_9872",
+              "WUESTENROT_01076_08_0000",
+              "WUESTENROT_01077_04_0000",
+              "WUESTENROT_01077_04_7000",
+              "WUESTENROT_01077_06_3000",
+              "WUESTENROT_01077_07_5000",
+              "WUESTENROT_01077_06_2500",
+              "WUESTENROT_01077_07_9648",
+              "WUESTENROT_01077_08_0000",
+              "WUESTENROT_01074_10_0000",
+              "WUESTENROT_01075_03_5000",
               "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1",
               "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2",
               "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3",
               "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4",
               "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1",
-              "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2",
-              "LBS_SHH_PRIMUS_SD",
-              "LBS_SHH_PRIMUS_TC",
-              "LBS_SHH_PRIMUS_TH",
-              "LBS_SHH_PRIMUS_TI",
-              "LBS_SHH_PRIMUS_TJ",
-              "LBS_SHH_PRIMUS_TD",
-              "LBS_SHH_TREND_TD",
-              "LBS_SUEDWEST_KLASSIK_PLUS_2018",
-              "LBS_SUEDWEST_LANGZEIT_PLUS_2019",
-              "LBS_SAAR_PREMIUM_FLEX_18",
-              "LBS_SAAR_PREMIUM_SICHER_18",
-              "LBS_SAAR_PREMIUM_TOP_18",
-              "LBS_SAAR_EXTRA_GUENSTIG_18",
-              "LBS_SAAR_EXTRA_SICHER_18",
-              "LBS_SAAR_EXTRA_SPEZIAL_18",
-              "LBS_OST_CLASSIC20_F3",
-              "LBS_OST_CLASSIC20_F8",
-              "LBS_OST_CLASSIC20_PLUS_F",
-              "LBS_WEST_ZUHAUSE_SPEZIAL",
-              "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL",
-              "ALTE_LEIPZIGER_25XX_30",
-              "ALTE_LEIPZIGER_26XX_30"
+              "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2"
             ]
           }
         },
@@ -2410,6 +2431,7 @@
           "enum": [
             "ANNUITAETEN_DARLEHEN",
             "FORWARD_DARLEHEN",
+            "REGIONAL_FOERDER_DARLEHEN",
             "KFW_DARLEHEN",
             "PRIVAT_DARLEHEN",
             "ZWISCHEN_FINANZIERUNG",
@@ -2449,6 +2471,10 @@
         "privatDarlehen": {
           "description": "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist",
           "$ref": "#/definitions/PrivatDarlehensWunsch"
+        },
+        "regionalFoerderDarlehen": {
+          "description": "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist",
+          "$ref": "#/definitions/RegionalFoerderDarlehensWunsch"
         },
         "variablesDarlehen": {
           "description": "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist",
@@ -3883,15 +3909,18 @@
       "type": "object",
       "properties": {
         "_links": {
-          "$ref": "#/definitions/Links"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Link"
+          }
         },
-        "name": {
+        "produktAnbieterId": {
           "type": "string"
         },
         "partnerId": {
           "type": "string"
         },
-        "produktAnbieterId": {
+        "name": {
           "type": "string"
         }
       },
@@ -3926,6 +3955,42 @@
         }
       },
       "title": "RechteAbteilung2"
+    },
+    "RegionalFoerderDarlehensWunsch": {
+      "type": "object",
+      "required": [
+        "regionalFoerderbankProgramm"
+      ],
+      "properties": {
+        "darlehensBetrag": {
+          "type": "number"
+        },
+        "laufzeitInJahren": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "provision": {
+          "type": "number"
+        },
+        "regionalFoerderbankProgramm": {
+          "type": "string",
+          "enum": [
+            "L_BANK_KOMBI_DARLEHEN_WOHNEN",
+            "L_BANK_WOHNEN_MIT_KIND",
+            "L_BANK_WOHNEN_MIT_ZUKUNFT",
+            "NRW_BANK_WOHNEIGENTUM"
+          ]
+        },
+        "tilgungsfreieAnlaufjahre": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "zinsBindungInJahren": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "RegionalFoerderDarlehensWunsch"
     },
     "SituationNachRenteneintritt": {
       "type": "object",
@@ -4444,6 +4509,7 @@
           "enum": [
             "ANNUITAETEN_DARLEHEN",
             "FORWARD_DARLEHEN",
+            "REGIONAL_FOERDER_DARLEHEN",
             "KFW_DARLEHEN",
             "PRIVAT_DARLEHEN",
             "ZWISCHEN_FINANZIERUNG",
