@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.3"
+  version: "2.3.2"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -2612,35 +2612,6 @@ definitions:
       ausweisNummer:
         type: "string"
     title: "LegitimationsDaten"
-  Link:
-    type: "object"
-    properties:
-      deprecation:
-        type: "string"
-      href:
-        type: "string"
-      hreflang:
-        type: "string"
-      media:
-        type: "string"
-      name:
-        type: "string"
-      profile:
-        type: "string"
-      rel:
-        $ref: "#/definitions/LinkRelation"
-      template:
-        $ref: "#/definitions/UriTemplate"
-      templated:
-        type: "boolean"
-      title:
-        type: "string"
-      type:
-        type: "string"
-    title: "Link"
-  LinkRelation:
-    type: "object"
-    title: "LinkRelation"
   Links:
     type: "object"
     properties:
@@ -2834,9 +2805,7 @@ definitions:
     type: "object"
     properties:
       _links:
-        type: "array"
-        items:
-          $ref: "#/definitions/Link"
+        $ref: "#/definitions/Links"
       produktAnbieterId:
         type: "string"
       partnerId:
@@ -2957,9 +2926,6 @@ definitions:
       nativeMethod:
         type: "boolean"
     title: "StackTraceElement"
-  TemplateVariables:
-    type: "object"
-    title: "TemplateVariables"
   Throwable:
     type: "object"
     properties:
@@ -3072,16 +3038,6 @@ definitions:
         items:
           $ref: "#/definitions/Unterlage"
     title: "Unterlagen"
-  UriTemplate:
-    type: "object"
-    properties:
-      variableNames:
-        type: "array"
-        items:
-          type: "string"
-      variables:
-        $ref: "#/definitions/TemplateVariables"
-    title: "UriTemplate"
   VariablesDarlehensWunsch:
     type: "object"
     required:
