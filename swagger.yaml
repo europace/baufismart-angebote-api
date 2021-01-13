@@ -2353,7 +2353,7 @@ definitions:
           $ref: "#/definitions/Flurstueck"
       ort:
         type: "string"
-        description: "Ort des als Grundbuchamt zustÃ¤ndigen Amtsgerichtes"
+        description: "Ort des als Grundbuchamt zuständigen Amtsgerichtes"
       rechteInAbteilung2:
         description: "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstücks.\
         \Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
