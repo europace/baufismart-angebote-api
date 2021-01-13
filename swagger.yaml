@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.3.2"
+  version: "2.4"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -939,10 +939,15 @@ definitions:
     properties:
       aktuellerWert:
         type: "number"
+        description: "Betrag des aktuellen Bank- und Sparguthaben"
       ertrag:
         type: "number"
+        description: "Das Feld ist Deprecated und wird bis zur Löschung als Fallback\
+          \ für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden\
+          \ Vermögens dient das Feld 'maximalAufzuloesenderWert'. "
       maximalAufzuloesenderWert:
         type: "number"
+        description: "Maximal einzusetzender Betrag des  Bank- und Sparguthabens"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -991,8 +996,6 @@ definitions:
         $ref: "#/definitions/ProduktAnbieter"
       effektivZinsNachZuteilungProzent:
         type: "number"
-      einmalzahlung:
-        type: "number"
       europaceMargeAbsolut:
         type: "number"
       gesamtLaufzeitInJahren:
@@ -1008,6 +1011,10 @@ definitions:
         type: "number"
       sollZinsNachZuteilung:
         type: "number"
+      sonderZahlungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/SonderZahlung"
       sparBeginn:
         type: "string"
         format: "date"
@@ -1065,6 +1072,10 @@ definitions:
         items:
           type: "string"
           enum:
+            - "BKM_MAX_PREMIUM_OPTIMAL"
+            - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
+            - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
+            - "BKM_MAX_PREMIUM_BESTER_ZINS"
             - "FUCHS_IMMO_1"
             - "FUCHS_IMMO_1_PLUS"
             - "FUCHS_IMMO_2"
@@ -1073,10 +1084,31 @@ definitions:
             - "FUCHS_IMMO_5"
             - "FUCHS_IMMO_6"
             - "FUCHS_IMMO_7"
+            - "LBS_BAYERN_W4"
+            - "LBS_BAYERN_W4_X30"
+            - "LBS_BAYERN_W4_X35"
+            - "LBS_BAYERN_W4_X40"
+            - "LBS_BAYERN_W6"
+            - "LBS_BAYERN_W9"
+            - "LBS_BAYERN_WF"
+            - "LBS_BAYERN_WU"
+            - "LBS_BAYERN_Z35"
+            - "LBS_BAYERN_Z5"
+            - "LBS_BAYERN_Z8"
+            - "LBS_BAYERN_ZF"
+            - "LBS_BAYERN_ZF_X45"
+            - "LBS_BAYERN_ZF_X40"
+            - "LBS_BAYERN_ZF_X35"
             - "LBS_HT_CLASSIC_S_2015"
             - "LBS_HT_CLASSIC_F_2015"
             - "LBS_HT_CLASSIC_L_2015"
             - "LBS_HT_CLASSIC_N_2015"
+            - "LBS_HT_HOME_M"
+            - "LBS_HT_HOME_L"
+            - "LBS_HT_HOME_XL"
+            - "LBS_HT_COMFORT_S"
+            - "LBS_HT_COMFORT_N"
+            - "LBS_HT_FLEX"
             - "LBS_NORD_N_STARTER_S4"
             - "LBS_NORD_N_STARTER_Q5"
             - "LBS_NORD_N_STARTER_S5"
@@ -1090,6 +1122,7 @@ definitions:
             - "LBS_NORD_N_MODERNISIERER_M8"
             - "LBS_NORD_N_MODERNISIERER_MX"
             - "LBS_OST_CLASSIC15_F5"
+            - "LBS_OST_CLASSIC_F15_F5"
             - "LBS_OST_CLASSIC_F_H4"
             - "LBS_OST_CLASSIC_F_H5"
             - "LBS_OST_CLASSIC_12_C4"
@@ -1105,11 +1138,11 @@ definitions:
             - "LBS_OST_CLASSIC20_F8"
             - "LBS_OST_CLASSIC20_PLUS_F"
             - "LBS_SHH_PRIMUS_SC"
+            - "LBS_SHH_PRIMUS_SD"
             - "LBS_SHH_PRIMUS_SH"
             - "LBS_SHH_PRIMUS_SI"
             - "LBS_SHH_PRIMUS_SJ"
             - "LBS_SHH_TREND_SD"
-            - "LBS_SHH_PRIMUS_SD"
             - "LBS_SHH_PRIMUS_TC"
             - "LBS_SHH_PRIMUS_TH"
             - "LBS_SHH_PRIMUS_TI"
@@ -1151,27 +1184,6 @@ definitions:
             - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L"
             - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L"
             - "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL"
-            - "LBS_BAYERN_W4"
-            - "LBS_BAYERN_W4_X30"
-            - "LBS_BAYERN_W4_X35"
-            - "LBS_BAYERN_W4_X40"
-            - "LBS_BAYERN_W6"
-            - "LBS_BAYERN_W9"
-            - "LBS_BAYERN_WF"
-            - "LBS_BAYERN_WU"
-            - "LBS_BAYERN_Z35"
-            - "LBS_BAYERN_Z5"
-            - "LBS_BAYERN_Z8"
-            - "LBS_BAYERN_ZF"
-            - "LBS_BAYERN_ZF_X45"
-            - "LBS_BAYERN_ZF_X40"
-            - "LBS_BAYERN_ZF_X35"
-            - "LBS_HT_HOME_M"
-            - "LBS_HT_HOME_L"
-            - "LBS_HT_HOME_XL"
-            - "LBS_HT_COMFORT_S"
-            - "LBS_HT_COMFORT_N"
-            - "LBS_HT_FLEX"
             - "LBS_SUEDWEST_KLASSIK_PLUS_2018"
             - "LBS_SUEDWEST_LANGZEIT_PLUS_2019"
             - "LBS_SUEDWEST_KLASSIK_PLUS_2020"
@@ -1203,22 +1215,22 @@ definitions:
             - "SIGNAL_IDUNA_FREIRAUM_F_50_MZ"
             - "SIGNAL_IDUNA_FREIRAUM_F_60_MZ"
             - "BHW_TARIF_FI1"
-            - "BHW_TARIF_FI1N"
             - "BHW_TARIF_FI2"
-            - "BHW_TARIF_FI2N"
             - "BHW_TARIF_FI3"
             - "BHW_TARIF_FI4"
             - "BHW_TARIF_FX1"
-            - "BHW_TARIF_FX1N"
             - "BHW_TARIF_FX2"
-            - "BHW_TARIF_FX2N"
             - "BHW_TARIF_REN"
+            - "BHW_TARIF_FI1N"
+            - "BHW_TARIF_FI2N"
+            - "BHW_TARIF_FX1N"
+            - "BHW_TARIF_FX2N"
             - "DT_RING_TARIF_FT"
             - "DT_RING_TARIF_FT_0"
             - "DT_RING_TARIF_FT_1"
             - "DT_RING_TARIF_FT_2"
-            - "DT_RING_TARIF_XT_0"
             - "DT_RING_TARIF_XT_1"
+            - "DT_RING_TARIF_XT_0"
             - "DT_RING_TARIF_F_1"
             - "ALTE_LEIPZIGER_1502"
             - "ALTE_LEIPZIGER_1602"
@@ -1262,17 +1274,13 @@ definitions:
             - "ALTE_LEIPZIGER_21XX_27"
             - "ALTE_LEIPZIGER_21XX_33"
             - "ALTE_LEIPZIGER_21XX"
-            - "ALTE_LEIPZIGER_25XX_45"
             - "ALTE_LEIPZIGER_25XX_30"
-            - "ALTE_LEIPZIGER_26XX_30"
-            - "ALTE_LEIPZIGER_22XX_27"
+            - "ALTE_LEIPZIGER_25XX_45"
             - "ALTE_LEIPZIGER_22XX_33"
+            - "ALTE_LEIPZIGER_22XX_27"
             - "ALTE_LEIPZIGER_22XX"
+            - "ALTE_LEIPZIGER_26XX_30"
             - "ALTE_LEIPZIGER_26XX_45"
-            - "BKM_MAX_PREMIUM_OPTIMAL"
-            - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
-            - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
-            - "BKM_MAX_PREMIUM_BESTER_ZINS"
             - "WUESTENROT_01063_4"
             - "WUESTENROT_01063_5"
             - "WUESTENROT_01063_6"
@@ -1327,6 +1335,10 @@ definitions:
           \ dann wird dieses Feld automatisch befüllt."
       riesterFoerderung:
         type: "boolean"
+      sonderZahlungen:
+        type: "array"
+        items:
+          $ref: "#/definitions/SonderZahlung"
       sparBeginn:
         type: "string"
         format: "date"
@@ -1433,7 +1445,7 @@ definitions:
           - "GASTGEWERBE"
           - "INFORMATION_KOMMUNIKATION"
           - "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN"
-          - "GRUNDSTÜCKS_UND_WOHNUNGSWESEN"
+          - "GRUNDSTÃ\x9cCKS_UND_WOHNUNGSWESEN"
           - "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN"
           - "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN"
           - "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG"
@@ -1589,8 +1601,6 @@ definitions:
       aktuellerWert:
         type: "number"
       bausparSumme:
-        type: "number"
-      einmalzahlung:
         type: "number"
       ertrag:
         type: "number"
@@ -2346,7 +2356,7 @@ definitions:
         description: "Ort des als Grundbuchamt zuständigen Amtsgerichtes"
       rechteInAbteilung2:
         description: "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstücks.\
-           Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
+        \Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
         $ref: "#/definitions/RechteAbteilung2"
     title: "GrundbuchAngabe"
   Grundstueck:
@@ -2872,6 +2882,26 @@ definitions:
       sonstigesEinkommenMonatlich:
         type: "number"
     title: "SituationNachRenteneintritt"
+  SonderZahlung:
+    type: "object"
+    properties:
+      anzahl:
+        type: "integer"
+        format: "int32"
+      betrag:
+        type: "number"
+      termin:
+        type: "string"
+        format: "date"
+      zahlweise:
+        type: "string"
+        enum:
+          - "EINMALIG"
+          - "MONATLICH"
+          - "VIERTELJAEHRLICH"
+          - "HALBJAEHRLICH"
+          - "JAEHRLICH"
+    title: "SonderZahlung"
   SparPhase:
     type: "object"
     properties:
@@ -2888,12 +2918,17 @@ definitions:
     properties:
       aktuellerWert:
         type: "number"
+        description: "Betrag des aktuellen Bank- und Sparguthaben"
       beitragMonatlich:
         type: "number"
       ertrag:
         type: "number"
+        description: "Das Feld ist Deprecated und wird bis zur Löschung als Fallback\
+          \ für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden\
+          \ Vermögens dient das Feld 'maximalAufzuloesenderWert'. "
       maximalAufzuloesenderWert:
         type: "number"
+        description: "Maximal einzusetzender Betrag des  Bank- und Sparguthabens"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -3084,10 +3119,15 @@ definitions:
     properties:
       aktuellerWert:
         type: "number"
+        description: "Betrag des aktuellen Bank- und Sparguthaben"
       ertrag:
         type: "number"
+        description: "Das Feld ist Deprecated und wird bis zur Löschung als Fallback\
+          \ für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden\
+          \ Vermögens dient das Feld 'maximalAufzuloesenderWert'. "
       maximalAufzuloesenderWert:
         type: "number"
+        description: "Maximal einzusetzender Betrag des  Bank- und Sparguthabens"
       vermoegensEinsatz:
         type: "string"
         enum:
@@ -3167,7 +3207,7 @@ definitions:
         type: "string"
         description: "Wenn es sich um eine Anschlussfinanzierung handelt, und ein\
           \ bestehendes Darlehen vorhanden ist, dann muss dieses den Wert 'verwendenAls'='ABLOESEN'\
-          \ beinhalten. Außerdem wird bei einer Anschlussfinanzierung ein Haushalt\
+          \ beinhalten. AuÃ\x9ferdem wird bei einer Anschlussfinanzierung ein Haushalt\
           \ mit einem Antragsteller und Einkommen benötigt."
         enum:
           - "ANSCHLUSSFINANZIERUNG"
@@ -3182,12 +3222,17 @@ definitions:
     properties:
       aktuellerWert:
         type: "number"
+        description: "Betrag des aktuellen Bank- und Sparguthaben"
       dividendenJaehrlich:
         type: "number"
       ertrag:
         type: "number"
+        description: "Das Feld ist Deprecated und wird bis zur Löschung als Fallback\
+          \ für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden\
+          \ Vermögens dient das Feld 'maximalAufzuloesenderWert'. "
       maximalAufzuloesenderWert:
         type: "number"
+        description: "Maximal einzusetzender Betrag des  Bank- und Sparguthabens"
       vermoegensEinsatz:
         type: "string"
         enum:

@@ -4,7 +4,7 @@ Eine API, um Finanzierungs-Angebote zu ermitteln
 
 ⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt).
 
-##### Aktuelle Version: 2.3
+##### Aktuelle Version: 2.4 
 
 Wesentliche Änderungen zur Version 1.5.
 
