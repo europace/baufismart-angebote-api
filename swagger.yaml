@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.4"
+  version: "2.5"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -16,6 +16,8 @@ tags:
     description: "Eli V 1 Rest Controller"
   - name: "eli-v-2-rest-controller"
     description: "Eli V 2 Rest Controller"
+  - name: "version-controller"
+    description: "Version Controller"
 schemes:
   - "https"
 consumes:
@@ -787,6 +789,51 @@ paths:
       security:
         - oauth2:
             - "API"
+  /version/baufiSmartApi:
+    get:
+      tags:
+        - "version-controller"
+      summary: "getBaufiSmartApiVersion"
+      operationId: "getBaufiSmartApiVersionUsingGET"
+      produces:
+        - "text/plain"
+      parameters: []
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "string"
+        401:
+          description: "Unauthorized"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          schema:
+            $ref: "#/definitions/Error"
+        405:
+          description: "Method Not Allowed"
+          schema:
+            $ref: "#/definitions/Error"
+        500:
+          description: "Internal Server Error"
+          schema:
+            $ref: "#/definitions/Error"
+        502:
+          description: "Bad Gateway"
+          schema:
+            $ref: "#/definitions/Error"
+        504:
+          description: "Gateway Timeout"
+          schema:
+            $ref: "#/definitions/Error"
+      security:
+        - oauth2:
+            - "API"
 securityDefinitions:
   oauth2:
     type: "oauth2"
@@ -798,6 +845,7 @@ definitions:
   AnnuitaetenDarlehensWunsch:
     type: "object"
     required:
+      - "darlehensBetrag"
       - "tilgungsWunsch"
     properties:
       auszahlungsZeitpunkt:
@@ -808,6 +856,8 @@ definitions:
         format: "int32"
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       provision:
         type: "number"
       riesterGefoerdert:
@@ -821,6 +871,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
+        description: "Wert muss größer 0 sein."
     title: "AnnuitaetenDarlehensWunsch"
   Antragsteller:
     type: "object"
@@ -1076,6 +1127,10 @@ definitions:
             - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
             - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
             - "BKM_MAX_PREMIUM_BESTER_ZINS"
+            - "BKM_HAUS_PLUS_OPTIMAL"
+            - "BKM_HAUS_PLUS_NIEDRIGE_SPARRATE"
+            - "BKM_HAUS_PLUS_NIEDRIGE_TILGUNG"
+            - "BKM_HAUS_PLUS_BESTER_ZINS"
             - "FUCHS_IMMO_1"
             - "FUCHS_IMMO_1_PLUS"
             - "FUCHS_IMMO_2"
@@ -1137,6 +1192,17 @@ definitions:
             - "LBS_OST_CLASSIC20_F3"
             - "LBS_OST_CLASSIC20_F8"
             - "LBS_OST_CLASSIC20_PLUS_F"
+            - "LBS_OST_KONSTANT30_V095"
+            - "LBS_OST_KONSTANT30_V110"
+            - "LBS_OST_KONSTANT30_V130"
+            - "LBS_OST_KONSTANT30_V150"
+            - "LBS_OST_KONSTANT30_V170"
+            - "LBS_OST_KONSTANT30_V190"
+            - "LBS_OST_KONSTANT30_V210"
+            - "LBS_OST_KONSTANT30_V230"
+            - "LBS_OST_KONSTANT30_V250"
+            - "LBS_OST_KONSTANT30_V270"
+            - "LBS_OST_KONSTANT30_V290"
             - "LBS_SHH_PRIMUS_SC"
             - "LBS_SHH_PRIMUS_SD"
             - "LBS_SHH_PRIMUS_SH"
@@ -1194,15 +1260,10 @@ definitions:
             - "LBS_SAAR_EXTRA_GUENSTIG_18"
             - "LBS_SAAR_EXTRA_SICHER_18"
             - "LBS_SAAR_EXTRA_SPEZIAL_18"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
             - "SIGNAL_IDUNA_FREIRAUM_F_35"
             - "SIGNAL_IDUNA_FREIRAUM_F_35_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40_16"
             - "SIGNAL_IDUNA_FREIRAUM_F_45"
             - "SIGNAL_IDUNA_FREIRAUM_F_45_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_50"
             - "SIGNAL_IDUNA_FREIRAUM_F_60"
             - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ"
             - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16"
@@ -1214,6 +1275,12 @@ definitions:
             - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16"
             - "SIGNAL_IDUNA_FREIRAUM_F_50_MZ"
             - "SIGNAL_IDUNA_FREIRAUM_F_60_MZ"
+            - "SIGNAL_IDUNA_FREIRAUM_F_30"
+            - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
+            - "SIGNAL_IDUNA_FREIRAUM_F_40"
+            - "SIGNAL_IDUNA_FREIRAUM_F_40_16"
+            - "SIGNAL_IDUNA_FREIRAUM_F_50"
+            - "SIGNAL_IDUNA_FREIRAUM_F_50_16"
             - "BHW_TARIF_FI1"
             - "BHW_TARIF_FI2"
             - "BHW_TARIF_FI3"
@@ -1445,7 +1512,7 @@ definitions:
           - "GASTGEWERBE"
           - "INFORMATION_KOMMUNIKATION"
           - "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN"
-          - "GRUNDSTÃ\x9cCKS_UND_WOHNUNGSWESEN"
+          - "GRUNDSTÜCKS_UND_WOHNUNGSWESEN"
           - "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN"
           - "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN"
           - "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG"
@@ -2207,6 +2274,7 @@ definitions:
   ForwardDarlehensWunsch:
     type: "object"
     required:
+      - "darlehensBetrag"
       - "tilgungsWunsch"
     properties:
       auszahlungsDatum:
@@ -2217,6 +2285,8 @@ definitions:
         format: "int32"
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       provision:
         type: "number"
       sondertilgungOptionalJaehrlich:
@@ -2226,6 +2296,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
+        description: "Wert muss größer 0 sein."
     title: "ForwardDarlehensWunsch"
   Gebaeude:
     type: "object"
@@ -2355,8 +2426,8 @@ definitions:
         type: "string"
         description: "Ort des als Grundbuchamt zuständigen Amtsgerichtes"
       rechteInAbteilung2:
-        description: "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstücks.\
-        \Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
+        description: "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstü\
+          cks. Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
         $ref: "#/definitions/RechteAbteilung2"
     title: "GrundbuchAngabe"
   Grundstueck:
@@ -2498,9 +2569,13 @@ definitions:
     title: "HaushaltsPositionen"
   KfwDarlehensWunsch:
     type: "object"
+    required:
+      - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       kfwEnergieEffizienzStandard:
         type: "string"
         enum:
@@ -2531,7 +2606,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
-        description: "Programm 124: 5 oder 10, sonst: 10 oder 20"
+        description: "Wert muss größer 0 sein."
     title: "KfwDarlehensWunsch"
   Kind:
     type: "object"
@@ -2802,12 +2877,17 @@ definitions:
     title: "Postadresse"
   PrivatDarlehensWunsch:
     type: "object"
+    required:
+      - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       laufzeitInMonaten:
         type: "integer"
         format: "int32"
+        description: "Wert muss größer 0 sein."
       provision:
         type: "number"
     title: "PrivatDarlehensWunsch"
@@ -2816,11 +2896,11 @@ definitions:
     properties:
       _links:
         $ref: "#/definitions/Links"
-      produktAnbieterId:
+      name:
         type: "string"
       partnerId:
         type: "string"
-      name:
+      produktAnbieterId:
         type: "string"
     title: "ProduktAnbieter"
   ProvisionsInfo:
@@ -2846,10 +2926,13 @@ definitions:
   RegionalFoerderDarlehensWunsch:
     type: "object"
     required:
+      - "darlehensBetrag"
       - "regionalFoerderbankProgramm"
     properties:
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       laufzeitInJahren:
         type: "integer"
         format: "int32"
@@ -2868,6 +2951,7 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
+        description: "Wert muss größer 0 sein."
     title: "RegionalFoerderDarlehensWunsch"
   SituationNachRenteneintritt:
     type: "object"
@@ -3008,8 +3092,8 @@ definitions:
     properties:
       anfaenglicheTilgung:
         type: "number"
-        description: "nur eines der Felder anfaenglicheTilgung, volltilgerWennAnnuitaetenOderForward\
-          \ und rate darf gefüllt sein"
+        description: "Darf nur angegeben werden, wenn 'volltilgerWennAnnuitaetenOderForward'\
+          \ und 'rate' nicht gesetzt sind. Wert muss größer/gleich 0 sein"
       ausgesetztBerechnet:
         type: "boolean"
         description: "ausgesetztBerechnet und ausgesetztEigenesAngebot dürfen nicht\
@@ -3022,8 +3106,8 @@ definitions:
         $ref: "#/definitions/BausparWunsch"
       rate:
         type: "number"
-        description: "nur eines der Felder anfaenglicheTilgung, volltilgerWennAnnuitaetenOderForward\
-          \ und rate darf gefüllt sein"
+        description: "Darf nur angegeben werden, wenn 'anfaenglicheTilgung' und 'volltilgerWennAnnuitaetenOderForward'\
+          \ nicht gesetzt sind. Wert muss größer 0 sein"
       tilgungsBeginn:
         type: "string"
         format: "date"
@@ -3031,8 +3115,8 @@ definitions:
         type: "string"
       volltilgerWennAnnuitaetenOderForward:
         type: "boolean"
-        description: "nur eines der Felder anfaenglicheTilgung, volltilgerWennAnnuitaetenOderForward\
-          \ und rate darf gefüllt sein"
+        description: "Darf nur angegeben werden, wenn 'anfaenglicheTilgung' und 'rate'\
+          \ nicht gesetzt sind."
     title: "TilgungsWunsch"
   Unterlage:
     type: "object"
@@ -3076,10 +3160,13 @@ definitions:
   VariablesDarlehensWunsch:
     type: "object"
     required:
+      - "darlehensBetrag"
       - "tilgungsWunsch"
     properties:
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       provision:
         type: "number"
       tilgungsWunsch:
@@ -3207,7 +3294,7 @@ definitions:
         type: "string"
         description: "Wenn es sich um eine Anschlussfinanzierung handelt, und ein\
           \ bestehendes Darlehen vorhanden ist, dann muss dieses den Wert 'verwendenAls'='ABLOESEN'\
-          \ beinhalten. AuÃ\x9ferdem wird bei einer Anschlussfinanzierung ein Haushalt\
+          \ beinhalten. Außerdem wird bei einer Anschlussfinanzierung ein Haushalt\
           \ mit einem Antragsteller und Einkommen benötigt."
         enum:
           - "ANSCHLUSSFINANZIERUNG"
@@ -3303,9 +3390,13 @@ definitions:
     title: "ZinsBindung"
   ZwischenFinanzierungsWunsch:
     type: "object"
+    required:
+      - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
+        description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
+          \ 10.Milliarden sein."
       detailsZurVerwendung:
         type: "string"
       maximaleLaufzeitInMonaten:
