@@ -17,7 +17,7 @@ Wesentliche Änderungen zur Version 1.5.
 
 ### Swagger-Spezifikation
 
-Die API ist vollständig in Swagger definiert. Die Swagger-Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](swagger.yaml)
+Die API ist vollständig in Swagger definiert. Die Swagger-Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](https://github.com/europace/baufismart-angebote-api/blob/master/swagger.yaml)
 
 Diese Spezifikation kann auch zur Generierung von Clients für diese API verwendet
 werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). 
