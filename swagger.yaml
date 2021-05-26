@@ -12,48 +12,48 @@ info:
 host: "baufismart.api.europace.de"
 basePath: "/"
 tags:
-  - name: "eli-v-1-rest-controller"
-    description: "Eli V 1 Rest Controller"
-  - name: "eli-v-2-rest-controller"
-    description: "Eli V 2 Rest Controller"
-  - name: "version-controller"
-    description: "Version Controller"
+- name: "eli-v-1-rest-controller"
+  description: "Eli V 1 Rest Controller"
+- name: "eli-v-2-rest-controller"
+  description: "Eli V 2 Rest Controller"
+- name: "version-controller"
+  description: "Version Controller"
 schemes:
-  - "https"
+- "https"
 consumes:
-  - "application/json"
+- "application/json"
 produces:
-  - "application/json;charset=UTF-8"
+- "application/json;charset=UTF-8"
 paths:
   /v1/finanzierungsvorschlaege:
     post:
       tags:
-        - "eli-v-1-rest-controller"
+      - "eli-v-1-rest-controller"
       summary: "getFinanzierungsVorschlaege"
       operationId: "getFinanzierungsVorschlaegeUsingPOST"
       produces:
-        - "application/json"
+      - "application/json"
       parameters:
-        - name: "alternativen"
-          in: "query"
-          description: "alternativen"
-          required: false
-          type: "boolean"
-          default: false
-        - in: "body"
-          name: "erfassteDaten"
-          description: "erfassteDaten"
-          required: true
-          schema:
-            $ref: "#/definitions/ErfassteDaten"
-        - name: "produktAnbieter"
-          in: "query"
-          description: "produktAnbieter"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-          collectionFormat: "multi"
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
+      - in: "body"
+        name: "erfassteDaten"
+        description: "erfassteDaten"
+        required: true
+        schema:
+          $ref: "#/definitions/ErfassteDaten"
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
       responses:
         200:
           description: "OK"
@@ -92,36 +92,36 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v1/finanzierungsvorschlaege/{vorgangsNummer}:
     get:
       tags:
-        - "eli-v-1-rest-controller"
+      - "eli-v-1-rest-controller"
       summary: "getFinanzierungsVorschlaege"
       operationId: "getFinanzierungsVorschlaegeUsingGET"
       produces:
-        - "application/json"
+      - "application/json"
       parameters:
-        - name: "alternativen"
-          in: "query"
-          description: "alternativen"
-          required: false
-          type: "boolean"
-          default: false
-        - name: "produktAnbieter"
-          in: "query"
-          description: "produktAnbieter"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-          collectionFormat: "multi"
-        - name: "vorgangsNummer"
-          in: "path"
-          description: "vorgangsNummer"
-          required: true
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
           type: "string"
+        collectionFormat: "multi"
+      - name: "vorgangsNummer"
+        in: "path"
+        description: "vorgangsNummer"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -156,55 +156,55 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung:
     post:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Ermittle Ergebnisse"
       description: "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON\
         \ im Body benötigt"
       operationId: "ermittleErgebnisse"
       parameters:
-        - name: "alternativen"
-          in: "query"
-          description: "alternativen"
-          required: false
-          type: "boolean"
-          default: false
-        - in: "body"
-          name: "erfassteDaten"
-          description: "erfassteDaten"
-          required: false
-          schema:
-            $ref: "#/definitions/ErfassteDaten"
-        - name: "excludierteProduktAnbieter"
-          in: "query"
-          description: "excludierteProduktAnbieter"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-          collectionFormat: "multi"
-        - name: "produktAnbieter"
-          in: "query"
-          description: "produktAnbieter"
-          required: false
-          type: "array"
-          items:
-            type: "string"
-          collectionFormat: "multi"
-        - name: "provisionsAusgabe"
-          in: "query"
-          description: "provisionsAusgabe"
-          required: false
-          type: "boolean"
-        - name: "vorgangsNummer"
-          in: "query"
-          description: "vorgangsNummer"
-          required: false
+      - name: "alternativen"
+        in: "query"
+        description: "alternativen"
+        required: false
+        type: "boolean"
+        default: false
+      - in: "body"
+        name: "erfassteDaten"
+        description: "erfassteDaten"
+        required: false
+        schema:
+          $ref: "#/definitions/ErfassteDaten"
+      - name: "excludierteProduktAnbieter"
+        in: "query"
+        description: "excludierteProduktAnbieter"
+        required: false
+        type: "array"
+        items:
           type: "string"
+        collectionFormat: "multi"
+      - name: "produktAnbieter"
+        in: "query"
+        description: "produktAnbieter"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "provisionsAusgabe"
+        in: "query"
+        description: "provisionsAusgabe"
+        required: false
+        type: "boolean"
+      - name: "vorgangsNummer"
+        in: "query"
+        description: "vorgangsNummer"
+        required: false
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -243,21 +243,21 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Ermittlung abrufen"
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErmittlung"
       parameters:
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -292,21 +292,21 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Ergebnisse einer Ermittlung abrufen"
       description: "Als Parameter wird die ErmittlungsAnfrageId benötigt."
       operationId: "getErgebnisListe"
       parameters:
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -341,28 +341,28 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Ein Ergebnis abrufen"
       description: "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisnummer\
         \ benötigt."
       operationId: "getErgebnis"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -397,28 +397,28 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/meldungen:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Abrufen der Meldungen eines Finanzierungsvorschlags"
       description: "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer\
         \ benötigt."
       operationId: "getMeldungen"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -453,35 +453,35 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/provision:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Abruf der Provision des Darlehens"
       description: "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer\
         \ benötigt."
       operationId: "getProvision"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
-        - name: "repeat"
-          in: "query"
-          description: "repeat"
-          required: false
-          type: "integer"
-          default: 0
-          format: "int32"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      - name: "repeat"
+        in: "query"
+        description: "repeat"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
       responses:
         200:
           description: "OK"
@@ -516,28 +516,28 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/unterlagen:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Abrufen der benötigten Unterlagen des Finanzierungsvorschlags"
       description: "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer\
         \ benötigt."
       operationId: "getUnterlagen"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -572,28 +572,28 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Zahlungsplaene eines Finanzierungsvorschlags abrufen"
       description: "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer\
         \ benötigt."
       operationId: "getZahlungsplaene"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -628,33 +628,33 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene/{zahlungsplanIndex}:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Einen Zahlungsplan anhand einer Id abrufen"
       description: "Als Parameter wird die ErmittlungsAnfrageId, die Ergebnisnummer\
         \ sowie der Index des Zahlungsplans benötigt."
       operationId: "getZahlungsplan"
       parameters:
-        - name: "ergebnisNummer"
-          in: "path"
-          description: "ergebnisNummer"
-          required: true
-          type: "integer"
-          format: "int32"
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
-        - name: "zahlungsplanIndex"
-          in: "path"
-          description: "zahlungsplanIndex"
-          required: true
-          type: "string"
+      - name: "ergebnisNummer"
+        in: "path"
+        description: "ergebnisNummer"
+        required: true
+        type: "integer"
+        format: "int32"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
+      - name: "zahlungsplanIndex"
+        in: "path"
+        description: "zahlungsplanIndex"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -689,21 +689,21 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Ermittlungsanfrage einer Ermittlung abrufen"
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErmittlungsAnfrage"
       parameters:
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -738,21 +738,21 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage/erfassteDaten:
     get:
       tags:
-        - "eli-v-2-rest-controller"
+      - "eli-v-2-rest-controller"
       summary: "Die Daten er Ermittlungsanfrage abrufen"
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErfassteDaten"
       parameters:
-        - name: "ermittlungsId"
-          in: "path"
-          description: "ermittlungsId"
-          required: true
-          type: "string"
+      - name: "ermittlungsId"
+        in: "path"
+        description: "ermittlungsId"
+        required: true
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -787,16 +787,16 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
   /version/baufiSmartApi:
     get:
       tags:
-        - "version-controller"
+      - "version-controller"
       summary: "getBaufiSmartApiVersion"
       operationId: "getBaufiSmartApiVersionUsingGET"
       produces:
-        - "text/plain"
+      - "text/plain"
       parameters: []
       responses:
         200:
@@ -832,8 +832,8 @@ paths:
           schema:
             $ref: "#/definitions/Error"
       security:
-        - oauth2:
-            - "API"
+      - oauth2:
+        - "API"
 securityDefinitions:
   oauth2:
     type: "oauth2"
@@ -845,8 +845,8 @@ definitions:
   AnnuitaetenDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
-      - "tilgungsWunsch"
+    - "darlehensBetrag"
+    - "tilgungsWunsch"
     properties:
       auszahlungsZeitpunkt:
         type: "string"
@@ -857,7 +857,7 @@ definitions:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       provision:
         type: "number"
       riesterGefoerdert:
@@ -879,8 +879,8 @@ definitions:
       anrede:
         type: "string"
         enum:
-          - "FRAU"
-          - "HERR"
+        - "FRAU"
+        - "HERR"
       anschrift:
         $ref: "#/definitions/Postadresse"
       arbeitserlaubnis:
@@ -894,10 +894,10 @@ definitions:
         type: "string"
         description: "wenn keine deutsche Staatsangehörigkeit"
         enum:
-          - "VISUM"
-          - "AUFENTHALTS_ERLAUBNIS"
-          - "NIEDERLASSUNGS_ERLAUBNIS"
-          - "DAUERAUFENTHALT_EU"
+        - "VISUM"
+        - "AUFENTHALTS_ERLAUBNIS"
+        - "NIEDERLASSUNGS_ERLAUBNIS"
+        - "DAUERAUFENTHALT_EU"
       aufenthaltsTitelBefristetBis:
         type: "string"
         format: "date"
@@ -914,12 +914,12 @@ definitions:
       familienstand:
         type: "string"
         enum:
-          - "GESCHIEDEN"
-          - "GETRENNT_LEBEND"
-          - "LEBENSPARTNERSCHAFT"
-          - "LEDIG"
-          - "VERHEIRATET"
-          - "VERWITWET"
+        - "GESCHIEDEN"
+        - "GETRENNT_LEBEND"
+        - "LEBENSPARTNERSCHAFT"
+        - "LEDIG"
+        - "VERHEIRATET"
+        - "VERWITWET"
       geburtsdatum:
         type: "string"
         format: "date"
@@ -978,12 +978,12 @@ definitions:
       typ:
         type: "string"
         enum:
-          - "STELLPLATZ"
-          - "CARPORT"
-          - "GARAGE"
-          - "DOPPEL_GARAGE"
-          - "KELLER_GARAGE"
-          - "TIEFGARAGEN_STELLPLATZ"
+        - "STELLPLATZ"
+        - "CARPORT"
+        - "GARAGE"
+        - "DOPPEL_GARAGE"
+        - "KELLER_GARAGE"
+        - "TIEFGARAGEN_STELLPLATZ"
     title: "Autostellplatz"
   BankUndSparguthaben:
     type: "object"
@@ -1002,9 +1002,9 @@ definitions:
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       zinsertragJaehrlich:
         type: "number"
       zukuenftigeEinnahmen:
@@ -1110,8 +1110,8 @@ definitions:
       abschlussGebuehrenVerrechnung:
         type: "string"
         enum:
-          - "SOFORTZAHLUNG"
-          - "VERRECHNUNG"
+        - "SOFORTZAHLUNG"
+        - "VERRECHNUNG"
       bausparSummeAbsolut:
         type: "number"
       bausparSummeRelativ:
@@ -1123,279 +1123,279 @@ definitions:
         items:
           type: "string"
           enum:
-            - "BKM_MAX_PREMIUM_OPTIMAL"
-            - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
-            - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
-            - "BKM_MAX_PREMIUM_BESTER_ZINS"
-            - "BKM_HAUS_PLUS_OPTIMAL"
-            - "BKM_HAUS_PLUS_NIEDRIGE_SPARRATE"
-            - "BKM_HAUS_PLUS_NIEDRIGE_TILGUNG"
-            - "BKM_HAUS_PLUS_BESTER_ZINS"
-            - "FUCHS_IMMO_1"
-            - "FUCHS_IMMO_1_PLUS"
-            - "FUCHS_IMMO_2"
-            - "FUCHS_IMMO_3"
-            - "FUCHS_IMMO_4"
-            - "FUCHS_IMMO_5"
-            - "FUCHS_IMMO_6"
-            - "FUCHS_IMMO_7"
-            - "LBS_BAYERN_W4"
-            - "LBS_BAYERN_W4_X30"
-            - "LBS_BAYERN_W4_X35"
-            - "LBS_BAYERN_W4_X40"
-            - "LBS_BAYERN_W6"
-            - "LBS_BAYERN_W9"
-            - "LBS_BAYERN_WF"
-            - "LBS_BAYERN_WU"
-            - "LBS_BAYERN_Z35"
-            - "LBS_BAYERN_Z5"
-            - "LBS_BAYERN_Z8"
-            - "LBS_BAYERN_ZF"
-            - "LBS_BAYERN_ZF_X45"
-            - "LBS_BAYERN_ZF_X40"
-            - "LBS_BAYERN_ZF_X35"
-            - "LBS_HT_CLASSIC_S_2015"
-            - "LBS_HT_CLASSIC_F_2015"
-            - "LBS_HT_CLASSIC_L_2015"
-            - "LBS_HT_CLASSIC_N_2015"
-            - "LBS_HT_HOME_M"
-            - "LBS_HT_HOME_L"
-            - "LBS_HT_HOME_XL"
-            - "LBS_HT_COMFORT_S"
-            - "LBS_HT_COMFORT_N"
-            - "LBS_HT_FLEX"
-            - "LBS_NORD_N_STARTER_S4"
-            - "LBS_NORD_N_STARTER_Q5"
-            - "LBS_NORD_N_STARTER_S5"
-            - "LBS_NORD_N_STARTER_S6"
-            - "LBS_NORD_N_FINANZIERER_F3"
-            - "LBS_NORD_N_FINANZIERER_F4"
-            - "LBS_NORD_N_FINANZIERER_F5"
-            - "LBS_NORD_N_FINANZIERER_F6"
-            - "LBS_NORD_N_FINANZIERER_F7"
-            - "LBS_NORD_N_MODERNISIERER_MINIZINS"
-            - "LBS_NORD_N_MODERNISIERER_M8"
-            - "LBS_NORD_N_MODERNISIERER_MX"
-            - "LBS_OST_CLASSIC15_F5"
-            - "LBS_OST_CLASSIC_F15_F5"
-            - "LBS_OST_CLASSIC_F_H4"
-            - "LBS_OST_CLASSIC_F_H5"
-            - "LBS_OST_CLASSIC_12_C4"
-            - "LBS_OST_CLASSIC_12_C9"
-            - "LBS_OST_CLASSIC15_F3"
-            - "LBS_OST_CLASSIC15_F4"
-            - "LBS_OST_CLASSIC15_F6"
-            - "LBS_OST_CLASSIC15_F8"
-            - "LBS_OST_CLASSIC15_PLUS_F"
-            - "LBS_OST_CLASSIC15_PLUS_S"
-            - "LBS_OST_VARIO_FLEX"
-            - "LBS_OST_CLASSIC20_F3"
-            - "LBS_OST_CLASSIC20_F8"
-            - "LBS_OST_CLASSIC20_PLUS_F"
-            - "LBS_OST_KONSTANT30_V095"
-            - "LBS_OST_KONSTANT30_V110"
-            - "LBS_OST_KONSTANT30_V130"
-            - "LBS_OST_KONSTANT30_V150"
-            - "LBS_OST_KONSTANT30_V170"
-            - "LBS_OST_KONSTANT30_V190"
-            - "LBS_OST_KONSTANT30_V210"
-            - "LBS_OST_KONSTANT30_V230"
-            - "LBS_OST_KONSTANT30_V250"
-            - "LBS_OST_KONSTANT30_V270"
-            - "LBS_OST_KONSTANT30_V290"
-            - "LBS_SHH_PRIMUS_SC"
-            - "LBS_SHH_PRIMUS_SD"
-            - "LBS_SHH_PRIMUS_SH"
-            - "LBS_SHH_PRIMUS_SI"
-            - "LBS_SHH_PRIMUS_SJ"
-            - "LBS_SHH_TREND_SD"
-            - "LBS_SHH_PRIMUS_TC"
-            - "LBS_SHH_PRIMUS_TH"
-            - "LBS_SHH_PRIMUS_TI"
-            - "LBS_SHH_PRIMUS_TJ"
-            - "LBS_SHH_PRIMUS_TD"
-            - "LBS_SHH_TREND_TD"
-            - "LBS_WEST_ZUHAUSE_DIREKT_10"
-            - "LBS_WEST_ZUHAUSE_DIREKT_15"
-            - "LBS_WEST_ZUHAUSE_PLUS"
-            - "LBS_WEST_ZUHAUSE_FLEX_4_S"
-            - "LBS_WEST_ZUHAUSE_FLEX_4_L"
-            - "LBS_WEST_ZUHAUSE_FLEX_5_S"
-            - "LBS_WEST_ZUHAUSE_FLEX_5_L"
-            - "LBS_WEST_ZUHAUSE_FLEX_6_S"
-            - "LBS_WEST_ZUHAUSE_FLEX_6_L"
-            - "LBS_WEST_ZUHAUSE_FLEX_8_S"
-            - "LBS_WEST_ZUHAUSE_FLEX_8_L"
-            - "LBS_WEST_ZUHAUSE_PRIMA"
-            - "LBS_WEST_ZUHAUSE_PRIMA_10"
-            - "LBS_WEST_ZUHAUSE_FLEX_4"
-            - "LBS_WEST_ZUHAUSE_FLEX_5"
-            - "LBS_WEST_ZUHAUSE_FLEX_6"
-            - "LBS_WEST_ZUHAUSE_FLEX_8"
-            - "LBS_WEST_ZUHAUSE_YOUNG"
-            - "LBS_WEST_ZUHAUSE_SPEZIAL"
-            - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10"
-            - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15"
-            - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L"
-            - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L"
-            - "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL"
-            - "LBS_SUEDWEST_KLASSIK_PLUS_2018"
-            - "LBS_SUEDWEST_LANGZEIT_PLUS_2019"
-            - "LBS_SUEDWEST_KLASSIK_PLUS_2020"
-            - "LBS_SUEDWEST_STANDARD_PLUS_2018"
-            - "LBS_SAAR_PREMIUM_FLEX_18"
-            - "LBS_SAAR_PREMIUM_SICHER_18"
-            - "LBS_SAAR_PREMIUM_TOP_18"
-            - "LBS_SAAR_EXTRA_GUENSTIG_18"
-            - "LBS_SAAR_EXTRA_SICHER_18"
-            - "LBS_SAAR_EXTRA_SPEZIAL_18"
-            - "SIGNAL_IDUNA_FREIRAUM_F_35"
-            - "SIGNAL_IDUNA_FREIRAUM_F_35_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_45"
-            - "SIGNAL_IDUNA_FREIRAUM_F_45_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_60"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_50_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_60_MZ"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30"
-            - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40"
-            - "SIGNAL_IDUNA_FREIRAUM_F_40_16"
-            - "SIGNAL_IDUNA_FREIRAUM_F_50"
-            - "SIGNAL_IDUNA_FREIRAUM_F_50_16"
-            - "BHW_TARIF_FI1"
-            - "BHW_TARIF_FI2"
-            - "BHW_TARIF_FI3"
-            - "BHW_TARIF_FI4"
-            - "BHW_TARIF_FX1"
-            - "BHW_TARIF_FX2"
-            - "BHW_TARIF_REN"
-            - "BHW_TARIF_FI1N"
-            - "BHW_TARIF_FI2N"
-            - "BHW_TARIF_FX1N"
-            - "BHW_TARIF_FX2N"
-            - "DT_RING_TARIF_FT"
-            - "DT_RING_TARIF_FT_0"
-            - "DT_RING_TARIF_FT_1"
-            - "DT_RING_TARIF_FT_2"
-            - "DT_RING_TARIF_XT_1"
-            - "DT_RING_TARIF_XT_0"
-            - "DT_RING_TARIF_F_1"
-            - "ALTE_LEIPZIGER_1502"
-            - "ALTE_LEIPZIGER_1602"
-            - "ALTE_LEIPZIGER_1702"
-            - "ALTE_LEIPZIGER_1802"
-            - "ALTE_LEIPZIGER_1902"
-            - "ALTE_LEIPZIGER_2002"
-            - "ALTE_LEIPZIGER_1502_MZ"
-            - "ALTE_LEIPZIGER_1602_MZ"
-            - "ALTE_LEIPZIGER_1702_MZ"
-            - "ALTE_LEIPZIGER_1802_MZ"
-            - "ALTE_LEIPZIGER_1902_MZ"
-            - "ALTE_LEIPZIGER_2002_MZ"
-            - "ALTE_LEIPZIGER_1503"
-            - "ALTE_LEIPZIGER_1603"
-            - "ALTE_LEIPZIGER_1703"
-            - "ALTE_LEIPZIGER_1803"
-            - "ALTE_LEIPZIGER_1903"
-            - "ALTE_LEIPZIGER_2003"
-            - "ALTE_LEIPZIGER_1503_MZ"
-            - "ALTE_LEIPZIGER_1603_MZ"
-            - "ALTE_LEIPZIGER_1703_MZ"
-            - "ALTE_LEIPZIGER_1803_MZ"
-            - "ALTE_LEIPZIGER_1903_MZ"
-            - "ALTE_LEIPZIGER_2003_MZ"
-            - "ALTE_LEIPZIGER_150X"
-            - "ALTE_LEIPZIGER_160X"
-            - "ALTE_LEIPZIGER_170X"
-            - "ALTE_LEIPZIGER_180X"
-            - "ALTE_LEIPZIGER_190X"
-            - "ALTE_LEIPZIGER_200X"
-            - "ALTE_LEIPZIGER_150X_MZ"
-            - "ALTE_LEIPZIGER_160X_MZ"
-            - "ALTE_LEIPZIGER_170X_MZ"
-            - "ALTE_LEIPZIGER_180X_MZ"
-            - "ALTE_LEIPZIGER_190X_MZ"
-            - "ALTE_LEIPZIGER_200X_MZ"
-            - "ALTE_LEIPZIGER_ZG_21XX_20"
-            - "ALTE_LEIPZIGER_ZG_21XX_30"
-            - "ALTE_LEIPZIGER_ZG_25XX_49"
-            - "ALTE_LEIPZIGER_21XX_27"
-            - "ALTE_LEIPZIGER_21XX_33"
-            - "ALTE_LEIPZIGER_21XX"
-            - "ALTE_LEIPZIGER_25XX_30"
-            - "ALTE_LEIPZIGER_25XX_45"
-            - "ALTE_LEIPZIGER_22XX_33"
-            - "ALTE_LEIPZIGER_22XX_27"
-            - "ALTE_LEIPZIGER_22XX"
-            - "ALTE_LEIPZIGER_26XX_30"
-            - "ALTE_LEIPZIGER_26XX_45"
-            - "WUESTENROT_01063_4"
-            - "WUESTENROT_01063_5"
-            - "WUESTENROT_01063_6"
-            - "WUESTENROT_01063_7"
-            - "WUESTENROT_01063_8"
-            - "WUESTENROT_01063_9"
-            - "WUESTENROT_01063_10"
-            - "WUESTENROT_01063_12"
-            - "WUESTENROT_01064_4"
-            - "WUESTENROT_01064_6"
-            - "WUESTENROT_01064_8"
-            - "WUESTENROT_01064_10"
-            - "WUESTENROT_01064_12"
-            - "WUESTENROT_01061_10"
-            - "WUESTENROT_01062_4"
-            - "WUESTENROT_01061_10_0000"
-            - "WUESTENROT_01062_04_0000"
-            - "WUESTENROT_01063_05_3585"
-            - "WUESTENROT_01063_07_5110"
-            - "WUESTENROT_01063_09_0000"
-            - "WUESTENROT_01064_10_0000"
-            - "WUESTENROT_01064_04_0000"
-            - "WUESTENROT_01064_04_5000"
-            - "WUESTENROT_01064_05_4121"
-            - "WUESTENROT_01064_06_0000"
-            - "WUESTENROT_01064_07_5161"
-            - "WUESTENROT_01064_09_0000"
-            - "WUESTENROT_01073_04_5000"
-            - "WUESTENROT_01073_05_9000"
-            - "WUESTENROT_01073_08_0000"
-            - "WUESTENROT_01076_05_8633"
-            - "WUESTENROT_01076_07_9872"
-            - "WUESTENROT_01076_08_0000"
-            - "WUESTENROT_01077_04_0000"
-            - "WUESTENROT_01077_04_7000"
-            - "WUESTENROT_01077_06_3000"
-            - "WUESTENROT_01077_07_5000"
-            - "WUESTENROT_01077_06_2500"
-            - "WUESTENROT_01077_07_9648"
-            - "WUESTENROT_01077_08_0000"
-            - "WUESTENROT_01074_10_0000"
-            - "WUESTENROT_01075_03_5000"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1"
-            - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2"
+          - "BKM_MAX_PREMIUM_OPTIMAL"
+          - "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE"
+          - "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG"
+          - "BKM_MAX_PREMIUM_BESTER_ZINS"
+          - "BKM_HAUS_PLUS_OPTIMAL"
+          - "BKM_HAUS_PLUS_NIEDRIGE_SPARRATE"
+          - "BKM_HAUS_PLUS_NIEDRIGE_TILGUNG"
+          - "BKM_HAUS_PLUS_BESTER_ZINS"
+          - "FUCHS_IMMO_1"
+          - "FUCHS_IMMO_1_PLUS"
+          - "FUCHS_IMMO_2"
+          - "FUCHS_IMMO_3"
+          - "FUCHS_IMMO_4"
+          - "FUCHS_IMMO_5"
+          - "FUCHS_IMMO_6"
+          - "FUCHS_IMMO_7"
+          - "LBS_BAYERN_W4"
+          - "LBS_BAYERN_W4_X30"
+          - "LBS_BAYERN_W4_X35"
+          - "LBS_BAYERN_W4_X40"
+          - "LBS_BAYERN_W6"
+          - "LBS_BAYERN_W9"
+          - "LBS_BAYERN_WF"
+          - "LBS_BAYERN_WU"
+          - "LBS_BAYERN_Z35"
+          - "LBS_BAYERN_Z5"
+          - "LBS_BAYERN_Z8"
+          - "LBS_BAYERN_ZF"
+          - "LBS_BAYERN_ZF_X45"
+          - "LBS_BAYERN_ZF_X40"
+          - "LBS_BAYERN_ZF_X35"
+          - "LBS_HT_CLASSIC_S_2015"
+          - "LBS_HT_CLASSIC_F_2015"
+          - "LBS_HT_CLASSIC_L_2015"
+          - "LBS_HT_CLASSIC_N_2015"
+          - "LBS_HT_HOME_M"
+          - "LBS_HT_HOME_L"
+          - "LBS_HT_HOME_XL"
+          - "LBS_HT_COMFORT_S"
+          - "LBS_HT_COMFORT_N"
+          - "LBS_HT_FLEX"
+          - "LBS_NORD_N_STARTER_S4"
+          - "LBS_NORD_N_STARTER_Q5"
+          - "LBS_NORD_N_STARTER_S5"
+          - "LBS_NORD_N_STARTER_S6"
+          - "LBS_NORD_N_FINANZIERER_F3"
+          - "LBS_NORD_N_FINANZIERER_F4"
+          - "LBS_NORD_N_FINANZIERER_F5"
+          - "LBS_NORD_N_FINANZIERER_F6"
+          - "LBS_NORD_N_FINANZIERER_F7"
+          - "LBS_NORD_N_MODERNISIERER_MINIZINS"
+          - "LBS_NORD_N_MODERNISIERER_M8"
+          - "LBS_NORD_N_MODERNISIERER_MX"
+          - "LBS_OST_CLASSIC15_F5"
+          - "LBS_OST_CLASSIC_F15_F5"
+          - "LBS_OST_CLASSIC_F_H4"
+          - "LBS_OST_CLASSIC_F_H5"
+          - "LBS_OST_CLASSIC_12_C4"
+          - "LBS_OST_CLASSIC_12_C9"
+          - "LBS_OST_CLASSIC15_F3"
+          - "LBS_OST_CLASSIC15_F4"
+          - "LBS_OST_CLASSIC15_F6"
+          - "LBS_OST_CLASSIC15_F8"
+          - "LBS_OST_CLASSIC15_PLUS_F"
+          - "LBS_OST_CLASSIC15_PLUS_S"
+          - "LBS_OST_VARIO_FLEX"
+          - "LBS_OST_CLASSIC20_F3"
+          - "LBS_OST_CLASSIC20_F8"
+          - "LBS_OST_CLASSIC20_PLUS_F"
+          - "LBS_OST_KONSTANT30_V095"
+          - "LBS_OST_KONSTANT30_V110"
+          - "LBS_OST_KONSTANT30_V130"
+          - "LBS_OST_KONSTANT30_V150"
+          - "LBS_OST_KONSTANT30_V170"
+          - "LBS_OST_KONSTANT30_V190"
+          - "LBS_OST_KONSTANT30_V210"
+          - "LBS_OST_KONSTANT30_V230"
+          - "LBS_OST_KONSTANT30_V250"
+          - "LBS_OST_KONSTANT30_V270"
+          - "LBS_OST_KONSTANT30_V290"
+          - "LBS_SHH_PRIMUS_SC"
+          - "LBS_SHH_PRIMUS_SD"
+          - "LBS_SHH_PRIMUS_SH"
+          - "LBS_SHH_PRIMUS_SI"
+          - "LBS_SHH_PRIMUS_SJ"
+          - "LBS_SHH_TREND_SD"
+          - "LBS_SHH_PRIMUS_TC"
+          - "LBS_SHH_PRIMUS_TH"
+          - "LBS_SHH_PRIMUS_TI"
+          - "LBS_SHH_PRIMUS_TJ"
+          - "LBS_SHH_PRIMUS_TD"
+          - "LBS_SHH_TREND_TD"
+          - "LBS_WEST_ZUHAUSE_DIREKT_10"
+          - "LBS_WEST_ZUHAUSE_DIREKT_15"
+          - "LBS_WEST_ZUHAUSE_PLUS"
+          - "LBS_WEST_ZUHAUSE_FLEX_4_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_4_L"
+          - "LBS_WEST_ZUHAUSE_FLEX_5_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_5_L"
+          - "LBS_WEST_ZUHAUSE_FLEX_6_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_6_L"
+          - "LBS_WEST_ZUHAUSE_FLEX_8_S"
+          - "LBS_WEST_ZUHAUSE_FLEX_8_L"
+          - "LBS_WEST_ZUHAUSE_PRIMA"
+          - "LBS_WEST_ZUHAUSE_PRIMA_10"
+          - "LBS_WEST_ZUHAUSE_FLEX_4"
+          - "LBS_WEST_ZUHAUSE_FLEX_5"
+          - "LBS_WEST_ZUHAUSE_FLEX_6"
+          - "LBS_WEST_ZUHAUSE_FLEX_8"
+          - "LBS_WEST_ZUHAUSE_YOUNG"
+          - "LBS_WEST_ZUHAUSE_SPEZIAL"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15"
+          - "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L"
+          - "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL"
+          - "LBS_SUEDWEST_KLASSIK_PLUS_2018"
+          - "LBS_SUEDWEST_LANGZEIT_PLUS_2019"
+          - "LBS_SUEDWEST_KLASSIK_PLUS_2020"
+          - "LBS_SUEDWEST_STANDARD_PLUS_2018"
+          - "LBS_SAAR_PREMIUM_FLEX_18"
+          - "LBS_SAAR_PREMIUM_SICHER_18"
+          - "LBS_SAAR_PREMIUM_TOP_18"
+          - "LBS_SAAR_EXTRA_GUENSTIG_18"
+          - "LBS_SAAR_EXTRA_SICHER_18"
+          - "LBS_SAAR_EXTRA_SPEZIAL_18"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_60"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_50_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_60_MZ"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30"
+          - "SIGNAL_IDUNA_FREIRAUM_F_30_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40"
+          - "SIGNAL_IDUNA_FREIRAUM_F_40_16"
+          - "SIGNAL_IDUNA_FREIRAUM_F_50"
+          - "SIGNAL_IDUNA_FREIRAUM_F_50_16"
+          - "BHW_TARIF_FI1"
+          - "BHW_TARIF_FI2"
+          - "BHW_TARIF_FI3"
+          - "BHW_TARIF_FI4"
+          - "BHW_TARIF_FX1"
+          - "BHW_TARIF_FX2"
+          - "BHW_TARIF_REN"
+          - "BHW_TARIF_FI1N"
+          - "BHW_TARIF_FI2N"
+          - "BHW_TARIF_FX1N"
+          - "BHW_TARIF_FX2N"
+          - "DT_RING_TARIF_FT"
+          - "DT_RING_TARIF_FT_0"
+          - "DT_RING_TARIF_FT_1"
+          - "DT_RING_TARIF_FT_2"
+          - "DT_RING_TARIF_XT_1"
+          - "DT_RING_TARIF_XT_0"
+          - "DT_RING_TARIF_F_1"
+          - "ALTE_LEIPZIGER_1502"
+          - "ALTE_LEIPZIGER_1602"
+          - "ALTE_LEIPZIGER_1702"
+          - "ALTE_LEIPZIGER_1802"
+          - "ALTE_LEIPZIGER_1902"
+          - "ALTE_LEIPZIGER_2002"
+          - "ALTE_LEIPZIGER_1502_MZ"
+          - "ALTE_LEIPZIGER_1602_MZ"
+          - "ALTE_LEIPZIGER_1702_MZ"
+          - "ALTE_LEIPZIGER_1802_MZ"
+          - "ALTE_LEIPZIGER_1902_MZ"
+          - "ALTE_LEIPZIGER_2002_MZ"
+          - "ALTE_LEIPZIGER_1503"
+          - "ALTE_LEIPZIGER_1603"
+          - "ALTE_LEIPZIGER_1703"
+          - "ALTE_LEIPZIGER_1803"
+          - "ALTE_LEIPZIGER_1903"
+          - "ALTE_LEIPZIGER_2003"
+          - "ALTE_LEIPZIGER_1503_MZ"
+          - "ALTE_LEIPZIGER_1603_MZ"
+          - "ALTE_LEIPZIGER_1703_MZ"
+          - "ALTE_LEIPZIGER_1803_MZ"
+          - "ALTE_LEIPZIGER_1903_MZ"
+          - "ALTE_LEIPZIGER_2003_MZ"
+          - "ALTE_LEIPZIGER_150X"
+          - "ALTE_LEIPZIGER_160X"
+          - "ALTE_LEIPZIGER_170X"
+          - "ALTE_LEIPZIGER_180X"
+          - "ALTE_LEIPZIGER_190X"
+          - "ALTE_LEIPZIGER_200X"
+          - "ALTE_LEIPZIGER_150X_MZ"
+          - "ALTE_LEIPZIGER_160X_MZ"
+          - "ALTE_LEIPZIGER_170X_MZ"
+          - "ALTE_LEIPZIGER_180X_MZ"
+          - "ALTE_LEIPZIGER_190X_MZ"
+          - "ALTE_LEIPZIGER_200X_MZ"
+          - "ALTE_LEIPZIGER_ZG_21XX_20"
+          - "ALTE_LEIPZIGER_ZG_21XX_30"
+          - "ALTE_LEIPZIGER_ZG_25XX_49"
+          - "ALTE_LEIPZIGER_21XX_27"
+          - "ALTE_LEIPZIGER_21XX_33"
+          - "ALTE_LEIPZIGER_21XX"
+          - "ALTE_LEIPZIGER_25XX_30"
+          - "ALTE_LEIPZIGER_25XX_45"
+          - "ALTE_LEIPZIGER_22XX_33"
+          - "ALTE_LEIPZIGER_22XX_27"
+          - "ALTE_LEIPZIGER_22XX"
+          - "ALTE_LEIPZIGER_26XX_30"
+          - "ALTE_LEIPZIGER_26XX_45"
+          - "WUESTENROT_01063_4"
+          - "WUESTENROT_01063_5"
+          - "WUESTENROT_01063_6"
+          - "WUESTENROT_01063_7"
+          - "WUESTENROT_01063_8"
+          - "WUESTENROT_01063_9"
+          - "WUESTENROT_01063_10"
+          - "WUESTENROT_01063_12"
+          - "WUESTENROT_01064_4"
+          - "WUESTENROT_01064_6"
+          - "WUESTENROT_01064_8"
+          - "WUESTENROT_01064_10"
+          - "WUESTENROT_01064_12"
+          - "WUESTENROT_01061_10"
+          - "WUESTENROT_01062_4"
+          - "WUESTENROT_01061_10_0000"
+          - "WUESTENROT_01062_04_0000"
+          - "WUESTENROT_01063_05_3585"
+          - "WUESTENROT_01063_07_5110"
+          - "WUESTENROT_01063_09_0000"
+          - "WUESTENROT_01064_10_0000"
+          - "WUESTENROT_01064_04_0000"
+          - "WUESTENROT_01064_04_5000"
+          - "WUESTENROT_01064_05_4121"
+          - "WUESTENROT_01064_06_0000"
+          - "WUESTENROT_01064_07_5161"
+          - "WUESTENROT_01064_09_0000"
+          - "WUESTENROT_01073_04_5000"
+          - "WUESTENROT_01073_05_9000"
+          - "WUESTENROT_01073_08_0000"
+          - "WUESTENROT_01076_05_8633"
+          - "WUESTENROT_01076_07_9872"
+          - "WUESTENROT_01076_08_0000"
+          - "WUESTENROT_01077_04_0000"
+          - "WUESTENROT_01077_04_7000"
+          - "WUESTENROT_01077_06_3000"
+          - "WUESTENROT_01077_07_5000"
+          - "WUESTENROT_01077_06_2500"
+          - "WUESTENROT_01077_07_9648"
+          - "WUESTENROT_01077_08_0000"
+          - "WUESTENROT_01074_10_0000"
+          - "WUESTENROT_01075_03_5000"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1"
+          - "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2"
       id:
         type: "string"
         description: "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben,\
@@ -1423,13 +1423,13 @@ definitions:
       verwendung:
         type: "string"
         enum:
-          - "ZINS_ABSICHERUNG"
-          - "TILGUNGS_AUSGESETZT"
+        - "ZINS_ABSICHERUNG"
+        - "TILGUNGS_AUSGESETZT"
       zulagenVerwendung:
         type: "string"
         enum:
-          - "SONDERZAHLUNG"
-          - "VERRECHNUNG"
+        - "SONDERZAHLUNG"
+        - "VERRECHNUNG"
       zuteilungsDatum:
         type: "string"
         format: "date"
@@ -1474,20 +1474,20 @@ definitions:
       art:
         type: "string"
         enum:
-          - "ANGESTELLTER"
-          - "ARBEITER"
-          - "BEAMTER"
-          - "FREIBERUFLER"
-          - "SELBSTAENDIGER"
-          - "RENTNER"
-          - "HAUSFRAU"
-          - "ARBEITSLOSER"
+        - "ANGESTELLTER"
+        - "ARBEITER"
+        - "BEAMTER"
+        - "FREIBERUFLER"
+        - "SELBSTAENDIGER"
+        - "RENTNER"
+        - "HAUSFRAU"
+        - "ARBEITSLOSER"
       befristungsStatus:
         type: "string"
         description: "nur bei art == ANGESTELLTER, ARBEITER"
         enum:
-          - "BEFRISTET"
-          - "UNBEFRISTET"
+        - "BEFRISTET"
+        - "UNBEFRISTET"
       beruf:
         type: "string"
         description: "nur bei art != RENTNER"
@@ -1501,26 +1501,26 @@ definitions:
         description: "Allgemeine Branche des Antragstellers. Wird verwendet um fü\
           r die verschiedenen Banken die Zusatzangabe Branche zu bilden."
         enum:
-          - "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI"
-          - "BERGBAU_GEWINNUNG_VON_STEINEN_UND_ERDEN"
-          - "VERARBEITENDES_GEWERBE"
-          - "WASSERVERSORGUNG"
-          - "ENERGIEVERSORGUNG"
-          - "BAUGEWERBE"
-          - "HANDEL_INSTANDHALTUNG_VON_KRAFTFAHRZEUGEN"
-          - "VERKEHR_LOGISTIK"
-          - "GASTGEWERBE"
-          - "INFORMATION_KOMMUNIKATION"
-          - "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN"
-          - "GRUNDSTÜCKS_UND_WOHNUNGSWESEN"
-          - "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN"
-          - "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN"
-          - "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG"
-          - "ERZIEHUNG_UNTERRICHT"
-          - "GESUNDHEIT_UND_SOZIALWESEN"
-          - "KUNST_UNTERHALTUNG_ERHOLUNG"
-          - "SONSTIGE_DIENSTLEISTUNGEN"
-          - "PRIVATE_HAUSHALTE"
+        - "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI"
+        - "BERGBAU_GEWINNUNG_VON_STEINEN_UND_ERDEN"
+        - "VERARBEITENDES_GEWERBE"
+        - "WASSERVERSORGUNG"
+        - "ENERGIEVERSORGUNG"
+        - "BAUGEWERBE"
+        - "HANDEL_INSTANDHALTUNG_VON_KRAFTFAHRZEUGEN"
+        - "VERKEHR_LOGISTIK"
+        - "GASTGEWERBE"
+        - "INFORMATION_KOMMUNIKATION"
+        - "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN"
+        - "GRUNDSTÜCKS_UND_WOHNUNGSWESEN"
+        - "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN"
+        - "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN"
+        - "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG"
+        - "ERZIEHUNG_UNTERRICHT"
+        - "GESUNDHEIT_UND_SOZIALWESEN"
+        - "KUNST_UNTERHALTUNG_ERHOLUNG"
+        - "SONSTIGE_DIENSTLEISTUNGEN"
+        - "PRIVATE_HAUSHALTE"
       einkommenNettoJaehrlich:
         type: "number"
         description: "nur bei art == FREIBERUFLER, SELBSTAENDIGER"
@@ -1537,57 +1537,57 @@ definitions:
         type: "string"
         description: "nur bei art == FREIBERUFLER, SELBSTAENDIGER."
         enum:
-          - "ALTENPFLEGER"
-          - "AMBULANTER_KRANKENPFLEGER"
-          - "ANWALT"
-          - "APOTHEKER"
-          - "ARCHITEKT"
-          - "ARZT"
-          - "BESTATTER"
-          - "DATENSCHUTZBEAUFTRAGTER"
-          - "DEKORATEUR"
-          - "DIAETASSISTENT"
-          - "DOLMETSCHER"
-          - "EDV_BERATER"
-          - "ERGOTHERAPEUT"
-          - "ERNAEHRUNGSBERATER"
-          - "FOTOGRAF"
-          - "GEOGRAF"
-          - "GRAFIKDESIGNER"
-          - "GRAFIKER"
-          - "HEBAMME"
-          - "HEILMASSEUR"
-          - "HEILPRAKTIKER"
-          - "HISTORIKER"
-          - "INFORMATIKER"
-          - "INGENIEUR"
-          - "INSOLVENZVERWALTER"
-          - "JOURNALIST"
-          - "KLASSISCHER_KONZERTMUSIKER"
-          - "KONSTRUKTEUR"
-          - "KRANKENGYMNAST"
-          - "KRANKENPFLEGER"
-          - "KRANKENSCHWESTER"
-          - "LOGOPAEDE"
-          - "MEDIZINISCH_TECHN_ASSISTENT"
-          - "NOTAR"
-          - "OPERNSAENGER"
-          - "PERSONALBERATER"
-          - "PHYSIOTHERAPEUT"
-          - "PSYCHOLOGE"
-          - "RAUMAUSSTATTER"
-          - "RUNDFUNKSPRECHER"
-          - "SACHVERSTAENDIGER"
-          - "STADTPLANER"
-          - "STATIKER"
-          - "STEUERBERATER"
-          - "TIERARZT"
-          - "UNTERNEHMENSBERATER"
-          - "VERMITTLER"
-          - "WIRTSCH_BUCHPRUEFER_REVISOR"
-          - "ZAHNARZT"
-          - "ZAHNTECHNIKER"
-          - "SONSTIGES"
+        - "ALTENPFLEGER"
+        - "AMBULANTER_KRANKENPFLEGER"
+        - "ANWALT"
+        - "APOTHEKER"
+        - "ARCHITEKT"
+        - "ARZT"
+        - "BESTATTER"
+        - "DATENSCHUTZBEAUFTRAGTER"
+        - "DEKORATEUR"
+        - "DIAETASSISTENT"
+        - "DOLMETSCHER"
+        - "EDV_BERATER"
+        - "ERGOTHERAPEUT"
+        - "ERNAEHRUNGSBERATER"
+        - "FOTOGRAF"
+        - "GEOGRAF"
+        - "GRAFIKDESIGNER"
+        - "GRAFIKER"
+        - "HEBAMME"
+        - "HEILMASSEUR"
+        - "HEILPRAKTIKER"
+        - "HISTORIKER"
+        - "INFORMATIKER"
+        - "INGENIEUR"
+        - "INSOLVENZVERWALTER"
+        - "JOURNALIST"
+        - "KLASSISCHER_KONZERTMUSIKER"
+        - "KONSTRUKTEUR"
+        - "KRANKENGYMNAST"
+        - "KRANKENPFLEGER"
+        - "KRANKENSCHWESTER"
+        - "LOGOPAEDE"
+        - "MEDIZINISCH_TECHN_ASSISTENT"
+        - "NOTAR"
+        - "OPERNSAENGER"
+        - "PERSONALBERATER"
+        - "PHYSIOTHERAPEUT"
+        - "PSYCHOLOGE"
+        - "RAUMAUSSTATTER"
+        - "RUNDFUNKSPRECHER"
+        - "SACHVERSTAENDIGER"
+        - "STADTPLANER"
+        - "STATIKER"
+        - "STEUERBERATER"
+        - "TIERARZT"
+        - "UNTERNEHMENSBERATER"
+        - "VERMITTLER"
+        - "WIRTSCH_BUCHPRUEFER_REVISOR"
+        - "ZAHNARZT"
+        - "ZAHNTECHNIKER"
+        - "SONSTIGES"
     title: "Beschaeftigung"
   BestehendeImmobilie:
     type: "object"
@@ -1622,9 +1622,9 @@ definitions:
       immobilienEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "VERKAUFEN"
-          - "ALS_ZUSATZSICHERHEIT"
+        - "KEIN_EINSATZ"
+        - "VERKAUFEN"
+        - "ALS_ZUSATZSICHERHEIT"
       keinBaulandFlaecheInQm:
         type: "number"
         description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
@@ -1638,9 +1638,9 @@ definitions:
       objektArt:
         type: "string"
         enum:
-          - "GRUNDSTUECK"
-          - "EIGENTUMSWOHNUNG"
-          - "HAUS"
+        - "GRUNDSTUECK"
+        - "EIGENTUMSWOHNUNG"
+        - "HAUS"
       vergleichsmieteFuerGewerbeflaecheProQm:
         type: "number"
       vergleichsmieteFuerWohnflaecheProQm:
@@ -1656,9 +1656,9 @@ definitions:
       wohnlage:
         type: "string"
         enum:
-          - "GEHOBEN"
-          - "MITTEL"
-          - "EINFACH"
+        - "GEHOBEN"
+        - "MITTEL"
+        - "EINFACH"
     title: "BestehendeImmobilie"
   BestehenderBausparvertrag:
     type: "object"
@@ -1686,9 +1686,9 @@ definitions:
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       vertragsBeginn:
         type: "string"
         format: "date"
@@ -1713,11 +1713,11 @@ definitions:
       darlehensArt:
         type: "string"
         enum:
-          - "BAUSPARDARLEHEN"
-          - "FOERDERDARLEHEN"
-          - "IMMOBILIENDARLEHEN"
-          - "SONSTIGES_DARLEHEN"
-          - "PRIVATDARLEHEN"
+        - "BAUSPARDARLEHEN"
+        - "FOERDERDARLEHEN"
+        - "IMMOBILIENDARLEHEN"
+        - "SONSTIGES_DARLEHEN"
+        - "PRIVATDARLEHEN"
       darlehensBetrag:
         type: "number"
         description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck\
@@ -1733,8 +1733,8 @@ definitions:
       grundschuldArt:
         type: "string"
         enum:
-          - "BRIEF_GRUNDSCHULD"
-          - "BUCH_GRUNDSCHULD"
+        - "BRIEF_GRUNDSCHULD"
+        - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
       laufzeitEnde:
@@ -1765,11 +1765,11 @@ definitions:
       darlehensArt:
         type: "string"
         enum:
-          - "BAUSPARDARLEHEN"
-          - "FOERDERDARLEHEN"
-          - "IMMOBILIENDARLEHEN"
-          - "SONSTIGES_DARLEHEN"
-          - "PRIVATDARLEHEN"
+        - "BAUSPARDARLEHEN"
+        - "FOERDERDARLEHEN"
+        - "IMMOBILIENDARLEHEN"
+        - "SONSTIGES_DARLEHEN"
+        - "PRIVATDARLEHEN"
       darlehensBetrag:
         type: "number"
         description: "für Prolongation, d.h. technisch: Vorhaben verwendungszweck\
@@ -1785,8 +1785,8 @@ definitions:
       grundschuldArt:
         type: "string"
         enum:
-          - "BRIEF_GRUNDSCHULD"
-          - "BUCH_GRUNDSCHULD"
+        - "BRIEF_GRUNDSCHULD"
+        - "BUCH_GRUNDSCHULD"
       id:
         type: "string"
       laufzeitEnde:
@@ -1809,9 +1809,9 @@ definitions:
           \ und ein bestehendes Darlehen vorhanden ist, dann muss dieses den Wert\
           \ 'verwendenAls'='ABLOESEN' beinhalten"
         enum:
-          - "ABLOESEN"
-          - "TRITT_IM_RANG_ZURUECK"
-          - "TRITT_NICHT_IM_RANG_ZURUECK"
+        - "ABLOESEN"
+        - "TRITT_IM_RANG_ZURUECK"
+        - "TRITT_NICHT_IM_RANG_ZURUECK"
       zinsBindungEndetAm:
         type: "string"
         format: "date"
@@ -1854,14 +1854,14 @@ definitions:
       typ:
         type: "string"
         enum:
-          - "ANNUITAETEN_DARLEHEN"
-          - "FORWARD_DARLEHEN"
-          - "REGIONAL_FOERDER_DARLEHEN"
-          - "KFW_DARLEHEN"
-          - "PRIVAT_DARLEHEN"
-          - "ZWISCHEN_FINANZIERUNG"
-          - "VARIABLES_DARLEHEN"
-          - "BAUSPARVERTRAG"
+        - "ANNUITAETEN_DARLEHEN"
+        - "FORWARD_DARLEHEN"
+        - "REGIONAL_FOERDER_DARLEHEN"
+        - "KFW_DARLEHEN"
+        - "PRIVAT_DARLEHEN"
+        - "ZWISCHEN_FINANZIERUNG"
+        - "VARIABLES_DARLEHEN"
+        - "BAUSPARVERTRAG"
       zinsBindung:
         $ref: "#/definitions/ZinsBindung"
       zinsZahlungsBeginnAm:
@@ -1988,8 +1988,8 @@ definitions:
       grundstuecksEigentuemer:
         type: "string"
         enum:
-          - "ANDERE"
-          - "OEFFENTLICH_KIRCHLICH"
+        - "ANDERE"
+        - "OEFFENTLICH_KIRCHLICH"
       laufzeitBisJahr:
         type: "string"
         example: "2088"
@@ -1997,15 +1997,15 @@ definitions:
   ErfassteDaten:
     type: "object"
     required:
-      - "vorhaben"
+    - "vorhaben"
     properties:
       bankverbindung:
         $ref: "#/definitions/Bankverbindung"
       datenKontext:
         type: "string"
         enum:
-          - "TEST_MODUS"
-          - "ECHT_GESCHAEFT"
+        - "TEST_MODUS"
+        - "ECHT_GESCHAEFT"
       externeVorgangsNummer:
         type: "string"
       finanzierungsObjekt:
@@ -2038,9 +2038,9 @@ definitions:
       anpassungsStatus:
         type: "string"
         enum:
-          - "NICHT_ANGEPASST"
-          - "ANGEPASST"
-          - "ALTERNATIV"
+        - "NICHT_ANGEPASST"
+        - "ANGEPASST"
+        - "ALTERNATIV"
       bausparAngebote:
         type: "array"
         items:
@@ -2065,9 +2065,9 @@ definitions:
       machbarkeit:
         type: "string"
         enum:
-          - "MACHBAR"
-          - "UNTER_VORBEHALT"
-          - "NICHT_MACHBAR"
+        - "MACHBAR"
+        - "UNTER_VORBEHALT"
+        - "NICHT_MACHBAR"
       meldungen:
         type: "array"
         items:
@@ -2223,9 +2223,9 @@ definitions:
       objektArt:
         type: "string"
         enum:
-          - "GRUNDSTUECK"
-          - "EIGENTUMSWOHNUNG"
-          - "HAUS"
+        - "GRUNDSTUECK"
+        - "EIGENTUMSWOHNUNG"
+        - "HAUS"
       vergleichsmieteFuerGewerbeflaecheProQm:
         type: "number"
       vergleichsmieteFuerWohnflaecheProQm:
@@ -2241,9 +2241,9 @@ definitions:
       wohnlage:
         type: "string"
         enum:
-          - "GEHOBEN"
-          - "MITTEL"
-          - "EINFACH"
+        - "GEHOBEN"
+        - "MITTEL"
+        - "EINFACH"
     title: "FinanzierungsObjekt"
   Finanzierungswunsch:
     type: "object"
@@ -2274,8 +2274,8 @@ definitions:
   ForwardDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
-      - "tilgungsWunsch"
+    - "darlehensBetrag"
+    - "tilgungsWunsch"
     properties:
       auszahlungsDatum:
         type: "string"
@@ -2286,7 +2286,7 @@ definitions:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       provision:
         type: "number"
       sondertilgungOptionalJaehrlich:
@@ -2318,10 +2318,10 @@ definitions:
       ausstattung:
         type: "string"
         enum:
-          - "EINFACH"
-          - "MITTEL"
-          - "GEHOBEN"
-          - "STARK_GEHOBEN"
+        - "EINFACH"
+        - "MITTEL"
+        - "GEHOBEN"
+        - "STARK_GEHOBEN"
       baujahr:
         type: "string"
         example: "2016"
@@ -2329,11 +2329,11 @@ definitions:
       bauweise:
         type: "string"
         enum:
-          - "FACHWERK_MIT_STROH_LEHM"
-          - "FACHWERK_MIT_ZIEGELN"
-          - "GLAS_STAHL"
-          - "HOLZ"
-          - "MASSIV"
+        - "FACHWERK_MIT_STROH_LEHM"
+        - "FACHWERK_MIT_ZIEGELN"
+        - "GLAS_STAHL"
+        - "HOLZ"
+        - "MASSIV"
       bezeichnungWohneinheit:
         type: "string"
         description: "Nur bei ObjektArt == EIGENTUMSWOHNUNG."
@@ -2341,10 +2341,10 @@ definitions:
         type: "string"
         description: "Nur bei ObjektArt == HAUS."
         enum:
-          - "FLACHDACH"
-          - "NICHT_AUSGEBAUT"
-          - "TEILWEISE_AUSGEBAUT"
-          - "VOLL_AUSGEBAUT"
+        - "FLACHDACH"
+        - "NICHT_AUSGEBAUT"
+        - "TEILWEISE_AUSGEBAUT"
+        - "VOLL_AUSGEBAUT"
       einliegerwohnungVorhanden:
         type: "boolean"
         description: "Nur bei ObjektArt == HAUS."
@@ -2352,39 +2352,39 @@ definitions:
         type: "string"
         description: "Nur bei ObjektArt == EIGENTUMSWOHNUNG."
         enum:
-          - "UNTERGESCHOSS"
-          - "ERDGESCHOSS"
-          - "ERSTES_OBERGESCHOSS"
-          - "ZWEITES_OBERGESCHOSS"
-          - "DRITTES_BIS_FUENFTES_OBERGESCHOSS"
-          - "AB_SECHSTES_OBERGESCHOSS"
-          - "UNBEKANNT"
+        - "UNTERGESCHOSS"
+        - "ERDGESCHOSS"
+        - "ERSTES_OBERGESCHOSS"
+        - "ZWEITES_OBERGESCHOSS"
+        - "DRITTES_BIS_FUENFTES_OBERGESCHOSS"
+        - "AB_SECHSTES_OBERGESCHOSS"
+        - "UNBEKANNT"
       gewerbeflaeche:
         $ref: "#/definitions/GebaeudeFlaeche"
       hausAnordnung:
         type: "string"
         enum:
-          - "FREISTEHEND"
-          - "KOPFHAUS"
-          - "MITTELHAUS"
+        - "FREISTEHEND"
+        - "KOPFHAUS"
+        - "MITTELHAUS"
       hausTyp:
         type: "string"
         description: "Nur bei ObjektArt == HAUS."
         enum:
-          - "DOPPELHAUSHAELFTE"
-          - "EINFAMILIENHAUS"
-          - "MEHRFAMILIENHAUS"
-          - "REIHENHAUS"
-          - "ZWEIFAMILIENHAUS"
+        - "DOPPELHAUSHAELFTE"
+        - "EINFAMILIENHAUS"
+        - "MEHRFAMILIENHAUS"
+        - "REIHENHAUS"
+        - "ZWEIFAMILIENHAUS"
       istFertighaus:
         type: "boolean"
         description: "Nur bei ObjektArt == HAUS."
       kellerausbau:
         type: "string"
         enum:
-          - "AUSGEBAUT"
-          - "TEILWEISE_AUSGEBAUT"
-          - "VORHANDEN"
+        - "AUSGEBAUT"
+        - "TEILWEISE_AUSGEBAUT"
+        - "VORHANDEN"
       kubatur:
         type: "number"
         description: "Angabe in Kubikmetern."
@@ -2397,9 +2397,9 @@ definitions:
         type: "string"
         description: "Nur bei ObjektArt == HAUS."
         enum:
-          - "NICHT_UNTERKELLERT"
-          - "TEILWEISE_UNTERKELLERT"
-          - "UNTERKELLERT"
+        - "NICHT_UNTERKELLERT"
+        - "TEILWEISE_UNTERKELLERT"
+        - "UNTERKELLERT"
       wohnflaeche:
         $ref: "#/definitions/GebaeudeFlaeche"
     title: "Gebaeude"
@@ -2438,11 +2438,11 @@ definitions:
       grundstuecksArt:
         type: "string"
         enum:
-          - "UNBEBAUTES_WOHNGRUNDSTUECK"
-          - "UNBEBAUTES_MISCHGRUNDSTUECK"
-          - "UNBEBAUTES_GEWERBEGRUNDSTUECK"
-          - "LANDWIRTSCHAFTLICHES_GRUNDSTUECK"
-          - "SONSTIGES_GRUNDSTUECK"
+        - "UNBEBAUTES_WOHNGRUNDSTUECK"
+        - "UNBEBAUTES_MISCHGRUNDSTUECK"
+        - "UNBEBAUTES_GEWERBEGRUNDSTUECK"
+        - "LANDWIRTSCHAFTLICHES_GRUNDSTUECK"
+        - "SONSTIGES_GRUNDSTUECK"
     title: "Grundstueck"
   Haushalt:
     type: "object"
@@ -2570,30 +2570,30 @@ definitions:
   KfwDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
+    - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       kfwEnergieEffizienzStandard:
         type: "string"
         enum:
-          - "STANDARD_40_PLUS"
-          - "STANDARD_40"
-          - "STANDARD_55"
-          - "STANDARD_70"
+        - "STANDARD_40_PLUS"
+        - "STANDARD_40"
+        - "STANDARD_55"
+        - "STANDARD_70"
       kfwProgramm:
         type: "string"
         enum:
-          - "PROGRAMM_124"
-          - "PROGRAMM_141"
-          - "PROGRAMM_151"
-          - "PROGRAMM_152"
-          - "PROGRAMM_153"
-          - "PROGRAMM_155"
-          - "PROGRAMM_159"
-          - "PROGRAMM_167"
+        - "PROGRAMM_124"
+        - "PROGRAMM_141"
+        - "PROGRAMM_151"
+        - "PROGRAMM_152"
+        - "PROGRAMM_153"
+        - "PROGRAMM_155"
+        - "PROGRAMM_159"
+        - "PROGRAMM_167"
       laufzeitInJahren:
         type: "integer"
         format: "int32"
@@ -2606,7 +2606,8 @@ definitions:
       zinsBindungInJahren:
         type: "integer"
         format: "int32"
-        description: "Wert muss größer 0 sein."
+        description: "Wert muss größer 0 sein. Bei Programm 124: 5 oder 10, sonst:\
+          \ 10 oder 20."
     title: "KfwDarlehensWunsch"
   Kind:
     type: "object"
@@ -2651,17 +2652,17 @@ definitions:
       typ:
         type: "string"
         enum:
-          - "KAPITALBILDENDE_LEBENSVERSICHERUNG"
-          - "FONDSGEBUNDENE_LEBENSVERSICHERUNG"
-          - "KAPITALBILDENDE_RENTENVERSICHERUNG"
-          - "FONDSGEBUNDENE_RENTENVERSICHERUNG"
-          - "RISIKO_LEBENSVERSICHERUNG"
+        - "KAPITALBILDENDE_LEBENSVERSICHERUNG"
+        - "FONDSGEBUNDENE_LEBENSVERSICHERUNG"
+        - "KAPITALBILDENDE_RENTENVERSICHERUNG"
+        - "FONDSGEBUNDENE_RENTENVERSICHERUNG"
+        - "RISIKO_LEBENSVERSICHERUNG"
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       versicherungsGesellschaft:
         type: "string"
       versicherungsSumme:
@@ -2688,9 +2689,9 @@ definitions:
       ausweisArt:
         type: "string"
         enum:
-          - "PERSONALAUSWEIS"
-          - "REISEPASS"
-          - "ANDERE"
+        - "PERSONALAUSWEIS"
+        - "REISEPASS"
+        - "ANDERE"
       ausweisArtBeiAndererAusweis:
         type: "string"
         description: "Nur wenn ausweisArt = ANDERE"
@@ -2709,30 +2710,30 @@ definitions:
       bereichsZuordnung:
         type: "string"
         enum:
-          - "ANTRAGSTELLER"
-          - "OBJEKT"
-          - "VORHABEN"
-          - "ALTERNATIV"
-          - "ANPASSUNG"
-          - "UNBERUECKSICHTIGTE_ANGABE"
+        - "ANTRAGSTELLER"
+        - "OBJEKT"
+        - "VORHABEN"
+        - "ALTERNATIV"
+        - "ANPASSUNG"
+        - "UNBERUECKSICHTIGTE_ANGABE"
       code:
         type: "string"
       meldungsKategorie:
         type: "string"
         enum:
-          - "AUSZAHLUNGS_VORAUSSETZUNG"
-          - "MACHBAR"
-          - "MACHBARKEITS_HINWEIS"
-          - "ANPASSUNG_KUNDENWUNSCH"
-          - "ANPASSUNG_VERTRIEBSWUNSCH"
-          - "UNBERUECKSICHTIGTE_ANGABE"
-          - "KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN"
-          - "KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN"
-          - "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN"
-          - "MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN"
-          - "MACHBAR_UNTER_VORBEHALT_PRODUZENT"
-          - "NICHT_MACHBAR"
-          - "NICHT_ANBIETBAR"
+        - "AUSZAHLUNGS_VORAUSSETZUNG"
+        - "MACHBAR"
+        - "MACHBARKEITS_HINWEIS"
+        - "ANPASSUNG_KUNDENWUNSCH"
+        - "ANPASSUNG_VERTRIEBSWUNSCH"
+        - "UNBERUECKSICHTIGTE_ANGABE"
+        - "KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN"
+        - "KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN"
+        - "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN"
+        - "MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN"
+        - "MACHBAR_UNTER_VORBEHALT_PRODUZENT"
+        - "NICHT_MACHBAR"
+        - "NICHT_ANBIETBAR"
       produktAnbieterId:
         type: "string"
       text:
@@ -2782,9 +2783,9 @@ definitions:
       modernisierungsGrad:
         type: "string"
         enum:
-          - "GERING"
-          - "MITTEL"
-          - "HOCH"
+        - "GERING"
+        - "MITTEL"
+        - "HOCH"
       modernisierungsJahr:
         type: "string"
         example: "2016"
@@ -2814,10 +2815,10 @@ definitions:
       typ:
         type: "string"
         enum:
-          - "ARBEITGEBERDARLEHEN"
-          - "BAUSPARDARLEHEN"
-          - "OEFFENTLICHES_DARLEHEN"
-          - "RATENKREDIT"
+        - "ARBEITGEBERDARLEHEN"
+        - "BAUSPARDARLEHEN"
+        - "OEFFENTLICHES_DARLEHEN"
+        - "RATENKREDIT"
       zinsBindung:
         $ref: "#/definitions/ZinsBindung"
     title: "NachrangigesExternesDarlehen"
@@ -2827,8 +2828,8 @@ definitions:
       anrede:
         type: "string"
         enum:
-          - "FRAU"
-          - "HERR"
+        - "FRAU"
+        - "HERR"
       anschrift:
         $ref: "#/definitions/Postadresse"
       email:
@@ -2878,12 +2879,12 @@ definitions:
   PrivatDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
+    - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       laufzeitInMonaten:
         type: "integer"
         format: "int32"
@@ -2926,13 +2927,13 @@ definitions:
   RegionalFoerderDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
-      - "regionalFoerderbankProgramm"
+    - "darlehensBetrag"
+    - "regionalFoerderbankProgramm"
     properties:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       laufzeitInJahren:
         type: "integer"
         format: "int32"
@@ -2941,10 +2942,10 @@ definitions:
       regionalFoerderbankProgramm:
         type: "string"
         enum:
-          - "L_BANK_KOMBI_DARLEHEN_WOHNEN"
-          - "L_BANK_WOHNEN_MIT_KIND"
-          - "L_BANK_WOHNEN_MIT_ZUKUNFT"
-          - "NRW_BANK_WOHNEIGENTUM"
+        - "L_BANK_KOMBI_DARLEHEN_WOHNEN"
+        - "L_BANK_WOHNEN_MIT_KIND"
+        - "L_BANK_WOHNEN_MIT_ZUKUNFT"
+        - "NRW_BANK_WOHNEIGENTUM"
       tilgungsfreieAnlaufjahre:
         type: "integer"
         format: "int32"
@@ -2980,11 +2981,11 @@ definitions:
       zahlweise:
         type: "string"
         enum:
-          - "EINMALIG"
-          - "MONATLICH"
-          - "VIERTELJAEHRLICH"
-          - "HALBJAEHRLICH"
-          - "JAEHRLICH"
+        - "EINMALIG"
+        - "MONATLICH"
+        - "VIERTELJAEHRLICH"
+        - "HALBJAEHRLICH"
+        - "JAEHRLICH"
     title: "SonderZahlung"
   SparPhase:
     type: "object"
@@ -3016,9 +3017,9 @@ definitions:
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
     title: "Sparplaene"
@@ -3128,11 +3129,11 @@ definitions:
       faelligkeit:
         type: "string"
         enum:
-          - "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME"
-          - "VOR_DER_ERSTEN_AUSZAHLUNG"
-          - "VOR_JEDER_AUSZAHLUNG"
-          - "VOR_AUSZAHLUNG_LETZTE_RATE"
-          - "NACHZUREICHEN_SOBALD_VERFUEGBAR"
+        - "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME"
+        - "VOR_DER_ERSTEN_AUSZAHLUNG"
+        - "VOR_JEDER_AUSZAHLUNG"
+        - "VOR_AUSZAHLUNG_LETZTE_RATE"
+        - "NACHZUREICHEN_SOBALD_VERFUEGBAR"
       produktAnbieterId:
         type: "string"
       text:
@@ -3140,12 +3141,12 @@ definitions:
       zuordnung:
         type: "string"
         enum:
-          - "ANTRAGSTELLER"
-          - "OBJEKT"
-          - "VORHABEN"
-          - "ALTERNATIV"
-          - "ANPASSUNG"
-          - "UNBERUECKSICHTIGTE_ANGABE"
+        - "ANTRAGSTELLER"
+        - "OBJEKT"
+        - "VORHABEN"
+        - "ALTERNATIV"
+        - "ANPASSUNG"
+        - "UNBERUECKSICHTIGTE_ANGABE"
     title: "Unterlage"
   Unterlagen:
     type: "object"
@@ -3160,13 +3161,13 @@ definitions:
   VariablesDarlehensWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
-      - "tilgungsWunsch"
+    - "darlehensBetrag"
+    - "tilgungsWunsch"
     properties:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       provision:
         type: "number"
       tilgungsWunsch:
@@ -3195,9 +3196,9 @@ definitions:
       nutzungsArt:
         type: "string"
         enum:
-          - "EIGENGENUTZT"
-          - "TEIL_VERMIETET"
-          - "VERMIETET"
+        - "EIGENGENUTZT"
+        - "TEIL_VERMIETET"
+        - "VERMIETET"
       vermieteteFlaeche:
         type: "number"
     title: "VermietungsInformationen"
@@ -3218,9 +3219,9 @@ definitions:
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
     title: "Vermoegen"
@@ -3238,8 +3239,8 @@ definitions:
       vermoegensTyp:
         type: "string"
         enum:
-          - "VERMOEGEN"
-          - "VERBINDLICHKEIT"
+        - "VERMOEGEN"
+        - "VERBINDLICHKEIT"
     title: "VermoegenVerbindlichkeit"
   VermoegenVerbindlichkeiten:
     type: "object"
@@ -3297,12 +3298,12 @@ definitions:
           \ beinhalten. Außerdem wird bei einer Anschlussfinanzierung ein Haushalt\
           \ mit einem Antragsteller und Einkommen benötigt."
         enum:
-          - "ANSCHLUSSFINANZIERUNG"
-          - "KAUF"
-          - "KAUF_NEUBAU_VOM_BAUTRAEGER"
-          - "MODERNISIERUNG_UMBAU_ANBAU"
-          - "NEUBAU"
-          - "KAPITALBESCHAFFUNG"
+        - "ANSCHLUSSFINANZIERUNG"
+        - "KAUF"
+        - "KAUF_NEUBAU_VOM_BAUTRAEGER"
+        - "MODERNISIERUNG_UMBAU_ANBAU"
+        - "NEUBAU"
+        - "KAPITALBESCHAFFUNG"
     title: "Vorhaben"
   Wertpapiere:
     type: "object"
@@ -3323,9 +3324,9 @@ definitions:
       vermoegensEinsatz:
         type: "string"
         enum:
-          - "KEIN_EINSATZ"
-          - "ABTRETEN"
-          - "AUFLOESEN"
+        - "KEIN_EINSATZ"
+        - "ABTRETEN"
+        - "AUFLOESEN"
       zukuenftigeEinnahmen:
         type: "number"
     title: "Wertpapiere"
@@ -3347,14 +3348,14 @@ definitions:
       bausteinTyp:
         type: "string"
         enum:
-          - "ANNUITAETEN_DARLEHEN"
-          - "FORWARD_DARLEHEN"
-          - "REGIONAL_FOERDER_DARLEHEN"
-          - "KFW_DARLEHEN"
-          - "PRIVAT_DARLEHEN"
-          - "ZWISCHEN_FINANZIERUNG"
-          - "VARIABLES_DARLEHEN"
-          - "BAUSPARVERTRAG"
+        - "ANNUITAETEN_DARLEHEN"
+        - "FORWARD_DARLEHEN"
+        - "REGIONAL_FOERDER_DARLEHEN"
+        - "KFW_DARLEHEN"
+        - "PRIVAT_DARLEHEN"
+        - "ZWISCHEN_FINANZIERUNG"
+        - "VARIABLES_DARLEHEN"
+        - "BAUSPARVERTRAG"
       gesamtSumme:
         $ref: "#/definitions/Eintrag"
       identifier:
@@ -3366,8 +3367,8 @@ definitions:
       typ:
         type: "string"
         enum:
-          - "SPARPLAN"
-          - "TILGUNGSPLAN"
+        - "SPARPLAN"
+        - "TILGUNGSPLAN"
       zahlungen:
         type: "array"
         items:
@@ -3391,12 +3392,12 @@ definitions:
   ZwischenFinanzierungsWunsch:
     type: "object"
     required:
-      - "darlehensBetrag"
+    - "darlehensBetrag"
     properties:
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
-          \ 10.Milliarden sein."
+          \ 10 Milliarden sein."
       detailsZurVerwendung:
         type: "string"
       maximaleLaufzeitInMonaten:
@@ -3407,7 +3408,7 @@ definitions:
       verwendungszweck:
         type: "string"
         enum:
-          - "VORFINANZIERUNG_OEFFENTLICHER_MITTEL"
-          - "VERKAUF_EINES_ANDEREN_OBJEKTS"
-          - "SONSTIGE_VERWENDUNG"
+        - "VORFINANZIERUNG_OEFFENTLICHER_MITTEL"
+        - "VERKAUF_EINES_ANDEREN_OBJEKTS"
+        - "SONSTIGE_VERWENDUNG"
     title: "ZwischenFinanzierungsWunsch"

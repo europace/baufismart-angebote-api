@@ -1302,7 +1302,7 @@
         },
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "provision": {
           "type": "number"
@@ -3140,7 +3140,7 @@
         },
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "provision": {
           "type": "number"
@@ -3534,7 +3534,7 @@
       "properties": {
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "kfwEnergieEffizienzStandard": {
           "type": "string",
@@ -3573,7 +3573,7 @@
         "zinsBindungInJahren": {
           "type": "integer",
           "format": "int32",
-          "description": "Wert muss größer 0 sein."
+          "description": "Wert muss größer 0 sein. Bei Programm 124: 5 oder 10, sonst: 10 oder 20."
         }
       },
       "title": "KfwDarlehensWunsch"
@@ -3964,7 +3964,7 @@
       "properties": {
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "laufzeitInMonaten": {
           "type": "integer",
@@ -4034,7 +4034,7 @@
       "properties": {
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "laufzeitInJahren": {
           "type": "integer",
@@ -4353,7 +4353,7 @@
       "properties": {
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "provision": {
           "type": "number"
@@ -4665,7 +4665,7 @@
       "properties": {
         "darlehensBetrag": {
           "type": "number",
-          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10.Milliarden sein."
+          "description": "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und 10 Milliarden sein."
         },
         "detailsZurVerwendung": {
           "type": "string"
