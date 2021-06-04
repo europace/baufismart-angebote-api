@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.5"
+  version: "2.6"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -1139,6 +1139,15 @@ definitions:
           - "FUCHS_IMMO_5"
           - "FUCHS_IMMO_6"
           - "FUCHS_IMMO_7"
+          - "FUCHS_ECO_XE"
+          - "FUCHS_ECO_XT"
+          - "FUCHS_IMMO_WP"
+          - "FUCHS_IMMO_WS"
+          - "FUCHS_IMMO_XL"
+          - "FUCHS_IMMO_XP"
+          - "FUCHS_IMMO_XS"
+          - "FUCHS_START_XX"
+          - "FUCHS_START_XY"
           - "LBS_BAYERN_W4"
           - "LBS_BAYERN_W4_X30"
           - "LBS_BAYERN_W4_X35"
@@ -2576,15 +2585,33 @@ definitions:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
           \ 10 Milliarden sein."
+      kfwEnergieEffizienzGruppe:
+        type: "string"
+        description: "Nur bei den neuen Programmen notwendig (261, 262). STANDARD\
+          \ ist nur für alte Programme vorgesehen."
+        enum:
+        - "STANDARD"
+        - "NEUBAU"
+        - "SANIERUNG"
       kfwEnergieEffizienzStandard:
         type: "string"
         enum:
-        - "STANDARD_40_PLUS"
         - "STANDARD_40"
+        - "STANDARD_40_PLUS"
+        - "STANDARD_40_EEK"
         - "STANDARD_55"
+        - "STANDARD_55_EEK"
         - "STANDARD_70"
+        - "STANDARD_70_EEK"
+        - "STANDARD_85"
+        - "STANDARD_85_EEK"
+        - "STANDARD_100"
+        - "STANDARD_100_EEK"
+        - "STANDARD_DENKMAL"
+        - "STANDARD_DENKMAL_EEK"
       kfwProgramm:
         type: "string"
+        description: "Programme 261, 262 sind erst ab dem 01.07.21 erlaubt"
         enum:
         - "PROGRAMM_124"
         - "PROGRAMM_141"
@@ -2594,6 +2621,11 @@ definitions:
         - "PROGRAMM_155"
         - "PROGRAMM_159"
         - "PROGRAMM_167"
+        - "PROGRAMM_261"
+        - "PROGRAMM_262"
+      kfwSanierungsFahrplanLiegtVor:
+        type: "boolean"
+        description: "Individueller Sanierungsfahrplan liegt vor"
       laufzeitInJahren:
         type: "integer"
         format: "int32"
