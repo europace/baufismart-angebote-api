@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.6"
+  version: "2.6.1"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -2040,7 +2040,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       annahmeFrist:
         type: "string"
         format: "date-time"
@@ -2088,7 +2090,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       ergebnisse:
         type: "array"
         items:
@@ -2098,7 +2102,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       ergebnisse:
         type: "array"
         items:
@@ -2110,7 +2116,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       alternativen:
         type: "boolean"
       erfassteDaten:
@@ -2730,12 +2738,35 @@ definitions:
       ausweisNummer:
         type: "string"
     title: "LegitimationsDaten"
-  Links:
+  Link:
     type: "object"
     properties:
-      empty:
+      deprecation:
+        type: "string"
+      href:
+        type: "string"
+      hreflang:
+        type: "string"
+      media:
+        type: "string"
+      name:
+        type: "string"
+      profile:
+        type: "string"
+      rel:
+        $ref: "#/definitions/LinkRelation"
+      template:
+        $ref: "#/definitions/UriTemplate"
+      templated:
         type: "boolean"
-    title: "Links"
+      title:
+        type: "string"
+      type:
+        type: "string"
+    title: "Link"
+  LinkRelation:
+    type: "object"
+    title: "LinkRelation"
   Meldung:
     type: "object"
     properties:
@@ -2775,7 +2806,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       meldungen:
         type: "array"
         items:
@@ -2928,7 +2961,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       name:
         type: "string"
       partnerId:
@@ -2940,7 +2975,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       betrag:
         type: "number"
       partnerId:
@@ -3078,6 +3115,26 @@ definitions:
       nativeMethod:
         type: "boolean"
     title: "StackTraceElement"
+  TemplateVariable:
+    type: "object"
+    properties:
+      description:
+        type: "string"
+      name:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+        - ""
+        - "?"
+        - "&"
+        - "/"
+        - "#"
+        - "*"
+    title: "TemplateVariable"
+  TemplateVariables:
+    type: "object"
+    title: "TemplateVariables"
   Throwable:
     type: "object"
     properties:
@@ -3184,12 +3241,24 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       unterlagen:
         type: "array"
         items:
           $ref: "#/definitions/Unterlage"
     title: "Unterlagen"
+  UriTemplate:
+    type: "object"
+    properties:
+      variableNames:
+        type: "array"
+        items:
+          type: "string"
+      variables:
+        $ref: "#/definitions/TemplateVariables"
+    title: "UriTemplate"
   VariablesDarlehensWunsch:
     type: "object"
     required:
@@ -3366,7 +3435,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       zahlungsplaene:
         type: "array"
         items:
@@ -3376,7 +3447,9 @@ definitions:
     type: "object"
     properties:
       _links:
-        $ref: "#/definitions/Links"
+        type: "object"
+        additionalProperties:
+          $ref: "#/definitions/Link"
       bausteinTyp:
         type: "string"
         enum:
