@@ -4,7 +4,7 @@ Eine API, um Finanzierungs-Angebote zu ermitteln
 
 ⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt).
 
-##### Aktuelle Version: 2.4 
+##### Aktuelle Version: 2.6.1
 
 Wesentliche Änderungen zur Version 1.5.
 
@@ -20,12 +20,12 @@ Wesentliche Änderungen zur Version 1.5.
 Die API ist vollständig in Swagger definiert. Die Swagger-Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](swagger.yaml)
 
 Diese Spezifikation kann auch zur Generierung von Clients für diese API verwendet
-werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). 
+werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen).
 
 # Dokumentation
 
- - [RELEASE NOTES](https://github.com/hypoport/finanzierungsvorschlaege-api/releases)
- - [statische HTML Seite](http://htmlpreview.github.io?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
+- [RELEASE NOTES](https://github.com/hypoport/finanzierungsvorschlaege-api/releases)
+- [statische HTML Seite](http://htmlpreview.github.io?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
 
 ### Generierung des Clients
 ##### JAVA mit Retrofit
