@@ -3,7 +3,7 @@ swagger: "2.0"
 info:
   description: "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu\
     \ ermitteln"
-  version: "2.6.1"
+  version: "2.6.2"
   title: "Ergebnislisten API"
   contact:
     name: "Europace AG"
@@ -34,6 +34,11 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "alternativen"
         in: "query"
         description: "alternativen"
@@ -103,6 +108,11 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "alternativen"
         in: "query"
         description: "alternativen"
@@ -167,6 +177,11 @@ paths:
         \ im Body benötigt"
       operationId: "ermittleErgebnisse"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "alternativen"
         in: "query"
         description: "alternativen"
@@ -206,10 +221,10 @@ paths:
         required: false
         type: "string"
       responses:
-        200:
-          description: "OK"
-          schema:
-            $ref: "#/definitions/Ermittlung"
+        302:
+          description: "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter\
+            \ der Url im 'location' Header abrufbar. Beim Abruf der Ermittlung wird\
+            \ der Bearer Token zur Autorisierung erwartet."
         400:
           description: "Bad Request"
           schema:
@@ -253,6 +268,11 @@ paths:
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErmittlung"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ermittlungsId"
         in: "path"
         description: "ermittlungsId"
@@ -302,6 +322,11 @@ paths:
       description: "Als Parameter wird die ErmittlungsAnfrageId benötigt."
       operationId: "getErgebnisListe"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ermittlungsId"
         in: "path"
         description: "ermittlungsId"
@@ -352,6 +377,11 @@ paths:
         \ benötigt."
       operationId: "getErgebnis"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -408,6 +438,11 @@ paths:
         \ benötigt."
       operationId: "getMeldungen"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -464,6 +499,11 @@ paths:
         \ benötigt."
       operationId: "getProvision"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -527,6 +567,11 @@ paths:
         \ benötigt."
       operationId: "getUnterlagen"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -583,6 +628,11 @@ paths:
         \ benötigt."
       operationId: "getZahlungsplaene"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -639,6 +689,11 @@ paths:
         \ sowie der Index des Zahlungsplans benötigt."
       operationId: "getZahlungsplan"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ergebnisNummer"
         in: "path"
         description: "ergebnisNummer"
@@ -699,6 +754,11 @@ paths:
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErmittlungsAnfrage"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ermittlungsId"
         in: "path"
         description: "ermittlungsId"
@@ -748,6 +808,11 @@ paths:
       description: "Als Parameter wird die ErmittlungsId benötigt."
       operationId: "getErfassteDaten"
       parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       - name: "ermittlungsId"
         in: "path"
         description: "ermittlungsId"
@@ -797,7 +862,12 @@ paths:
       operationId: "getBaufiSmartApiVersionUsingGET"
       produces:
       - "text/plain"
-      parameters: []
+      parameters:
+      - name: "X-TraceId"
+        in: "header"
+        description: "Eine eindeutige technische Id zur Identifikation des Requests."
+        required: false
+        type: "string"
       responses:
         200:
           description: "OK"

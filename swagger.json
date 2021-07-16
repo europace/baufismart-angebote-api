@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
-    "version": "2.6.1",
+    "version": "2.6.2",
     "title": "Ergebnislisten API",
     "contact": {
       "name": "Europace AG",
@@ -47,6 +47,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "alternativen",
             "in": "query",
@@ -138,8 +145,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v1/finanzierungsvorschlaege/{vorgangsNummer}": {
@@ -153,6 +159,13 @@
           "application/json"
         ],
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "alternativen",
             "in": "query",
@@ -236,8 +249,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung": {
@@ -249,6 +261,13 @@
         "description": "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON im Body benötigt",
         "operationId": "ermittleErgebnisse",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "alternativen",
             "in": "query",
@@ -304,11 +323,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Ermittlung"
-            }
+          "302": {
+            "description": "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar. Beim Abruf der Ermittlung wird der Bearer Token zur Autorisierung erwartet."
           },
           "400": {
             "description": "Bad Request",
@@ -365,8 +381,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}": {
@@ -378,6 +393,13 @@
         "description": "Als Parameter wird die ErmittlungsId benötigt.",
         "operationId": "getErmittlung",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ermittlungsId",
             "in": "path",
@@ -442,8 +464,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse": {
@@ -455,6 +476,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId benötigt.",
         "operationId": "getErgebnisListe",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ermittlungsId",
             "in": "path",
@@ -519,8 +547,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}": {
@@ -532,6 +559,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisnummer benötigt.",
         "operationId": "getErgebnis",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -604,8 +638,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/meldungen": {
@@ -617,6 +650,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.",
         "operationId": "getMeldungen",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -689,8 +729,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/provision": {
@@ -702,6 +741,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.",
         "operationId": "getProvision",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -783,8 +829,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/unterlagen": {
@@ -796,6 +841,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.",
         "operationId": "getUnterlagen",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -868,8 +920,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene": {
@@ -881,6 +932,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.",
         "operationId": "getZahlungsplaene",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -953,8 +1011,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene/{zahlungsplanIndex}": {
@@ -966,6 +1023,13 @@
         "description": "Als Parameter wird die ErmittlungsAnfrageId, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.",
         "operationId": "getZahlungsplan",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ergebnisNummer",
             "in": "path",
@@ -1045,8 +1109,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage": {
@@ -1058,6 +1121,13 @@
         "description": "Als Parameter wird die ErmittlungsId benötigt.",
         "operationId": "getErmittlungsAnfrage",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ermittlungsId",
             "in": "path",
@@ -1122,8 +1192,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ermittlungsAnfrage/erfassteDaten": {
@@ -1135,6 +1204,13 @@
         "description": "Als Parameter wird die ErmittlungsId benötigt.",
         "operationId": "getErfassteDaten",
         "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          },
           {
             "name": "ermittlungsId",
             "in": "path",
@@ -1199,8 +1275,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     },
     "/version/baufiSmartApi": {
@@ -1212,6 +1287,15 @@
         "operationId": "getBaufiSmartApiVersionUsingGET",
         "produces": [
           "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "X-TraceId",
+            "in": "header",
+            "description": "Eine eindeutige technische Id zur Identifikation des Requests.",
+            "required": false,
+            "type": "string"
+          }
         ],
         "responses": {
           "200": {
@@ -1269,8 +1353,7 @@
               "API"
             ]
           }
-        ],
-        "deprecated": false
+        ]
       }
     }
   },
@@ -2727,7 +2810,7 @@
         },
         "laufzeitBisJahr": {
           "type": "string",
-          "example": 2088
+          "example": "2088"
         }
       },
       "title": "Erbbaurecht"
@@ -3213,7 +3296,7 @@
         },
         "baujahr": {
           "type": "string",
-          "example": 2016,
+          "example": "2016",
           "description": "Bei verwendungszweck != NEUBAU"
         },
         "bauweise": {
@@ -3910,7 +3993,7 @@
         },
         "modernisierungsJahr": {
           "type": "string",
-          "example": 2016,
+          "example": "2016",
           "description": "Jahr der Modernisierung der Immobilie"
         },
         "raumaufteilung": {
