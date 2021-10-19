@@ -137,7 +137,7 @@ Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too M
 Einige Anbieter sind nur regional aktiv - um diese Angebote zu erhalten müssen "Haushalte" und "Finanzierungsobjekt" gefüllt sein.
 
 ### Wie erhalte ich Angebote mit KfW Produkten?
-Hierfür müssen sie die Berechnung von Alternativen explizit anfordern: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
+Hierfür musst du die Berechnung von Alternativen explizit anfordern: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
 
 ### Kann ich meine eigene TraceId beim Absenden des Requests mitgeben?
 Ja. Der Vorteil dabei ist, dass wir deinen Request in unserem System verfolgen und schneller und gezielter debuggen können.
