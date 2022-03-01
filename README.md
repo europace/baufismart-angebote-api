@@ -1,174 +1,405 @@
 # Angebote API
 
-Eine API, um Finanzierungs-Angebote zu ermitteln
+As advisor you can find offers and compare them to get the best customer solution.
 
-⚠️ Diese API hieß ehemals Finanzierungsvorschläge API oder Ergebnisslisten API (auch ELI genannt).
+![advisor](https://img.shields.io/badge/-advisor-lightblue)
+![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
 
-##### Aktuelle Version: 2.6.2
+[![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
+[![YAML](https://img.shields.io/badge/OAS-YAML-lightblue)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
+[![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/https://github.com/europace/baufismart-antraege-api))
 
-Wesentliche Änderungen zur Version 1.5.
+[![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-antraege-api)](https://github.com/europace/baufismart-antraege-api/releases)
+[![Pattern](https://img.shields.io/badge/Pattern-Tolerant%20Reader-yellowgreen)](https://martinfowler.com/bliki/TolerantReader.html)
 
-* Die Version v1 funktioniert wie bisher: https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer}
-* Finanzierungsvorschläge werden in Ergebnisse umbenannt, die Liste in Ergebnisliste.
-* Der REST Endpunkt (Post Method) zur Ermittlung von Ergebnissen lautet: https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung
-* Man kann sich die Ermittlung mit den gelieferten Ergebnissen und Details für **60 Minuten** nachladen.
-* Ergebnisdetails wie Unterlagen, Meldungen und Zahlungspläne können zu einem Ergebnis ausgelesen werden.
+## Usecases
 
+- as advisor you can find offers and compare them to get the best customer solution
+- as advisor or loan provider find prolongation offers
 
-### Swagger-Spezifikation
+## Requirements
 
-Die API ist vollständig in Swagger definiert. Die Swagger-Definition wird im YAML-Format zur Verfügung gestellt.: [swagger.yaml](https://github.com/europace/baufismart-angebote-api/blob/master/swagger.yaml)
+- authenticated as loan provider
 
-Diese Spezifikation kann auch zur Generierung von Clients für diese API verwendet
-werden. Dazu empfehlen wir das Tool [Swagger Codegen](https://github.com/swagger-api/swagger-codegen). 
+## Quick Start
 
-# Dokumentation
+To test our APIs and your use cases as quickly as possible, we have created a [Postman Collection](https://github.com/europace/api-quickstart) for you.
 
- - [RELEASE NOTES](https://github.com/hypoport/finanzierungsvorschlaege-api/releases)
- - [statische HTML Seite](http://htmlpreview.github.io?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
+### Authentication
 
-### Generierung des Clients
-##### JAVA mit Retrofit
+Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
 
-1. Die aktuelle Swagger-Codegen Version, mindestens 2.2.2, downloaden
-2. Client mit folgendem Kommando generieren:
+| Scope                               | API Use case                                                         |
+|-------------------------------------|----------------------------------------------------------------------|
+| `baufinanzierung:angebot:ermitteln` | to find offers                                                       |
 
-Example:
+## Find offers
 
+To find offers, Europace offer two ways: \
+a) You send your customer data to api and get offers without a case in Europace. \
+b) You can find offers for an existing case.
+
+### a) Find offers for a case
+
+As adivisor you want to check the current loan rates for a past offering, to decide the next step with customer.
+
+example-request:
+
+``` http
+POST /v2/ergebnisliste/ermittlung?vorgangsNummer={{case-id}} HTTP/1.1
+Host: baufismart.api.europace.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
 ```
-java -jar swagger-codegen-cli-2.2.2.jar generate -i swagger.yaml -l java -c codegen-config-file.json -o europace-api-client
-```
 
-Example **codegen-config-file.json**:
+example-response:
 
-```
+``` json
 {
-  "artifactId": "europace-api-client",
-  "groupId": "de.europace.api",
-  "library": "retrofit2",
-  "artifactVersion": "0.1",
-  "dateLibrary": "java8"
+    "ermittlungsId": "CJAMN4",
+    "ergebnisse": [
+        {
+            "kennung": "",
+            "darlehensSumme": 100000.00,
+            "sollZins": 1.19000,
+            "effektivZins": 1.23000,
+            "darlehen": [
+                {
+                    "id": "620d2b1aa52cfa08e9ef171b",
+                    "typ": "ANNUITAETEN_DARLEHEN",
+                    "sollZins": 1.19000,
+                    "effektivZins": 1.23000,
+                    "effektivZinsRelevanteKosten": {
+                        "grundbuchKosten": 273.00
+                    },
+                    "rateMonatlich": 265.83,
+                    "darlehensBetrag": 100000.00,
+                    "auszahlungsBetrag": 100000.00,
+                    "produktAnbieter": {
+                        "produktAnbieterId": "MUSTERBANK",
+                        "partnerId": "GWL17",
+                        "name": "Musterbank",
+                        "_links": {
+                            "logo": {
+                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                            }
+                        }
+                    },
+                    "finanzierenderProduktAnbieter": {
+                        "produktAnbieterId": "MUSTERBANK",
+                        "partnerId": "GWL17",
+                        "name": "Musterbank",
+                        "_links": {
+                            "logo": {
+                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                            }
+                        }
+                    },
+                    "zinsZahlungsBeginnAm": "2022-04-30",
+                    "zinsBindung": {
+                        "jahre": 10,
+                        "restschuldNachZinsBindungsEnde": 78772.98
+                    },
+                    "tilgung": {
+                        "anfaenglicheTilgung": 2.00000,
+                        "tilgungsBeginn": "2022-04-30",
+                        "sonderTilgungJaehrlich": 10.00000
+                    },
+                    "bereitstellung": {
+                        "bereitstellungsZinsfreieZeitInMonaten": 3,
+                        "bereitstellungsZins": 3.00000
+                    },
+                    "gesamtlaufzeitInMonaten": 472,
+                    "gesamtkosten": 125216.08,
+                    "auszahlungsDatum": "2022-03-31"
+                }
+            ],
+            "beleihung": [
+                {
+                    "produktAnbieter": {
+                        "produktAnbieterId": "MUSTERBANK",
+                        "partnerId": "GWL17",
+                        "name": "Musterbank",
+                        "_links": {
+                            "logo": {
+                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                            }
+                        }
+                    },
+                    "summe": 180000.00,
+                    "auslauf": 55.56000
+                }
+            ],
+            "machbarkeit": "MACHBAR",
+            "annahmeFrist": "2022-03-04T23:59:59+01:00",
+            "erzeugtAm": "2022-02-25T11:39:13.621+01:00",
+            "bausparAngebote": [],
+            "anpassungsStatus": "ANGEPASST",
+            "_links": {
+                "_self": {
+                    "href": "https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30"
+                }
+            }
+        },
+        ....
+    ]
 }
-
 ```
 
-### Authentifizierung
-Bitte benutze [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://github.com/europace/authorization-api), um Zugang zur API bekommen.
+### b) Find offers without case
 
-Um die API verwenden zu können, benötigt der OAuth2-Client folgende Scopes: \
-`baufinanzierung:angebot:ermitteln`
+As customer you want to check your financial possibilities for by a new home and play around a little bit.
+No data will be stored.
+To find the best offers you have to set the financing parameters in the body. The body format is the same as the [vorgaenge-api](https://docs.api.europace.de/baufinanzierung/vorgaenge/vorgang-auslesen-api/) can get.
 
-# Ergebnisse abrufen
+example-request:
 
-## Ermittlungsanfrage mit übermitteln
+``` http
+POST /v2/ergebnisliste/ermittlung/ HTTP/1.1
+Host: baufismart.api.europace.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+Content-Length: 762
 
-Für Ergebnisse/Finanzierungsvorschläge benötigen wir einen Darlehenswunsch. Ein möglicher Beispiel-Request wäre:
-
-```
-curl -X POST \
-  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung \
-  -H 'authorization: Bearer {{access_token}}' \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/json' \
-  -d '{
-      "vorhaben": {
+{
+    "vorhaben": {
         "finanzbedarf": {
-          "kaufpreis": 100000
+            "kaufpreis": 200000
         },
         "finanzierungswunsch": {
-             "darlehensWuensche": [
-               {
-                 "annuitaetenDarlehen": {
-                     "darlehensBetrag": 150000,
-                     "provision": 1,
-                     "tilgungsWunsch": {
-                         "anfaenglicheTilgung": 2,
-                         "volltilgerWennAnnuitaetenOderForward": false
-                     },
-                     "bereitstellungsZinsFreieZeitInMonaten": 2,
-                     "sondertilgungOptionalJaehrlich": 100,
-                     "zinsBindungInJahren": 10
-                 }
-               }
-
-             ]
+            "darlehensWuensche": [
+                {
+                    "annuitaetenDarlehen": {
+                        "darlehensBetrag": 150000,
+                        "provision": 1,
+                        "tilgungsWunsch": {
+                            "anfaenglicheTilgung": 2,
+                            "volltilgerWennAnnuitaetenOderForward": false
+                        },
+                        "bereitstellungsZinsFreieZeitInMonaten": 2,
+                        "sondertilgungOptionalJaehrlich": 100,
+                        "zinsBindungInJahren": 10
+                    }
+                }
+            ]
         }
-      }
-    }'
+    }
+}
 ```
 
-## Ermittlungsanfrage mit Vorgangsnummer
+example-response:
 
-Als valide Eingaben für diese Schnittstelle können die Ergebnisse der [Vorgänge-API](https://github.com/hypoport/vorgaenge-api)
-verwendet werden.
+[see result of a\)](#a\)find-offers-for-a-case)
 
-Des Weiteren können auch direkt zu einem bestehenden Vorgang Finanzierungsvorschläge abgerufen werden:
+## get additional offer detail
 
-```
-curl -X POST \
-  https://baufismart.api.europace.de/v1/finanzierungsvorschlaege/{vorgangsNummer}  \
-  -H 'authorization: Bearer {{access_token}}' \
-  -H 'cache-control: no-cache'
-```
+### get offer notes
 
+You can get a list of notes for an offer, to see what is probably problematic with your case.
+As parameter you need the offerfinding-id (like CJAMN4) and the offer-iterator (like 30).
 
-```
-curl -X POST \
-  https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer={vorgangsNummer}  \
-  -H 'authorization: Bearer {{access_token}}' \
-  -H 'cache-control: no-cache'
+example-request:
+
+``` http
+GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/meldungen HTTP/1.1
+Host: baufismart.api.europace.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
 ```
 
-## Häufige Fragen / FAQ
+example-response:
 
-### Ich bekomme ein `302` als Antwort. Der Response ist leer.
-302 ist ein "Redirect". Der Client sollte dem Redirect folgen, indem er die URL aufruft, die im Header unter `Location` zurückkommt.
+``` json
+{
+    "meldungen": [
+        {
+            "text": "Gib bitte an, ob der Finanzierungsvorschlag deiner Empfehlung entspricht.",
+            "code": "pe.speed.vorbehaltsmeldung.angebot.empfohlen",
+            "produktAnbieterId": "MUSTERBANK",
+            "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+            "bereichsZuordnung": "VORHABEN"
+        },
+        {
+            "text": "Bei einer Verringerung der Darlehenssumme unter 150.000,00 € verändert sich die Kondition um -0,05 %. Bis zu einer Darlehenssumme unter 168.800,00 € bleibt die Kondition gleich.",
+            "code": "pe.speed.machbarkeit.darlehenssumme.optimierung.beideGrenzen",
+            "produktAnbieterId": "MUSTERBANK",
+            "meldungsKategorie": "MACHBARKEITS_HINWEIS",
+            "bereichsZuordnung": "VORHABEN"
+        },
+        {
+            "text": "Die bereitstellungszinsfreie Zeit für das Annuitätendarlehen über 150.000,00 € wurde auf die maximal kostenfreie Zeit von 3 Monaten erhöht.",
+            "code": "pe.speed.machbarkeit.annuitaetendarlehen.bereitstellungszins.erhoeht.anpassung",
+            "produktAnbieterId": "MUSTERBANK",
+            "meldungsKategorie": "ANPASSUNG_KUNDENWUNSCH",
+            "bereichsZuordnung": "VORHABEN"
+        },
+        {
+            "text": "Es wurde keine Person angegeben.",
+            "code": "pe.speed.vorbehaltsmeldung.darlehensnehmer",
+            "produktAnbieterId": "MUSTERBANK",
+            "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+            "bereichsZuordnung": "VORHABEN"
+        },
+        ...
+    ]
+}
+```
 
-### Wie funktioniert das Rate-Limiting? Wieso bekomme ich `429`als Antwort?
-Im Response gibt einen Custom-Header, der folgende Felder enthält:
+### get needed proofs
 
-* `X-RateLimit-Remaining` —> Wie viele Aufrufe habe ich noch im aktuellen Zeitfenster?
-* `X-RateLimit-Reset` —> Wie viele Sekunden, bis sich das aktuelle Zeitfenster schließt und das nächste öffnet?
+You can get a list of needed proofs for an offer, to inform your customer wich documents are needed for approval.
 
-Wenn `X-RateLimit-Remaining` 0 erreicht, dann kommt der Status Code `429 - Too Many Requests` zurück und es können keine Requests mehr gemacht werden. Es muss bis zum nächsten Zeitfenster gewartet werden.
+example-request:
 
+``` http
+GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/unterlagen HTTP/1.1
+Host: baufismart.api.europace.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
 
-### Es kommen keine oder wenige Angebote, woran liegt das?
-Einige Anbieter sind nur regional aktiv - um diese Angebote zu erhalten müssen "Haushalte" und "Finanzierungsobjekt" gefüllt sein.
+example-response:
 
-### Wie erhalte ich Angebote mit KfW Produkten?
-Hierfür musst du die Berechnung von Alternativen explizit anfordern: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
+``` json
+{
+    "unterlagen": [
+        {
+            "bezugsObjektId": "620d2b1aa64cfa08e9ef171b",
+            "code": "093f65e0-80a2-35f8-876b-1c5722a46aa2",
+            "produktAnbieterId": "MUSTERBANK",
+            "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+            "zuordnung": "ANTRAGSTELLER",
+            "text": "Jahreskontoauszug vom letzten Jahr"
+        },
+        {
+            "bezugsObjektId": "620d2b1aa52cfa0adc3f172e",
+            "code": "e2c420d9-28d4-3f8c-a0ff-2ec19b371514",
+            "produktAnbieterId": "MUSTERBANK",
+            "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+            "zuordnung": "IMMOBILIE",
+            "text": "Grundbuchauszug"
+        },
+    ...
+}
+```
 
-### Kann ich meine eigene TraceId beim Absenden des Requests mitgeben?
-Ja. Der Vorteil dabei ist, dass wir deinen Request in unserem System verfolgen und schneller und gezielter debuggen können.
+### get redemption plan
 
-Es geht mittels eines HTTP Headers: `x-TraceId`. Den Wert kannst du beliebig wählen. Es ist ratsam, bei jedem Request eine neue TraceId mitzugeben, damit Traces in unserem System eindeutig auffindbar sind.
+You can get a redemption plan for an offer, to show your customer his cashflow.
 
-## Kann ich die Provision eines Angebots bekommen?
+example-request:
 
-Um die Provisionsberechnung zu aktivieren, muss bei der Angebotsermittlung der Request-Parameter provisionsAusgabe auf true gesetzt werden.
+``` http
+GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/zahlungsplaene HTTP/1.1
+Host: baufismart.api.europace.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
 
-Bsp: `POST https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
+example-response:
 
-Als Antwort erhält man eine Ermittlungs-ID. Anschließend kann man die Ermittlungs-ID nutzen, um die Provision zu einem Angebot abzufragen. Es handelt sich dabei immer um die Provision desjenigen, der die Angebote ermittelt hat.
+``` json
+{
+    "zahlungsplaene": [
+        {
+            "identifier": "U5BT3T1XKB",
+            "typ": "TILGUNGSPLAN",
+            "bausteinTyp": "ANNUITAETEN_DARLEHEN",
+            "zahlungen": [
+                {
+                    "datum": "2022-03-31",
+                    "zahlung": -150000.00,
+                    "tilgung": -150000.00,
+                    "zinsen": 0.00,
+                    "saldo": -150000.00
+                },
+                {
+                    "datum": "2022-04-30",
+                    "zahlung": 736.25,
+                    "tilgung": 250.00,
+                    "zinsen": 486.25,
+                    "saldo": -149750.00
+                },
+                {
+                    "datum": "2022-05-31",
+                    "zahlung": 736.25,
+                    "tilgung": 250.81,
+                    "zinsen": 485.44,
+                    "saldo": -149499.19
+                },
+                ....
+                ],
+            "summeEndeDerZinsbindung": {
+                "datum": "2032-03-31",
+                "zahlung": 88350.00,
+                "tilgung": 36599.68,
+                "zinsen": 51750.32,
+                "saldo": -113400.32
+            },
+            "gesamtSumme": {
+                "zahlung": 245713.04,
+                "tilgung": 150000.00,
+                "zinsen": 95713.04,
+                "saldo": 0.00
+            }
+        }
+    ]
+}
+```
+
+## FAQ
+
+### No or few offers are coming in, what is the reason?
+
+Some providers are only active regionally - to receive these offers "Haushalte" and "Finanzierungsobjekt" must be filled.
+
+### How do I receive offers with KfW products?
+
+For this, you must explicitly request the calculation of alternatives: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
+
+### Can I get the commission of an offer?
+
+In order to activate the commission calculation, the request parameter provisionsAusgabe must be set to true during the offer determination.
+
+example-request:
+
+`POST https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
+
+In response, you receive an investigation ID. You can then use the determination ID to query the commission for an offer. It is always the commission of the person who has determined the offers.
+
+example-request:
 
 `GET https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
 
-Achtung: Die Berechnung der Provision ist teuer und erfolgt daher asynchron im Hintergrund. Sollte die Provisionsberechnung noch nicht abgeschlossen sein, so gibt es einen temporären Redirekt mit kurzer zeitlicher Verzögerung. Der Http-Client sollte den Abruf dann kurze Zeit später wiederholen.
+> Attention:  
+> The calculation of the commission is expensive and therefore takes place asynchronously in the background. If the commission calculation is not yet completed, there is a temporary redirect with a short time delay. The Http client should then repeat the retrieval a short time later.
 
-Struktur der Response:
-```
+example-response:
+
+``` json
 {
-betrag: 100000,    // Betrag in Cents.
-partnerId: "WER03" // PartnerId des Empfängers
+    betrag: 100000,    // amount in cents
+    partnerId: "WER03" // PartnerId of the recipient
 }
 ```
 
+### I get a `302` as response. The response is empty?
 
+302 is a `redirect`. The client should follow the redirect by calling the URL returned in the header under `Location`.
 
-## Fragen und Anregungen
-Bei Fragen und Anregungen kannst du entweder ein Issue in GitHub anlegen oder an [devsupport@europace2.de](mailto:devsupport@europace2.de) schreiben.
+### How does rate limiting work? Why do I get `429` as answer?
 
+In the response there is a custom header that contains the following fields:
 
-## Nutzungsbedingungen
-Die APIs werden unter folgenden [Nutzungsbedingungen](https://developer.europace.de/terms/) zur Verfügung gestellt.
+- `X-RateLimit-Remaining` -> How many calls do I have left in the current time window?
+- `X-RateLimit-Reset` -> How many seconds until the current time window closes and the next one opens?
+
+If `X-RateLimit-Remaining` reaches 0, then the status code `429 - Too Many Requests` comes back and no more requests can be made. You have to wait until the next time window.
+
+## Terms of use
+
+The APIs are provided under the following [Terms of Use](https://docs.api.europace.de/nutzungsbedingungen).
+
+## Support
+
+If you have any questions or problems, you can contact devsupport@europace2.de.
