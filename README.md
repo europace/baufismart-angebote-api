@@ -7,9 +7,9 @@ As advisor you can find offers and compare them to get the best customer solutio
 
 [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightblue)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
-[![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/https://github.com/europace/baufismart-antraege-api))
+[![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/https://github.com/europace/baufismart-angebote-api))
 
-[![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-antraege-api)](https://github.com/europace/baufismart-antraege-api/releases)
+[![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-angebote-api)](https://github.com/europace/baufismart-angebote-api/releases)
 [![Pattern](https://img.shields.io/badge/Pattern-Tolerant%20Reader-yellowgreen)](https://martinfowler.com/bliki/TolerantReader.html)
 
 ## Usecases
