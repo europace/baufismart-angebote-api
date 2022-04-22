@@ -924,6 +924,11 @@ definitions:
       bereitstellungsZinsFreieZeitInMonaten:
         type: "integer"
         format: "int32"
+      bestehendesDarlehenDerImmobilieIdsBeiAbloesung:
+        type: "array"
+        description: "Id des abzulösenden bestehenden Darlehens der Immobilie"
+        items:
+          type: "string"
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
@@ -2370,6 +2375,11 @@ definitions:
       bereitstellungsZinsFreieZeitInMonaten:
         type: "integer"
         format: "int32"
+      bestehendesDarlehenDerImmobilieIdsBeiAbloesung:
+        type: "array"
+        description: "Id des abzulösenden bestehenden Darlehens der Immobilie"
+        items:
+          type: "string"
       darlehensBetrag:
         type: "number"
         description: "Der Darlehensbetrag muss ein positiver Wert zwischen 1000 und\
