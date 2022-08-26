@@ -7,7 +7,7 @@ As advisor you can find offers and compare them to get the best customer solutio
 
 [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
 
-[![HTML](https://img.shields.io/badge/OAS-HTML_Doc-lightblue)](http://htmlpreview.github.io/?https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/Dokumentation/index.html)
+[![HTML](https://img.shields.io/badge/OAS-HTML_Doc-lightblue)](http://htmlpreview.github.io/?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightblue)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/europace/baufismart-angebote-api))
 
