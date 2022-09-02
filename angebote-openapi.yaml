@@ -1922,6 +1922,19 @@ definitions:
         format: "int32"
       id:
         type: "string"
+      kfwProgramm:
+        type: "string"
+        enum:
+        - "PROGRAMM_124"
+        - "PROGRAMM_141"
+        - "PROGRAMM_151"
+        - "PROGRAMM_152"
+        - "PROGRAMM_153"
+        - "PROGRAMM_155"
+        - "PROGRAMM_159"
+        - "PROGRAMM_167"
+        - "PROGRAMM_261"
+        - "PROGRAMM_262"  
       produktAnbieter:
         $ref: "#/definitions/ProduktAnbieter"
       rateMonatlich:
