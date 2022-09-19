@@ -7,12 +7,16 @@ As advisor you can find offers and compare them to get the best customer solutio
 
 [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
 
-[![HTML](https://img.shields.io/badge/OAS-HTML_Doc-lightblue)](http://htmlpreview.github.io/?https://raw.githubusercontent.com/hypoport/finanzierungsvorschlaege-api/master/Dokumentation/index.html)
-[![YAML](https://img.shields.io/badge/OAS-YAML-lightblue)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/europace/baufismart-angebote-api))
 
 [![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-angebote-api)](https://github.com/europace/baufismart-angebote-api/releases)
 [![Pattern](https://img.shields.io/badge/Pattern-Tolerant%20Reader-yellowgreen)](https://martinfowler.com/bliki/TolerantReader.html)
+
+## Documentation
+
+[![HTML](https://img.shields.io/badge/OAS-HTML_Doc-lightblue)](https://refined-github-html-preview.kidonng.workers.dev/europace/baufismart-angebote-api/raw/master/reference/index.html)
+[![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://github.com/europace/baufismart-angebote-api/blob/master/angebote-openapi.yaml)
+[![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://github.com/europace/baufismart-angebote-api/blob/master/angebote-openapi.json)
 
 ## Usecases
 
@@ -43,7 +47,7 @@ b) You can find offers for an existing case.
 
 ### a) Find offers for a case
 
-As adivisor you want to check the current loan rates for a past offering, to decide the next step with customer.
+As advisor you want to check the current loan rates for a past offering, to decide the next step with customer.
 
 example-request:
 
@@ -191,7 +195,7 @@ Content-Length: 762
 
 example-response:
 
-[see result of a\)](#a\)find-offers-for-a-case)
+[see result of a\)](#a-find-offers-for-a-case)
 
 ## get additional offer detail
 
@@ -373,7 +377,7 @@ example-request:
 
 `GET https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
 
-> Attention:  
+> Attention:
 > The calculation of the commission is expensive and therefore takes place asynchronously in the background. If the commission calculation is not yet completed, there is a temporary redirect with a short time delay. The Http client should then repeat the retrieval a short time later.
 
 example-response:
