@@ -86,7 +86,7 @@ example-response:
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
-                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                                "href": "https://www.europace2.de/produktanbieter-logos/MUSTERBANK.svg"
                             }
                         }
                     },
@@ -96,7 +96,7 @@ example-response:
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
-                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                                "href": "https://www.europace2.de/produktanbieter-logos/MUSTERBANK.svg"
                             }
                         }
                     },
@@ -127,7 +127,7 @@ example-response:
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
-                                "href": "https://baufismart.api.europace.de/produktanbieter-logos/MUSTERBANK.svg"
+                                "href": "https://www.europace2.de/produktanbieter-logos/MUSTERBANK.svg"
                             }
                         }
                     },
