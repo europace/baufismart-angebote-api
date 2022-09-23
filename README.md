@@ -6,17 +6,16 @@ As advisor you can find offers and compare them to get the best customer solutio
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
 
 [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
-
-[![Github](https://img.shields.io/badge/-Github-black?logo=github)]((https://github.com/europace/baufismart-angebote-api))
-
+[![Github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/europace/baufismart-angebote-api)
 [![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-angebote-api)](https://github.com/europace/baufismart-angebote-api/releases)
+
 [![Pattern](https://img.shields.io/badge/Pattern-Tolerant%20Reader-yellowgreen)](https://martinfowler.com/bliki/TolerantReader.html)
 
 ## Documentation
 
 [![HTML](https://img.shields.io/badge/OAS-HTML_Doc-lightblue)](https://refined-github-html-preview.kidonng.workers.dev/europace/baufismart-angebote-api/raw/master/reference/index.html)
-[![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://github.com/europace/baufismart-angebote-api/blob/master/angebote-openapi.yaml)
-[![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://github.com/europace/baufismart-angebote-api/blob/master/angebote-openapi.json)
+[![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
+[![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.json)
 
 ## Usecases
 
