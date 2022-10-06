@@ -50,22 +50,20 @@
             "type" : "string"
           }
         }, {
+          "name" : "produktAnbieter",
+          "in" : "path",
+          "description" : "siehe Bezeichnung der Produktanbieter",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
           "name" : "alternativen",
           "in" : "query",
           "required" : false,
           "schema" : {
             "type" : "boolean",
             "default" : false
-          }
-        }, {
-          "name" : "produktAnbieter",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
           }
         } ],
         "requestBody" : {
@@ -349,6 +347,22 @@
             "type" : "string"
           }
         }, {
+          "name" : "produktAnbieter",
+          "in" : "path",
+          "description" : "siehe Bezeichnung der Produktanbieter",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "excludierteProduktAnbieter",
+          "in" : "path",
+          "description" : "siehe Bezeichnung der Produktanbieter",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
           "name" : "vorgangsNummer",
           "in" : "query",
           "required" : false,
@@ -362,26 +376,6 @@
           "schema" : {
             "type" : "boolean",
             "default" : false
-          }
-        }, {
-          "name" : "produktAnbieter",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }, {
-          "name" : "excludierteProduktAnbieter",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
           }
         }, {
           "name" : "provisionsAusgabe",
@@ -3450,36 +3444,10 @@
           }
         }
       },
-      "Link" : {
+      "Links" : {
         "type" : "object",
-        "properties" : {
-          "rel" : {
-            "type" : "string"
-          },
-          "href" : {
-            "type" : "string"
-          },
-          "hreflang" : {
-            "type" : "string"
-          },
-          "media" : {
-            "type" : "string"
-          },
-          "title" : {
-            "type" : "string"
-          },
-          "type" : {
-            "type" : "string"
-          },
-          "deprecation" : {
-            "type" : "string"
-          },
-          "profile" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          }
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Link"
         }
       },
       "MietAusgaben" : {
@@ -3688,11 +3656,8 @@
           "name" : {
             "type" : "string"
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4327,11 +4292,8 @@
             "type" : "string",
             "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4344,11 +4306,8 @@
               "$ref" : "#/components/schemas/Ergebnis"
             }
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4364,11 +4323,8 @@
               "$ref" : "#/components/schemas/Ergebnis"
             }
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4427,11 +4383,8 @@
           "partnerId" : {
             "type" : "string"
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           },
           "erstelltAm" : {
             "type" : "string",
@@ -4478,11 +4431,8 @@
       "Zahlungsplaene" : {
         "type" : "object",
         "properties" : {
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           },
           "zahlungsplaene" : {
             "type" : "array",
@@ -4521,11 +4471,8 @@
           "gesamtSumme" : {
             "$ref" : "#/components/schemas/Eintrag"
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4563,11 +4510,8 @@
               "$ref" : "#/components/schemas/Unterlage"
             }
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4580,11 +4524,8 @@
           "partnerId" : {
             "type" : "string"
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4597,11 +4538,8 @@
               "$ref" : "#/components/schemas/Meldung"
             }
           },
-          "links" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Link"
-            }
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
           }
         }
       },
@@ -4623,6 +4561,35 @@
           },
           "message" : {
             "type" : "string"
+          }
+        }
+      },
+      "Link" : {
+        "type" : "object",
+        "properties" : {
+          "href" : {
+            "type" : "string"
+          },
+          "hreflang" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "deprecation" : {
+            "type" : "string"
+          },
+          "profile" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "templated" : {
+            "type" : "boolean"
           }
         }
       }

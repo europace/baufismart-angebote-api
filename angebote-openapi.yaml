@@ -39,19 +39,18 @@ paths:
         in: header
         schema:
           type: string
+      - name: produktAnbieter
+        in: path
+        description: siehe Bezeichnung der Produktanbieter
+        required: true
+        schema:
+          type: string
       - name: alternativen
         in: query
         required: false
         schema:
           type: boolean
           default: false
-      - name: produktAnbieter
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
       requestBody:
         content:
           application/json:
@@ -235,6 +234,18 @@ paths:
         in: header
         schema:
           type: string
+      - name: produktAnbieter
+        in: path
+        description: siehe Bezeichnung der Produktanbieter
+        required: true
+        schema:
+          type: string
+      - name: excludierteProduktAnbieter
+        in: path
+        description: siehe Bezeichnung der Produktanbieter
+        required: true
+        schema:
+          type: string
       - name: vorgangsNummer
         in: query
         required: false
@@ -246,20 +257,6 @@ paths:
         schema:
           type: boolean
           default: false
-      - name: produktAnbieter
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: excludierteProduktAnbieter
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
       - name: provisionsAusgabe
         in: query
         required: false
@@ -2954,27 +2951,10 @@ components:
         ausweisArtBeiAndererAusweis:
           type: string
           description: Nur wenn ausweisArt = ANDERE
-    Link:
+    Links:
       type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
     MietAusgaben:
       type: object
       properties:
@@ -3128,10 +3108,8 @@ components:
           type: string
         name:
           type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     RechteAbteilung2:
       type: object
       properties:
@@ -3655,10 +3633,8 @@ components:
           - NICHT_ANGEPASST
           - ANGEPASST
           - ALTERNATIV
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     ErgebnisListe:
       type: object
       properties:
@@ -3666,10 +3642,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ergebnis'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     Ermittlung:
       type: object
       properties:
@@ -3679,10 +3653,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Ergebnis'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     Meldung:
       type: object
       properties:
@@ -3740,10 +3712,8 @@ components:
           type: boolean
         partnerId:
           type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
         erstelltAm:
           type: string
           format: date-time
@@ -3774,10 +3744,8 @@ components:
     Zahlungsplaene:
       type: object
       properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
         zahlungsplaene:
           type: array
           items:
@@ -3813,10 +3781,8 @@ components:
           $ref: '#/components/schemas/Eintrag'
         gesamtSumme:
           $ref: '#/components/schemas/Eintrag'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     Unterlage:
       type: object
       properties:
@@ -3852,10 +3818,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Unterlage'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     ProvisionsInfo:
       type: object
       properties:
@@ -3863,10 +3827,8 @@ components:
           type: number
         partnerId:
           type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     Meldungen:
       type: object
       properties:
@@ -3874,10 +3836,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Meldung'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+        _links:
+          $ref: '#/components/schemas/Links'
     Error:
       type: object
       properties:
@@ -3892,6 +3852,25 @@ components:
           type: string
         message:
           type: string
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean
   parameters:
     tracingIdParam:
       name: X-TraceId
