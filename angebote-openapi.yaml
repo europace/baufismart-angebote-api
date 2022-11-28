@@ -2326,7 +2326,9 @@ components:
           - ANDERE
           - OEFFENTLICH_KIRCHLICH
         laufzeitBisJahr:
-          $ref: '#/components/schemas/Jahreszahl'
+          type: string
+          description: Die Jahreszahl wird als vierstellig repräsentiert.
+          example: "2088"
     ErfassteDaten:
       required:
       - vorhaben
@@ -2551,7 +2553,9 @@ components:
           - GEHOBEN
           - STARK_GEHOBEN
         baujahr:
-          $ref: '#/components/schemas/Jahreszahl'
+          type: string
+          description: Die Jahreszahl wird als vierstellig repräsentiert.
+          example: "2016"
         bauweise:
           type: string
           enum:
@@ -2787,16 +2791,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Wertpapiere'
-    Jahreszahl:
-      type: object
-      properties:
-        jahreszahl:
-          type: integer
-          description: Vierstellige Jahresangabe
-          format: int32
-          example: 2016
-      description: Die Jahreszahl wird als vierstellig repräsentiert.
-      example: 2016
     KfwDarlehensWunsch:
       required:
       - darlehensBetrag
@@ -2987,7 +2981,9 @@ components:
           - MITTEL
           - HOCH
         modernisierungsJahr:
-          $ref: '#/components/schemas/Jahreszahl'
+          type: string
+          description: Die Jahreszahl wird als vierstellig repräsentiert.
+          example: "2016"
         bodenWandTreppe:
           type: boolean
         heizungZentral:
