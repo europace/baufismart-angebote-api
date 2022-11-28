@@ -2690,7 +2690,9 @@
             "enum" : [ "ANDERE", "OEFFENTLICH_KIRCHLICH" ]
           },
           "laufzeitBisJahr" : {
-            "$ref" : "#/components/schemas/Jahreszahl"
+            "type" : "string",
+            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "example" : "2088"
           }
         }
       },
@@ -2982,7 +2984,9 @@
             "enum" : [ "EINFACH", "MITTEL", "GEHOBEN", "STARK_GEHOBEN" ]
           },
           "baujahr" : {
-            "$ref" : "#/components/schemas/Jahreszahl"
+            "type" : "string",
+            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "example" : "2016"
           },
           "bauweise" : {
             "type" : "string",
@@ -3274,19 +3278,6 @@
           }
         }
       },
-      "Jahreszahl" : {
-        "type" : "object",
-        "properties" : {
-          "jahreszahl" : {
-            "type" : "integer",
-            "description" : "Vierstellige Jahresangabe",
-            "format" : "int32",
-            "example" : 2016
-          }
-        },
-        "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
-        "example" : 2016
-      },
       "KfwDarlehensWunsch" : {
         "required" : [ "darlehensBetrag" ],
         "type" : "object",
@@ -3492,7 +3483,9 @@
             "enum" : [ "GERING", "MITTEL", "HOCH" ]
           },
           "modernisierungsJahr" : {
-            "$ref" : "#/components/schemas/Jahreszahl"
+            "type" : "string",
+            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "example" : "2016"
           },
           "bodenWandTreppe" : {
             "type" : "boolean"
