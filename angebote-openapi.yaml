@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.6.4
+  version: 2.6.7
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1522,6 +1522,7 @@ components:
             - BKM_HAUS_PLUS_BESTER_ZINS
             - BKM_ZINS_PLUS_2_BONUS
             - BKM_ZINS_PLUS_3_BONUS
+            - BKM_HAUS_PLUS_WAHLZUTEILUNG
             - FUCHS_IMMO_1
             - FUCHS_IMMO_1_PLUS
             - FUCHS_IMMO_2
@@ -1754,6 +1755,7 @@ components:
             - DT_RING_TARIF_XT_1
             - DT_RING_TARIF_XT_0
             - DT_RING_TARIF_F_1
+            - DT_RING_TARIF_F_5
             - ALTE_LEIPZIGER_1502
             - ALTE_LEIPZIGER_1602
             - ALTE_LEIPZIGER_1702
@@ -2328,7 +2330,7 @@ components:
         laufzeitBisJahr:
           type: string
           description: Die Jahreszahl wird als vierstellig repräsentiert.
-          example: "2088"
+          example: "2037"
     ErfassteDaten:
       required:
       - vorhaben
@@ -2555,7 +2557,7 @@ components:
         baujahr:
           type: string
           description: Die Jahreszahl wird als vierstellig repräsentiert.
-          example: "2016"
+          example: "2022"
         bauweise:
           type: string
           enum:
@@ -2983,7 +2985,7 @@ components:
         modernisierungsJahr:
           type: string
           description: Die Jahreszahl wird als vierstellig repräsentiert.
-          example: "2016"
+          example: "2022"
         bodenWandTreppe:
           type: boolean
         heizungZentral:
