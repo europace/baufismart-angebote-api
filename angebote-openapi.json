@@ -2153,7 +2153,7 @@
           }
         }
       },
-      "BausparAngebot" : {
+      "BausparAngebotExtern" : {
         "type" : "object",
         "properties" : {
           "tarif" : {
@@ -4036,7 +4036,7 @@
           "externeBausparAngebote" : {
             "type" : "array",
             "items" : {
-              "$ref" : "#/components/schemas/BausparAngebot"
+              "$ref" : "#/components/schemas/BausparAngebotExtern"
             }
           }
         }
@@ -4121,6 +4121,101 @@
           }
         },
         "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+      },
+      "BausparAngebot" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "tarif" : {
+            "type" : "string"
+          },
+          "vertragsBeginn" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "zuteilungsDatum" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "abschlussGebuehr" : {
+            "type" : "number"
+          },
+          "abschlussGebuehrenVerrechnung" : {
+            "type" : "string"
+          },
+          "bausparDarlehenSumme" : {
+            "type" : "number"
+          },
+          "bausparSumme" : {
+            "type" : "number"
+          },
+          "europaceMargeAbsolut" : {
+            "type" : "number"
+          },
+          "guthabenBeiZuteilung" : {
+            "type" : "number"
+          },
+          "provisionAbsolut" : {
+            "type" : "number"
+          },
+          "sparBeitragMonatlich" : {
+            "type" : "number"
+          },
+          "tilgungsBeitragMonatlich" : {
+            "type" : "number"
+          },
+          "verwaltungsgebuehrenJaehrlich" : {
+            "type" : "number"
+          },
+          "gesamtLaufzeitInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "sparPhaseInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tilgungsPhaseInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "sollZinsNachZuteilung" : {
+            "type" : "number"
+          },
+          "bausparkasse" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "antragEntscheider" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "effektivZinsNachZuteilungProzent" : {
+            "type" : "number"
+          },
+          "sonderZahlungen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SonderZahlung"
+            }
+          },
+          "sparBeginn" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "vertragsNummer" : {
+            "type" : "string"
+          },
+          "vertragsPartnerIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "teilBausparSumme" : {
+            "type" : "number"
+          }
+        }
       },
       "Beleihung" : {
         "type" : "object",
