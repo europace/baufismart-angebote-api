@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.6.7"
+    "version" : "2.6.9"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -3156,6 +3156,9 @@
             "type" : "integer",
             "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
             "format" : "int32"
+          },
+          "ersterwerb" : {
+            "type" : "boolean"
           }
         }
       },
