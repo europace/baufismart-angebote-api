@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.6.7
+  version: 2.6.9
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1649,6 +1649,7 @@ components:
             - LBS_SHH_PRIMUS_TJ
             - LBS_SHH_PRIMUS_TD
             - LBS_SHH_TREND_TD
+            - LBS_SHH_CLASSIC_TRAUMHAUS
             - LBS_WEST_ZUHAUSE_DIREKT_10
             - LBS_WEST_ZUHAUSE_DIREKT_15
             - LBS_WEST_ZUHAUSE_PLUS
@@ -1716,6 +1717,7 @@ components:
             - LBS_SAAR_FINANZIERER_KONSTANT_ZUHAUSE
             - LBS_SAAR_MODERNISIERER_ZUHAUSE
             - LBS_SAAR_KLIMAFIT_ZUHAUSE
+            - LBS_SAAR_EINSTEIGER
             - SIGNAL_IDUNA_FREIRAUM_F_35
             - SIGNAL_IDUNA_FREIRAUM_F_35_16
             - SIGNAL_IDUNA_FREIRAUM_F_45
@@ -2714,6 +2716,8 @@ components:
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
             \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           format: int32
+        ersterwerb:
+          type: boolean
     HaushaltsPositionen:
       type: object
       properties:
