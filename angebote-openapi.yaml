@@ -1758,6 +1758,7 @@ components:
             - DT_RING_TARIF_XT_0
             - DT_RING_TARIF_F_1
             - DT_RING_TARIF_F_5
+            - DT_RING_TARIF_F_7
             - ALTE_LEIPZIGER_1502
             - ALTE_LEIPZIGER_1602
             - ALTE_LEIPZIGER_1702
@@ -2716,7 +2717,7 @@ components:
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
             \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           format: int32
-        ersterwerb:
+        erfahrungImmobilienFinanzierung:
           type: boolean
     HaushaltsPositionen:
       type: object
