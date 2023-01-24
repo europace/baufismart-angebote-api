@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.6.9"
+    "version" : "2.7.0"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
