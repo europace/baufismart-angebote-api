@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.0
+  version: 2.7.1
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -2841,6 +2841,8 @@ components:
           - PROGRAMM_167
           - PROGRAMM_261
           - PROGRAMM_262
+          - PROGRAMM_297
+          - PROGRAMM_298
         kfwEnergieEffizienzStandard:
           type: string
           enum:
@@ -2858,6 +2860,8 @@ components:
           - STANDARD_100_EEK
           - STANDARD_DENKMAL
           - STANDARD_DENKMAL_EEK
+          - KLIMAFREUNDLICH_STANDARD
+          - KLIMAFREUNDLICH_QNG
         kfwEnergieEffizienzGruppe:
           type: string
           description: "Nur bei den neuen Programmen notwendig (261, 262). STANDARD\
@@ -3610,6 +3614,8 @@ components:
           - PROGRAMM_167
           - PROGRAMM_261
           - PROGRAMM_262
+          - PROGRAMM_297
+          - PROGRAMM_298
         sollZins:
           type: number
         effektivZins:
