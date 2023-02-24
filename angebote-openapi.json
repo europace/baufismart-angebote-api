@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.0"
+    "version" : "2.7.1"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -3317,11 +3317,11 @@
           "kfwProgramm" : {
             "type" : "string",
             "description" : "Programme 261, 262 sind erst ab dem 01.07.21 erlaubt",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298" ]
           },
           "kfwEnergieEffizienzStandard" : {
             "type" : "string",
-            "enum" : [ "STANDARD_40", "STANDARD_40_PLUS", "STANDARD_40_EEK", "STANDARD_40_NH", "STANDARD_55", "STANDARD_55_EEK", "STANDARD_70", "STANDARD_70_EEK", "STANDARD_85", "STANDARD_85_EEK", "STANDARD_100", "STANDARD_100_EEK", "STANDARD_DENKMAL", "STANDARD_DENKMAL_EEK" ]
+            "enum" : [ "STANDARD_40", "STANDARD_40_PLUS", "STANDARD_40_EEK", "STANDARD_40_NH", "STANDARD_55", "STANDARD_55_EEK", "STANDARD_70", "STANDARD_70_EEK", "STANDARD_85", "STANDARD_85_EEK", "STANDARD_100", "STANDARD_100_EEK", "STANDARD_DENKMAL", "STANDARD_DENKMAL_EEK", "KLIMAFREUNDLICH_STANDARD", "KLIMAFREUNDLICH_QNG" ]
           },
           "kfwEnergieEffizienzGruppe" : {
             "type" : "string",
@@ -4258,7 +4258,7 @@
           },
           "kfwProgramm" : {
             "type" : "string",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298" ]
           },
           "sollZins" : {
             "type" : "number"
