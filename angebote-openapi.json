@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.1"
+    "version" : "2.7.2"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -3316,7 +3316,7 @@
           },
           "kfwProgramm" : {
             "type" : "string",
-            "description" : "Programme 261, 262 sind erst ab dem 01.07.21 erlaubt",
+            "description" : "Programm 261 wird nur noch in der Sanierungsvariante, die Programme 141, 151, 152, 153, 155, 167 und 262 werden gar nicht mehr angeboten",
             "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298" ]
           },
           "kfwEnergieEffizienzStandard" : {
@@ -3325,7 +3325,7 @@
           },
           "kfwEnergieEffizienzGruppe" : {
             "type" : "string",
-            "description" : "Nur bei den neuen Programmen notwendig (261, 262). STANDARD ist nur fÃ¼r alte Programme vorgesehen.",
+            "description" : "Nur bei Programm 261 (SANIERUNG) notwendig. STANDARD ist nur fÃ¼r alte Programme vorgesehen.",
             "enum" : [ "STANDARD", "NEUBAU", "SANIERUNG" ]
           },
           "kfwSanierungsFahrplanLiegtVor" : {
