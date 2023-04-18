@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.2"
+    "version" : "2.7.3"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -3330,7 +3330,7 @@
           },
           "kfwSanierungsFahrplanLiegtVor" : {
             "type" : "boolean",
-            "description" : "Individueller Sanierungsfahrplan liegt vor"
+            "description" : "serielles Sanieren"
           }
         },
         "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
