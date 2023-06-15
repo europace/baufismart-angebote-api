@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.7"
+    "version" : "2.7.8"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -3317,7 +3317,7 @@
           "kfwProgramm" : {
             "type" : "string",
             "description" : "Programm 261 wird nur noch in der Sanierungsvariante, die Programme 141, 151, 152, 153, 155, 167 und 262 werden gar nicht mehr angeboten",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300" ]
           },
           "kfwEnergieEffizienzStandard" : {
             "type" : "string",
@@ -4258,7 +4258,7 @@
           },
           "kfwProgramm" : {
             "type" : "string",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300" ]
           },
           "sollZins" : {
             "type" : "number"
