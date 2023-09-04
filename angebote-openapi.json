@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.12"
+    "version" : "2.7.13"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -2675,6 +2675,28 @@
           }
         }
       },
+      "EnergieEffizienzAusweis" : {
+        "type" : "object",
+        "properties" : {
+          "energieEffizienzAusweisTyp" : {
+            "type" : "string",
+            "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
+          },
+          "energieEffizienzKlasse" : {
+            "type" : "string",
+            "enum" : [ "A_PLUS", "A", "B", "C", "D", "E", "F", "G", "H" ]
+          },
+          "endEnergie" : {
+            "type" : "number",
+            "description" : "Endenergie in Kilowattstunden p.a. je qm"
+          },
+          "hauptEnergieTraeger" : {
+            "type" : "string",
+            "enum" : [ "OEL_GAS", "PHOTOVOLTAIK_WINDKRAFT", "WAERME_KAELTE", "STEINKOHLE", "BRAUNKOHLE", "NETZSTROM", "VERDRAENGUNGSSTROM", "HOLZ", "ABFAELLE", "SONSTIGES" ]
+          }
+        },
+        "description" : "Nur bei ObjektArt != GRUNDSTUECK."
+      },
       "Erbbaurecht" : {
         "type" : "object",
         "properties" : {
@@ -3058,6 +3080,9 @@
             "type" : "string",
             "description" : "Nur bei ObjektArt == HAUS.",
             "enum" : [ "NICHT_UNTERKELLERT", "TEILWEISE_UNTERKELLERT", "UNTERKELLERT" ]
+          },
+          "energieEffizienzAusweis" : {
+            "$ref" : "#/components/schemas/EnergieEffizienzAusweis"
           }
         }
       },
