@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.13
+  version: 2.7.14
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -2403,18 +2403,6 @@ components:
           enum:
           - ENDENERGIEBEDARF
           - ENDENERGIEVERBRAUCH
-        energieEffizienzKlasse:
-          type: string
-          enum:
-          - A_PLUS
-          - A
-          - B
-          - C
-          - D
-          - E
-          - F
-          - G
-          - H
         endEnergie:
           type: number
           description: Endenergie in Kilowattstunden p.a. je qm
