@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.14
+  version: 2.7.15
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1630,6 +1630,15 @@ components:
             - LBS_NORD_N_MODERNISIERER_MINIZINS
             - LBS_NORD_N_MODERNISIERER_M8
             - LBS_NORD_N_MODERNISIERER_MX
+            - LBS_NORD_CLASSIC_GU
+            - LBS_NORD_CLASSIC_GV
+            - LBS_NORD_CLASSIC_JC
+            - LBS_NORD_CLASSIC_JV
+            - LBS_NORD_CLASSIC_MINI
+            - LBS_NORD_CLASSIC_MINI_GM
+            - LBS_NORD_CLASSIC_TF_GF
+            - LBS_NORD_CLASSIC_TF_JF
+            - LBS_NORD_PLUS
             - LBS_OST_CLASSIC15_F5
             - LBS_OST_CLASSIC_F15_F5
             - LBS_OST_CLASSIC_F_H4
