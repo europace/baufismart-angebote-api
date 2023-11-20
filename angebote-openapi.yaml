@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.15
+  version: 2.7.16
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1718,6 +1718,10 @@ components:
             - LBS_SHH_CLASSIC_TREND
             - LBS_SHH_CLASSIC_TREND_MD
             - LBS_SHH_CLASSIC_VITA_SE
+            - LBS_SHH_VITA_ME
+            - LBS_SHH_VITA_OE
+            - LBS_SHH_VITA_PE
+            - LBS_SHH_VITA_SE
             - LBS_WEST_ZUHAUSE_DIREKT_10
             - LBS_WEST_ZUHAUSE_DIREKT_15
             - LBS_WEST_ZUHAUSE_PLUS
