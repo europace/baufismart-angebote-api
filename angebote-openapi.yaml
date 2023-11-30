@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.16
+  version: 2.7.17
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1814,10 +1814,32 @@ components:
             - BHW_TARIF_FI1
             - BHW_TARIF_FI2
             - BHW_TARIF_FI3
+            - BHW_TARIF_FI3N
             - BHW_TARIF_FI4
+            - BHW_TARIF_FI4N
             - BHW_TARIF_FX1
             - BHW_TARIF_FX2
             - BHW_TARIF_REN
+            - BHW_TARIF_DISPOPLUS
+            - BHW_TARIF_DX3
+            - BHW_TARIF_DX4
+            - BHW_TARIF_DX5
+            - BHW_TARIF_DM3
+            - BHW_TARIF_DM3N
+            - BHW_TARIF_DM4
+            - BHW_TARIF_DM4N
+            - BHW_TARIF_DM4_75N
+            - BHW_TARIF_DM5
+            - BHW_TARIF_DN2
+            - BHW_TARIF_DN3
+            - BHW_TARIF_DN4
+            - BHW_TARIF_DV1
+            - BHW_TARIF_DV1N
+            - BHW_TARIF_DV2
+            - BHW_TARIF_DV2N
+            - BHW_TARIF_DV3
+            - BHW_TARIF_DV3N
+            - BHW_TARIF_WM
             - BHW_TARIF_FI1N
             - BHW_TARIF_FI2N
             - BHW_TARIF_FX1N
