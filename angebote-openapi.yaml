@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.19
+  version: 2.7.20
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -3320,6 +3320,8 @@ components:
           - L_BANK_WOHNEN_MIT_KIND
           - L_BANK_WOHNEN_MIT_ZUKUNFT
           - NRW_BANK_WOHNEIGENTUM
+          - NRW_BANK_GEBAEUDESANIERUNG
+          - NRW_BANK_NACHHALTIG_WOHNEN
       description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
     SituationNachRenteneintritt:
       type: object
