@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.20"
+    "version" : "2.7.21"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -504,7 +504,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlung abrufen",
-        "description" : "Die Ermittlung abrufen. Als Parameter wird die ErmittlungsId benÃ¶tigt.",
+        "description" : "Die Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
         "operationId" : "getErmittlung",
         "parameters" : [ {
           "name" : "Authorization",
@@ -630,7 +630,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnisse abrufen",
-        "description" : "Als Parameter wird die ErmittlungsAnfrageId benÃ¶tigt.",
+        "description" : "Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
         "operationId" : "getErgebnisListe",
         "parameters" : [ {
           "name" : "Authorization",
@@ -756,7 +756,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnis abrufen",
-        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErmittlungsAnfrageId und der Ergebnisnummer benÃ¶tigt.",
+        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id und der Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getErgebnis",
         "parameters" : [ {
           "name" : "Authorization",
@@ -890,7 +890,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Meldungen abrufen",
-        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getMeldungen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1024,7 +1024,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Provision abrufen",
-        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getProvision",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1167,7 +1167,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Unterlagen abrufen",
-        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getUnterlagen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1301,7 +1301,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "ZahlungsplÃ¤ne abrufen",
-        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getZahlungsplaene",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1435,7 +1435,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Zahlungsplan abrufen",
-        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die ErmittlungsAnfrageId, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
+        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
         "operationId" : "getZahlungsplan",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1576,7 +1576,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlungsanfrage abrufen",
-        "description" : "Die Ermittlungsanfrage einer Ermittlung abrufen. Als Parameter wird die ErmittlungsId benÃ¶tigt.",
+        "description" : "Die Ermittlungsanfrage einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
         "operationId" : "getErmittlungsAnfrage",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1702,7 +1702,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlungsdaten abrufen",
-        "description" : "Die Ermittlungsanfrage abrufen. Als Parameter wird die ErmittlungsId benÃ¶tigt.",
+        "description" : "Die Ermittlungsanfrage abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
         "operationId" : "getErfassteDaten",
         "parameters" : [ {
           "name" : "Authorization",
