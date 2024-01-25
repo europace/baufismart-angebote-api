@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.20
+  version: 2.7.21
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -336,7 +336,7 @@ paths:
       tags:
       - Version 2
       summary: Ermittlung abrufen
-      description: Die Ermittlung abrufen. Als Parameter wird die ErmittlungsId benötigt.
+      description: Die Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benötigt.
       operationId: getErmittlung
       parameters:
       - name: Authorization
@@ -418,7 +418,7 @@ paths:
       tags:
       - Version 2
       summary: Ergebnisse abrufen
-      description: Als Parameter wird die ErmittlungsAnfrageId benötigt.
+      description: Als Parameter wird die Ermittlungs-Id benötigt.
       operationId: getErgebnisListe
       parameters:
       - name: Authorization
@@ -500,7 +500,7 @@ paths:
       tags:
       - Version 2
       summary: Ergebnis abrufen
-      description: Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErmittlungsAnfrageId
+      description: Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id
         und der Ergebnisnummer benötigt.
       operationId: getErgebnis
       parameters:
@@ -590,7 +590,7 @@ paths:
       - Version 2
       summary: Meldungen abrufen
       description: Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter
-        wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.
+        wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
       operationId: getMeldungen
       parameters:
       - name: Authorization
@@ -678,7 +678,7 @@ paths:
       tags:
       - Version 2
       summary: Provision abrufen
-      description: Abruf der Provision des Darlehens. Als Parameter wird die ErmittlungsAnfrageId
+      description: Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id
         und die Ergebnisnummer benötigt.
       operationId: getProvision
       parameters:
@@ -775,7 +775,7 @@ paths:
       - Version 2
       summary: Unterlagen abrufen
       description: Abrufen der benötigten Unterlagen des Finanzierungsvorschlags.
-        Als Parameter wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.
+        Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
       operationId: getUnterlagen
       parameters:
       - name: Authorization
@@ -864,7 +864,7 @@ paths:
       - Version 2
       summary: Zahlungspläne abrufen
       description: Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter
-        wird die ErmittlungsAnfrageId und die Ergebnisnummer benötigt.
+        wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
       operationId: getZahlungsplaene
       parameters:
       - name: Authorization
@@ -953,8 +953,8 @@ paths:
       - Version 2
       summary: Zahlungsplan abrufen
       description: "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id\
-        \ abrufen. Als Parameter wird die ErmittlungsAnfrageId, die Ergebnisnummer\
-        \ sowie der Index des Zahlungsplans benötigt."
+        \ abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie\
+        \ der Index des Zahlungsplans benötigt."
       operationId: getZahlungsplan
       parameters:
       - name: Authorization
@@ -1048,7 +1048,7 @@ paths:
       - Version 2
       summary: Ermittlungsanfrage abrufen
       description: Die Ermittlungsanfrage einer Ermittlung abrufen. Als Parameter
-        wird die ErmittlungsId benötigt.
+        wird die Ermittlungs-Id benötigt.
       operationId: getErmittlungsAnfrage
       parameters:
       - name: Authorization
@@ -1130,7 +1130,7 @@ paths:
       tags:
       - Version 2
       summary: Ermittlungsdaten abrufen
-      description: Die Ermittlungsanfrage abrufen. Als Parameter wird die ErmittlungsId
+      description: Die Ermittlungsanfrage abrufen. Als Parameter wird die Ermittlungs-Id
         benötigt.
       operationId: getErfassteDaten
       parameters:
