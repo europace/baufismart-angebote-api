@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.22"
+    "version" : "2.7.23"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -4110,6 +4110,9 @@
           },
           "restschuldNachZinsBindungsEnde" : {
             "type" : "number"
+          },
+          "summeZinsenInZinsBindung" : {
+            "type" : "number"
           }
         }
       },
@@ -4241,6 +4244,26 @@
           }
         }
       },
+      "Bearbeitungszeit" : {
+        "type" : "object",
+        "properties" : {
+          "min" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "max" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "standVon" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "bemerkung" : {
+            "type" : "string"
+          }
+        }
+      },
       "Beleihung" : {
         "type" : "object",
         "properties" : {
@@ -4329,6 +4352,44 @@
           "auszahlungsDatum" : {
             "type" : "string",
             "format" : "date"
+          },
+          "bearbeitungszeit" : {
+            "$ref" : "#/components/schemas/Bearbeitungszeit"
+          },
+          "forwardperiodelnMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "laufZeitlnJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "laufzeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "rateMonatlichlnDerTilgungsfreienAnlaufzeit" : {
+            "type" : "number"
+          },
+          "zwischenfinanzierung" : {
+            "$ref" : "#/components/schemas/Zwischenfinanzierung"
+          },
+          "kalkulatorischeLaufzeitEnde" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "regionalFoerderbankProgramm" : {
+            "type" : "string",
+            "enum" : [ "L_BANK_KOMBI_DARLEHEN_WOHNEN", "L_BANK_WOHNEN_MIT_KIND", "L_BANK_WOHNEN_MIT_ZUKUNFT", "NRW_BANK_WOHNEIGENTUM", "NRW_BANK_GEBAEUDESANIERUNG", "NRW_BANK_NACHHALTIG_WOHNEN" ]
+          },
+          "kennung" : {
+            "type" : "string"
+          },
+          "provisionKundenbetreuerAbsolut" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
           }
         }
       },
@@ -4410,6 +4471,19 @@
             "type" : "string",
             "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
           },
+          "elektronischeUnterlagenEinreichung" : {
+            "type" : "boolean"
+          },
+          "vollstaendigkeitsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_VOLLSTAENDIG", "VOLLSTAENDIG" ]
+          },
+          "rateMonatlich" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
+          },
           "_links" : {
             "$ref" : "#/components/schemas/Links"
           }
@@ -4480,6 +4554,26 @@
           },
           "sonderTilgungJaehrlich" : {
             "type" : "number"
+          },
+          "tilgungsfreieAnlaufJahre" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "Zwischenfinanzierung" : {
+        "type" : "object",
+        "properties" : {
+          "maximaleLaufzeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "verwendungszweck" : {
+            "type" : "string",
+            "enum" : [ "VORFINANZIERUNG_OEFFENTLICHER_MITTEL", "VERKAUF_EINES_ANDEREN_OBJEKTS", "SONSTIGE_VERWENDUNG" ]
+          },
+          "detailsZurVerwendung" : {
+            "type" : "string"
           }
         }
       },
