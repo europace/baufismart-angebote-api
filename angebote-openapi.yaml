@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.24
+  version: 2.7.25
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -3825,20 +3825,20 @@ components:
           format: date
         bearbeitungszeit:
           $ref: '#/components/schemas/Bearbeitungszeit'
-        forwardperiodelnMonaten:
+        forwardperiodeInMonaten:
           type: integer
           format: int32
-        laufZeitlnJahren:
+        laufzeitInJahren:
           type: integer
           format: int32
         laufzeitInMonaten:
           type: integer
           format: int32
-        rateMonatlichlnDerTilgungsfreienAnlaufzeit:
+        rateMonatlichInDerTilgungsfreienAnlaufzeit:
           type: number
         zwischenfinanzierung:
           $ref: '#/components/schemas/Zwischenfinanzierung'
-        kalkulatorischeLaufzeitEnde:
+        kalkulatorischesLaufzeitEnde:
           type: string
           format: date
         regionalFoerderbankProgramm:
