@@ -2255,6 +2255,7 @@
               <li><a href="#_Postadresse">Postadresse</a></li>
               <li><a href="#_PrivatDarlehensWunsch">PrivatDarlehensWunsch</a></li>
               <li><a href="#_ProduktAnbieter">ProduktAnbieter</a></li>
+              <li><a href="#_ProduktFeature">ProduktFeature</a></li>
               <li><a href="#_ProvisionsInfo">ProvisionsInfo</a></li>
               <li><a href="#_RechteAbteilung2">RechteAbteilung2</a></li>
               <li><a href="#_RegionalFoerderDarlehensWunsch">RegionalFoerderDarlehensWunsch</a></li>
@@ -2305,7 +2306,7 @@
           <div class="sect2">
             <h3 id="_aktuelle_version">Aktuelle Version</h3>
             <div class="paragraph">
-              <p><em>Version</em> : 2.7.25</p>
+              <p><em>Version</em> : 2.7.26</p>
             </div>
           </div>
         <div class="sect2">
@@ -10778,6 +10779,36 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
+                        <p><strong>zuteilungsDatum2</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_date">date</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
                         <p><strong>abschlussGebuehr</strong>
                           <br><em>optional</em>
                         </p>
@@ -16266,6 +16297,126 @@
                     </div>
                   </td>
                 </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>summeZinsenUeberGesamtlaufzeit</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>summeGebuehrenUeberGesamtlaufzeit</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>summeKontofuehrungsgebuehrenUeberGesamtlaufzeit</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>produktFeatures</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">array[String]</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -18501,6 +18652,36 @@
                       <p>
   
                           <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>produktFeatures</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_ProduktFeature">array[ProduktFeature]</a>
   
   
                         </p>
@@ -26458,6 +26639,88 @@
             </table>
           </div>
           <div class="sect2">
+            <h3 id="_ProduktFeature">ProduktFeature</h3>
+            <div class="paragraph">
+              <p></p>
+            </div>
+            <table class="tableblock frame-all grid-all stretch">
+              <colgroup>
+                <col style="width: 16.6666%;">
+                <col style="width: 61.1111%;">
+                <col style="width: 22.2223%;">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="tableblock halign-left valign-middle">Name</th>
+                <th class="tableblock halign-left valign-middle">Beschreibung</th>
+                <th class="tableblock halign-left valign-middle">Typ</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>produktAnbieterId</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>produktFeature</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="sect2">
             <h3 id="_ProvisionsInfo">ProvisionsInfo</h3>
             <div class="paragraph">
               <p></p>
@@ -30946,7 +31209,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DT_BANK_SA</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Deutsche Bank SA Espanola</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Deutsche Bank SA Espanola</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP_EP</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP_OHNE_RV</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP BaufiComfort</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP_OHNE_RV</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG Comfort</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP_TEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG Test</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG Test</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_HYP_VERTRIEB_EP</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP Kombination</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ HYP AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>DZ_PRIVATBANK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ PRIVATBANK</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>DZ PRIVATBANK S.A.</p>    </div>  </div></td>
@@ -31028,6 +31291,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_MUENCHEN_STARNBERG_EBERSBERG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK München Starnberg Ebersberg</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse München Starnberg Ebersberg</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_NORDHAUSEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Nordhausen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Nordhausen</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_NORDHORN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Grafschaft Bentheim zu Nordhorn</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Grafschaft Bentheim zu Nordhorn</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_NORTHEIM</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Northeim</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Northeim</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_OSTERHOLZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Rotenburg Osterholz</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Rotenburg Osterholz</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_PEINE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Peine</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Peine</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_RATZEBURG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Herzogtum Lauenburg</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Herzogtum Lauenburg</p>    </div>  </div></td>
@@ -31052,7 +31316,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_VERDEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Verden</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Verden</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_VULKANEIFEL</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Vulkaneifel</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Vulkaneifel</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_WAIBLINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Waiblingen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Waiblingen</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_WIEDENBRUECK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Wiedenbrück</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Wiedenbrück</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KSK_WIEDENBRUECK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>KSK Halle-Wiedenbrück</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kreissparkasse Halle-Wiedenbrück</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>KYFF_SPK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kyffhäusersparkasse</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Kyffhäusersparkasse Artern-Sondershausen</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BADEN_WUERTTEMBERG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Baden-Württemberg</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Baden-Württemberg</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern)</p>    </div>  </div></td>
@@ -31061,14 +31325,14 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_HV_FAEH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code><del>LBS_BREMEN</del></code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Bremen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Bremen AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HESSEN_THUERINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest (MG Nord)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest (MG Nord)</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst (MG Ost)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst (MG Ost)</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_RHEINLAND_PFALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Rheinland-Pfalz</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Rheinland-Pfalz</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SAAR</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Saar</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Saar</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SCHLESWIG_HOLSTEIN_HAMBURG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SCHLESWIG_HOLSTEIN_HAMBURG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst (MG SHH)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst (MG SHH)</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SHH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordOst</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SUEDWEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Südwest)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Südwest)</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_WEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_WEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest (MG West)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest (MG West)</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LIFESTYLE_PROTECTION</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LifeStyle Protection</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LifeStyle Protection AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LIFESTYLE_PROTECTION_LEBENSVERSICHERUNG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LifeStyle Protection Lebensversicherung</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LifeStyle Protection Lebensversicherung AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LIGA_BANK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Liga Bank</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Liga Bank eG</p>    </div>  </div></td>
@@ -31304,7 +31568,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_AN_DER_LIPPE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk an der Lippe</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse an der Lippe</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_ARNSBERG_SUND</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Arnsberg-Sundern</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Arnsberg-Sundern</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_ARNSTADT_ILMENAU</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Arnstadt-Ilmenau</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Arnstadt-Ilmenau</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_ASCHAFFENB_ALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Aschaffenburg-Alzenau</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Aschaffenburg-Alzenau</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_ASCHAFFENB_ALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Aschaffenburg Miltenberg</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Aschaffenburg Miltenberg</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_ATT_LENNE_KIRCH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Attendorn Lennestadt Kirchhundem</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Attendorn Lennestadt Kirchhundem</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_AURICH_NORDEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Aurich-Norden</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Aurich-Norden</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>SPK_BADEN_BADEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Spk Baden-Baden Gaggenau</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Sparkasse Baden-Baden Gaggenau</p>    </div>  </div></td>
@@ -32079,11 +32343,6 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V095</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V110</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V130</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V150</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V150</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V170</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V170</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V190</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V190</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V210</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V210</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V230</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V230</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V250</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V250</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V270</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V270</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST_KONSTANT30_V290</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Konstant 30 V290</p>    </div>  </div></td>
