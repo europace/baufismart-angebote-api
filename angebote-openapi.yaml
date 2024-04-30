@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.26
+  version: 2.7.27
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1911,6 +1911,7 @@ components:
             - ALTE_LEIPZIGER_21XX_33
             - ALTE_LEIPZIGER_22XX_20
             - ALTE_LEIPZIGER_22XX_33
+            - ALTE_LEIPZIGER_BS_22XX_33
             - ALTE_LEIPZIGER_25XX_30
             - ALTE_LEIPZIGER_25XX_45
             - ALTE_LEIPZIGER_26XX_30
