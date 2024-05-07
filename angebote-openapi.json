@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.27"
+    "version": "2.7.28"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -2679,6 +2679,14 @@
         "type" : "object",
         "properties" : {
           "energieEffizienzAusweisTyp" : {
+            "type": "string",
+            "deprecated": true,
+            "enum": [
+              "ENDENERGIEBEDARF",
+              "ENDENERGIEVERBRAUCH"
+            ]
+          },
+          "ausweisTyp": {
             "type" : "string",
             "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
           },
