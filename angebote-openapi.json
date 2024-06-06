@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version": "2.7.28"
+    "version" : "2.7.29"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -19,6 +19,9 @@
     "description" : "Produktionsserver"
   } ],
   "tags" : [ {
+    "name" : "Version 3 WIP",
+    "description" : "ATTENTION still WIP - Eine Liste mit FinanzierungsvorschlÃ¤gen abrufen, API-Version 3"
+  }, {
     "name" : "VersionController",
     "description" : "Liefert die Version der BaufiSmart-API"
   }, {
@@ -333,7 +336,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlung erzeugen",
         "description" : "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON im Body benÃ¶tigt",
-        "operationId" : "ermittleErgebnisse",
+        "operationId" : "ermittleErgebnisse_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -631,7 +634,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnisse abrufen",
         "description" : "Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
-        "operationId" : "getErgebnisListe",
+        "operationId" : "getErgebnisListe_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -757,7 +760,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnis abrufen",
         "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id und der Ergebnisnummer benÃ¶tigt.",
-        "operationId" : "getErgebnis",
+        "operationId" : "getErgebnis_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -891,7 +894,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Meldungen abrufen",
         "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
-        "operationId" : "getMeldungen",
+        "operationId" : "getMeldungen_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -1025,7 +1028,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Provision abrufen",
         "description" : "Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
-        "operationId" : "getProvision",
+        "operationId" : "getProvision_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -1168,7 +1171,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Unterlagen abrufen",
         "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
-        "operationId" : "getUnterlagen",
+        "operationId" : "getUnterlagen_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -1302,7 +1305,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "ZahlungsplÃ¤ne abrufen",
         "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
-        "operationId" : "getZahlungsplaene",
+        "operationId" : "getZahlungsplaene_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -1436,7 +1439,7 @@
         "tags" : [ "Version 2" ],
         "summary" : "Zahlungsplan abrufen",
         "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
-        "operationId" : "getZahlungsplan",
+        "operationId" : "getZahlungsplan_1",
         "parameters" : [ {
           "name" : "Authorization",
           "in" : "header",
@@ -1824,6 +1827,2331 @@
         } ]
       }
     },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste" : {
+      "post" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Ermittlung erzeugen",
+        "description" : "Als Parameter wird eine Vorgangsnummer benÃ¶tigt",
+        "operationId" : "ermittleErgebnisse",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ermitteln",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : true
+          }
+        }, {
+          "name" : "aktualisieren",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : true
+          }
+        }, {
+          "name" : "alternativen",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "produktAnbieter",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "exkludierteProduktAnbieter",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "provisionsAusgabe",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "302" : {
+            "description" : "Found",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Ergebnisse abrufen",
+        "description" : "Als Parameter wird die ErgebnislisteId benÃ¶tigt.",
+        "operationId" : "getErgebnisListe",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Die Ergebnisliste wurde gefunden.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{angebotsnummer}/merken" : {
+      "post" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "merken",
+        "operationId" : "merkeAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "angebotsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "string"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Angebot gespeichert",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AngebotMerkenAntwort"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Ergebnis abrufen",
+        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErgebnislisteId und der Ergebnisnummer benÃ¶tigt.",
+        "operationId" : "getErgebnis",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/V3Ergebnis"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Berechnungsuebersichten abrufen",
+        "description" : "Die Berechnungsuebersichten abrufen. Als Parameter wird die ErgebnislisteIdId sowie ErgebnisNummer benÃ¶tigt.",
+        "operationId" : "getBerechnungsuebersichten",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BerechnungsUebersichten"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/meldungen" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Meldungen abrufen",
+        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "operationId" : "getMeldungen",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Meldungen"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/provision" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Provision abrufen",
+        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "operationId" : "getProvision",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "repeat",
+          "in" : "query",
+          "required" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : 0
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProvisionsInfo"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/unterlagen" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Unterlagen abrufen",
+        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "operationId" : "getUnterlagen",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Unterlagen"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "ZahlungsplÃ¤ne abrufen",
+        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnisListeId und die Ergebnisnummer benÃ¶tigt.",
+        "operationId" : "getZahlungsplaene",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Zahlungsplaene"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene/{zahlungsplanIndex}" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Zahlungsplan abrufen",
+        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
+        "operationId" : "getZahlungsplan",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnislisteId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "ergebnisnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "zahlungsplanIndex",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Zahlungsplan"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Gemerkte Angebote abrufen",
+        "description" : "Gemerkte Angebote abrufen",
+        "operationId" : "getGemerkteAngebote",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/V3GemerktesAngebot"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Gemerktes Angebot abrufen",
+        "description" : "Gemerktes Angebot abrufen",
+        "operationId" : "getGemerktesAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/V3GemerktesAngebot"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/berechnungsuebersichten" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen",
+        "description" : "Die Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "operationId" : "getBerechnungsuebersichtenFuerGemerktesAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BerechnungsUebersichten"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Meldungen fÃ¼r gemerkte Angebote abrufen",
+        "description" : "Die Meldungen fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "operationId" : "getMeldungenFuerGemerktesAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Meldungen"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/unterlagen" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen",
+        "description" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "operationId" : "getUnterlagenFuerGemerktesAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Unterlagen"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene" : {
+      "get" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "Die Zahlungsplaene fÃ¼r gemerkte Angebote abrufen",
+        "description" : "Die Zahlungsplaene fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "operationId" : "getZahlungsplaeneFuerGemerktesAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Zahlungsplaene"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
     "/version/baufiSmartApi" : {
       "get" : {
         "tags" : [ "VersionController" ],
@@ -1925,6 +4253,615 @@
   },
   "components" : {
     "schemas" : {
+      "BausparAngebot" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "tarif" : {
+            "type" : "string"
+          },
+          "vertragsBeginn" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "zuteilungsDatum" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "zuteilungsDatum2" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "abschlussGebuehr" : {
+            "type" : "number"
+          },
+          "abschlussGebuehrenVerrechnung" : {
+            "type" : "string"
+          },
+          "bausparDarlehenSumme" : {
+            "type" : "number"
+          },
+          "bausparSumme" : {
+            "type" : "number"
+          },
+          "europaceMargeAbsolut" : {
+            "type" : "number"
+          },
+          "guthabenBeiZuteilung" : {
+            "type" : "number"
+          },
+          "provisionAbsolut" : {
+            "type" : "number"
+          },
+          "sparBeitragMonatlich" : {
+            "type" : "number"
+          },
+          "tilgungsBeitragMonatlich" : {
+            "type" : "number"
+          },
+          "verwaltungsgebuehrenJaehrlich" : {
+            "type" : "number"
+          },
+          "gesamtLaufzeitInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "sparPhaseInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tilgungsPhaseInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "sollZinsNachZuteilung" : {
+            "type" : "number"
+          },
+          "bausparkasse" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "antragEntscheider" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "effektivZinsNachZuteilungProzent" : {
+            "type" : "number"
+          },
+          "sonderZahlungen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/SonderZahlung"
+            }
+          },
+          "sparBeginn" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "vertragsNummer" : {
+            "type" : "string"
+          },
+          "vertragsPartnerIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "teilBausparSumme" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Bearbeitungszeit" : {
+        "type" : "object",
+        "properties" : {
+          "min" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "max" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "standVon" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "bemerkung" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Beleihung" : {
+        "type" : "object",
+        "properties" : {
+          "produktAnbieter" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "summe" : {
+            "type" : "number"
+          },
+          "auslauf" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Bereitstellung" : {
+        "type" : "object",
+        "properties" : {
+          "bereitstellungsZinsfreieZeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "bereitstellungsZins" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Darlehen" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "typ" : {
+            "type" : "string",
+            "enum" : [ "ANNUITAETEN_DARLEHEN", "FORWARD_DARLEHEN", "REGIONAL_FOERDER_DARLEHEN", "KFW_DARLEHEN", "PRIVAT_DARLEHEN", "ZWISCHEN_FINANZIERUNG", "VARIABLES_DARLEHEN", "BAUSPARVERTRAG" ]
+          },
+          "kfwProgramm" : {
+            "type" : "string",
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_358", "PROGRAMM_359" ]
+          },
+          "sollZins" : {
+            "type" : "number"
+          },
+          "effektivZins" : {
+            "type" : "number"
+          },
+          "effektivZinsRelevanteKosten" : {
+            "$ref" : "#/components/schemas/EffektivZinsRelevanteKosten"
+          },
+          "rateMonatlich" : {
+            "type" : "number"
+          },
+          "darlehensBetrag" : {
+            "type" : "number"
+          },
+          "auszahlungsBetrag" : {
+            "type" : "number",
+            "description" : "Der Auszahlungsbetrag ist der Nettodarlehensbetrag"
+          },
+          "produktAnbieter" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "finanzierenderProduktAnbieter" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "zinsZahlungsBeginnAm" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "zinsBindung" : {
+            "$ref" : "#/components/schemas/ZinsBindung"
+          },
+          "tilgung" : {
+            "$ref" : "#/components/schemas/Tilgung"
+          },
+          "bereitstellung" : {
+            "$ref" : "#/components/schemas/Bereitstellung"
+          },
+          "gesamtlaufzeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "gesamtkosten" : {
+            "type" : "number"
+          },
+          "auszahlungsDatum" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "bearbeitungszeit" : {
+            "$ref" : "#/components/schemas/Bearbeitungszeit"
+          },
+          "forwardperiodeInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "laufzeitInJahren" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "laufzeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "rateMonatlichInDerTilgungsfreienAnlaufzeit" : {
+            "type" : "number"
+          },
+          "zwischenfinanzierung" : {
+            "$ref" : "#/components/schemas/Zwischenfinanzierung"
+          },
+          "kalkulatorischesLaufzeitEnde" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "regionalFoerderbankProgramm" : {
+            "type" : "string",
+            "enum" : [ "L_BANK_KOMBI_DARLEHEN_WOHNEN", "L_BANK_WOHNEN_MIT_KIND", "L_BANK_WOHNEN_MIT_ZUKUNFT", "NRW_BANK_WOHNEIGENTUM", "NRW_BANK_GEBAEUDESANIERUNG", "NRW_BANK_NACHHALTIG_WOHNEN" ]
+          },
+          "kennung" : {
+            "type" : "string"
+          },
+          "provisionKundenbetreuerAbsolut" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
+          },
+          "summeZinsenUeberGesamtlaufzeit" : {
+            "type" : "number"
+          },
+          "summeGebuehrenUeberGesamtlaufzeit" : {
+            "type" : "number"
+          },
+          "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit" : {
+            "type" : "number"
+          },
+          "produktFeatures" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "EffektivZinsRelevanteKosten" : {
+        "type" : "object",
+        "properties" : {
+          "beratungsHonorar" : {
+            "type" : "number"
+          },
+          "grundbuchKosten" : {
+            "type" : "number"
+          },
+          "tilgungsErsatzProduktKosten" : {
+            "type" : "number"
+          },
+          "sonstigeKosten" : {
+            "type" : "number"
+          },
+          "wohnGebaeudeVersicherungsKosten" : {
+            "type" : "number"
+          },
+          "zusatzSicherheitsKosten" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Ergebnisliste" : {
+        "type" : "object",
+        "properties" : {
+          "ergebnislisteId" : {
+            "type" : "string"
+          },
+          "ergebnisliste" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/V3Ergebnis"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "Links" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Link"
+        }
+      },
+      "Meldung" : {
+        "type" : "object",
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "produktAnbieterId" : {
+            "type" : "string"
+          },
+          "meldungsKategorie" : {
+            "type" : "string",
+            "enum" : [ "AUSZAHLUNGS_VORAUSSETZUNG", "MACHBAR", "MACHBARKEITS_HINWEIS", "ANPASSUNG_KUNDENWUNSCH", "ANPASSUNG_VERTRIEBSWUNSCH", "UNBERUECKSICHTIGTE_ANGABE", "KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN", "KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN", "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN", "MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN", "MACHBAR_UNTER_VORBEHALT_PRODUZENT", "NICHT_MACHBAR", "NICHT_ANBIETBAR" ]
+          },
+          "bereichsZuordnung" : {
+            "type" : "string",
+            "enum" : [ "ANTRAGSTELLER", "OBJEKT", "VORHABEN", "ALTERNATIV", "ANPASSUNG", "UNBERUECKSICHTIGTE_ANGABE" ]
+          }
+        }
+      },
+      "ProduktAnbieter" : {
+        "type" : "object",
+        "properties" : {
+          "produktAnbieterId" : {
+            "type" : "string"
+          },
+          "partnerId" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        },
+        "description" : "Kann z.B. bei KfW abweichen vom produktAnbieter"
+      },
+      "ProduktFeature" : {
+        "type" : "object",
+        "properties" : {
+          "produktAnbieterId" : {
+            "type" : "string"
+          },
+          "produktFeature" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SonderZahlung" : {
+        "type" : "object",
+        "properties" : {
+          "betrag" : {
+            "type" : "number"
+          },
+          "zahlweise" : {
+            "type" : "string",
+            "enum" : [ "EINMALIG", "MONATLICH", "VIERTELJAEHRLICH", "HALBJAEHRLICH", "JAEHRLICH" ]
+          },
+          "termin" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "anzahl" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "Tilgung" : {
+        "type" : "object",
+        "properties" : {
+          "anfaenglicheTilgung" : {
+            "type" : "number"
+          },
+          "tilgungsBeginn" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "sonderTilgungJaehrlich" : {
+            "type" : "number"
+          },
+          "tilgungsfreieAnlaufJahre" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "V3Ergebnis" : {
+        "type" : "object",
+        "properties" : {
+          "kennung" : {
+            "type" : "string"
+          },
+          "darlehensSumme" : {
+            "type" : "number"
+          },
+          "sollZins" : {
+            "type" : "number"
+          },
+          "effektivZins" : {
+            "type" : "number"
+          },
+          "darlehen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Darlehen"
+            }
+          },
+          "beleihung" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Beleihung"
+            }
+          },
+          "meldungen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Meldung"
+            }
+          },
+          "machbarkeit" : {
+            "type" : "string",
+            "enum" : [ "MACHBAR", "UNTER_VORBEHALT", "NICHT_MACHBAR" ]
+          },
+          "annahmeFrist" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "erzeugtAm" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "bausparAngebote" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BausparAngebot"
+            }
+          },
+          "anpassungsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
+          },
+          "elektronischeUnterlagenEinreichung" : {
+            "type" : "boolean"
+          },
+          "vollstaendigkeitsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_VOLLSTAENDIG", "VOLLSTAENDIG" ]
+          },
+          "rateMonatlich" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
+          },
+          "produktFeatures" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProduktFeature"
+            }
+          },
+          "gemerktesAngebot" : {
+            "$ref" : "#/components/schemas/V3GemerktesAngebot"
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "V3GemerktesAngebot" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "laufendeNummer" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "kennung" : {
+            "type" : "string"
+          },
+          "darlehensSumme" : {
+            "type" : "number"
+          },
+          "sollZins" : {
+            "type" : "number"
+          },
+          "effektivZins" : {
+            "type" : "number"
+          },
+          "darlehen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Darlehen"
+            }
+          },
+          "beleihung" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Beleihung"
+            }
+          },
+          "machbarkeit" : {
+            "type" : "string",
+            "enum" : [ "MACHBAR", "UNTER_VORBEHALT", "NICHT_MACHBAR" ]
+          },
+          "annahmeFrist" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "erzeugtAm" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "bausparAngebote" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BausparAngebot"
+            }
+          },
+          "anpassungsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
+          },
+          "elektronischeUnterlagenEinreichung" : {
+            "type" : "boolean"
+          },
+          "vollstaendigkeitsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_VOLLSTAENDIG", "VOLLSTAENDIG" ]
+          },
+          "rateMonatlich" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
+          },
+          "produktFeatures" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "ZinsBindung" : {
+        "type" : "object",
+        "properties" : {
+          "jahre" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "monate" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "endetAm" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "restschuldNachZinsBindungsEnde" : {
+            "type" : "number"
+          },
+          "summeZinsenInZinsBindung" : {
+            "type" : "number"
+          }
+        }
+      },
+      "Zwischenfinanzierung" : {
+        "type" : "object",
+        "properties" : {
+          "maximaleLaufzeitInMonaten" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "verwendungszweck" : {
+            "type" : "string",
+            "enum" : [ "VORFINANZIERUNG_OEFFENTLICHER_MITTEL", "VERKAUF_EINES_ANDEREN_OBJEKTS", "SONSTIGE_VERWENDUNG" ]
+          },
+          "detailsZurVerwendung" : {
+            "type" : "string"
+          }
+        }
+      },
+      "AngebotMerkenAntwort" : {
+        "type" : "object",
+        "properties" : {
+          "laufendeNummerAmVorgang" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
       "AnnuitaetenDarlehensWunsch" : {
         "required" : [ "darlehensBetrag", "tilgungsWunsch" ],
         "type" : "object",
@@ -2222,7 +5159,7 @@
             "items" : {
               "type" : "string",
               "description" : "siehe weitere Beschreibung unter Weitere Informationen -> Bezeichnung Bauspartarife",
-              "enum" : [ "BKM_MAX_PREMIUM_OPTIMAL", "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE", "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG", "BKM_MAX_PREMIUM_BESTER_ZINS", "BKM_HAUS_PLUS_OPTIMAL", "BKM_HAUS_PLUS_NIEDRIGE_SPARRATE", "BKM_HAUS_PLUS_NIEDRIGE_TILGUNG", "BKM_HAUS_PLUS_BESTER_ZINS", "BKM_ZINS_PLUS_2_BONUS", "BKM_ZINS_PLUS_3_BONUS", "BKM_HAUS_PLUS_WAHLZUTEILUNG", "FUCHS_IMMO_1", "FUCHS_IMMO_1_PLUS", "FUCHS_IMMO_2", "FUCHS_IMMO_3", "FUCHS_IMMO_4", "FUCHS_IMMO_5", "FUCHS_IMMO_6", "FUCHS_IMMO_7", "FUCHS_ECO_XE", "FUCHS_ECO_XT", "FUCHS_IMMO_WP", "FUCHS_IMMO_WS", "FUCHS_IMMO_XL", "FUCHS_IMMO_XP", "FUCHS_IMMO_XS", "FUCHS_START_XX", "FUCHS_START_XY", "LBS_BAYERN_F6_PLUS", "LBS_BAYERN_F9", "LBS_BAYERN_FU4", "LBS_BAYERN_FU4_RIESTER", "LBS_BAYERN_FU5", "LBS_BAYERN_FU5_RIESTER", "LBS_BAYERN_FU6", "LBS_BAYERN_FU6_RIESTER", "LBS_BAYERN_FU6_PLUS_RIESTER", "LBS_BAYERN_FU9_RIESTER", "LBS_BAYERN_N4_PLUS", "LBS_BAYERN_N4_PLUS_RIESTER", "LBS_BAYERN_N5", "LBS_BAYERN_N5_RIESTER", "LBS_BAYERN_N5_PLUS", "LBS_BAYERN_N5_PLUS_RIESTER", "LBS_BAYERN_N6_PLUS", "LBS_BAYERN_N6_PLUS_RIESTER", "LBS_BAYERN_N8", "LBS_BAYERN_N8_RIESTER", "LBS_BAYERN_T4_PLUS", "LBS_BAYERN_T4_PLUS_RIESTER", "LBS_BAYERN_T5_PLUS", "LBS_BAYERN_T5_PLUS_RIESTER", "LBS_BAYERN_T6_PLUS", "LBS_BAYERN_T6_PLUS_RIESTER", "LBS_BAYERN_T8", "LBS_BAYERN_T8_RIESTER", "LBS_BAYERN_T5", "LBS_BAYERN_T5_RIESTER", "LBS_BAYERN_U4_PLUS", "LBS_BAYERN_U4_PLUS_RIESTER", "LBS_BAYERN_U5_PLUS", "LBS_BAYERN_U5_PLUS_RIESTER", "LBS_BAYERN_U6_PLUS", "LBS_BAYERN_U6_PLUS_RIESTER", "LBS_BAYERN_U8", "LBS_BAYERN_U8_RIESTER", "LBS_BAYERN_U9", "LBS_BAYERN_U9_RIESTER", "LBS_BAYERN_U5", "LBS_BAYERN_U5_RIESTER", "LBS_BAYERN_V18", "LBS_BAYERN_V25", "LBS_BAYERN_V30", "LBS_BAYERN_W4", "LBS_BAYERN_W4_RIESTER", "LBS_BAYERN_W6", "LBS_BAYERN_W6_RIESTER", "LBS_BAYERN_W9", "LBS_BAYERN_W4_X30", "LBS_BAYERN_W4_X35", "LBS_BAYERN_W4_X40", "LBS_BAYERN_WF", "LBS_BAYERN_WU", "LBS_BAYERN_Z35", "LBS_BAYERN_Z35_RIESTER", "LBS_BAYERN_Z5", "LBS_BAYERN_Z5_RIESTER", "LBS_BAYERN_Z8", "LBS_BAYERN_ZF", "LBS_BAYERN_ZF_X45", "LBS_BAYERN_ZF_X45_RIESTER", "LBS_BAYERN_ZF_X40", "LBS_BAYERN_ZF_X40_RIESTER", "LBS_BAYERN_ZF_X35", "LBS_BAYERN_ZF_X35_RIESTER", "LBS_HT_CLASSIC_S_2015", "LBS_HT_CLASSIC_F_2015", "LBS_HT_CLASSIC_L_2015", "LBS_HT_CLASSIC_N_2015", "LBS_HT_HOME_M", "LBS_HT_HOME_L", "LBS_HT_HOME_XL", "LBS_HT_COMFORT_S", "LBS_HT_COMFORT_N", "LBS_HT_FLEX", "LBS_NORD_N_STARTER_S4", "LBS_NORD_N_STARTER_Q5", "LBS_NORD_N_STARTER_S5", "LBS_NORD_N_STARTER_S6", "LBS_NORD_N_FINANZIERER_F3", "LBS_NORD_N_FINANZIERER_F4", "LBS_NORD_N_FINANZIERER_F5", "LBS_NORD_N_FINANZIERER_F6", "LBS_NORD_N_FINANZIERER_F7", "LBS_NORD_N_FINANZIERER_MEINZUHAUSE", "LBS_NORD_N_MODERNISIERER_MINIZINS", "LBS_NORD_N_MODERNISIERER_M8", "LBS_NORD_N_MODERNISIERER_MX", "LBS_NORD_CLASSIC_GU", "LBS_NORD_CLASSIC_GV", "LBS_NORD_CLASSIC_MINI_GM", "LBS_NORD_CLASSIC_TF_GF", "LBS_NORD_CLASSIC_JC", "LBS_NORD_CLASSIC_JV", "LBS_NORD_CLASSIC_MINI", "LBS_NORD_CLASSIC_TF_JF", "LBS_NORD_PLUS", "LBS_NORD_FINANZIERER_F3_2016", "LBS_NORD_FINANZIERER_F4_2016", "LBS_NORD_FINANZIERER_F5_2016", "LBS_NORD_FINANZIERER_F6_2016", "LBS_NORD_FINANZIERER_F7_2016", "LBS_NORD_MODERNISIERER_M8_2016", "LBS_NORD_MODERNISIERER_M10_2016", "LBS_NORD_MODERNISIERER_MINIZINS_2016", "LBS_NORD_STARTER_S4_2016", "LBS_NORD_STARTER_S5_2016", "LBS_NORD_STARTER_S6_2016", "LBS_OST_CLASSIC15_F5", "LBS_OST_CLASSIC_F15_F5", "LBS_OST_CLASSIC_F_H4", "LBS_OST_CLASSIC_F_H5", "LBS_OST_CLASSIC_12_C4", "LBS_OST_CLASSIC_12_C9", "LBS_OST_CLASSIC15_F3", "LBS_OST_CLASSIC15_F4", "LBS_OST_CLASSIC15_F6", "LBS_OST_CLASSIC15_F8", "LBS_OST_CLASSIC15_PLUS_F", "LBS_OST_CLASSIC15_PLUS_S", "LBS_OST_VARIO_FLEX", "LBS_OST_CLASSIC20_F3", "LBS_OST_CLASSIC20_F8", "LBS_OST_CLASSIC20_PLUS_F", "LBS_OST_FLEX_22", "LBS_OST_KOMFORT_22", "LBS_OST_SPRINT_22", "LBS_OST_KONSTANT30_V095", "LBS_OST_KONSTANT30_V110", "LBS_OST_KONSTANT30_V130", "LBS_OST_KONSTANT30_V150", "LBS_OST_KONSTANT30_V170", "LBS_OST_KONSTANT30_V190", "LBS_OST_KONSTANT30_V210", "LBS_OST_KONSTANT30_V230", "LBS_OST_KONSTANT30_V250", "LBS_OST_KONSTANT30_V270", "LBS_OST_KONSTANT30_V290", "LBS_OST_KONSTANT30_V310", "LBS_OST_KONSTANT30_V330", "LBS_OST_KONSTANT30_V350", "LBS_OST_KONSTANT30_V370", "LBS_OST_KONSTANT30_V390", "LBS_OST_KONSTANT30_V410", "LBS_OST_KONSTANT30_V430", "LBS_OST_KONSTANT30_V450", "LBS_OST_KONSTANT30_V470", "LBS_OST_KONSTANT30_V490", "LBS_OST_KONSTANT30_V510", "LBS_OST_KONSTANT30_V530", "LBS_OST_KONSTANT30_V550", "LBS_SHH_PRIMUS_SC", "LBS_SHH_PRIMUS_SD", "LBS_SHH_PRIMUS_SH", "LBS_SHH_PRIMUS_SI", "LBS_SHH_PRIMUS_SJ", "LBS_SHH_TREND_SD", "LBS_SHH_PRIMUS_TC", "LBS_SHH_PRIMUS_TH", "LBS_SHH_PRIMUS_TI", "LBS_SHH_PRIMUS_TJ", "LBS_SHH_PRIMUS_TD", "LBS_SHH_TREND_TD", "LBS_SHH_CLASSIC_TRAUMHAUS", "LBS_SHH_CLASSIC_AUSBAU_TD", "LBS_SHH_CLASSIC_FORMAT", "LBS_SHH_CLASSIC_FORMAT_MB", "LBS_SHH_CLASSIC_HAUSBAU_TC", "LBS_SHH_CLASSIC_HAUSBAU_TH", "LBS_SHH_CLASSIC_HAUSBAU_TI", "LBS_SHH_CLASSIC_HAUSBAU_TJ", "LBS_SHH_CLASSIC_HAUSBAU_TK", "LBS_SHH_CLASSIC_HAUSBAU_TL", "LBS_SHH_CLASSIC_HAUSBAU_TM", "LBS_SHH_CLASSIC_HAUSBAU_TN", "LBS_SHH_CLASSIC_PERSPEKTIVE", "LBS_SHH_CLASSIC_PERSPEKTIVE_MA", "LBS_SHH_CLASSIC_PRIMUS", "LBS_SHH_CLASSIC_PRIMUS_MC", "LBS_SHH_CLASSIC_PRIMUS_SK", "LBS_SHH_CLASSIC_PRIMUS_SL", "LBS_SHH_CLASSIC_PRIMUS_SM", "LBS_SHH_CLASSIC_PRIMUS_SN", "LBS_SHH_CLASSIC_TRAUMHAUS_TB", "LBS_SHH_CLASSIC_TREND", "LBS_SHH_CLASSIC_TREND_MD", "LBS_SHH_CLASSIC_VITA_SE", "LBS_SHH_VITA_ME", "LBS_SHH_VITA_OE", "LBS_SHH_VITA_PE", "LBS_SHH_VITA_SE", "LBS_WEST_ZUHAUSE_DIREKT_10", "LBS_WEST_ZUHAUSE_DIREKT_15", "LBS_WEST_ZUHAUSE_PLUS", "LBS_WEST_ZUHAUSE_FLEX_4_S", "LBS_WEST_ZUHAUSE_FLEX_4_L", "LBS_WEST_ZUHAUSE_FLEX_5_S", "LBS_WEST_ZUHAUSE_FLEX_5_L", "LBS_WEST_ZUHAUSE_FLEX_6_S", "LBS_WEST_ZUHAUSE_FLEX_6_L", "LBS_WEST_ZUHAUSE_FLEX_8_S", "LBS_WEST_ZUHAUSE_FLEX_8_L", "LBS_WEST_ZUHAUSE_PRIMA", "LBS_WEST_ZUHAUSE_PRIMA_10", "LBS_WEST_ZUHAUSE_FLEX_4", "LBS_WEST_ZUHAUSE_FLEX_5", "LBS_WEST_ZUHAUSE_FLEX_6", "LBS_WEST_ZUHAUSE_FLEX_8", "LBS_WEST_ZUHAUSE_YOUNG", "LBS_WEST_ZUHAUSE_SPEZIAL", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L", "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL", "LBS_WEST_RIESTER_KONSTANT_35", "LBS_WEST_RIESTER_KONSTANT_40", "LBS_WEST_RIESTER_KONSTANT_50", "LBS_WEST_KONSTANT_35", "LBS_WEST_KONSTANT_40", "LBS_WEST_KONSTANT_50", "LBS_WEST_RIESTER_KONSTANT_35_ANGEBOT", "LBS_WEST_RIESTER_KONSTANT_40_ANGEBOT", "LBS_WEST_RIESTER_KONSTANT_50_ANGEBOT", "LBS_WEST_KONSTANT_35_ANGEBOT", "LBS_WEST_KONSTANT_40_ANGEBOT", "LBS_WEST_KONSTANT_50_ANGEBOT", "LBS_SUEDWEST_KLASSIK_PLUS_2018", "LBS_SUEDWEST_LANGZEIT_PLUS_2019", "LBS_SUEDWEST_KLASSIK_PLUS_2020", "LBS_SUEDWEST_STANDARD_PLUS_2018", "LBS_SUEDWEST_LANGZEIT_PLUS_SPEZIAL", "LBS_SUEDWEST_NIEDRIGZINS", "LBS_SUEDWEST_ZUKUNFT_PLUS", "LBS_SAAR_PREMIUM_FLEX_18", "LBS_SAAR_PREMIUM_SICHER_18", "LBS_SAAR_PREMIUM_TOP_18", "LBS_SAAR_EXTRA_GUENSTIG_18", "LBS_SAAR_EXTRA_SICHER_18", "LBS_SAAR_EXTRA_SPEZIAL_18", "LBS_SAAR_CLASSIC_21_ZUHAUSE", "LBS_SAAR_FINANZIERER_20_ZUHAUSE", "LBS_SAAR_FINANZIERER_25_ZUHAUSE", "LBS_SAAR_FINANZIERER_30_ZUHAUSE", "LBS_SAAR_FINANZIERER_KONSTANT_ZUHAUSE", "LBS_SAAR_MODERNISIERER_ZUHAUSE", "LBS_SAAR_KLIMAFIT_ZUHAUSE", "LBS_SAAR_EINSTEIGER", "SIGNAL_IDUNA_FREIRAUM_F_35", "SIGNAL_IDUNA_FREIRAUM_F_35_16", "SIGNAL_IDUNA_FREIRAUM_F_45", "SIGNAL_IDUNA_FREIRAUM_F_45_16", "SIGNAL_IDUNA_FREIRAUM_F_60", "SIGNAL_IDUNA_FREIRAUM_F_30_MZ", "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_35_MZ", "SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_40_MZ", "SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_45_MZ", "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_50_MZ", "SIGNAL_IDUNA_FREIRAUM_F_60_MZ", "SIGNAL_IDUNA_FREIRAUM_F_30", "SIGNAL_IDUNA_FREIRAUM_F_30_16", "SIGNAL_IDUNA_FREIRAUM_F_40", "SIGNAL_IDUNA_FREIRAUM_F_40_16", "SIGNAL_IDUNA_FREIRAUM_F_50", "SIGNAL_IDUNA_FREIRAUM_F_50_16", "BHW_TARIF_FI1", "BHW_TARIF_FI2", "BHW_TARIF_FI3", "BHW_TARIF_FI3N", "BHW_TARIF_FI4", "BHW_TARIF_FI4N", "BHW_TARIF_FX1", "BHW_TARIF_FX2", "BHW_TARIF_REN", "BHW_TARIF_DISPOPLUS", "BHW_TARIF_DX3", "BHW_TARIF_DX4", "BHW_TARIF_DX5", "BHW_TARIF_DM3", "BHW_TARIF_DM3N", "BHW_TARIF_DM4", "BHW_TARIF_DM4N", "BHW_TARIF_DM4_75N", "BHW_TARIF_DM5", "BHW_TARIF_DN2", "BHW_TARIF_DN3", "BHW_TARIF_DN4", "BHW_TARIF_DV1", "BHW_TARIF_DV1N", "BHW_TARIF_DV2", "BHW_TARIF_DV2N", "BHW_TARIF_DV3", "BHW_TARIF_DV3N", "BHW_TARIF_WM", "BHW_TARIF_FI1N", "BHW_TARIF_FI2N", "BHW_TARIF_FX1N", "BHW_TARIF_FX2N", "DT_RING_TARIF_FT", "DT_RING_TARIF_FT_0", "DT_RING_TARIF_FT_1", "DT_RING_TARIF_FT_2", "DT_RING_TARIF_XT_1", "DT_RING_TARIF_XT_0", "DT_RING_TARIF_F_1", "DT_RING_TARIF_F_5", "DT_RING_TARIF_F_7", "ALTE_LEIPZIGER_1502", "ALTE_LEIPZIGER_1602", "ALTE_LEIPZIGER_1702", "ALTE_LEIPZIGER_1802", "ALTE_LEIPZIGER_1902", "ALTE_LEIPZIGER_2002", "ALTE_LEIPZIGER_1502_MZ", "ALTE_LEIPZIGER_1602_MZ", "ALTE_LEIPZIGER_1702_MZ", "ALTE_LEIPZIGER_1802_MZ", "ALTE_LEIPZIGER_1902_MZ", "ALTE_LEIPZIGER_2002_MZ", "ALTE_LEIPZIGER_1503", "ALTE_LEIPZIGER_1603", "ALTE_LEIPZIGER_1703", "ALTE_LEIPZIGER_1803", "ALTE_LEIPZIGER_1903", "ALTE_LEIPZIGER_2003", "ALTE_LEIPZIGER_1503_MZ", "ALTE_LEIPZIGER_1603_MZ", "ALTE_LEIPZIGER_1703_MZ", "ALTE_LEIPZIGER_1803_MZ", "ALTE_LEIPZIGER_1903_MZ", "ALTE_LEIPZIGER_2003_MZ", "ALTE_LEIPZIGER_150X", "ALTE_LEIPZIGER_160X", "ALTE_LEIPZIGER_170X", "ALTE_LEIPZIGER_180X", "ALTE_LEIPZIGER_190X", "ALTE_LEIPZIGER_200X", "ALTE_LEIPZIGER_150X_MZ", "ALTE_LEIPZIGER_160X_MZ", "ALTE_LEIPZIGER_170X_MZ", "ALTE_LEIPZIGER_180X_MZ", "ALTE_LEIPZIGER_190X_MZ", "ALTE_LEIPZIGER_200X_MZ", "ALTE_LEIPZIGER_ZG_21XX_20", "ALTE_LEIPZIGER_ZG_21XX_30", "ALTE_LEIPZIGER_ZG_25XX_49", "ALTE_LEIPZIGER_21XX", "ALTE_LEIPZIGER_21XX_27", "ALTE_LEIPZIGER_22XX", "ALTE_LEIPZIGER_22XX_27", "ALTE_LEIPZIGER_21XX_20", "ALTE_LEIPZIGER_21XX_33", "ALTE_LEIPZIGER_22XX_20", "ALTE_LEIPZIGER_22XX_33", "ALTE_LEIPZIGER_BS_22XX_33", "ALTE_LEIPZIGER_25XX_30", "ALTE_LEIPZIGER_25XX_45", "ALTE_LEIPZIGER_26XX_30", "ALTE_LEIPZIGER_26XX_45", "WUESTENROT_01063_4", "WUESTENROT_01063_5", "WUESTENROT_01063_6", "WUESTENROT_01063_7", "WUESTENROT_01063_8", "WUESTENROT_01063_9", "WUESTENROT_01063_10", "WUESTENROT_01063_12", "WUESTENROT_01064_4", "WUESTENROT_01064_6", "WUESTENROT_01064_8", "WUESTENROT_01064_10", "WUESTENROT_01064_12", "WUESTENROT_01061_10", "WUESTENROT_01062_4", "WUESTENROT_01061_10_0000", "WUESTENROT_01062_04_0000", "WUESTENROT_01063_05_3585", "WUESTENROT_01063_07_5110", "WUESTENROT_01063_09_0000", "WUESTENROT_01064_10_0000", "WUESTENROT_01064_04_0000", "WUESTENROT_01064_04_5000", "WUESTENROT_01064_05_4121", "WUESTENROT_01064_06_0000", "WUESTENROT_01064_07_5161", "WUESTENROT_01064_09_0000", "WUESTENROT_01073_08_0000", "WUESTENROT_01074_10_0000", "WUESTENROT_01075_03_5000", "WUESTENROT_01076_08_0000", "WUESTENROT_01077_04_0000", "WUESTENROT_01077_07_5000", "WUESTENROT_01077_08_0000", "WUESTENROT_01078_04_0000", "WUESTENROT_01079_04_0000", "WUESTENROT_01079_04_5000", "WUESTENROT_01073_04_5000", "WUESTENROT_01073_05_9000", "WUESTENROT_01094_04_5000", "WUESTENROT_01094_08_0000", "WUESTENROT_01094_05_9000", "WUESTENROT_01076_07_9872", "WUESTENROT_01076_05_8633", "WUESTENROT_01087_08_0000", "WUESTENROT_01087_07_9872", "WUESTENROT_01087_05_8633", "WUESTENROT_01088_04_0000", "WUESTENROT_01077_06_3000", "WUESTENROT_01077_04_7000", "WUESTENROT_01088_07_5000", "WUESTENROT_01088_06_3000", "WUESTENROT_01088_04_7000", "WUESTENROT_01077_07_9648", "WUESTENROT_01077_06_2500", "WUESTENROT_01088_08_0000", "WUESTENROT_01088_07_9648", "WUESTENROT_01088_06_2500", "WUESTENROT_01085_10_0000", "WUESTENROT_01086_03_5000", "WUESTENROT_01090_04_0000", "WUESTENROT_01090_04_5000", "WUESTENROT_01089_04_0000", "WUESTENROT_01093_05_0000", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4", "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1", "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2" ]
+              "enum" : [ "BKM_MAX_PREMIUM_OPTIMAL", "BKM_MAX_PREMIUM_NIEDRIGE_SPARRATE", "BKM_MAX_PREMIUM_NIEDRIGE_TILGUNG", "BKM_MAX_PREMIUM_BESTER_ZINS", "BKM_HAUS_PLUS_OPTIMAL", "BKM_HAUS_PLUS_NIEDRIGE_SPARRATE", "BKM_HAUS_PLUS_NIEDRIGE_TILGUNG", "BKM_HAUS_PLUS_BESTER_ZINS", "BKM_ZINS_PLUS_2_BONUS", "BKM_ZINS_PLUS_3_BONUS", "BKM_HAUS_PLUS_WAHLZUTEILUNG", "FUCHS_IMMO_1", "FUCHS_IMMO_1_PLUS", "FUCHS_IMMO_2", "FUCHS_IMMO_3", "FUCHS_IMMO_4", "FUCHS_IMMO_5", "FUCHS_IMMO_6", "FUCHS_IMMO_7", "FUCHS_ECO_XE", "FUCHS_ECO_XT", "FUCHS_IMMO_WP", "FUCHS_IMMO_WS", "FUCHS_IMMO_XL", "FUCHS_IMMO_XP", "FUCHS_IMMO_XS", "FUCHS_START_XX", "FUCHS_START_XY", "LBS_BAYERN_F6_PLUS", "LBS_BAYERN_F9", "LBS_BAYERN_FU4", "LBS_BAYERN_FU4_RIESTER", "LBS_BAYERN_FU5", "LBS_BAYERN_FU5_RIESTER", "LBS_BAYERN_FU6", "LBS_BAYERN_FU6_RIESTER", "LBS_BAYERN_FU6_PLUS_RIESTER", "LBS_BAYERN_FU9_RIESTER", "LBS_BAYERN_N4_PLUS", "LBS_BAYERN_N4_PLUS_RIESTER", "LBS_BAYERN_N5", "LBS_BAYERN_N5_RIESTER", "LBS_BAYERN_N5_PLUS", "LBS_BAYERN_N5_PLUS_RIESTER", "LBS_BAYERN_N6_PLUS", "LBS_BAYERN_N6_PLUS_RIESTER", "LBS_BAYERN_N8", "LBS_BAYERN_N8_RIESTER", "LBS_BAYERN_T4_PLUS", "LBS_BAYERN_T4_PLUS_RIESTER", "LBS_BAYERN_T5_PLUS", "LBS_BAYERN_T5_PLUS_RIESTER", "LBS_BAYERN_T6_PLUS", "LBS_BAYERN_T6_PLUS_RIESTER", "LBS_BAYERN_T8", "LBS_BAYERN_T8_RIESTER", "LBS_BAYERN_T5", "LBS_BAYERN_T5_RIESTER", "LBS_BAYERN_U4_PLUS", "LBS_BAYERN_U4_PLUS_RIESTER", "LBS_BAYERN_U5_PLUS", "LBS_BAYERN_U5_PLUS_RIESTER", "LBS_BAYERN_U6_PLUS", "LBS_BAYERN_U6_PLUS_RIESTER", "LBS_BAYERN_U8", "LBS_BAYERN_U8_RIESTER", "LBS_BAYERN_U9", "LBS_BAYERN_U9_RIESTER", "LBS_BAYERN_U5", "LBS_BAYERN_U5_RIESTER", "LBS_BAYERN_V18", "LBS_BAYERN_V25", "LBS_BAYERN_V30", "LBS_BAYERN_W4", "LBS_BAYERN_W4_RIESTER", "LBS_BAYERN_W6", "LBS_BAYERN_W6_RIESTER", "LBS_BAYERN_W9", "LBS_BAYERN_W4_X30", "LBS_BAYERN_W4_X35", "LBS_BAYERN_W4_X40", "LBS_BAYERN_WF", "LBS_BAYERN_WU", "LBS_BAYERN_Z35", "LBS_BAYERN_Z35_RIESTER", "LBS_BAYERN_Z5", "LBS_BAYERN_Z5_RIESTER", "LBS_BAYERN_Z8", "LBS_BAYERN_ZF", "LBS_BAYERN_ZF_X45", "LBS_BAYERN_ZF_X45_RIESTER", "LBS_BAYERN_ZF_X40", "LBS_BAYERN_ZF_X40_RIESTER", "LBS_BAYERN_ZF_X35", "LBS_BAYERN_ZF_X35_RIESTER", "LBS_HT_CLASSIC_S_2015", "LBS_HT_CLASSIC_F_2015", "LBS_HT_CLASSIC_L_2015", "LBS_HT_CLASSIC_N_2015", "LBS_HT_HOME_M", "LBS_HT_HOME_L", "LBS_HT_HOME_XL", "LBS_HT_COMFORT_S", "LBS_HT_COMFORT_N", "LBS_HT_FLEX", "LBS_NORD_N_STARTER_S4", "LBS_NORD_N_STARTER_Q5", "LBS_NORD_N_STARTER_S5", "LBS_NORD_N_STARTER_S6", "LBS_NORD_N_FINANZIERER_F3", "LBS_NORD_N_FINANZIERER_F4", "LBS_NORD_N_FINANZIERER_F5", "LBS_NORD_N_FINANZIERER_F6", "LBS_NORD_N_FINANZIERER_F7", "LBS_NORD_N_FINANZIERER_MEINZUHAUSE", "LBS_NORD_N_MODERNISIERER_MINIZINS", "LBS_NORD_N_MODERNISIERER_M8", "LBS_NORD_N_MODERNISIERER_MX", "LBS_NORDWEST_TRAUMSTART_YOUNG", "LBS_NORDWEST_WT_FIN_10_V1_2024", "LBS_NORDWEST_WT_FIN_10_V2_2024", "LBS_NORDWEST_WT_FIN_12_2024", "LBS_NORDWEST_WT_FIN_15_V1_2024", "LBS_NORDWEST_WT_FIN_15_V2_2024", "LBS_NORDWEST_WT_FIN_SPEZIAL_2024", "LBS_NORDWEST_WT_MINI_2024", "LBS_NORDWEST_WT_MOD_ECOFLEX_2024", "LBS_NORDWEST_WT_MOD_FLEX_2024", "LBS_NORDWEST_WT_MOD_ECOSPRINT_2024", "LBS_NORDWEST_WT_MOD_SPRINT_2024", "LBS_NORDWEST_WT_PLUS", "LBS_NORDWEST_WT_FIN_10_V1_2024_R", "LBS_NORDWEST_WT_FIN_10_V2_2024_R", "LBS_NORDWEST_WT_FIN_15_V1_2024_R", "LBS_NORDWEST_WT_FIN_15_V2_2024_R", "LBS_NORDWEST_WT_SPEZIAL_2024_R", "LBS_NORDWEST_WT_MOD_ECOFLEX_2024_R", "LBS_NORDWEST_WT_MOD_FLEX_2024_R", "LBS_NORD_CLASSIC_GU", "LBS_NORD_CLASSIC_GV", "LBS_NORD_CLASSIC_MINI_GM", "LBS_NORD_CLASSIC_TF_GF", "LBS_NORD_CLASSIC_JC", "LBS_NORD_CLASSIC_JV", "LBS_NORD_CLASSIC_MINI", "LBS_NORD_CLASSIC_TF_JF", "LBS_NORD_PLUS", "LBS_NORD_FINANZIERER_F3_2016", "LBS_NORD_FINANZIERER_F4_2016", "LBS_NORD_FINANZIERER_F5_2016", "LBS_NORD_FINANZIERER_F6_2016", "LBS_NORD_FINANZIERER_F7_2016", "LBS_NORD_MODERNISIERER_M8_2016", "LBS_NORD_MODERNISIERER_M10_2016", "LBS_NORD_MODERNISIERER_MINIZINS_2016", "LBS_NORD_STARTER_S4_2016", "LBS_NORD_STARTER_S5_2016", "LBS_NORD_STARTER_S6_2016", "LBS_OST_CLASSIC15_F5", "LBS_OST_CLASSIC_F15_F5", "LBS_OST_CLASSIC_F_H4", "LBS_OST_CLASSIC_F_H5", "LBS_OST_CLASSIC_12_C4", "LBS_OST_CLASSIC_12_C9", "LBS_OST_CLASSIC15_F3", "LBS_OST_CLASSIC15_F4", "LBS_OST_CLASSIC15_F6", "LBS_OST_CLASSIC15_F8", "LBS_OST_CLASSIC15_PLUS_F", "LBS_OST_CLASSIC15_PLUS_S", "LBS_OST_VARIO_FLEX", "LBS_OST_CLASSIC20_F3", "LBS_OST_CLASSIC20_F8", "LBS_OST_CLASSIC20_PLUS_F", "LBS_OST_FLEX_22", "LBS_OST_KOMFORT_22", "LBS_OST_SPRINT_22", "LBS_OST_KONSTANT30_V095", "LBS_OST_KONSTANT30_V110", "LBS_OST_KONSTANT30_V130", "LBS_OST_KONSTANT30_V150", "LBS_OST_KONSTANT30_V170", "LBS_OST_KONSTANT30_V190", "LBS_OST_KONSTANT30_V210", "LBS_OST_KONSTANT30_V230", "LBS_OST_KONSTANT30_V250", "LBS_OST_KONSTANT30_V270", "LBS_OST_KONSTANT30_V290", "LBS_OST_KONSTANT30_V310", "LBS_OST_KONSTANT30_V330", "LBS_OST_KONSTANT30_V350", "LBS_OST_KONSTANT30_V370", "LBS_OST_KONSTANT30_V390", "LBS_OST_KONSTANT30_V410", "LBS_OST_KONSTANT30_V430", "LBS_OST_KONSTANT30_V450", "LBS_OST_KONSTANT30_V470", "LBS_OST_KONSTANT30_V490", "LBS_OST_KONSTANT30_V510", "LBS_OST_KONSTANT30_V530", "LBS_OST_KONSTANT30_V550", "LBS_SHH_PRIMUS_SC", "LBS_SHH_PRIMUS_SD", "LBS_SHH_PRIMUS_SH", "LBS_SHH_PRIMUS_SI", "LBS_SHH_PRIMUS_SJ", "LBS_SHH_TREND_SD", "LBS_SHH_PRIMUS_TC", "LBS_SHH_PRIMUS_TH", "LBS_SHH_PRIMUS_TI", "LBS_SHH_PRIMUS_TJ", "LBS_SHH_PRIMUS_TD", "LBS_SHH_TREND_TD", "LBS_SHH_CLASSIC_TRAUMHAUS", "LBS_SHH_CLASSIC_AUSBAU_TD", "LBS_SHH_CLASSIC_FORMAT", "LBS_SHH_CLASSIC_FORMAT_MB", "LBS_SHH_CLASSIC_HAUSBAU_TC", "LBS_SHH_CLASSIC_HAUSBAU_TH", "LBS_SHH_CLASSIC_HAUSBAU_TI", "LBS_SHH_CLASSIC_HAUSBAU_TJ", "LBS_SHH_CLASSIC_HAUSBAU_TK", "LBS_SHH_CLASSIC_HAUSBAU_TL", "LBS_SHH_CLASSIC_HAUSBAU_TM", "LBS_SHH_CLASSIC_HAUSBAU_TN", "LBS_SHH_CLASSIC_PERSPEKTIVE", "LBS_SHH_CLASSIC_PERSPEKTIVE_MA", "LBS_SHH_CLASSIC_PRIMUS", "LBS_SHH_CLASSIC_PRIMUS_MC", "LBS_SHH_CLASSIC_PRIMUS_SK", "LBS_SHH_CLASSIC_PRIMUS_SL", "LBS_SHH_CLASSIC_PRIMUS_SM", "LBS_SHH_CLASSIC_PRIMUS_SN", "LBS_SHH_CLASSIC_TRAUMHAUS_TB", "LBS_SHH_CLASSIC_TREND", "LBS_SHH_CLASSIC_TREND_MD", "LBS_SHH_CLASSIC_VITA_SE", "LBS_SHH_VITA_ME", "LBS_SHH_VITA_OE", "LBS_SHH_VITA_PE", "LBS_SHH_VITA_SE", "LBS_WEST_ZUHAUSE_DIREKT_10", "LBS_WEST_ZUHAUSE_DIREKT_15", "LBS_WEST_ZUHAUSE_PLUS", "LBS_WEST_ZUHAUSE_FLEX_4_S", "LBS_WEST_ZUHAUSE_FLEX_4_L", "LBS_WEST_ZUHAUSE_FLEX_5_S", "LBS_WEST_ZUHAUSE_FLEX_5_L", "LBS_WEST_ZUHAUSE_FLEX_6_S", "LBS_WEST_ZUHAUSE_FLEX_6_L", "LBS_WEST_ZUHAUSE_FLEX_8_S", "LBS_WEST_ZUHAUSE_FLEX_8_L", "LBS_WEST_ZUHAUSE_PRIMA", "LBS_WEST_ZUHAUSE_PRIMA_10", "LBS_WEST_ZUHAUSE_FLEX_4", "LBS_WEST_ZUHAUSE_FLEX_5", "LBS_WEST_ZUHAUSE_FLEX_6", "LBS_WEST_ZUHAUSE_FLEX_8", "LBS_WEST_ZUHAUSE_YOUNG", "LBS_WEST_ZUHAUSE_SPEZIAL", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_10", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_15", "LBS_WEST_RIESTER_ZUHAUSE_DIREKT_PLUS", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_S", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_4_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_5_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_6_L", "LBS_WEST_RIESTER_ZUHAUSE_FLEX_8_L", "LBS_WEST_RIESTER_ZUHAUSE_SPEZIAL", "LBS_WEST_RIESTER_KONSTANT_35", "LBS_WEST_RIESTER_KONSTANT_40", "LBS_WEST_RIESTER_KONSTANT_50", "LBS_WEST_KONSTANT_35", "LBS_WEST_KONSTANT_40", "LBS_WEST_KONSTANT_50", "LBS_WEST_RIESTER_KONSTANT_35_ANGEBOT", "LBS_WEST_RIESTER_KONSTANT_40_ANGEBOT", "LBS_WEST_RIESTER_KONSTANT_50_ANGEBOT", "LBS_WEST_KONSTANT_35_ANGEBOT", "LBS_WEST_KONSTANT_40_ANGEBOT", "LBS_WEST_KONSTANT_50_ANGEBOT", "LBS_SUEDWEST_KLASSIK_PLUS_2018", "LBS_SUEDWEST_LANGZEIT_PLUS_2019", "LBS_SUEDWEST_KLASSIK_PLUS_2020", "LBS_SUEDWEST_STANDARD_PLUS_2018", "LBS_SUEDWEST_LANGZEIT_PLUS_SPEZIAL", "LBS_SUEDWEST_NIEDRIGZINS", "LBS_SUEDWEST_ZUKUNFT_PLUS", "LBS_SAAR_PREMIUM_FLEX_18", "LBS_SAAR_PREMIUM_SICHER_18", "LBS_SAAR_PREMIUM_TOP_18", "LBS_SAAR_EXTRA_GUENSTIG_18", "LBS_SAAR_EXTRA_SICHER_18", "LBS_SAAR_EXTRA_SPEZIAL_18", "LBS_SAAR_CLASSIC_21_ZUHAUSE", "LBS_SAAR_FINANZIERER_20_ZUHAUSE", "LBS_SAAR_FINANZIERER_25_ZUHAUSE", "LBS_SAAR_FINANZIERER_30_ZUHAUSE", "LBS_SAAR_FINANZIERER_KONSTANT_ZUHAUSE", "LBS_SAAR_MODERNISIERER_ZUHAUSE", "LBS_SAAR_KLIMAFIT_ZUHAUSE", "LBS_SAAR_EINSTEIGER", "LBS_SAAR_FINANZIERER_MAX", "LBS_SAAR_KLASSIK", "LBS_SAAR_KLIMAFIT", "LBS_SAAR_TOP_RATE", "LBS_SAAR_TOP_ZINS", "LBS_SAAR_WOHNFIT", "SIGNAL_IDUNA_FREIRAUM_F_35", "SIGNAL_IDUNA_FREIRAUM_F_35_16", "SIGNAL_IDUNA_FREIRAUM_F_45", "SIGNAL_IDUNA_FREIRAUM_F_45_16", "SIGNAL_IDUNA_FREIRAUM_F_60", "SIGNAL_IDUNA_FREIRAUM_F_30_MZ", "SIGNAL_IDUNA_FREIRAUM_F_30_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_35_MZ", "SIGNAL_IDUNA_FREIRAUM_F_35_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_40_MZ", "SIGNAL_IDUNA_FREIRAUM_F_40_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_45_MZ", "SIGNAL_IDUNA_FREIRAUM_F_45_MZ_16", "SIGNAL_IDUNA_FREIRAUM_F_50_MZ", "SIGNAL_IDUNA_FREIRAUM_F_60_MZ", "SIGNAL_IDUNA_FREIRAUM_F_30", "SIGNAL_IDUNA_FREIRAUM_F_30_16", "SIGNAL_IDUNA_FREIRAUM_F_40", "SIGNAL_IDUNA_FREIRAUM_F_40_16", "SIGNAL_IDUNA_FREIRAUM_F_50", "SIGNAL_IDUNA_FREIRAUM_F_50_16", "BHW_TARIF_FI1", "BHW_TARIF_FI2", "BHW_TARIF_FI3", "BHW_TARIF_FI3N", "BHW_TARIF_FI4", "BHW_TARIF_FI4N", "BHW_TARIF_FX1", "BHW_TARIF_FX2", "BHW_TARIF_REN", "BHW_TARIF_DISPOPLUS", "BHW_TARIF_DX3", "BHW_TARIF_DX4", "BHW_TARIF_DX5", "BHW_TARIF_DM3", "BHW_TARIF_DM3N", "BHW_TARIF_DM4", "BHW_TARIF_DM4N", "BHW_TARIF_DM4_75N", "BHW_TARIF_DM5", "BHW_TARIF_DN2", "BHW_TARIF_DN3", "BHW_TARIF_DN4", "BHW_TARIF_DV1", "BHW_TARIF_DV1N", "BHW_TARIF_DV2", "BHW_TARIF_DV2N", "BHW_TARIF_DV3", "BHW_TARIF_DV3N", "BHW_TARIF_WM", "BHW_TARIF_FI1N", "BHW_TARIF_FI2N", "BHW_TARIF_FX1N", "BHW_TARIF_FX2N", "DT_RING_TARIF_FT", "DT_RING_TARIF_FT_0", "DT_RING_TARIF_FT_1", "DT_RING_TARIF_FT_2", "DT_RING_TARIF_XT_1", "DT_RING_TARIF_XT_0", "DT_RING_TARIF_F_1", "DT_RING_TARIF_F_5", "DT_RING_TARIF_F_7", "ALTE_LEIPZIGER_1502", "ALTE_LEIPZIGER_1602", "ALTE_LEIPZIGER_1702", "ALTE_LEIPZIGER_1802", "ALTE_LEIPZIGER_1902", "ALTE_LEIPZIGER_2002", "ALTE_LEIPZIGER_1502_MZ", "ALTE_LEIPZIGER_1602_MZ", "ALTE_LEIPZIGER_1702_MZ", "ALTE_LEIPZIGER_1802_MZ", "ALTE_LEIPZIGER_1902_MZ", "ALTE_LEIPZIGER_2002_MZ", "ALTE_LEIPZIGER_1503", "ALTE_LEIPZIGER_1603", "ALTE_LEIPZIGER_1703", "ALTE_LEIPZIGER_1803", "ALTE_LEIPZIGER_1903", "ALTE_LEIPZIGER_2003", "ALTE_LEIPZIGER_1503_MZ", "ALTE_LEIPZIGER_1603_MZ", "ALTE_LEIPZIGER_1703_MZ", "ALTE_LEIPZIGER_1803_MZ", "ALTE_LEIPZIGER_1903_MZ", "ALTE_LEIPZIGER_2003_MZ", "ALTE_LEIPZIGER_150X", "ALTE_LEIPZIGER_160X", "ALTE_LEIPZIGER_170X", "ALTE_LEIPZIGER_180X", "ALTE_LEIPZIGER_190X", "ALTE_LEIPZIGER_200X", "ALTE_LEIPZIGER_150X_MZ", "ALTE_LEIPZIGER_160X_MZ", "ALTE_LEIPZIGER_170X_MZ", "ALTE_LEIPZIGER_180X_MZ", "ALTE_LEIPZIGER_190X_MZ", "ALTE_LEIPZIGER_200X_MZ", "ALTE_LEIPZIGER_ZG_21XX_20", "ALTE_LEIPZIGER_ZG_21XX_30", "ALTE_LEIPZIGER_ZG_25XX_49", "ALTE_LEIPZIGER_21XX", "ALTE_LEIPZIGER_21XX_27", "ALTE_LEIPZIGER_22XX", "ALTE_LEIPZIGER_22XX_27", "ALTE_LEIPZIGER_21XX_20", "ALTE_LEIPZIGER_21XX_33", "ALTE_LEIPZIGER_22XX_20", "ALTE_LEIPZIGER_22XX_33", "ALTE_LEIPZIGER_BS_22XX_33", "ALTE_LEIPZIGER_25XX_30", "ALTE_LEIPZIGER_25XX_45", "ALTE_LEIPZIGER_26XX_30", "ALTE_LEIPZIGER_26XX_45", "WUESTENROT_01063_4", "WUESTENROT_01063_5", "WUESTENROT_01063_6", "WUESTENROT_01063_7", "WUESTENROT_01063_8", "WUESTENROT_01063_9", "WUESTENROT_01063_10", "WUESTENROT_01063_12", "WUESTENROT_01064_4", "WUESTENROT_01064_6", "WUESTENROT_01064_8", "WUESTENROT_01064_10", "WUESTENROT_01064_12", "WUESTENROT_01061_10", "WUESTENROT_01062_4", "WUESTENROT_01061_10_0000", "WUESTENROT_01062_04_0000", "WUESTENROT_01063_05_3585", "WUESTENROT_01063_07_5110", "WUESTENROT_01063_09_0000", "WUESTENROT_01064_10_0000", "WUESTENROT_01064_04_0000", "WUESTENROT_01064_04_5000", "WUESTENROT_01064_05_4121", "WUESTENROT_01064_06_0000", "WUESTENROT_01064_07_5161", "WUESTENROT_01064_09_0000", "WUESTENROT_01073_08_0000", "WUESTENROT_01074_10_0000", "WUESTENROT_01075_03_5000", "WUESTENROT_01076_08_0000", "WUESTENROT_01077_04_0000", "WUESTENROT_01077_07_5000", "WUESTENROT_01077_08_0000", "WUESTENROT_01078_04_0000", "WUESTENROT_01079_04_0000", "WUESTENROT_01079_04_5000", "WUESTENROT_01073_04_5000", "WUESTENROT_01073_05_9000", "WUESTENROT_01094_04_5000", "WUESTENROT_01094_08_0000", "WUESTENROT_01094_05_9000", "WUESTENROT_01076_07_9872", "WUESTENROT_01076_05_8633", "WUESTENROT_01087_08_0000", "WUESTENROT_01087_07_9872", "WUESTENROT_01087_05_8633", "WUESTENROT_01088_04_0000", "WUESTENROT_01077_06_3000", "WUESTENROT_01077_04_7000", "WUESTENROT_01088_07_5000", "WUESTENROT_01088_06_3000", "WUESTENROT_01088_04_7000", "WUESTENROT_01077_07_9648", "WUESTENROT_01077_06_2500", "WUESTENROT_01088_08_0000", "WUESTENROT_01088_07_9648", "WUESTENROT_01088_06_2500", "WUESTENROT_01085_10_0000", "WUESTENROT_01086_03_5000", "WUESTENROT_01090_04_0000", "WUESTENROT_01090_04_5000", "WUESTENROT_01089_04_0000", "WUESTENROT_01093_05_0000", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI1", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI2", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI3", "DEUTSCHE_BANK_BAUSPAR_TARIF_FI4", "DEUTSCHE_BANK_BAUSPAR_TARIF_FX1", "DEUTSCHE_BANK_BAUSPAR_TARIF_FX2" ]
             }
           },
           "vertragsPartnerIds" : {
@@ -2679,14 +5616,11 @@
         "type" : "object",
         "properties" : {
           "energieEffizienzAusweisTyp" : {
-            "type": "string",
-            "deprecated": true,
-            "enum": [
-              "ENDENERGIEBEDARF",
-              "ENDENERGIEVERBRAUCH"
-            ]
+            "type" : "string",
+            "deprecated" : true,
+            "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
           },
-          "ausweisTyp": {
+          "ausweisTyp" : {
             "type" : "string",
             "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
           },
@@ -3346,7 +6280,7 @@
           "kfwProgramm" : {
             "type" : "string",
             "description" : "Programm 261 wird nur noch in der Sanierungsvariante, die Programme 141, 151, 152, 153, 155, 167 und 262 werden gar nicht mehr angeboten",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_358", "PROGRAMM_359" ]
           },
           "kfwEnergieEffizienzStandard" : {
             "type" : "string",
@@ -3471,12 +6405,6 @@
             "type" : "string",
             "description" : "Nur wenn ausweisArt = ANDERE"
           }
-        }
-      },
-      "Links" : {
-        "type" : "object",
-        "additionalProperties" : {
-          "$ref" : "#/components/schemas/Link"
         }
       },
       "MietAusgaben" : {
@@ -3675,23 +6603,6 @@
         },
         "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
       },
-      "ProduktAnbieter" : {
-        "type" : "object",
-        "properties" : {
-          "produktAnbieterId" : {
-            "type" : "string"
-          },
-          "partnerId" : {
-            "type" : "string"
-          },
-          "name" : {
-            "type" : "string"
-          },
-          "_links" : {
-            "$ref" : "#/components/schemas/Links"
-          }
-        }
-      },
       "RechteAbteilung2" : {
         "type" : "object",
         "properties" : {
@@ -3764,26 +6675,6 @@
           }
         },
         "description" : "nur bei art != RENTNER"
-      },
-      "SonderZahlung" : {
-        "type" : "object",
-        "properties" : {
-          "betrag" : {
-            "type" : "number"
-          },
-          "zahlweise" : {
-            "type" : "string",
-            "enum" : [ "EINMALIG", "MONATLICH", "VIERTELJAEHRLICH", "HALBJAEHRLICH", "JAEHRLICH" ]
-          },
-          "termin" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "anzahl" : {
-            "type" : "integer",
-            "format" : "int32"
-          }
-        }
       },
       "SparPhase" : {
         "type" : "object",
@@ -4101,29 +6992,6 @@
           }
         }
       },
-      "ZinsBindung" : {
-        "type" : "object",
-        "properties" : {
-          "jahre" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "monate" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "endetAm" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "restschuldNachZinsBindungsEnde" : {
-            "type" : "number"
-          },
-          "summeZinsenInZinsBindung" : {
-            "type" : "number"
-          }
-        }
-      },
       "ZwischenFinanzierungsWunsch" : {
         "required" : [ "darlehensBetrag" ],
         "type" : "object",
@@ -4156,497 +7024,6 @@
           }
         },
         "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
-      },
-      "BausparAngebot" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "tarif" : {
-            "type" : "string"
-          },
-          "vertragsBeginn" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "zuteilungsDatum" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "zuteilungsDatum2" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "abschlussGebuehr" : {
-            "type" : "number"
-          },
-          "abschlussGebuehrenVerrechnung" : {
-            "type" : "string"
-          },
-          "bausparDarlehenSumme" : {
-            "type" : "number"
-          },
-          "bausparSumme" : {
-            "type" : "number"
-          },
-          "europaceMargeAbsolut" : {
-            "type" : "number"
-          },
-          "guthabenBeiZuteilung" : {
-            "type" : "number"
-          },
-          "provisionAbsolut" : {
-            "type" : "number"
-          },
-          "sparBeitragMonatlich" : {
-            "type" : "number"
-          },
-          "tilgungsBeitragMonatlich" : {
-            "type" : "number"
-          },
-          "verwaltungsgebuehrenJaehrlich" : {
-            "type" : "number"
-          },
-          "gesamtLaufzeitInJahren" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "sparPhaseInJahren" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "tilgungsPhaseInJahren" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "sollZinsNachZuteilung" : {
-            "type" : "number"
-          },
-          "bausparkasse" : {
-            "$ref" : "#/components/schemas/ProduktAnbieter"
-          },
-          "antragEntscheider" : {
-            "$ref" : "#/components/schemas/ProduktAnbieter"
-          },
-          "effektivZinsNachZuteilungProzent" : {
-            "type" : "number"
-          },
-          "sonderZahlungen" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/SonderZahlung"
-            }
-          },
-          "sparBeginn" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "vertragsNummer" : {
-            "type" : "string"
-          },
-          "vertragsPartnerIds" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          },
-          "teilBausparSumme" : {
-            "type" : "number"
-          }
-        }
-      },
-      "Bearbeitungszeit" : {
-        "type" : "object",
-        "properties" : {
-          "min" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "max" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "standVon" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "bemerkung" : {
-            "type" : "string"
-          }
-        }
-      },
-      "Beleihung" : {
-        "type" : "object",
-        "properties" : {
-          "produktAnbieter" : {
-            "$ref" : "#/components/schemas/ProduktAnbieter"
-          },
-          "summe" : {
-            "type" : "number"
-          },
-          "auslauf" : {
-            "type" : "number"
-          }
-        }
-      },
-      "Bereitstellung" : {
-        "type" : "object",
-        "properties" : {
-          "bereitstellungsZinsfreieZeitInMonaten" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "bereitstellungsZins" : {
-            "type" : "number"
-          }
-        }
-      },
-      "Darlehen" : {
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string"
-          },
-          "typ" : {
-            "type" : "string",
-            "enum" : [ "ANNUITAETEN_DARLEHEN", "FORWARD_DARLEHEN", "REGIONAL_FOERDER_DARLEHEN", "KFW_DARLEHEN", "PRIVAT_DARLEHEN", "ZWISCHEN_FINANZIERUNG", "VARIABLES_DARLEHEN", "BAUSPARVERTRAG" ]
-          },
-          "kfwProgramm" : {
-            "type" : "string",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300" ]
-          },
-          "sollZins" : {
-            "type" : "number"
-          },
-          "effektivZins" : {
-            "type" : "number"
-          },
-          "effektivZinsRelevanteKosten" : {
-            "$ref" : "#/components/schemas/EffektivZinsRelevanteKosten"
-          },
-          "rateMonatlich" : {
-            "type" : "number"
-          },
-          "darlehensBetrag" : {
-            "type" : "number"
-          },
-          "auszahlungsBetrag" : {
-            "type" : "number",
-            "description" : "Der Auszahlungsbetrag ist der Nettodarlehensbetrag"
-          },
-          "produktAnbieter" : {
-            "$ref" : "#/components/schemas/ProduktAnbieter"
-          },
-          "finanzierenderProduktAnbieter" : {
-            "$ref" : "#/components/schemas/ProduktAnbieter"
-          },
-          "zinsZahlungsBeginnAm" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "zinsBindung" : {
-            "$ref" : "#/components/schemas/ZinsBindung"
-          },
-          "tilgung" : {
-            "$ref" : "#/components/schemas/Tilgung"
-          },
-          "bereitstellung" : {
-            "$ref" : "#/components/schemas/Bereitstellung"
-          },
-          "gesamtlaufzeitInMonaten" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "gesamtkosten" : {
-            "type" : "number"
-          },
-          "auszahlungsDatum" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "bearbeitungszeit" : {
-            "$ref" : "#/components/schemas/Bearbeitungszeit"
-          },
-          "forwardperiodeInMonaten" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "laufzeitInJahren" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "laufzeitInMonaten" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "rateMonatlichInDerTilgungsfreienAnlaufzeit" : {
-            "type" : "number"
-          },
-          "zwischenfinanzierung" : {
-            "$ref" : "#/components/schemas/Zwischenfinanzierung"
-          },
-          "kalkulatorischesLaufzeitEnde" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "regionalFoerderbankProgramm" : {
-            "type" : "string",
-            "enum" : [ "L_BANK_KOMBI_DARLEHEN_WOHNEN", "L_BANK_WOHNEN_MIT_KIND", "L_BANK_WOHNEN_MIT_ZUKUNFT", "NRW_BANK_WOHNEIGENTUM", "NRW_BANK_GEBAEUDESANIERUNG", "NRW_BANK_NACHHALTIG_WOHNEN" ]
-          },
-          "kennung" : {
-            "type" : "string"
-          },
-          "provisionKundenbetreuerAbsolut" : {
-            "type" : "number"
-          },
-          "provisionKundenbetreuerRelativ" : {
-            "type" : "number"
-          },
-          "summeZinsenUeberGesamtlaufzeit" : {
-            "type" : "number"
-          },
-          "summeGebuehrenUeberGesamtlaufzeit" : {
-            "type" : "number"
-          },
-          "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit" : {
-            "type" : "number"
-          },
-          "produktFeatures" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }
-      },
-      "EffektivZinsRelevanteKosten" : {
-        "type" : "object",
-        "properties" : {
-          "beratungsHonorar" : {
-            "type" : "number"
-          },
-          "grundbuchKosten" : {
-            "type" : "number"
-          },
-          "tilgungsErsatzProduktKosten" : {
-            "type" : "number"
-          },
-          "sonstigeKosten" : {
-            "type" : "number"
-          },
-          "wohnGebaeudeVersicherungsKosten" : {
-            "type" : "number"
-          },
-          "zusatzSicherheitsKosten" : {
-            "type" : "number"
-          }
-        }
-      },
-      "Ergebnis" : {
-        "type" : "object",
-        "properties" : {
-          "kennung" : {
-            "type" : "string"
-          },
-          "darlehensSumme" : {
-            "type" : "number"
-          },
-          "sollZins" : {
-            "type" : "number"
-          },
-          "effektivZins" : {
-            "type" : "number"
-          },
-          "darlehen" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Darlehen"
-            }
-          },
-          "beleihung" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Beleihung"
-            }
-          },
-          "meldungen" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Meldung"
-            }
-          },
-          "machbarkeit" : {
-            "type" : "string",
-            "enum" : [ "MACHBAR", "UNTER_VORBEHALT", "NICHT_MACHBAR" ]
-          },
-          "annahmeFrist" : {
-            "type" : "string",
-            "format" : "date-time"
-          },
-          "erzeugtAm" : {
-            "type" : "string",
-            "format" : "date-time"
-          },
-          "bausparAngebote" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/BausparAngebot"
-            }
-          },
-          "anpassungsStatus" : {
-            "type" : "string",
-            "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
-          },
-          "elektronischeUnterlagenEinreichung" : {
-            "type" : "boolean"
-          },
-          "vollstaendigkeitsStatus" : {
-            "type" : "string",
-            "enum" : [ "NICHT_VOLLSTAENDIG", "VOLLSTAENDIG" ]
-          },
-          "rateMonatlich" : {
-            "type" : "number"
-          },
-          "provisionKundenbetreuerRelativ" : {
-            "type" : "number"
-          },
-          "produktFeatures" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/ProduktFeature"
-            }
-          },
-          "_links" : {
-            "$ref" : "#/components/schemas/Links"
-          }
-        }
-      },
-      "ErgebnisListe" : {
-        "type" : "object",
-        "properties" : {
-          "ergebnisse" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Ergebnis"
-            }
-          },
-          "_links" : {
-            "$ref" : "#/components/schemas/Links"
-          }
-        }
-      },
-      "Ermittlung" : {
-        "type" : "object",
-        "properties" : {
-          "ermittlungsId" : {
-            "type" : "string"
-          },
-          "ergebnisse" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "#/components/schemas/Ergebnis"
-            }
-          },
-          "_links" : {
-            "$ref" : "#/components/schemas/Links"
-          }
-        }
-      },
-      "Meldung" : {
-        "type" : "object",
-        "properties" : {
-          "text" : {
-            "type" : "string"
-          },
-          "code" : {
-            "type" : "string"
-          },
-          "produktAnbieterId" : {
-            "type" : "string"
-          },
-          "meldungsKategorie" : {
-            "type" : "string",
-            "enum" : [ "AUSZAHLUNGS_VORAUSSETZUNG", "MACHBAR", "MACHBARKEITS_HINWEIS", "ANPASSUNG_KUNDENWUNSCH", "ANPASSUNG_VERTRIEBSWUNSCH", "UNBERUECKSICHTIGTE_ANGABE", "KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN", "KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN", "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN", "MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN", "MACHBAR_UNTER_VORBEHALT_PRODUZENT", "NICHT_MACHBAR", "NICHT_ANBIETBAR" ]
-          },
-          "bereichsZuordnung" : {
-            "type" : "string",
-            "enum" : [ "ANTRAGSTELLER", "OBJEKT", "VORHABEN", "ALTERNATIV", "ANPASSUNG", "UNBERUECKSICHTIGTE_ANGABE" ]
-          }
-        }
-      },
-      "ProduktFeature" : {
-        "type" : "object",
-        "properties" : {
-          "produktAnbieterId" : {
-            "type" : "string"
-          },
-          "produktFeature" : {
-            "type" : "string"
-          }
-        }
-      },
-      "Tilgung" : {
-        "type" : "object",
-        "properties" : {
-          "anfaenglicheTilgung" : {
-            "type" : "number"
-          },
-          "tilgungsBeginn" : {
-            "type" : "string",
-            "format" : "date"
-          },
-          "sonderTilgungJaehrlich" : {
-            "type" : "number"
-          },
-          "tilgungsfreieAnlaufJahre" : {
-            "type" : "integer",
-            "format" : "int32"
-          }
-        }
-      },
-      "Zwischenfinanzierung" : {
-        "type" : "object",
-        "properties" : {
-          "maximaleLaufzeitInMonaten" : {
-            "type" : "integer",
-            "format" : "int32"
-          },
-          "verwendungszweck" : {
-            "type" : "string",
-            "enum" : [ "VORFINANZIERUNG_OEFFENTLICHER_MITTEL", "VERKAUF_EINES_ANDEREN_OBJEKTS", "SONSTIGE_VERWENDUNG" ]
-          },
-          "detailsZurVerwendung" : {
-            "type" : "string"
-          }
-        }
-      },
-      "ErmittlungsAnfrage" : {
-        "type" : "object",
-        "properties" : {
-          "ermittlungsId" : {
-            "type" : "string"
-          },
-          "erfassteDaten" : {
-            "$ref" : "#/components/schemas/ErfassteDaten"
-          },
-          "alternativen" : {
-            "type" : "boolean"
-          },
-          "provisionsAusgabe" : {
-            "type" : "boolean"
-          },
-          "partnerId" : {
-            "type" : "string"
-          },
-          "_links" : {
-            "$ref" : "#/components/schemas/Links"
-          },
-          "erstelltAm" : {
-            "type" : "string",
-            "format" : "date-time"
-          }
-        }
       },
       "Eintrag" : {
         "type" : "object",
@@ -4771,6 +7148,83 @@
           }
         }
       },
+      "Meldungen" : {
+        "type" : "object",
+        "properties" : {
+          "meldungen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Meldung"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "BerechnungsUebersicht" : {
+        "type" : "object",
+        "properties" : {
+          "html" : {
+            "type" : "string"
+          },
+          "exzerpt" : {
+            "type" : "string"
+          },
+          "produktAnbieter" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          }
+        }
+      },
+      "BerechnungsUebersichten" : {
+        "type" : "object",
+        "properties" : {
+          "haushaltsrechnung" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BerechnungsUebersicht"
+            }
+          },
+          "lebensphasenplanung" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BerechnungsUebersicht"
+            }
+          },
+          "kondition" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KonditionsUebersicht"
+            }
+          },
+          "beleihungsauslauf" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BerechnungsUebersicht"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "KonditionsUebersicht" : {
+        "type" : "object",
+        "properties" : {
+          "html" : {
+            "type" : "string"
+          },
+          "exzerpt" : {
+            "type" : "string"
+          },
+          "produktAnbieter" : {
+            "$ref" : "#/components/schemas/ProduktAnbieter"
+          },
+          "darlehenId" : {
+            "type" : "string"
+          }
+        }
+      },
       "ProvisionsInfo" : {
         "type" : "object",
         "properties" : {
@@ -4785,17 +7239,140 @@
           }
         }
       },
-      "Meldungen" : {
+      "Ergebnis" : {
         "type" : "object",
         "properties" : {
+          "kennung" : {
+            "type" : "string"
+          },
+          "darlehensSumme" : {
+            "type" : "number"
+          },
+          "sollZins" : {
+            "type" : "number"
+          },
+          "effektivZins" : {
+            "type" : "number"
+          },
+          "darlehen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Darlehen"
+            }
+          },
+          "beleihung" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Beleihung"
+            }
+          },
           "meldungen" : {
             "type" : "array",
             "items" : {
               "$ref" : "#/components/schemas/Meldung"
             }
           },
+          "machbarkeit" : {
+            "type" : "string",
+            "enum" : [ "MACHBAR", "UNTER_VORBEHALT", "NICHT_MACHBAR" ]
+          },
+          "annahmeFrist" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "erzeugtAm" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "bausparAngebote" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BausparAngebot"
+            }
+          },
+          "anpassungsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_ANGEPASST", "ANGEPASST", "ALTERNATIV" ]
+          },
+          "elektronischeUnterlagenEinreichung" : {
+            "type" : "boolean"
+          },
+          "vollstaendigkeitsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_VOLLSTAENDIG", "VOLLSTAENDIG" ]
+          },
+          "rateMonatlich" : {
+            "type" : "number"
+          },
+          "provisionKundenbetreuerRelativ" : {
+            "type" : "number"
+          },
+          "produktFeatures" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ProduktFeature"
+            }
+          },
           "_links" : {
             "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "ErgebnisListe" : {
+        "type" : "object",
+        "properties" : {
+          "ergebnisse" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ergebnis"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "Ermittlung" : {
+        "type" : "object",
+        "properties" : {
+          "ermittlungsId" : {
+            "type" : "string"
+          },
+          "ergebnisse" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Ergebnis"
+            }
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          }
+        }
+      },
+      "ErmittlungsAnfrage" : {
+        "type" : "object",
+        "properties" : {
+          "ermittlungsId" : {
+            "type" : "string"
+          },
+          "erfassteDaten" : {
+            "$ref" : "#/components/schemas/ErfassteDaten"
+          },
+          "alternativen" : {
+            "type" : "boolean"
+          },
+          "provisionsAusgabe" : {
+            "type" : "boolean"
+          },
+          "partnerId" : {
+            "type" : "string"
+          },
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "erstelltAm" : {
+            "type" : "string",
+            "format" : "date-time"
           }
         }
       },
