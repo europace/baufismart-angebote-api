@@ -7,13 +7,16 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.28
+  version: 2.7.29
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
 - url: https://baufinanzierung.api.europace.de
   description: Produktionsserver
 tags:
+- name: Version 3 WIP
+  description: "ATTENTION still WIP - Eine Liste mit Finanzierungsvorschlägen abrufen,\
+    \ API-Version 3"
 - name: VersionController
   description: Liefert die Version der BaufiSmart-API
 - name: Version 1
@@ -223,7 +226,7 @@ paths:
       summary: Ermittlung erzeugen
       description: Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON
         im Body benötigt
-      operationId: ermittleErgebnisse
+      operationId: ermittleErgebnisse_1
       parameters:
       - name: Authorization
         in: header
@@ -419,7 +422,7 @@ paths:
       - Version 2
       summary: Ergebnisse abrufen
       description: Als Parameter wird die Ermittlungs-Id benötigt.
-      operationId: getErgebnisListe
+      operationId: getErgebnisListe_1
       parameters:
       - name: Authorization
         in: header
@@ -502,7 +505,7 @@ paths:
       summary: Ergebnis abrufen
       description: Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id
         und der Ergebnisnummer benötigt.
-      operationId: getErgebnis
+      operationId: getErgebnis_1
       parameters:
       - name: Authorization
         in: header
@@ -591,7 +594,7 @@ paths:
       summary: Meldungen abrufen
       description: Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter
         wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
-      operationId: getMeldungen
+      operationId: getMeldungen_1
       parameters:
       - name: Authorization
         in: header
@@ -680,7 +683,7 @@ paths:
       summary: Provision abrufen
       description: Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id
         und die Ergebnisnummer benötigt.
-      operationId: getProvision
+      operationId: getProvision_1
       parameters:
       - name: Authorization
         in: header
@@ -776,7 +779,7 @@ paths:
       summary: Unterlagen abrufen
       description: Abrufen der benötigten Unterlagen des Finanzierungsvorschlags.
         Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
-      operationId: getUnterlagen
+      operationId: getUnterlagen_1
       parameters:
       - name: Authorization
         in: header
@@ -865,7 +868,7 @@ paths:
       summary: Zahlungspläne abrufen
       description: Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter
         wird die Ermittlungs-Id und die Ergebnisnummer benötigt.
-      operationId: getZahlungsplaene
+      operationId: getZahlungsplaene_1
       parameters:
       - name: Authorization
         in: header
@@ -955,7 +958,7 @@ paths:
       description: "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id\
         \ abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie\
         \ der Index des Zahlungsplans benötigt."
-      operationId: getZahlungsplan
+      operationId: getZahlungsplan_1
       parameters:
       - name: Authorization
         in: header
@@ -1208,6 +1211,1555 @@ paths:
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste:
+    post:
+      tags:
+      - Version 3 WIP
+      summary: Ermittlung erzeugen
+      description: Als Parameter wird eine Vorgangsnummer benötigt
+      operationId: ermittleErgebnisse
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ermitteln
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: aktualisieren
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      - name: alternativen
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: produktAnbieter
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: exkludierteProduktAnbieter
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: provisionsAusgabe
+        in: query
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
+            der Url im 'location' Header abrufbar.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Ergebnisliste'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "204":
+          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
+            Inhalt.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Ergebnisliste'
+        "302":
+          description: Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Ergebnisliste'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Ergebnisse abrufen
+      description: Als Parameter wird die ErgebnislisteId benötigt.
+      operationId: getErgebnisListe
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      responses:
+        "200":
+          description: Die Ergebnisliste wurde gefunden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ergebnisliste'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{angebotsnummer}/merken:
+    post:
+      tags:
+      - Version 3 WIP
+      summary: merken
+      operationId: merkeAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: angebotsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Angebot gespeichert
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AngebotMerkenAntwort'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Ergebnis abrufen
+      description: Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErgebnislisteId
+        und der Ergebnisnummer benötigt.
+      operationId: getErgebnis
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V3Ergebnis'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Berechnungsuebersichten abrufen
+      description: Die Berechnungsuebersichten abrufen. Als Parameter wird die ErgebnislisteIdId
+        sowie ErgebnisNummer benötigt.
+      operationId: getBerechnungsuebersichten
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BerechnungsUebersichten'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/meldungen:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Meldungen abrufen
+      description: Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter
+        wird die ErgebnislisteId und die Ergebnisnummer benötigt.
+      operationId: getMeldungen
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meldungen'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/provision:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Provision abrufen
+      description: Abruf der Provision des Darlehens. Als Parameter wird die ErgebnislisteId
+        und die Ergebnisnummer benötigt.
+      operationId: getProvision
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: repeat
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProvisionsInfo'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/unterlagen:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Unterlagen abrufen
+      description: Abrufen der benötigten Unterlagen des Finanzierungsvorschlags.
+        Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benötigt.
+      operationId: getUnterlagen
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unterlagen'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Zahlungspläne abrufen
+      description: Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter
+        wird die ErgebnisListeId und die Ergebnisnummer benötigt.
+      operationId: getZahlungsplaene
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zahlungsplaene'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene/{zahlungsplanIndex}:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Zahlungsplan abrufen
+      description: "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id\
+        \ abrufen. Als Parameter wird die ErgebnislisteId, die Ergebnisnummer sowie\
+        \ der Index des Zahlungsplans benötigt."
+      operationId: getZahlungsplan
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnislisteId
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: ergebnisnummer
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: zahlungsplanIndex
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zahlungsplan'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Gemerkte Angebote abrufen
+      description: Gemerkte Angebote abrufen
+      operationId: getGemerkteAngebote
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/V3GemerktesAngebot'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Gemerktes Angebot abrufen
+      description: Gemerktes Angebot abrufen
+      operationId: getGemerktesAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V3GemerktesAngebot'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/berechnungsuebersichten:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Berechnungsuebersichten für gemerkte Angebote abrufen
+      description: Die Berechnungsuebersichten für gemerkte Angebote abrufen. Als
+        Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots
+        benötigt.
+      operationId: getBerechnungsuebersichtenFuerGemerktesAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BerechnungsUebersichten'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Meldungen für gemerkte Angebote abrufen
+      description: Die Meldungen für gemerkte Angebote abrufen. Als Parameter wird
+        die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
+      operationId: getMeldungenFuerGemerktesAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Meldungen'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/unterlagen:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Die Unterlagen für gemerkte Angebote abrufen
+      description: Die Unterlagen für gemerkte Angebote abrufen. Als Parameter wird
+        die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
+      operationId: getUnterlagenFuerGemerktesAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unterlagen'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene:
+    get:
+      tags:
+      - Version 3 WIP
+      summary: Die Zahlungsplaene für gemerkte Angebote abrufen
+      description: Die Zahlungsplaene für gemerkte Angebote abrufen. Als Parameter
+        wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
+      operationId: getZahlungsplaeneFuerGemerktesAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zahlungsplaene'
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
   /version/baufiSmartApi:
     get:
       tags:
@@ -1270,6 +2822,494 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    BausparAngebot:
+      type: object
+      properties:
+        id:
+          type: string
+        tarif:
+          type: string
+        vertragsBeginn:
+          type: string
+          format: date
+        zuteilungsDatum:
+          type: string
+          format: date
+        zuteilungsDatum2:
+          type: string
+          format: date
+        abschlussGebuehr:
+          type: number
+        abschlussGebuehrenVerrechnung:
+          type: string
+        bausparDarlehenSumme:
+          type: number
+        bausparSumme:
+          type: number
+        europaceMargeAbsolut:
+          type: number
+        guthabenBeiZuteilung:
+          type: number
+        provisionAbsolut:
+          type: number
+        sparBeitragMonatlich:
+          type: number
+        tilgungsBeitragMonatlich:
+          type: number
+        verwaltungsgebuehrenJaehrlich:
+          type: number
+        gesamtLaufzeitInJahren:
+          type: integer
+          format: int32
+        sparPhaseInJahren:
+          type: integer
+          format: int32
+        tilgungsPhaseInJahren:
+          type: integer
+          format: int32
+        sollZinsNachZuteilung:
+          type: number
+        bausparkasse:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        antragEntscheider:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        effektivZinsNachZuteilungProzent:
+          type: number
+        sonderZahlungen:
+          type: array
+          items:
+            $ref: '#/components/schemas/SonderZahlung'
+        sparBeginn:
+          type: string
+          format: date
+        vertragsNummer:
+          type: string
+        vertragsPartnerIds:
+          type: array
+          items:
+            type: string
+        teilBausparSumme:
+          type: number
+    Bearbeitungszeit:
+      type: object
+      properties:
+        min:
+          type: integer
+          format: int32
+        max:
+          type: integer
+          format: int32
+        standVon:
+          type: string
+          format: date
+        bemerkung:
+          type: string
+    Beleihung:
+      type: object
+      properties:
+        produktAnbieter:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        summe:
+          type: number
+        auslauf:
+          type: number
+    Bereitstellung:
+      type: object
+      properties:
+        bereitstellungsZinsfreieZeitInMonaten:
+          type: integer
+          format: int32
+        bereitstellungsZins:
+          type: number
+    Darlehen:
+      type: object
+      properties:
+        id:
+          type: string
+        typ:
+          type: string
+          enum:
+          - ANNUITAETEN_DARLEHEN
+          - FORWARD_DARLEHEN
+          - REGIONAL_FOERDER_DARLEHEN
+          - KFW_DARLEHEN
+          - PRIVAT_DARLEHEN
+          - ZWISCHEN_FINANZIERUNG
+          - VARIABLES_DARLEHEN
+          - BAUSPARVERTRAG
+        kfwProgramm:
+          type: string
+          enum:
+          - PROGRAMM_124
+          - PROGRAMM_141
+          - PROGRAMM_151
+          - PROGRAMM_152
+          - PROGRAMM_153
+          - PROGRAMM_155
+          - PROGRAMM_159
+          - PROGRAMM_167
+          - PROGRAMM_261
+          - PROGRAMM_262
+          - PROGRAMM_297
+          - PROGRAMM_298
+          - PROGRAMM_300
+          - PROGRAMM_358
+          - PROGRAMM_359
+        sollZins:
+          type: number
+        effektivZins:
+          type: number
+        effektivZinsRelevanteKosten:
+          $ref: '#/components/schemas/EffektivZinsRelevanteKosten'
+        rateMonatlich:
+          type: number
+        darlehensBetrag:
+          type: number
+        auszahlungsBetrag:
+          type: number
+          description: Der Auszahlungsbetrag ist der Nettodarlehensbetrag
+        produktAnbieter:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        finanzierenderProduktAnbieter:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        zinsZahlungsBeginnAm:
+          type: string
+          format: date
+        zinsBindung:
+          $ref: '#/components/schemas/ZinsBindung'
+        tilgung:
+          $ref: '#/components/schemas/Tilgung'
+        bereitstellung:
+          $ref: '#/components/schemas/Bereitstellung'
+        gesamtlaufzeitInMonaten:
+          type: integer
+          format: int32
+        gesamtkosten:
+          type: number
+        auszahlungsDatum:
+          type: string
+          format: date
+        bearbeitungszeit:
+          $ref: '#/components/schemas/Bearbeitungszeit'
+        forwardperiodeInMonaten:
+          type: integer
+          format: int32
+        laufzeitInJahren:
+          type: integer
+          format: int32
+        laufzeitInMonaten:
+          type: integer
+          format: int32
+        rateMonatlichInDerTilgungsfreienAnlaufzeit:
+          type: number
+        zwischenfinanzierung:
+          $ref: '#/components/schemas/Zwischenfinanzierung'
+        kalkulatorischesLaufzeitEnde:
+          type: string
+          format: date
+        regionalFoerderbankProgramm:
+          type: string
+          enum:
+          - L_BANK_KOMBI_DARLEHEN_WOHNEN
+          - L_BANK_WOHNEN_MIT_KIND
+          - L_BANK_WOHNEN_MIT_ZUKUNFT
+          - NRW_BANK_WOHNEIGENTUM
+          - NRW_BANK_GEBAEUDESANIERUNG
+          - NRW_BANK_NACHHALTIG_WOHNEN
+        kennung:
+          type: string
+        provisionKundenbetreuerAbsolut:
+          type: number
+        provisionKundenbetreuerRelativ:
+          type: number
+        summeZinsenUeberGesamtlaufzeit:
+          type: number
+        summeGebuehrenUeberGesamtlaufzeit:
+          type: number
+        summeKontofuehrungsgebuehrenUeberGesamtlaufzeit:
+          type: number
+        produktFeatures:
+          type: array
+          items:
+            type: string
+    EffektivZinsRelevanteKosten:
+      type: object
+      properties:
+        beratungsHonorar:
+          type: number
+        grundbuchKosten:
+          type: number
+        tilgungsErsatzProduktKosten:
+          type: number
+        sonstigeKosten:
+          type: number
+        wohnGebaeudeVersicherungsKosten:
+          type: number
+        zusatzSicherheitsKosten:
+          type: number
+    Ergebnisliste:
+      type: object
+      properties:
+        ergebnislisteId:
+          type: string
+        ergebnisliste:
+          type: array
+          items:
+            $ref: '#/components/schemas/V3Ergebnis'
+        _links:
+          $ref: '#/components/schemas/Links'
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    Meldung:
+      type: object
+      properties:
+        text:
+          type: string
+        code:
+          type: string
+        produktAnbieterId:
+          type: string
+        meldungsKategorie:
+          type: string
+          enum:
+          - AUSZAHLUNGS_VORAUSSETZUNG
+          - MACHBAR
+          - MACHBARKEITS_HINWEIS
+          - ANPASSUNG_KUNDENWUNSCH
+          - ANPASSUNG_VERTRIEBSWUNSCH
+          - UNBERUECKSICHTIGTE_ANGABE
+          - KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN
+          - KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN
+          - MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN
+          - MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN
+          - MACHBAR_UNTER_VORBEHALT_PRODUZENT
+          - NICHT_MACHBAR
+          - NICHT_ANBIETBAR
+        bereichsZuordnung:
+          type: string
+          enum:
+          - ANTRAGSTELLER
+          - OBJEKT
+          - VORHABEN
+          - ALTERNATIV
+          - ANPASSUNG
+          - UNBERUECKSICHTIGTE_ANGABE
+    ProduktAnbieter:
+      type: object
+      properties:
+        produktAnbieterId:
+          type: string
+        partnerId:
+          type: string
+        name:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+      description: Kann z.B. bei KfW abweichen vom produktAnbieter
+    ProduktFeature:
+      type: object
+      properties:
+        produktAnbieterId:
+          type: string
+        produktFeature:
+          type: string
+    SonderZahlung:
+      type: object
+      properties:
+        betrag:
+          type: number
+        zahlweise:
+          type: string
+          enum:
+          - EINMALIG
+          - MONATLICH
+          - VIERTELJAEHRLICH
+          - HALBJAEHRLICH
+          - JAEHRLICH
+        termin:
+          type: string
+          format: date
+        anzahl:
+          type: integer
+          format: int32
+    Tilgung:
+      type: object
+      properties:
+        anfaenglicheTilgung:
+          type: number
+        tilgungsBeginn:
+          type: string
+          format: date
+        sonderTilgungJaehrlich:
+          type: number
+        tilgungsfreieAnlaufJahre:
+          type: integer
+          format: int32
+    V3Ergebnis:
+      type: object
+      properties:
+        kennung:
+          type: string
+        darlehensSumme:
+          type: number
+        sollZins:
+          type: number
+        effektivZins:
+          type: number
+        darlehen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Darlehen'
+        beleihung:
+          type: array
+          items:
+            $ref: '#/components/schemas/Beleihung'
+        meldungen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meldung'
+        machbarkeit:
+          type: string
+          enum:
+          - MACHBAR
+          - UNTER_VORBEHALT
+          - NICHT_MACHBAR
+        annahmeFrist:
+          type: string
+          format: date-time
+        erzeugtAm:
+          type: string
+          format: date-time
+        bausparAngebote:
+          type: array
+          items:
+            $ref: '#/components/schemas/BausparAngebot'
+        anpassungsStatus:
+          type: string
+          enum:
+          - NICHT_ANGEPASST
+          - ANGEPASST
+          - ALTERNATIV
+        elektronischeUnterlagenEinreichung:
+          type: boolean
+        vollstaendigkeitsStatus:
+          type: string
+          enum:
+          - NICHT_VOLLSTAENDIG
+          - VOLLSTAENDIG
+        rateMonatlich:
+          type: number
+        provisionKundenbetreuerRelativ:
+          type: number
+        produktFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProduktFeature'
+        gemerktesAngebot:
+          $ref: '#/components/schemas/V3GemerktesAngebot'
+        _links:
+          $ref: '#/components/schemas/Links'
+    V3GemerktesAngebot:
+      type: object
+      properties:
+        id:
+          type: string
+        laufendeNummer:
+          type: integer
+          format: int32
+        kennung:
+          type: string
+        darlehensSumme:
+          type: number
+        sollZins:
+          type: number
+        effektivZins:
+          type: number
+        darlehen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Darlehen'
+        beleihung:
+          type: array
+          items:
+            $ref: '#/components/schemas/Beleihung'
+        machbarkeit:
+          type: string
+          enum:
+          - MACHBAR
+          - UNTER_VORBEHALT
+          - NICHT_MACHBAR
+        annahmeFrist:
+          type: string
+          format: date-time
+        erzeugtAm:
+          type: string
+          format: date-time
+        bausparAngebote:
+          type: array
+          items:
+            $ref: '#/components/schemas/BausparAngebot'
+        anpassungsStatus:
+          type: string
+          enum:
+          - NICHT_ANGEPASST
+          - ANGEPASST
+          - ALTERNATIV
+        elektronischeUnterlagenEinreichung:
+          type: boolean
+        vollstaendigkeitsStatus:
+          type: string
+          enum:
+          - NICHT_VOLLSTAENDIG
+          - VOLLSTAENDIG
+        rateMonatlich:
+          type: number
+        provisionKundenbetreuerRelativ:
+          type: number
+        produktFeatures:
+          type: array
+          items:
+            type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+    ZinsBindung:
+      type: object
+      properties:
+        jahre:
+          type: integer
+          format: int32
+        monate:
+          type: integer
+          format: int32
+        endetAm:
+          type: string
+          format: date
+        restschuldNachZinsBindungsEnde:
+          type: number
+        summeZinsenInZinsBindung:
+          type: number
+    Zwischenfinanzierung:
+      type: object
+      properties:
+        maximaleLaufzeitInMonaten:
+          type: integer
+          format: int32
+        verwendungszweck:
+          type: string
+          enum:
+          - VORFINANZIERUNG_OEFFENTLICHER_MITTEL
+          - VERKAUF_EINES_ANDEREN_OBJEKTS
+          - SONSTIGE_VERWENDUNG
+        detailsZurVerwendung:
+          type: string
+    AngebotMerkenAntwort:
+      type: object
+      properties:
+        laufendeNummerAmVorgang:
+          type: integer
+          format: int32
     AnnuitaetenDarlehensWunsch:
       required:
       - darlehensBetrag
@@ -1630,6 +3670,26 @@ components:
             - LBS_NORD_N_MODERNISIERER_MINIZINS
             - LBS_NORD_N_MODERNISIERER_M8
             - LBS_NORD_N_MODERNISIERER_MX
+            - LBS_NORDWEST_TRAUMSTART_YOUNG
+            - LBS_NORDWEST_WT_FIN_10_V1_2024
+            - LBS_NORDWEST_WT_FIN_10_V2_2024
+            - LBS_NORDWEST_WT_FIN_12_2024
+            - LBS_NORDWEST_WT_FIN_15_V1_2024
+            - LBS_NORDWEST_WT_FIN_15_V2_2024
+            - LBS_NORDWEST_WT_FIN_SPEZIAL_2024
+            - LBS_NORDWEST_WT_MINI_2024
+            - LBS_NORDWEST_WT_MOD_ECOFLEX_2024
+            - LBS_NORDWEST_WT_MOD_FLEX_2024
+            - LBS_NORDWEST_WT_MOD_ECOSPRINT_2024
+            - LBS_NORDWEST_WT_MOD_SPRINT_2024
+            - LBS_NORDWEST_WT_PLUS
+            - LBS_NORDWEST_WT_FIN_10_V1_2024_R
+            - LBS_NORDWEST_WT_FIN_10_V2_2024_R
+            - LBS_NORDWEST_WT_FIN_15_V1_2024_R
+            - LBS_NORDWEST_WT_FIN_15_V2_2024_R
+            - LBS_NORDWEST_WT_SPEZIAL_2024_R
+            - LBS_NORDWEST_WT_MOD_ECOFLEX_2024_R
+            - LBS_NORDWEST_WT_MOD_FLEX_2024_R
             - LBS_NORD_CLASSIC_GU
             - LBS_NORD_CLASSIC_GV
             - LBS_NORD_CLASSIC_MINI_GM
@@ -1801,6 +3861,12 @@ components:
             - LBS_SAAR_MODERNISIERER_ZUHAUSE
             - LBS_SAAR_KLIMAFIT_ZUHAUSE
             - LBS_SAAR_EINSTEIGER
+            - LBS_SAAR_FINANZIERER_MAX
+            - LBS_SAAR_KLASSIK
+            - LBS_SAAR_KLIMAFIT
+            - LBS_SAAR_TOP_RATE
+            - LBS_SAAR_TOP_ZINS
+            - LBS_SAAR_WOHNFIT
             - SIGNAL_IDUNA_FREIRAUM_F_35
             - SIGNAL_IDUNA_FREIRAUM_F_35_16
             - SIGNAL_IDUNA_FREIRAUM_F_45
@@ -2449,8 +4515,8 @@ components:
           type: string
           deprecated: true
           enum:
-            - ENDENERGIEBEDARF
-            - ENDENERGIEVERBRAUCH
+          - ENDENERGIEBEDARF
+          - ENDENERGIEVERBRAUCH
         ausweisTyp:
           type: string
           enum:
@@ -3004,6 +5070,8 @@ components:
           - PROGRAMM_297
           - PROGRAMM_298
           - PROGRAMM_300
+          - PROGRAMM_358
+          - PROGRAMM_359
         kfwEnergieEffizienzStandard:
           type: string
           enum:
@@ -3120,10 +5188,6 @@ components:
         ausweisArtBeiAndererAusweis:
           type: string
           description: Nur wenn ausweisArt = ANDERE
-    Links:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/Link'
     MietAusgaben:
       type: object
       properties:
@@ -3270,17 +5334,6 @@ components:
           description: Wert muss größer 0 sein.
           format: int32
       description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
-    ProduktAnbieter:
-      type: object
-      properties:
-        produktAnbieterId:
-          type: string
-        partnerId:
-          type: string
-        name:
-          type: string
-        _links:
-          $ref: '#/components/schemas/Links'
     RechteAbteilung2:
       type: object
       properties:
@@ -3343,25 +5396,6 @@ components:
         sonstigesEinkommenMonatlich:
           type: number
       description: nur bei art != RENTNER
-    SonderZahlung:
-      type: object
-      properties:
-        betrag:
-          type: number
-        zahlweise:
-          type: string
-          enum:
-          - EINMALIG
-          - MONATLICH
-          - VIERTELJAEHRLICH
-          - HALBJAEHRLICH
-          - JAEHRLICH
-        termin:
-          type: string
-          format: date
-        anzahl:
-          type: integer
-          format: int32
     SparPhase:
       type: object
       properties:
@@ -3623,22 +5657,6 @@ components:
           type: number
         dividendenJaehrlich:
           type: number
-    ZinsBindung:
-      type: object
-      properties:
-        jahre:
-          type: integer
-          format: int32
-        monate:
-          type: integer
-          format: int32
-        endetAm:
-          type: string
-          format: date
-        restschuldNachZinsBindungsEnde:
-          type: number
-        summeZinsenInZinsBindung:
-          type: number
     ZwischenFinanzierungsWunsch:
       required:
       - darlehensBetrag
@@ -3668,397 +5686,6 @@ components:
         detailsZurVerwendung:
           type: string
       description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
-    BausparAngebot:
-      type: object
-      properties:
-        id:
-          type: string
-        tarif:
-          type: string
-        vertragsBeginn:
-          type: string
-          format: date
-        zuteilungsDatum:
-          type: string
-          format: date
-        zuteilungsDatum2:
-          type: string
-          format: date
-        abschlussGebuehr:
-          type: number
-        abschlussGebuehrenVerrechnung:
-          type: string
-        bausparDarlehenSumme:
-          type: number
-        bausparSumme:
-          type: number
-        europaceMargeAbsolut:
-          type: number
-        guthabenBeiZuteilung:
-          type: number
-        provisionAbsolut:
-          type: number
-        sparBeitragMonatlich:
-          type: number
-        tilgungsBeitragMonatlich:
-          type: number
-        verwaltungsgebuehrenJaehrlich:
-          type: number
-        gesamtLaufzeitInJahren:
-          type: integer
-          format: int32
-        sparPhaseInJahren:
-          type: integer
-          format: int32
-        tilgungsPhaseInJahren:
-          type: integer
-          format: int32
-        sollZinsNachZuteilung:
-          type: number
-        bausparkasse:
-          $ref: '#/components/schemas/ProduktAnbieter'
-        antragEntscheider:
-          $ref: '#/components/schemas/ProduktAnbieter'
-        effektivZinsNachZuteilungProzent:
-          type: number
-        sonderZahlungen:
-          type: array
-          items:
-            $ref: '#/components/schemas/SonderZahlung'
-        sparBeginn:
-          type: string
-          format: date
-        vertragsNummer:
-          type: string
-        vertragsPartnerIds:
-          type: array
-          items:
-            type: string
-        teilBausparSumme:
-          type: number
-    Bearbeitungszeit:
-      type: object
-      properties:
-        min:
-          type: integer
-          format: int32
-        max:
-          type: integer
-          format: int32
-        standVon:
-          type: string
-          format: date
-        bemerkung:
-          type: string
-    Beleihung:
-      type: object
-      properties:
-        produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
-        summe:
-          type: number
-        auslauf:
-          type: number
-    Bereitstellung:
-      type: object
-      properties:
-        bereitstellungsZinsfreieZeitInMonaten:
-          type: integer
-          format: int32
-        bereitstellungsZins:
-          type: number
-    Darlehen:
-      type: object
-      properties:
-        id:
-          type: string
-        typ:
-          type: string
-          enum:
-          - ANNUITAETEN_DARLEHEN
-          - FORWARD_DARLEHEN
-          - REGIONAL_FOERDER_DARLEHEN
-          - KFW_DARLEHEN
-          - PRIVAT_DARLEHEN
-          - ZWISCHEN_FINANZIERUNG
-          - VARIABLES_DARLEHEN
-          - BAUSPARVERTRAG
-        kfwProgramm:
-          type: string
-          enum:
-          - PROGRAMM_124
-          - PROGRAMM_141
-          - PROGRAMM_151
-          - PROGRAMM_152
-          - PROGRAMM_153
-          - PROGRAMM_155
-          - PROGRAMM_159
-          - PROGRAMM_167
-          - PROGRAMM_261
-          - PROGRAMM_262
-          - PROGRAMM_297
-          - PROGRAMM_298
-          - PROGRAMM_300
-        sollZins:
-          type: number
-        effektivZins:
-          type: number
-        effektivZinsRelevanteKosten:
-          $ref: '#/components/schemas/EffektivZinsRelevanteKosten'
-        rateMonatlich:
-          type: number
-        darlehensBetrag:
-          type: number
-        auszahlungsBetrag:
-          type: number
-          description: Der Auszahlungsbetrag ist der Nettodarlehensbetrag
-        produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
-        finanzierenderProduktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
-        zinsZahlungsBeginnAm:
-          type: string
-          format: date
-        zinsBindung:
-          $ref: '#/components/schemas/ZinsBindung'
-        tilgung:
-          $ref: '#/components/schemas/Tilgung'
-        bereitstellung:
-          $ref: '#/components/schemas/Bereitstellung'
-        gesamtlaufzeitInMonaten:
-          type: integer
-          format: int32
-        gesamtkosten:
-          type: number
-        auszahlungsDatum:
-          type: string
-          format: date
-        bearbeitungszeit:
-          $ref: '#/components/schemas/Bearbeitungszeit'
-        forwardperiodeInMonaten:
-          type: integer
-          format: int32
-        laufzeitInJahren:
-          type: integer
-          format: int32
-        laufzeitInMonaten:
-          type: integer
-          format: int32
-        rateMonatlichInDerTilgungsfreienAnlaufzeit:
-          type: number
-        zwischenfinanzierung:
-          $ref: '#/components/schemas/Zwischenfinanzierung'
-        kalkulatorischesLaufzeitEnde:
-          type: string
-          format: date
-        regionalFoerderbankProgramm:
-          type: string
-          enum:
-          - L_BANK_KOMBI_DARLEHEN_WOHNEN
-          - L_BANK_WOHNEN_MIT_KIND
-          - L_BANK_WOHNEN_MIT_ZUKUNFT
-          - NRW_BANK_WOHNEIGENTUM
-          - NRW_BANK_GEBAEUDESANIERUNG
-          - NRW_BANK_NACHHALTIG_WOHNEN
-        kennung:
-          type: string
-        provisionKundenbetreuerAbsolut:
-          type: number
-        provisionKundenbetreuerRelativ:
-          type: number
-        summeZinsenUeberGesamtlaufzeit:
-          type: number
-        summeGebuehrenUeberGesamtlaufzeit:
-          type: number
-        summeKontofuehrungsgebuehrenUeberGesamtlaufzeit:
-          type: number
-        produktFeatures:
-          type: array
-          items:
-            type: string
-    EffektivZinsRelevanteKosten:
-      type: object
-      properties:
-        beratungsHonorar:
-          type: number
-        grundbuchKosten:
-          type: number
-        tilgungsErsatzProduktKosten:
-          type: number
-        sonstigeKosten:
-          type: number
-        wohnGebaeudeVersicherungsKosten:
-          type: number
-        zusatzSicherheitsKosten:
-          type: number
-    Ergebnis:
-      type: object
-      properties:
-        kennung:
-          type: string
-        darlehensSumme:
-          type: number
-        sollZins:
-          type: number
-        effektivZins:
-          type: number
-        darlehen:
-          type: array
-          items:
-            $ref: '#/components/schemas/Darlehen'
-        beleihung:
-          type: array
-          items:
-            $ref: '#/components/schemas/Beleihung'
-        meldungen:
-          type: array
-          items:
-            $ref: '#/components/schemas/Meldung'
-        machbarkeit:
-          type: string
-          enum:
-          - MACHBAR
-          - UNTER_VORBEHALT
-          - NICHT_MACHBAR
-        annahmeFrist:
-          type: string
-          format: date-time
-        erzeugtAm:
-          type: string
-          format: date-time
-        bausparAngebote:
-          type: array
-          items:
-            $ref: '#/components/schemas/BausparAngebot'
-        anpassungsStatus:
-          type: string
-          enum:
-          - NICHT_ANGEPASST
-          - ANGEPASST
-          - ALTERNATIV
-        elektronischeUnterlagenEinreichung:
-          type: boolean
-        vollstaendigkeitsStatus:
-          type: string
-          enum:
-          - NICHT_VOLLSTAENDIG
-          - VOLLSTAENDIG
-        rateMonatlich:
-          type: number
-        provisionKundenbetreuerRelativ:
-          type: number
-        produktFeatures:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProduktFeature'
-        _links:
-          $ref: '#/components/schemas/Links'
-    ErgebnisListe:
-      type: object
-      properties:
-        ergebnisse:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ergebnis'
-        _links:
-          $ref: '#/components/schemas/Links'
-    Ermittlung:
-      type: object
-      properties:
-        ermittlungsId:
-          type: string
-        ergebnisse:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ergebnis'
-        _links:
-          $ref: '#/components/schemas/Links'
-    Meldung:
-      type: object
-      properties:
-        text:
-          type: string
-        code:
-          type: string
-        produktAnbieterId:
-          type: string
-        meldungsKategorie:
-          type: string
-          enum:
-          - AUSZAHLUNGS_VORAUSSETZUNG
-          - MACHBAR
-          - MACHBARKEITS_HINWEIS
-          - ANPASSUNG_KUNDENWUNSCH
-          - ANPASSUNG_VERTRIEBSWUNSCH
-          - UNBERUECKSICHTIGTE_ANGABE
-          - KONDITIONEN_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN
-          - KONDITIONEN_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN
-          - MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN
-          - MACHBARKEIT_UNTER_VORBEHALT_EXTERNER_SCHNITTSTELLEN
-          - MACHBAR_UNTER_VORBEHALT_PRODUZENT
-          - NICHT_MACHBAR
-          - NICHT_ANBIETBAR
-        bereichsZuordnung:
-          type: string
-          enum:
-          - ANTRAGSTELLER
-          - OBJEKT
-          - VORHABEN
-          - ALTERNATIV
-          - ANPASSUNG
-          - UNBERUECKSICHTIGTE_ANGABE
-    ProduktFeature:
-      type: object
-      properties:
-        produktAnbieterId:
-          type: string
-        produktFeature:
-          type: string
-    Tilgung:
-      type: object
-      properties:
-        anfaenglicheTilgung:
-          type: number
-        tilgungsBeginn:
-          type: string
-          format: date
-        sonderTilgungJaehrlich:
-          type: number
-        tilgungsfreieAnlaufJahre:
-          type: integer
-          format: int32
-    Zwischenfinanzierung:
-      type: object
-      properties:
-        maximaleLaufzeitInMonaten:
-          type: integer
-          format: int32
-        verwendungszweck:
-          type: string
-          enum:
-          - VORFINANZIERUNG_OEFFENTLICHER_MITTEL
-          - VERKAUF_EINES_ANDEREN_OBJEKTS
-          - SONSTIGE_VERWENDUNG
-        detailsZurVerwendung:
-          type: string
-    ErmittlungsAnfrage:
-      type: object
-      properties:
-        ermittlungsId:
-          type: string
-        erfassteDaten:
-          $ref: '#/components/schemas/ErfassteDaten'
-        alternativen:
-          type: boolean
-        provisionsAusgabe:
-          type: boolean
-        partnerId:
-          type: string
-        _links:
-          $ref: '#/components/schemas/Links'
-        erstelltAm:
-          type: string
-          format: date-time
     Eintrag:
       type: object
       properties:
@@ -4162,15 +5789,6 @@ components:
             $ref: '#/components/schemas/Unterlage'
         _links:
           $ref: '#/components/schemas/Links'
-    ProvisionsInfo:
-      type: object
-      properties:
-        betrag:
-          type: number
-        partnerId:
-          type: string
-        _links:
-          $ref: '#/components/schemas/Links'
     Meldungen:
       type: object
       properties:
@@ -4180,6 +5798,156 @@ components:
             $ref: '#/components/schemas/Meldung'
         _links:
           $ref: '#/components/schemas/Links'
+    BerechnungsUebersicht:
+      type: object
+      properties:
+        html:
+          type: string
+        exzerpt:
+          type: string
+        produktAnbieter:
+          $ref: '#/components/schemas/ProduktAnbieter'
+    BerechnungsUebersichten:
+      type: object
+      properties:
+        haushaltsrechnung:
+          type: array
+          items:
+            $ref: '#/components/schemas/BerechnungsUebersicht'
+        lebensphasenplanung:
+          type: array
+          items:
+            $ref: '#/components/schemas/BerechnungsUebersicht'
+        kondition:
+          type: array
+          items:
+            $ref: '#/components/schemas/KonditionsUebersicht'
+        beleihungsauslauf:
+          type: array
+          items:
+            $ref: '#/components/schemas/BerechnungsUebersicht'
+        _links:
+          $ref: '#/components/schemas/Links'
+    KonditionsUebersicht:
+      type: object
+      properties:
+        html:
+          type: string
+        exzerpt:
+          type: string
+        produktAnbieter:
+          $ref: '#/components/schemas/ProduktAnbieter'
+        darlehenId:
+          type: string
+    ProvisionsInfo:
+      type: object
+      properties:
+        betrag:
+          type: number
+        partnerId:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+    Ergebnis:
+      type: object
+      properties:
+        kennung:
+          type: string
+        darlehensSumme:
+          type: number
+        sollZins:
+          type: number
+        effektivZins:
+          type: number
+        darlehen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Darlehen'
+        beleihung:
+          type: array
+          items:
+            $ref: '#/components/schemas/Beleihung'
+        meldungen:
+          type: array
+          items:
+            $ref: '#/components/schemas/Meldung'
+        machbarkeit:
+          type: string
+          enum:
+          - MACHBAR
+          - UNTER_VORBEHALT
+          - NICHT_MACHBAR
+        annahmeFrist:
+          type: string
+          format: date-time
+        erzeugtAm:
+          type: string
+          format: date-time
+        bausparAngebote:
+          type: array
+          items:
+            $ref: '#/components/schemas/BausparAngebot'
+        anpassungsStatus:
+          type: string
+          enum:
+          - NICHT_ANGEPASST
+          - ANGEPASST
+          - ALTERNATIV
+        elektronischeUnterlagenEinreichung:
+          type: boolean
+        vollstaendigkeitsStatus:
+          type: string
+          enum:
+          - NICHT_VOLLSTAENDIG
+          - VOLLSTAENDIG
+        rateMonatlich:
+          type: number
+        provisionKundenbetreuerRelativ:
+          type: number
+        produktFeatures:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProduktFeature'
+        _links:
+          $ref: '#/components/schemas/Links'
+    ErgebnisListe:
+      type: object
+      properties:
+        ergebnisse:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ergebnis'
+        _links:
+          $ref: '#/components/schemas/Links'
+    Ermittlung:
+      type: object
+      properties:
+        ermittlungsId:
+          type: string
+        ergebnisse:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ergebnis'
+        _links:
+          $ref: '#/components/schemas/Links'
+    ErmittlungsAnfrage:
+      type: object
+      properties:
+        ermittlungsId:
+          type: string
+        erfassteDaten:
+          $ref: '#/components/schemas/ErfassteDaten'
+        alternativen:
+          type: boolean
+        provisionsAusgabe:
+          type: boolean
+        partnerId:
+          type: string
+        _links:
+          $ref: '#/components/schemas/Links'
+        erstelltAm:
+          type: string
+          format: date-time
     Error:
       type: object
       properties:
