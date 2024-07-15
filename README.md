@@ -83,7 +83,9 @@ Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
 
-The sample response contains no refreshed saved offer.
+### sample response of newly created offer
+
+The sample response with a fresh calculated offer.
 
 ```
 {
@@ -170,6 +172,136 @@ The sample response contains no refreshed saved offer.
   }
 ```
 
+### sample response of refreshed offer
+
+A refreshed offer contains the details of the saved offer within.
+This way the result data can be compared. 
+Refreshed offers occur only in a result list if there are saved "gemerktesAngebot" in the case.
+
+```
+{
+  "ergebnislisteId": "Z4WQVT",
+  "ergebnisliste": [
+    {
+      // offer details of refreshed offer with same fields as new offers
+      "darlehensSumme": 250000.00,
+      "sollZins": 4.32000,
+      ....
+      "gemerktesAngebot": { // start of saved offer
+        "id": "66869f9c9134407467abfa14",
+        "laufendeNummer": 11, // laufende Nummer in case
+        "darlehensSumme": 250000,
+        "sollZins": 4.32,
+        "effektivZins": 4.44,
+        "darlehen": [
+          {
+            "id": "64799f25ce9d3daff2f7335a",
+            "typ": "ANNUITAETEN_DARLEHEN",
+            "sollZins": 4.32,
+            "effektivZins": 4.44,
+            "effektivZinsRelevanteKosten": {
+              "beratungsHonorar": 0,
+              "grundbuchKosten": 535,
+              "tilgungsErsatzProduktKosten": 0,
+              "sonstigeKosten": 0,
+              "wohnGebaeudeVersicherungsKosten": 0,
+              "zusatzSicherheitsKosten": 0
+            },
+            "rateMonatlich": 1264.58,
+            "darlehensBetrag": 250000,
+            "auszahlungsBetrag": 250000,
+            "produktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "finanzierenderProduktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "zinsZahlungsBeginnAm": "2024-08-31",
+            "zinsBindung": {
+              "jahre": 10,
+              "restschuldNachZinsBindungsEnde": 195399.99,
+              "summeZinsenInZinsBindung": 187680.67
+            },
+            "tilgung": {
+              "anfaenglicheTilgung": 1.75,
+              "tilgungsBeginn": "2024-08-31",
+              "sonderTilgungJaehrlich": 5.0
+            },
+            "bereitstellung": {
+              "bereitstellungsZinsfreieZeitInMonaten": 3,
+              "bereitstellungsZins": 2.4
+            },
+            "gesamtlaufzeitInMonaten": 348,
+            "auszahlungsDatum": "2024-07-31",
+            "bearbeitungszeit": {
+              "min": 3,
+              "max": 10,
+              "standVon": "2024-07-02",
+              "bemerkung": "Neugeschäft 3 Tage\nNeugeschäft Individualkunden 10 Tage\nAuszahlung 3 Tage\nProlongation + KfW-Umwandlung 5 Tage\nEröffnung eines Darlehenskontos 1 Tag"
+            },
+            "kalkulatorischesLaufzeitEnde": "2053-06-30",
+            "provisionKundenbetreuerAbsolut": 2500,
+            "provisionKundenbetreuerRelativ": 1.0,
+            "summeZinsenUeberGesamtlaufzeit": 187680.67,
+            "summeGebuehrenUeberGesamtlaufzeit": 0,
+            "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit": 0
+          }
+        ],
+        "beleihung": [
+          {
+            "produktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "summe": 200000,
+            "auslauf": 125.0
+          }
+        ],
+        "machbarkeit": "NICHT_MACHBAR",
+        "annahmeFrist": "2024-07-08T21:59:59Z",
+        "bausparAngebote": [],
+        "anpassungsStatus": "ANGEPASST",
+        "elektronischeUnterlagenEinreichung": true,
+        "vollstaendigkeitsStatus": "NICHT_VOLLSTAENDIG",
+        "rateMonatlich": 1264.58,
+        "provisionKundenbetreuerRelativ": 1.0,
+        "produktFeatures": [],
+        "basisAngebotsId": "66869f9c9134407467abfa14"
+      },
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/15"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT"
+    }
+  }
+}
+```
 
 
 ## Usecase get offer details
