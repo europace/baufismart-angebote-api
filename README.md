@@ -17,11 +17,6 @@ As advisor you can find offers and compare them to get the best customer solutio
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.json)
 
-## Usecases
-
-- as advisor you can find offers and compare them to get the best customer solution
-- as advisor or loan provider find prolongation offers
-
 ## Requirements
 
 - authenticated as loan provider
@@ -36,7 +31,156 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 | Scope                               | API Use case                                                         |
 |-------------------------------------|----------------------------------------------------------------------|
-| `baufinanzierung:angebot:ermitteln` | to find offers                                                       |
+| `baufinanzierung:angebot:ermitteln` | to find offers     
+
+# Angebote API versions and functionalities
+
+
+| UseCase                                | Version 1 | Version 2 | Version 3 |
+|----------------------------------------|-----------|-----------|-----------|
+| calculate new offers without case      | ✅        | ✅        |           |
+| calculate new offers with case         |           | ✅        | ✅         |
+| get offer details                      |           | ✅        | ✅         |
+| save newly calculated offer (favorite) |           |           | ✅         |
+| get all saved offers from case         |           |           | ✅         |
+| get details of saved offers from case  |           |           | ✅         |
+| delete saved offer in case             |           |           | ✅         |
+| recalculate saved offer in case        |           |           | ✅         |
+
+# Documention Version 3
+
+## Usecases
+
+- as advisor you can find offers and compare them to get the best customer solution
+- as advisor or loan provider find prolongation offers
+- as advisor save a newly calculated offer in a case
+- as advisor delete a saved offer in a case
+- as advisor refresh saved offers (recalculate)
+- as advisor save a refreshed offer in a case
+
+As an advisor organisation or technology provider these functionalities may enable the building of a functional result list GUI similar to Baufismart.
+
+## Usecase Find Offers
+
+Finding offers can be controled by several parameters. If no body is given default parameters are used.
+
+```
+{ 
+  // default parameters
+  "ermitteln": true,
+  "aktualisieren": true,
+  "alternativen": false,
+  "produktAnbieter": [],  // default: Handelsbeziehungen are used
+  "exkludierteProduktAnbieter": [], // default: no Loan Provider is excluded
+  "provisionsAusgabe": false
+}
+```
+
+``` http
+POST /v3/vorgeange/{{case-id}}/ergebnisliste HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "ergebnislisteId": "LAPF9B",
+  "ergebnisliste": [
+    {
+      "darlehensSumme": 250000.00,
+      "sollZins": 4.32000,
+      "effektivZins": 4.44000,
+      "darlehen": [
+        {
+          "id": "64799f25ce9d3daff2f7335a",
+          "typ": "ANNUITAETEN_DARLEHEN",
+          "sollZins": 4.32000,
+          "effektivZins": 4.44000,
+          "effektivZinsRelevanteKosten": {
+            "grundbuchKosten": 535.00
+          },
+          "rateMonatlich": 1264.58,
+          "darlehensBetrag": 250000.00,
+          "auszahlungsBetrag": 250000.00,
+          "zinsZahlungsBeginnAm": "2024-08-31",
+          "zinsBindung": {
+            "jahre": 10,
+            "monate": 0,
+            "restschuldNachZinsBindungsEnde": 195399.99,
+            "summeZinsenInZinsBindung": 97149.59
+          },
+          "tilgung": {
+            "anfaenglicheTilgung": 1.75000,
+            "tilgungsBeginn": "2024-08-31",
+            "sonderTilgungJaehrlich": 5.00000
+          },
+          "bereitstellung": {
+            "bereitstellungsZinsfreieZeitInMonaten": 3,
+            "bereitstellungsZins": 2.40000
+          },
+          "gesamtlaufzeitInMonaten": 347,
+          "gesamtkosten": 437680.67,
+          "auszahlungsDatum": "2024-07-31",
+          "bearbeitungszeit": {
+            "min": 3,
+            "max": 10,
+            "standVon": "2024-07-02",
+            "bemerkung": "Neugeschäft 3 Tage\nNeugeschäft Individualkunden 10 Tage\nAuszahlung 3 Tage\nProlongation + KfW-Umwandlung 5 Tage\nEröffnung eines Darlehenskontos 1 Tag"
+          },
+          "summeZinsenUeberGesamtlaufzeit": 187680.67,
+          "summeGebuehrenUeberGesamtlaufzeit": 0.00,
+          "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit": 0.00,
+          "produktFeatures": [
+            "Die Nichtabnahme von Darlehensteilen ist bis zu einem Betrag von 25.000 Euro gegen eine Gebühr von 1 % des nicht abgenommenen Betrags möglich. Der Betrag von 25.000 Euro ist nicht konto-, sondern auf die Gesamtfinanzierung bezogen. Die Mindestdarlehenssumme muss weiterhin eingehalten werden.",
+            "Es sind maximal zwei kostenfreie Tilgungssatzwechsel pro Zinsbindung in einem Tilgungsbereich von 1,75 % bis 10 % möglich. Für weitere Wechsel des Tilgungssatzes werden zum Zeitpunkt des Wechsels separate Kosten berechnet.",
+            "Eine Sondertilgung ist mehrmals im Kalenderjahr bis zur Höhe von 5 % der Ursprungsdarlehenssumme möglich. Der Mindestbetrag pro Sondertilgung beträgt 1.000 Euro. Im Falle einer Prolongation bleibt die Sondertilgungsmöglichkeit unverändert, d.h. 5 % der ursprünglichen Darlehenssumme, sofern als Leistungsbasis die ursprüngliche Darlehenssumme gewählt wurde. Wird als Leistungsbasis die aktuelle Restschuld gewählt, dann werden die 5 % entsprechend von der Restschuld berechnet."
+          ]
+        }
+      ],
+      "beleihung": [
+        {
+          "summe": 200000.00,
+          "auslauf": 125.00000
+        }
+      ],
+      "machbarkeit": "NICHT_MACHBAR",
+      "annahmeFrist": "2024-07-17T23:59:59+02:00",
+      "erzeugtAm": "2024-07-15T11:57:45.435+02:00",
+      "bausparAngebote": [],
+      "anpassungsStatus": "ANGEPASST",
+      "elektronischeUnterlagenEinreichung": true,
+      "vollstaendigkeitsStatus": "NICHT_VOLLSTAENDIG",
+      "rateMonatlich": 1265,
+      "produktFeatures": [],
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+        }
+      }
+    },
+    ...
+  ],  
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B"
+    }
+  }
+```
+
+## Usecase save calculated offer
+
+
+
+# Documention Version 2
+
+## Usecases
+
+- as advisor you can find offers and compare them to get the best customer solution
+- as advisor or loan provider find prolongation offers
+
 
 ## Find offers
 
@@ -352,7 +496,7 @@ example-response:
 }
 ```
 
-## FAQ
+# FAQ
 
 ### No or few offers are coming in, what is the reason?
 
