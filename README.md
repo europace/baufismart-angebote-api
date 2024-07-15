@@ -1,6 +1,6 @@
 # Angebote API
 
-As advisor you can find offers and compare them to get the best customer solution.
+As advisor you can find offers, compare them save them, refresh them to get the best customer solution.
 
 ![advisor](https://img.shields.io/badge/-advisor-lightblue)
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
@@ -32,20 +32,21 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 | Scope                               | API Use case                                                         |
 |-------------------------------------|----------------------------------------------------------------------|
 | `baufinanzierung:angebot:ermitteln` | to find offers     
+| `baufinanzierung:angebot:loeschen`  | to delete saved offers     
 
 # Angebote API versions and functionalities
 
 
 | UseCase                                | Version 1 | Version 2 | Version 3 |
-|----------------------------------------|-----------|-----------|-----------|
-| calculate new offers without case      | ✅        | ✅        |           |
-| calculate new offers with case         |           | ✅        | ✅         |
-| get offer details                      |           | ✅        | ✅         |
-| save newly calculated offer (favorite) |           |           | ✅         |
-| get all saved offers from case         |           |           | ✅         |
-| get details of saved offers from case  |           |           | ✅         |
-| delete saved offer in case             |           |           | ✅         |
-| recalculate saved offer in case        |           |           | ✅         |
+|----------------------------------------|-----------|-----------|----------|
+| calculate new offers without case      | ✅        | ✅        |          |
+| calculate new offers with case         | ✅        | ✅        | ✅        |
+| get offer details                      |           | ✅        | ✅        |
+| save newly calculated offer (favorite) |           |           | ✅        |
+| get all saved offers from case         |           |           | ✅        |
+| get details of saved offers from case  |           |           | ✅        |
+| delete saved offer in case             |           |           | ✅        |
+| recalculate saved offer in case        |           |           | ✅        |
 
 # Documention Version 3
 
