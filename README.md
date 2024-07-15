@@ -60,18 +60,18 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 As an advisor organisation or technology provider these functionalities may enable the building of a functional result list GUI similar to Baufismart.
 
-## Usecase Find Offers<a name="findOffers"></a> 
+## Usecase find and recalculated offers <a name="findOffers"></a> 
 
 Finding offers can be controled by several parameters. If no body is given default parameters are used.
 
 ```
 { 
   // default parameters
-  "ermitteln": true,
-  "aktualisieren": true,
+  "ermitteln": true, // calculate fresh new offers
+  "aktualisieren": true, // recalculate gemerkte (saved) offers in case
   "alternativen": false,
-  "produktAnbieter": [],  // default: Handelsbeziehungen are used
-  "exkludierteProduktAnbieter": [], // default: no Loan Provider is excluded
+  "produktAnbieter": [],  // default: loan providers of calling partner are used
+  "exkludierteProduktAnbieter": [], // default: no loan provider is excluded
   "provisionsAusgabe": false
 }
 ```
@@ -83,7 +83,7 @@ Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
 
-example-response:
+The sample response contains no refreshed saved offer.
 
 ```
 {
@@ -169,6 +169,8 @@ example-response:
     }
   }
 ```
+
+
 
 ## Usecase get offer details
 
@@ -483,8 +485,79 @@ example-response:
 ]
 ```
 
+## Usecase get details of scved offers 
+
+For gemerkte (saved) offers details can be queried similar to fresh calculated offers.
+Within a case the ```laufendeNummerAmVorgang``` is used to identify the saved offer.
+This number is increasing with each new saved offer and for deleted saved offer the number is not reused later on.
+
+### get Meldungen for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+### get Berechungsuebersichten for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+### get Unterlagen for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+### get Zahlungplaene for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
 
 ## Usecase save calculated offer
+
+Newly calculated and refreshed offers can be saved in a case and turned into gemerkteAngebote.
+
+```
+POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+The new number in the case ```laufendeNummerAmVorgang``` is returned which identifies a gemerktesAngebot.
+
+```
+{
+  "laufendeNummerAmVorgang": 14
+}
+```
+
+## Usecase delete saved offer
+
+A saved offers can be deleted in a case. Its ```laufendeNummerAmVorgang``` is not reused.
+
+```
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+HTTP/2 200 OK
+```
 
 
 ## Usecase delete saved offer
