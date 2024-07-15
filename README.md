@@ -60,7 +60,7 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 As an advisor organisation or technology provider these functionalities may enable the building of a functional result list GUI similar to Baufismart.
 
-## Usecase Find Offers
+## Usecase Find Offers<a name="findOffers"></a> 
 
 Finding offers can be controled by several parameters. If no body is given default parameters are used.
 
@@ -296,6 +296,192 @@ example-response:
 }
 ```
 
+## Usecase get details (Unterlagen) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "unterlagen": [
+    {
+      "bezugsObjektId": "64799f241e41fff29f4b9d37",
+      "code": "5d39a0e54cedfd0001bb4cc2",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "ANTRAGSTELLER",
+      "text": "Bei c/o-Adressen (zum Beispiel: z. Hd.,\nz. Zt., bei, BOX und Scanbox) wird zusätzlich eine Meldebescheinigung lautend auf die c/o Adresse benötigt."
+    },
+    {
+      "bezugsObjektId": "64799f250570438818edadf5",
+      "code": "5d39a0e54cedfd0001bb4cc2",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "ANTRAGSTELLER",
+      "text": "Bei c/o-Adressen (zum Beispiel: z. Hd.,\nz. Zt., bei, BOX und Scanbox) wird zusätzlich eine Meldebescheinigung lautend auf die c/o Adresse benötigt."
+    },
+    ...
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+    }
+  }
+}
+```
+
+## Usecase get details (Provision) of Offer
+
+The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "betrag": 2500,
+  "partnerId": "PARTNER-ID"
+}
+```
+
+## Usecase get details (Provision) of Offer
+
+The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "betrag": 2500,
+  "partnerId": "PARTNER-ID"
+}
+```
+
+## Usecase get details (Ueberischten) of offer
+
+Uebersichten are HTML snippets of Loan provider calculation details. These details may contain individual data and methods of loan providers.
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+example-response:
+
+```
+{
+  "haushaltsrechnung": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "4623.75",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      }
+    }
+  ],
+  "lebensphasenplanung": [],
+  "kondition": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "0.0432",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      },
+      "darlehenId": "64799f25ce9d3daff2f7335a"
+    }
+  ],
+  "beleihungsauslauf": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "1.2500",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      }
+    }
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/1/berechnungsuebersichten"
+    }
+  }
+}
+```
+
+
+## Usecase get saved offers
+
+Get all gemerkte Angebote (saved offers) within a case.
+
+``` http
+GET /v3/vorgeange/{{case-id}}/gemerkteangebote
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+The response is very similar in its domain model to the angebot model of newly calculated offers. 
+
+example-response:
+```
+[
+  {
+    "id": "6675df4723bf6f0ac203dbb9",
+    "laufendeNummer": 9,
+    "darlehensSumme": 250000,
+    "sollZins": 4.32,
+    "effektivZins": 4.44,
+    "darlehen": [
+      {
+        "id": "64799f25ce9d3daff2f7335a",
+        ...
+      }
+    ],
+    ...
+  }
+  
+]
+```
 
 
 ## Usecase save calculated offer
