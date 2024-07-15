@@ -170,7 +170,138 @@ example-response:
   }
 ```
 
+## Usecase get offer details
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "darlehensSumme": 250000.00,
+  "sollZins": 4.32000,
+  "effektivZins": 4.44000,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+     },
+      
+  ..,
+  "_links": {
+    "berechnungsuebersichten": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
+    },
+    "zahlungsplaene": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+    },
+    "meldungen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+    },
+    "unterlagen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+    },
+    "provision": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
+    },
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+    }
+  }
+}
+```
+
+## Usecase get details (Meldungen) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "meldungen": [
+    {
+      "text": "Pro mithaftendem Grundbuchblatt fallen zusätzlich 10 Euro Grundbucheintragungskosten an. Sollte es mehr als ein Grundbuchblatt geben, erfasse diese Kosten bitte zusätzlich bei den Grundbucheintragungskosten in den Zusatzangeben der Immobilie.",
+      "code": "pe.ingdiba.machbarkeit.beleihungsobjekt.grundbuchblaetter.hinweis",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEITS_HINWEIS",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    {
+      "text": "Das Geburtsland der Person Martina Betram wurde nicht angegeben.",
+      "code": "pe.ingdiba.vorbehaltsmeldung.antragsteller.geburtsLandIsoCode",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+      "bereichsZuordnung": "ANTRAGSTELLER"
+    },
+    ...
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+    }
+  }
+}
+```
+
+## Usecase get details (Zahlungsplaene) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+    }
+  },
+  "zahlungsplaene": [
+    {
+      "identifier": "64799f25ce9d3daff2f7335a",
+      "typ": "TILGUNGSPLAN",
+      "zahlungen": [
+        {
+          "datum": "2024-07-31",
+          "zahlung": -250000.00,
+          "tilgung": -250000.00,
+          "zinsen": 0.00,
+          "saldo": -250000.00
+        },
+      ..., 
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
+        }
+      }
+    }
+  ]
+}
+```
+
+
+
 ## Usecase save calculated offer
+
+
+## Usecase delete saved offer
 
 
 
