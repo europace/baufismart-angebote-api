@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "2.7.29"
+    "version": "2.7.30"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -1855,78 +1855,17 @@
             "pattern" : "^[A-Z0-9]{6}",
             "type" : "string"
           }
-        }, {
-          "name" : "ermitteln",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "boolean",
-            "default" : true
-          }
-        }, {
-          "name" : "aktualisieren",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "boolean",
-            "default" : true
-          }
-        }, {
-          "name" : "alternativen",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "boolean",
-            "default" : false
-          }
-        }, {
-          "name" : "produktAnbieter",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }, {
-          "name" : "exkludierteProduktAnbieter",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            }
-          }
-        }, {
-          "name" : "provisionsAusgabe",
-          "in" : "query",
-          "required" : false,
-          "schema" : {
-            "type" : "boolean"
-          }
         } ],
         "requestBody" : {
           "content" : {
             "application/json" : {
               "schema" : {
-                "type" : "string"
+                "$ref" : "#/components/schemas/ErmittleErgebnisseRequestBody"
               }
             }
           }
         },
         "responses" : {
-          "200" : {
-            "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
-          },
           "404" : {
             "description" : "Not Found",
             "content" : {
@@ -1937,25 +1876,18 @@
               }
             }
           },
-          "204" : {
-            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt.",
+          "200" : {
+            "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Ergebnisliste"
                 }
               }
             }
           },
-          "302" : {
-            "description" : "Found",
-            "content" : {
-              "*/*" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
+          "204": {
+            "description": "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
           },
           "401" : {
             "description" : "Unauthorized",
@@ -2047,7 +1979,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Ergebnisse abrufen",
-        "description" : "Als Parameter wird die ErgebnislisteId benÃ¶tigt.",
+        "description" : "Als Parameter werden die Vorgangsnummer sowie die ErgebnislisteId benÃ¶tigt.",
         "operationId" : "getErgebnisListe",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2081,22 +2013,22 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Die Ergebnisliste wurde gefunden.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
-          },
           "404" : {
             "description" : "Not Found",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Die Ergebnisliste wurde gefunden.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
                 }
               }
             }
@@ -2180,7 +2112,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{angebotsnummer}/merken" : {
       "post" : {
         "tags" : [ "Version 3 WIP" ],
-        "summary" : "merken",
+        "summary" : "Angebot merken",
+        "description" : "Das Angebot kann gemerkt und gespeichert werden. Als Parameter werden die vorgangsnummer, die ErgebnislisteId sowie Angebotsnummer benÃ¶tigt.",
         "operationId" : "merkeAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2235,7 +2168,7 @@
           "200" : {
             "description" : "Angebot gespeichert",
             "content" : {
-              "*/*" : {
+              "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/AngebotMerkenAntwort"
                 }
@@ -2342,7 +2275,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Ergebnis abrufen",
-        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErgebnislisteId und der Ergebnisnummer benÃ¶tigt.",
+        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getErgebnis",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2385,7 +2318,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Ergebnis wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2483,8 +2416,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten" : {
       "get" : {
         "tags" : [ "Version 3 WIP" ],
-        "summary" : "Berechnungsuebersichten abrufen",
-        "description" : "Die Berechnungsuebersichten abrufen. Als Parameter wird die ErgebnislisteIdId sowie ErgebnisNummer benÃ¶tigt.",
+        "summary" : "BerechnungsÃ¼bersichten abrufen",
+        "description" : "Die BerechnungsÃ¼bersichten abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getBerechnungsuebersichten",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2527,7 +2460,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die berechnungsÃ¼bersichten wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2626,7 +2559,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Meldungen abrufen",
-        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getMeldungen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2669,7 +2602,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Meldungen eines Finanzierungsvorschlags wurden gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2768,7 +2701,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Provision abrufen",
-        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abruf der Provision des Darlehens. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getProvision",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2820,7 +2753,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Provision des Darlehens wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2919,7 +2852,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Unterlagen abrufen",
-        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getUnterlagen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2962,7 +2895,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Unterlagen des Finanzierungsvorschlags wurden gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3061,7 +2994,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "ZahlungsplÃ¤ne abrufen",
-        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnisListeId und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
         "operationId" : "getZahlungsplaene",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3104,7 +3037,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die ZahlungsplÃ¤ne wurden gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3203,7 +3136,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Zahlungsplan abrufen",
-        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
+        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter werden die vorgangsnummer, die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
         "operationId" : "getZahlungsplan",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3253,7 +3186,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Der Zahlungsplan wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3352,7 +3285,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Gemerkte Angebote abrufen",
-        "description" : "Gemerkte Angebote abrufen",
+        "description" : "Gemerkte Angebote abrufen. Als Parameter wird eine Vorgangsnummer benÃ¶tigt",
         "operationId" : "getGemerkteAngebote",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3379,7 +3312,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Gemerkte Angebote wurde abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3481,7 +3414,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Gemerktes Angebot abrufen",
-        "description" : "Gemerktes Angebot abrufen",
+        "description" : "Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benÃ¶tigt.",
         "operationId" : "getGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3517,7 +3450,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Das Gemerkte Angebot wurde abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3616,7 +3549,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "description" : "Die Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
         "operationId" : "getBerechnungsuebersichtenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3652,7 +3585,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Berechnungsuebersichten fÃ¼r das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3747,11 +3680,149 @@
         } ]
       }
     },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/entmerken" : {
+      "post" : {
+        "tags" : [ "Version 3 WIP" ],
+        "summary" : "entmerken",
+        "description" : "Das Angebot kann entmerkt werden. Als Parameter werden die vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "operationId" : "entmerkeAngebot",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Authorization Bearer Token",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-TraceId",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "vorgangsnummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "name" : "laufendeNummer",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[0-9]*",
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Angebot erfolgreich entmerkt"
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "Forbidden",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405" : {
+            "description" : "Method Not Allowed",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429" : {
+            "description" : "Too Many Requests",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal Server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502" : {
+            "description" : "Bad Gateway",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Gateway Timeout",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ]
+      }
+    },
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen" : {
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Meldungen fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Meldungen fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "description" : "Die Meldungen fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
         "operationId" : "getMeldungenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3787,7 +3858,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Meldungen fÃ¼r das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3886,7 +3957,7 @@
       "get" : {
         "tags" : [ "Version 3 WIP" ],
         "summary" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "description" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
         "operationId" : "getUnterlagenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3922,7 +3993,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die Unterlagen fÃ¼r das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4020,8 +4091,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene" : {
       "get" : {
         "tags" : [ "Version 3 WIP" ],
-        "summary" : "Die Zahlungsplaene fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Zahlungsplaene fÃ¼r gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "summary" : "Die ZahlungsplÃ¤ne fÃ¼r gemerkte Angebote abrufen",
+        "description" : "Die ZahlungsplÃ¤ne fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
         "operationId" : "getZahlungsplaeneFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -4057,7 +4128,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Die ZahlungsplÃ¤ne fÃ¼r das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4253,6 +4324,36 @@
   },
   "components" : {
     "schemas" : {
+      "ErmittleErgebnisseRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "ermitteln" : {
+            "type" : "boolean"
+          },
+          "aktualisieren" : {
+            "type" : "boolean"
+          },
+          "alternativen" : {
+            "type" : "boolean"
+          },
+          "produktAnbieter" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "exkludierteProduktAnbieter" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "provisionsAusgabe" : {
+            "type" : "boolean"
+          }
+        },
+        "description" : "Anfrage Body fÃ¼r die Ermittlung von Ergebnissen."
+      },
       "BausparAngebot" : {
         "type" : "object",
         "properties" : {
@@ -4599,8 +4700,7 @@
           "_links" : {
             "$ref" : "#/components/schemas/Links"
           }
-        },
-        "description" : "Kann z.B. bei KfW abweichen vom produktAnbieter"
+        }
       },
       "ProduktFeature" : {
         "type" : "object",
@@ -4649,6 +4749,18 @@
           "tilgungsfreieAnlaufJahre" : {
             "type" : "integer",
             "format" : "int32"
+          },
+          "tilgungsart": {
+            "type": "string",
+            "enum": [
+              "VOLLTILGER",
+              "TILGUNGS_AUSGESETZT",
+              "ANFAENGLICHE_TILGUNG",
+              "RATE"
+            ]
+          },
+          "tilgungsErsatzProduktId": {
+            "type": "string"
           }
         }
       },
@@ -4808,6 +4920,15 @@
             "items" : {
               "type" : "string"
             }
+          },
+          "beschreibung" : {
+            "type" : "string"
+          },
+          "basisAngebotsId" : {
+            "type" : "string"
+          },
+          "zuGrundeLiegendesAngebot" : {
+            "type" : "string"
           },
           "_links" : {
             "$ref" : "#/components/schemas/Links"
