@@ -1,6 +1,6 @@
 # Angebote API
 
-As advisor you can find offers and compare them to get the best customer solution.
+As advisor you can find offers, compare, save and refresh them to get the best customer solution.
 
 ![advisor](https://img.shields.io/badge/-advisor-lightblue)
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
@@ -17,11 +17,6 @@ As advisor you can find offers and compare them to get the best customer solutio
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.json)
 
-## Usecases
-
-- as advisor you can find offers and compare them to get the best customer solution
-- as advisor or loan provider find prolongation offers
-
 ## Requirements
 
 - authenticated as loan provider
@@ -36,7 +31,719 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 | Scope                               | API Use case                                                         |
 |-------------------------------------|----------------------------------------------------------------------|
-| `baufinanzierung:angebot:ermitteln` | to find offers                                                       |
+| `baufinanzierung:angebot:ermitteln` | to find offers and show details    
+| `baufinanzierung:angebot:loeschen`  | to delete saved offers     
+
+# Angebote API versions and functionalities
+
+| UseCase                                                       | Version 1 | Version 2 | Version 3 |
+|---------------------------------------------------------------|-----------|-----------|-----------|
+| calculate new offers without case                             | ✅         | ✅         |           |
+| calculate new offers with case                                | ✅         | ✅         | ✅         |
+| get offer details (Unterlagen, Meldungen, ...)                |           | ✅         | ✅         |
+| get calculation overviews (Haushaltsrechnung, Kondition, ...) |           |           | ✅         |
+| save newly calculated offer (favorite)                        |           |           | ✅         |
+| get all saved offers from case                                |           |           | ✅         |
+| get details of saved offers from case                         |           |           | ✅         |
+| delete saved offer in case                                    |           |           | ✅         |
+| recalculate saved offer in case                               |           |           | ✅         |
+
+## Offer lifecycle
+
+- Fresh and recalculated offers are available for 60 min after calculation over the API.
+- Saved offers are never deleted unless deleted by client.
+
+# Documention Version 3
+
+## Usecases
+
+- as advisor you can find offers and compare them to get the best customer solution
+- as advisor or loan provider find prolongation offers
+- as advisor save a newly calculated offer in a case
+- as advisor delete a saved offer in a case
+- as advisor recalculate saved offers
+- as advisor save a refreshed offer in a case
+
+As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to Baufismart.
+
+## Usecase find and recalculated offers <a name="findOffers"></a>
+
+Finding offers can be controled by several parameters.
+If no body is given default parameters are used.
+
+```
+{ 
+  // default parameters
+  "ermitteln": true, // calculate fresh new offers
+  "aktualisieren": true, // recalculate gemerkte (saved) offers in case
+  "alternativen": false, // no alternative offers are generated
+  "produktAnbieter": [],  // default: loan providers of calling partner are used
+  "exkludierteProduktAnbieter": [], // default: no loan provider is excluded
+  "provisionsAusgabe": false // provision is not calculated for better performance
+}
+```
+
+``` http
+POST /v3/vorgeange/{{case-id}}/ergebnisliste HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+### sample response of newly created offer
+
+The sample response with a fresh calculated offer.
+
+```
+{
+  "ergebnislisteId": "LAPF9B",
+  "ergebnisliste": [
+    {
+      "darlehensSumme": 250000.00,
+      "sollZins": 4.32000,
+      "effektivZins": 4.44000,
+      "darlehen": [
+        {
+          "id": "64799f25ce9d3daff2f7335a",
+          "typ": "ANNUITAETEN_DARLEHEN",
+          "sollZins": 4.32000,
+          "effektivZins": 4.44000,
+          "effektivZinsRelevanteKosten": {
+            "grundbuchKosten": 535.00
+          },
+          "rateMonatlich": 1264.58,
+          "darlehensBetrag": 250000.00,
+          "auszahlungsBetrag": 250000.00,
+          "zinsZahlungsBeginnAm": "2024-08-31",
+          "zinsBindung": {
+            "jahre": 10,
+            "monate": 0,
+            "restschuldNachZinsBindungsEnde": 195399.99,
+            "summeZinsenInZinsBindung": 97149.59
+          },
+          "tilgung": {
+            "anfaenglicheTilgung": 1.75000,
+            "tilgungsBeginn": "2024-08-31",
+            "sonderTilgungJaehrlich": 5.00000
+          },
+          "bereitstellung": {
+            "bereitstellungsZinsfreieZeitInMonaten": 3,
+            "bereitstellungsZins": 2.40000
+          },
+          "gesamtlaufzeitInMonaten": 347,
+          "gesamtkosten": 437680.67,
+          "auszahlungsDatum": "2024-07-31",
+          "bearbeitungszeit": {
+            "min": 3,
+            "max": 10,
+            "standVon": "2024-07-02",
+            "bemerkung": "Neugeschäft 3 Tage\nNeugeschäft Individualkunden 10 Tage\nAuszahlung 3 Tage\nProlongation + KfW-Umwandlung 5 Tage\nEröffnung eines Darlehenskontos 1 Tag"
+          },
+          "summeZinsenUeberGesamtlaufzeit": 187680.67,
+          "summeGebuehrenUeberGesamtlaufzeit": 0.00,
+          "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit": 0.00,
+          "produktFeatures": [
+            "Die Nichtabnahme von Darlehensteilen ist bis zu einem Betrag von 25.000 Euro gegen eine Gebühr von 1 % des nicht abgenommenen Betrags möglich. Der Betrag von 25.000 Euro ist nicht konto-, sondern auf die Gesamtfinanzierung bezogen. Die Mindestdarlehenssumme muss weiterhin eingehalten werden.",
+            "Es sind maximal zwei kostenfreie Tilgungssatzwechsel pro Zinsbindung in einem Tilgungsbereich von 1,75 % bis 10 % möglich. Für weitere Wechsel des Tilgungssatzes werden zum Zeitpunkt des Wechsels separate Kosten berechnet.",
+            "Eine Sondertilgung ist mehrmals im Kalenderjahr bis zur Höhe von 5 % der Ursprungsdarlehenssumme möglich. Der Mindestbetrag pro Sondertilgung beträgt 1.000 Euro. Im Falle einer Prolongation bleibt die Sondertilgungsmöglichkeit unverändert, d.h. 5 % der ursprünglichen Darlehenssumme, sofern als Leistungsbasis die ursprüngliche Darlehenssumme gewählt wurde. Wird als Leistungsbasis die aktuelle Restschuld gewählt, dann werden die 5 % entsprechend von der Restschuld berechnet."
+          ]
+        }
+      ],
+      "beleihung": [
+        {
+          "summe": 200000.00,
+          "auslauf": 125.00000
+        }
+      ],
+      "machbarkeit": "NICHT_MACHBAR",
+      "annahmeFrist": "2024-07-17T23:59:59+02:00",
+      "erzeugtAm": "2024-07-15T11:57:45.435+02:00",
+      "bausparAngebote": [],
+      "anpassungsStatus": "ANGEPASST",
+      "elektronischeUnterlagenEinreichung": true,
+      "vollstaendigkeitsStatus": "NICHT_VOLLSTAENDIG",
+      "rateMonatlich": 1265,
+      "produktFeatures": [],
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+        }
+      }
+    },
+    ...
+  ],  
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B"
+    }
+  }
+```
+
+### sample response of refreshed offer
+
+A refreshed offer contains the details of the new offer and details of the saved offer within.
+This way the result data can be compared.
+Refreshed offers occur only in a result list if there are saved offers "gemerktesAngebot" in the case.
+
+```
+{
+  "ergebnislisteId": "Z4WQVT",
+  "ergebnisliste": [
+    {
+      // offer details of refreshed offer with same fields as new offers
+      "darlehensSumme": 250000.00,
+      "sollZins": 4.32000,
+      ....
+      "gemerktesAngebot": { // start of saved offer
+        "id": "66869f9c9134407467abfa14",
+        "laufendeNummer": 11, // laufende Nummer in case
+        "darlehensSumme": 250000,
+        "sollZins": 4.32,
+        "effektivZins": 4.44,
+        "darlehen": [
+          {
+            "id": "64799f25ce9d3daff2f7335a",
+            "typ": "ANNUITAETEN_DARLEHEN",
+            "sollZins": 4.32,
+            "effektivZins": 4.44,
+            "effektivZinsRelevanteKosten": {
+              "beratungsHonorar": 0,
+              "grundbuchKosten": 535,
+              "tilgungsErsatzProduktKosten": 0,
+              "sonstigeKosten": 0,
+              "wohnGebaeudeVersicherungsKosten": 0,
+              "zusatzSicherheitsKosten": 0
+            },
+            "rateMonatlich": 1264.58,
+            "darlehensBetrag": 250000,
+            "auszahlungsBetrag": 250000,
+            "produktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "finanzierenderProduktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "zinsZahlungsBeginnAm": "2024-08-31",
+            "zinsBindung": {
+              "jahre": 10,
+              "restschuldNachZinsBindungsEnde": 195399.99,
+              "summeZinsenInZinsBindung": 187680.67
+            },
+            "tilgung": {
+              "anfaenglicheTilgung": 1.75,
+              "tilgungsBeginn": "2024-08-31",
+              "sonderTilgungJaehrlich": 5.0
+            },
+            "bereitstellung": {
+              "bereitstellungsZinsfreieZeitInMonaten": 3,
+              "bereitstellungsZins": 2.4
+            },
+            "gesamtlaufzeitInMonaten": 348,
+            "auszahlungsDatum": "2024-07-31",
+            "bearbeitungszeit": {
+              "min": 3,
+              "max": 10,
+              "standVon": "2024-07-02",
+              "bemerkung": "Neugeschäft 3 Tage\nNeugeschäft Individualkunden 10 Tage\nAuszahlung 3 Tage\nProlongation + KfW-Umwandlung 5 Tage\nEröffnung eines Darlehenskontos 1 Tag"
+            },
+            "kalkulatorischesLaufzeitEnde": "2053-06-30",
+            "provisionKundenbetreuerAbsolut": 2500,
+            "provisionKundenbetreuerRelativ": 1.0,
+            "summeZinsenUeberGesamtlaufzeit": 187680.67,
+            "summeGebuehrenUeberGesamtlaufzeit": 0,
+            "summeKontofuehrungsgebuehrenUeberGesamtlaufzeit": 0
+          }
+        ],
+        "beleihung": [
+          {
+            "produktAnbieter": {
+              "produktAnbieterId": "MUSTERBANK",
+              "partnerId": "PARTNER-ID",
+              "name": "Bank AG",
+              "_links": {
+                "logo": {
+                  "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+                }
+              }
+            },
+            "summe": 200000,
+            "auslauf": 125.0
+          }
+        ],
+        "machbarkeit": "NICHT_MACHBAR",
+        "annahmeFrist": "2024-07-08T21:59:59Z",
+        "bausparAngebote": [],
+        "anpassungsStatus": "ANGEPASST",
+        "elektronischeUnterlagenEinreichung": true,
+        "vollstaendigkeitsStatus": "NICHT_VOLLSTAENDIG",
+        "rateMonatlich": 1264.58,
+        "provisionKundenbetreuerRelativ": 1.0,
+        "produktFeatures": [],
+        "basisAngebotsId": "66869f9c9134407467abfa14"
+      },
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/15"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT"
+    }
+  }
+}
+```
+
+
+## Usecase get offer details of single offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "darlehensSumme": 250000.00,
+  "sollZins": 4.32000,
+  "effektivZins": 4.44000,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+     },
+      
+  ..,
+  "_links": {
+    "berechnungsuebersichten": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
+    },
+    "zahlungsplaene": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+    },
+    "meldungen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+    },
+    "unterlagen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+    },
+    "provision": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
+    },
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+    }
+  }
+}
+```
+
+## Usecase get details (Meldungen) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "meldungen": [
+    {
+      "text": "Pro mithaftendem Grundbuchblatt fallen zusätzlich 10 Euro Grundbucheintragungskosten an. Sollte es mehr als ein Grundbuchblatt geben, erfasse diese Kosten bitte zusätzlich bei den Grundbucheintragungskosten in den Zusatzangeben der Immobilie.",
+      "code": "pe.ingdiba.machbarkeit.beleihungsobjekt.grundbuchblaetter.hinweis",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEITS_HINWEIS",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    {
+      "text": "Das Geburtsland der Person Martina Betram wurde nicht angegeben.",
+      "code": "pe.ingdiba.vorbehaltsmeldung.antragsteller.geburtsLandIsoCode",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+      "bereichsZuordnung": "ANTRAGSTELLER"
+    },
+    ...
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+    }
+  }
+}
+```
+
+## Usecase get details (Zahlungsplaene) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+    }
+  },
+  "zahlungsplaene": [
+    {
+      "identifier": "64799f25ce9d3daff2f7335a",
+      "typ": "TILGUNGSPLAN",
+      "zahlungen": [
+        {
+          "datum": "2024-07-31",
+          "zahlung": -250000.00,
+          "tilgung": -250000.00,
+          "zinsen": 0.00,
+          "saldo": -250000.00
+        },
+      ..., 
+      "_links": {
+        "_self": {
+          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
+        }
+      }
+    }
+  ]
+}
+```
+
+## Usecase get details (Unterlagen) of Offer
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "unterlagen": [
+    {
+      "bezugsObjektId": "64799f241e41fff29f4b9d37",
+      "code": "5d39a0e54cedfd0001bb4cc2",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "ANTRAGSTELLER",
+      "text": "Bei c/o-Adressen (zum Beispiel: z. Hd.,\nz. Zt., bei, BOX und Scanbox) wird zusätzlich eine Meldebescheinigung lautend auf die c/o Adresse benötigt."
+    },
+    {
+      "bezugsObjektId": "64799f250570438818edadf5",
+      "code": "5d39a0e54cedfd0001bb4cc2",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "ANTRAGSTELLER",
+      "text": "Bei c/o-Adressen (zum Beispiel: z. Hd.,\nz. Zt., bei, BOX und Scanbox) wird zusätzlich eine Meldebescheinigung lautend auf die c/o Adresse benötigt."
+    },
+    ...
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+    }
+  }
+}
+```
+
+## Usecase get details (Provision) of Offer
+
+The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+{
+  "betrag": 2500,
+  "partnerId": "PARTNER-ID"
+}
+```
+
+## Usecase get details (Ueberischten) of offer
+
+Uebersichten are HTML snippets of Loan provider calculation details. These details may contain individual data and methods of loan providers.
+
+``` http
+GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+example-response:
+
+```
+{
+  "haushaltsrechnung": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "4623.75",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      }
+    }
+  ],
+  "lebensphasenplanung": [],
+  "kondition": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "0.0432",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      },
+      "darlehenId": "64799f25ce9d3daff2f7335a"
+    }
+  ],
+  "beleihungsauslauf": [
+    {
+      "html": "PGRpdiBjbGF...", //BASE-64 ENCODED HTM for Loan provicer calculation details
+      "exzerpt": "1.2500",
+      "produktAnbieter": {
+        "produktAnbieterId": "MUSTERBANK",
+        "partnerId": "PARTNER-ID",
+        "name": "Bank  AG",
+        "_links": {
+          "logo": {
+            "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+          }
+        }
+      }
+    }
+  ],
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/1/berechnungsuebersichten"
+    }
+  }
+}
+```
+
+
+## Usecase get saved offers
+
+Get all gemerkte Angebote (saved offers) within a case.
+
+``` http
+GET /v3/vorgeange/{{case-id}}/gemerkteangebote
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+The response is very similar in its domain model to the angebot model of newly calculated offers.
+
+example-response:
+```
+[
+  {
+    "id": "6675df4723bf6f0ac203dbb9",
+    "laufendeNummer": 9,
+    "darlehensSumme": 250000,
+    "sollZins": 4.32,
+    "effektivZins": 4.44,
+    "darlehen": [
+      {
+        "id": "64799f25ce9d3daff2f7335a",
+        ...
+      }
+    ],
+    ...
+  }
+  
+]
+```
+
+## Usecase get specific saved offer
+
+Get one gemerktes Angebote (saved offer) based on ```laufendeNummerAmVorgang``` within a case.
+
+``` http
+GET /v3/vorgeange/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}}
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+The response is very similar in its domain model to the angebot model of newly calculated offers.
+
+example-response:
+```
+{
+  "id": "6658753323880379d2043a2c",
+  "laufendeNummer": 6,
+  "darlehensSumme": 250000,
+  "sollZins": 4.37,
+  "effektivZins": 4.49,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+    }
+  ],
+  ...
+  "basisAngebotsId": "664498a262d82f543873ce69",
+  "zuGrundeLiegendesAngebot": "66546eb62be3aa29807adad9",
+  "_links": {
+    "_self": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6"
+    },
+    "meldungen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/meldungen"
+    },
+    "berechnungsuebersichten": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/berechnungsuebersichten"
+    },
+    "unterlagen": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/unterlagen"
+    },
+    "zahlungsplaene": {
+      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/zahlungsplaene"
+    }
+  }
+}
+```
+
+## Usecase get details of scved offers
+
+For gemerkte (saved) offers details can be queried similar to fresh calculated offers.
+Within a case the ```laufendeNummerAmVorgang``` is used to identify the saved offer.
+This number is increasing with each new saved offer and for deleted saved offer the number is not reused later on.
+
+### get Meldungen for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+Example results are similar to Meldungen for fresh offers.
+
+### get Berechungsuebersichten for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+Example results are similar to berechnungsuebersichten for fresh offers.
+
+### get Unterlagen for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+Example results are similar to Unterlagen for fresh offers.
+
+### get Zahlungplaene for saved offer
+``` http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+Example results are similar to Zahlungsplaene for fresh offers.
+
+## Usecase save calculated offer
+
+Newly calculated and refreshed offers can be saved in a case and turned into gemerkteAngebote.
+
+```
+POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+The new number in the case ```laufendeNummerAmVorgang``` is returned which identifies a gemerktesAngebot.
+
+```
+{
+  "laufendeNummerAmVorgang": 14
+}
+```
+
+## Usecase delete saved offer
+
+A saved offers can be deleted in a case. Its ```laufendeNummerAmVorgang``` is not reused.
+
+```
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```
+HTTP/2 200 OK
+```
+
+
+
+# Documention Version 2
+
+## Usecases
+
+- as advisor you can find offers and compare them to get the best customer solution
+- as advisor or loan provider find prolongation offers
+
 
 ## Find offers
 
@@ -82,7 +789,7 @@ example-response:
                     "auszahlungsBetrag": 100000.00,
                     "produktAnbieter": {
                         "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "GWL17",
+                        "partnerId": "PARTNER-ID",
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
@@ -92,7 +799,7 @@ example-response:
                     },
                     "finanzierenderProduktAnbieter": {
                         "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "GWL17",
+                        "partnerId": "PARTNER-ID",
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
@@ -123,7 +830,7 @@ example-response:
                 {
                     "produktAnbieter": {
                         "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "GWL17",
+                        "partnerId": "PARTNER-ID",
                         "name": "Musterbank",
                         "_links": {
                             "logo": {
@@ -352,7 +1059,7 @@ example-response:
 }
 ```
 
-## FAQ
+# FAQ
 
 ### No or few offers are coming in, what is the reason?
 
@@ -400,6 +1107,84 @@ In the response there is a custom header that contains the following fields:
 - `X-RateLimit-Reset` -> How many seconds until the current time window closes and the next one opens?
 
 If `X-RateLimit-Remaining` reaches 0, then the status code `429 - Too Many Requests` comes back and no more requests can be made. You have to wait until the next time window.
+
+### How can I create an offer chain?
+
+If you save a calculated offer it gets an id:
+
+```
+{
+  "id": "6658753323880379d2043a2c",
+  "laufendeNummer": 6,
+  "darlehensSumme": 250000,
+  "sollZins": 4.37,
+  "effektivZins": 4.49,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+    }
+  ],
+  ...
+  "basisAngebotsId": "6658753323880379d2043a2c",
+}
+```
+
+If you now recalculate the offers in the case, you will get new and recalculated saved offers.
+When saving the offer containing a recalculated saved offer you will get the same ```laufendeNummerAmVorgang``` as with
+the first save.
+If you now get the saved offer ```GET /v3/vorgeange/{{case-id}}/gemerkteangebote/6``` you receive:
+
+```
+{
+  "id": "669687df411eac7bb515b249",
+  "laufendeNummer": 6,
+  "darlehensSumme": 250000,
+  "sollZins": 4.37,
+  "effektivZins": 4.49,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+    }
+  ],
+  ...
+  "basisAngebotsId": "6658753323880379d2043a2c",
+  "zuGrundeLiegendesAngebot": "6658753323880379d2043a2c",
+}
+```
+
+As you can see there is now a ```zuGrundeLiegendesAngebot```. Here you find the id of the (saved) offer on which this
+offer is based.
+
+If you now repeat the steps from above, you will receive the following offer:
+
+```
+{
+  "id": "66968690b7585f5b9587ea1f",
+  "laufendeNummer": 6,
+  "darlehensSumme": 250000,
+  "sollZins": 4.37,
+  "effektivZins": 4.49,
+  "darlehen": [
+    {
+      "id": "64799f25ce9d3daff2f7335a",
+      "typ": "ANNUITAETEN_DARLEHEN",
+      ...
+    }
+  ],
+  ...
+  "basisAngebotsId": "6658753323880379d2043a2c",
+  "zuGrundeLiegendesAngebot": "669687df411eac7bb515b249",
+}
+```
+
+As you can see, the ```basisAngebotsId``` is always the same. This is the id of the first saved offer and represents
+the ```root```.
+Also, you can see that the ```zuGrundeLiegendesAngebot``` has changed. It now contains the id of the second saved offer.
+The id in ```zuGrundeLiegendesAngebot``` is always the id of the offer on which this offer is based.
 
 ## Terms of use
 
