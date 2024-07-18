@@ -2185,10 +2185,11 @@
               </li>
             </ul>
             <ul class="sectlevel2">
-              <li><a href="#_api_Version3WIP">Version3WIP</a>
+              <li><a href="#_api_Version3">Version3</a>
                 <ul class="sectlevel3">
+                      <li><a href="#_resource_entmerkeAngebot">entmerken</a></li>
                       <li><a href="#_resource_ermittleErgebnisse">Ermittlung erzeugen</a></li>
-                      <li><a href="#_resource_getBerechnungsuebersichten">Berechnungsuebersichten abrufen</a></li>
+                      <li><a href="#_resource_getBerechnungsuebersichten">Berechnungsübersichten abrufen</a></li>
                       <li><a href="#_resource_getBerechnungsuebersichtenFuerGemerktesAngebot">Berechnungsuebersichten für gemerkte Angebote abrufen</a></li>
                       <li><a href="#_resource_getErgebnis">Ergebnis abrufen</a></li>
                       <li><a href="#_resource_getErgebnisListe">Ergebnisse abrufen</a></li>
@@ -2200,9 +2201,9 @@
                       <li><a href="#_resource_getUnterlagen">Unterlagen abrufen</a></li>
                       <li><a href="#_resource_getUnterlagenFuerGemerktesAngebot">Die Unterlagen für gemerkte Angebote abrufen</a></li>
                       <li><a href="#_resource_getZahlungsplaene">Zahlungspläne abrufen</a></li>
-                      <li><a href="#_resource_getZahlungsplaeneFuerGemerktesAngebot">Die Zahlungsplaene für gemerkte Angebote abrufen</a></li>
+                      <li><a href="#_resource_getZahlungsplaeneFuerGemerktesAngebot">Die Zahlungspläne für gemerkte Angebote abrufen</a></li>
                       <li><a href="#_resource_getZahlungsplan">Zahlungsplan abrufen</a></li>
-                      <li><a href="#_resource_merkeAngebot">merken</a></li>
+                      <li><a href="#_resource_merkeAngebot">Angebot merken</a></li>
                 </ul>
               </li>
             </ul>
@@ -2250,6 +2251,7 @@
               <li><a href="#_Ergebnis">Ergebnis</a></li>
               <li><a href="#_ErgebnisListe">ErgebnisListe</a></li>
               <li><a href="#_Ergebnisliste">Ergebnisliste</a></li>
+              <li><a href="#_ErmittleErgebnisseRequestBody">ErmittleErgebnisseRequestBody</a></li>
               <li><a href="#_Ermittlung">Ermittlung</a></li>
               <li><a href="#_ErmittlungsAnfrage">ErmittlungsAnfrage</a></li>
               <li><a href="#_Error">Error</a></li>
@@ -2335,7 +2337,7 @@
           <div class="sect2">
             <h3 id="_aktuelle_version">Aktuelle Version</h3>
             <div class="paragraph">
-              <p><em>Version</em> : 2.7.29</p>
+              <p><em>Version</em> : 3.0.0</p>
             </div>
           </div>
         <div class="sect2">
@@ -8568,11 +8570,491 @@
                 </div>
             </div>
             <div class="sect2">
-              <h3 id="_api_Version3WIP">Version3WIP</h3>
+              <h3 id="_api_Version3">Version3</h3>
               <div class="paragraph">
                 <p></p>
               </div>
   
+                <div class="sect3">
+                  <h4 id="_resource_entmerkeAngebot">entmerken (<span class="nickname">entmerkeAngebot</span>)</h4>
+                  <div class="literalblock">
+                    <div class="content">
+                      <pre>post /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/entmerken</pre>
+                    </div>
+                  </div>
+                  <div class="sect4">
+                    <h5 id="_beschreibung">Beschreibung</h5>
+                    <div class="paragraph">
+                      <p>Das Angebot kann entmerkt werden. Als Parameter werden die vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.</p>
+                    </div>
+                  </div>
+                  <div class="sect4">
+                    <h5 id="_parameter">Parameter</h5>
+                    <table class="tableblock frame-all grid-all stretch">
+                      <colgroup>
+                        <col style="width: 10%;">
+                        <col style="width: 15%;">
+                        <col style="width: 45%;">
+                        <col style="width: 20%;">
+                        <col style="width: 10%;">
+                      </colgroup>
+                      <thead>
+                      <tr>
+                        <th class="tableblock halign-left valign-middle">Typ</th>
+                        <th class="tableblock halign-left valign-middle">Name</th>
+                        <th class="tableblock halign-left valign-middle">Beschreibung</th>
+                        <th class="tableblock halign-left valign-middle">Typ</th>
+                        <th class="tableblock halign-left valign-middle">Standard</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>
+                                  <strong>Header</strong>
+                                  
+                                  
+                                  
+                                  
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>Authorization</strong><br>
+                                  <em>required</em></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">Authorization Bearer Token</div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>String</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>
+                                  
+                                  <strong>Path</strong>
+                                  
+                                  
+                                  
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>vorgangsnummer</strong><br>
+                                  <em>required</em></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>String</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>
+                                  
+                                  <strong>Path</strong>
+                                  
+                                  
+                                  
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>laufendeNummer</strong><br>
+                                  <em>required</em></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Integer</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>
+                                  <strong>Header</strong>
+                                  
+                                  
+                                  
+                                  
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>X-TraceId</strong><br>
+                                  <em>optional</em></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>String</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content"></div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="sect4">
+                    <h5 id="_antworten">Antworten</h5>
+                    <table class="tableblock frame-all grid-all stretch">
+                      <colgroup>
+                        <col style="width: 10%;">
+                        <col style="width: 70%;">
+                        <col style="width: 20%;">
+                      </colgroup>
+                      <thead>
+                      <tr>
+                        <th class="tableblock halign-left valign-middle">HTTP Code</th>
+                        <th class="tableblock halign-left valign-middle">Beschreibung</th>
+                        <th class="tableblock halign-left valign-middle">Typ</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>204</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Angebot erfolgreich entmerkt</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_"></a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>401</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Unauthorized</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>403</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Forbidden</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>404</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Not Found</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>405</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Method Not Allowed</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>429</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Too Many Requests</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>500</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Internal Server Error</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>502</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Bad Gateway</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>504</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Gateway Timeout</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>400</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Bad Request</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                    <div class="sect4">
+                      <h5 id="_erzeugt">Erzeugt</h5>
+                      <div class="ulist">
+                        <ul>
+                            <li><code>application/json</code></li>
+                        </ul>
+                      </div>
+                    </div>
+                  <div class="sect4">
+                    <h5 id="_sicherheit">Sicherheit</h5>
+                    <table class="tableblock frame-all grid-all stretch">
+                      <colgroup>
+                        <col style="width: 15%;">
+                        <col style="width: 20%;">
+                        <col style="width: 65%;">
+                      </colgroup>
+                      <thead>
+                      <tr>
+                        <th class="tableblock halign-left valign-middle">Typ</th>
+                        <th class="tableblock halign-left valign-middle">Name</th>
+                        <th class="tableblock halign-left valign-middle">Scopes</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>oauth2</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong><a href="#_oauth2">oAuth2</a></strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                  <p><code>baufinanzierung:angebot:ermitteln</code></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <div class="sect3">
                   <h4 id="_resource_ermittleErgebnisse">Ermittlung erzeugen (<span class="nickname">ermittleErgebnisse</span>)</h4>
                   <div class="literalblock">
@@ -8706,7 +9188,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p><a href="#_string">string</a></p>
+                                <p><a href="#_ErmittleErgebnisseRequestBody">ErmittleErgebnisseRequestBody</a></p>
                               </div>
                             </div>
                           </td>
@@ -8750,222 +9232,6 @@
                             <div class="content"></div>
                           </td>
                         </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>ermitteln</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Boolean</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"><code>true</code></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>aktualisieren</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Boolean</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"><code>true</code></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>alternativen</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Boolean</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"><code>false</code></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>produktAnbieter</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><a href="#_String">String</a></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>exkludierteProduktAnbieter</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><a href="#_String">String</a></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>
-                                  
-                                  
-                                  <strong>Query</strong>
-                                  
-                                  
-                                </p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>provisionsAusgabe</strong><br>
-                                  <em>optional</em></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Boolean</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content"></div>
-                          </td>
-                        </tr>
                       </tbody>
                     </table>
                   </div>
@@ -8989,21 +9255,21 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p><strong>200</strong></p>
+                                <p><strong>204</strong></p>
                               </div>
                             </div>
                           </td>
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im &#x27;location&#x27; Header abrufbar.</p>
+                                <p>Basierend auf dem Parameter gibt es keinen zurückzugebenden Inhalt.</p>
                               </div>
                             </div>
                           </td>
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p><a href="#_Ergebnisliste">Ergebnisliste</a></p>
+                                <p><a href="#_"></a></p>
                               </div>
                             </div>
                           </td>
@@ -9035,37 +9301,14 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p><strong>204</strong></p>
+                                <p><strong>200</strong></p>
                               </div>
                             </div>
                           </td>
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>Basierend auf dem Parameter gibt es keinen zurückzugebenden Inhalt.</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><a href="#_Ergebnisliste">Ergebnisliste</a></p>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><strong>302</strong></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Found</p>
+                                <p>Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im &#x27;location&#x27; Header abrufbar.</p>
                               </div>
                             </div>
                           </td>
@@ -9276,7 +9519,6 @@
                       <h5 id="_erzeugt">Erzeugt</h5>
                       <div class="ulist">
                         <ul>
-                            <li><code>*/*</code></li>
                             <li><code>application/json</code></li>
                         </ul>
                       </div>
@@ -9325,7 +9567,7 @@
                   </div>
                 </div>
                 <div class="sect3">
-                  <h4 id="_resource_getBerechnungsuebersichten">Berechnungsuebersichten abrufen (<span class="nickname">getBerechnungsuebersichten</span>)</h4>
+                  <h4 id="_resource_getBerechnungsuebersichten">Berechnungsübersichten abrufen (<span class="nickname">getBerechnungsuebersichten</span>)</h4>
                   <div class="literalblock">
                     <div class="content">
                       <pre>get /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten</pre>
@@ -9334,7 +9576,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Berechnungsuebersichten abrufen. Als Parameter wird die ErgebnislisteIdId sowie ErgebnisNummer benötigt.</p>
+                      <p>Die Berechnungsübersichten abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -9567,7 +9809,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die berechnungsübersichten wurde gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -9827,7 +10069,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Berechnungsuebersichten für gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
+                      <p>Die Berechnungsuebersichten für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -10024,7 +10266,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Berechnungsuebersichten für das gemerkte Angebot wurden abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -10284,7 +10526,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErgebnislisteId und der Ergebnisnummer benötigt.</p>
+                      <p>Das Ergebnis einer Ermittlung abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -10517,7 +10759,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Ergebnis wurde gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -10777,7 +11019,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Als Parameter wird die ErgebnislisteId benötigt.</p>
+                      <p>Als Parameter werden die Vorgangsnummer sowie die ErgebnislisteId benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -10967,29 +11209,6 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p><strong>200</strong></p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p>Die Ergebnisliste wurde gefunden.</p>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
-                                <p><a href="#_Ergebnisliste">Ergebnisliste</a></p>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="tableblock halign-left valign-middle">
-                            <div class="content">
-                              <div class="paragraph">
                                 <p><strong>404</strong></p>
                               </div>
                             </div>
@@ -11005,6 +11224,29 @@
                             <div class="content">
                               <div class="paragraph">
                                 <p><a href="#_Error">Error</a></p>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><strong>200</strong></p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p>Die Ergebnisliste wurde gefunden.</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td class="tableblock halign-left valign-middle">
+                            <div class="content">
+                              <div class="paragraph">
+                                <p><a href="#_Ergebnisliste">Ergebnisliste</a></p>
                               </div>
                             </div>
                           </td>
@@ -11234,7 +11476,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Gemerkte Angebote abrufen</p>
+                      <p>Gemerkte Angebote abrufen. Als Parameter wird eine Vorgangsnummer benötigt</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -11395,7 +11637,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Gemerkte Angebote wurde abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -11655,7 +11897,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Gemerktes Angebot abrufen</p>
+                      <p>Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -11852,7 +12094,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Das Gemerkte Angebot wurde abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -12112,7 +12354,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benötigt.</p>
+                      <p>Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -12345,7 +12587,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Meldungen eines Finanzierungsvorschlags wurden gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -12605,7 +12847,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Meldungen für gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
+                      <p>Die Meldungen für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -12802,7 +13044,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Meldungen für das gemerkte Angebot wurden abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -13062,7 +13304,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Abruf der Provision des Darlehens. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benötigt.</p>
+                      <p>Abruf der Provision des Darlehens. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -13331,7 +13573,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Provision des Darlehens wurde gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -13591,7 +13833,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Abrufen der benötigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benötigt.</p>
+                      <p>Abrufen der benötigten Unterlagen des Finanzierungsvorschlags. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -13824,7 +14066,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Unterlagen des Finanzierungsvorschlags wurden gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -14084,7 +14326,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Unterlagen für gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
+                      <p>Die Unterlagen für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -14281,7 +14523,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Unterlagen für das gemerkte Angebot wurden abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -14541,7 +14783,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter wird die ErgebnisListeId und die Ergebnisnummer benötigt.</p>
+                      <p>Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -14774,7 +15016,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Zahlungspläne wurden gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -15025,7 +15267,7 @@
                   </div>
                 </div>
                 <div class="sect3">
-                  <h4 id="_resource_getZahlungsplaeneFuerGemerktesAngebot">Die Zahlungsplaene für gemerkte Angebote abrufen (<span class="nickname">getZahlungsplaeneFuerGemerktesAngebot</span>)</h4>
+                  <h4 id="_resource_getZahlungsplaeneFuerGemerktesAngebot">Die Zahlungspläne für gemerkte Angebote abrufen (<span class="nickname">getZahlungsplaeneFuerGemerktesAngebot</span>)</h4>
                   <div class="literalblock">
                     <div class="content">
                       <pre>get /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene</pre>
@@ -15034,7 +15276,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Die Zahlungsplaene für gemerkte Angebote abrufen. Als Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
+                      <p>Die Zahlungspläne für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -15231,7 +15473,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Die Zahlungspläne für das gemerkte Angebot wurden abrufen.</p>
                               </div>
                             </div>
                           </td>
@@ -15491,7 +15733,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p>Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.</p>
+                      <p>Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter werden die vorgangsnummer, die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -15760,7 +16002,7 @@
                           <td class="tableblock halign-left valign-middle">
                             <div class="content">
                               <div class="paragraph">
-                                <p>OK</p>
+                                <p>Der Zahlungsplan wurde gefunden.</p>
                               </div>
                             </div>
                           </td>
@@ -16011,7 +16253,7 @@
                   </div>
                 </div>
                 <div class="sect3">
-                  <h4 id="_resource_merkeAngebot">merken (<span class="nickname">merkeAngebot</span>)</h4>
+                  <h4 id="_resource_merkeAngebot">Angebot merken (<span class="nickname">merkeAngebot</span>)</h4>
                   <div class="literalblock">
                     <div class="content">
                       <pre>post /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{angebotsnummer}/merken</pre>
@@ -16020,7 +16262,7 @@
                   <div class="sect4">
                     <h5 id="_beschreibung">Beschreibung</h5>
                     <div class="paragraph">
-                      <p></p>
+                      <p>Das Angebot kann gemerkt und gespeichert werden. Als Parameter werden die vorgangsnummer, die ErgebnislisteId sowie Angebotsnummer benötigt.</p>
                     </div>
                   </div>
                   <div class="sect4">
@@ -16523,7 +16765,6 @@
                       <h5 id="_erzeugt">Erzeugt</h5>
                       <div class="ulist">
                         <ul>
-                            <li><code>*/*</code></li>
                             <li><code>application/json</code></li>
                         </ul>
                       </div>
@@ -27323,6 +27564,208 @@
             </table>
           </div>
           <div class="sect2">
+            <h3 id="_ErmittleErgebnisseRequestBody">ErmittleErgebnisseRequestBody</h3>
+            <div class="paragraph">
+              <p>Anfrage Body für die Ermittlung von Ergebnissen.</p>
+            </div>
+            <table class="tableblock frame-all grid-all stretch">
+              <colgroup>
+                <col style="width: 16.6666%;">
+                <col style="width: 61.1111%;">
+                <col style="width: 22.2223%;">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="tableblock halign-left valign-middle">Name</th>
+                <th class="tableblock halign-left valign-middle">Beschreibung</th>
+                <th class="tableblock halign-left valign-middle">Typ</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>ermitteln</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_boolean">Boolean</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>aktualisieren</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_boolean">Boolean</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>alternativen</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_boolean">Boolean</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>produktAnbieter</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">array[String]</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>exkludierteProduktAnbieter</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">array[String]</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>provisionsAusgabe</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_boolean">Boolean</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="sect2">
             <h3 id="_Ermittlung">Ermittlung</h3>
             <div class="paragraph">
               <p></p>
@@ -35159,7 +35602,7 @@
           <div class="sect2">
             <h3 id="_ProduktAnbieter">ProduktAnbieter</h3>
             <div class="paragraph">
-              <p>Kann z.B. bei KfW abweichen vom produktAnbieter</p>
+              <p></p>
             </div>
             <table class="tableblock frame-all grid-all stretch">
               <colgroup>
@@ -36666,6 +37109,72 @@
                       <p>
   
                           <a href="#_integer">Integer</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>tilgungsart</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+                          <div>
+                            Mögliche Werte:
+                            <ul>
+                                <li>VOLLTILGER</li>                                <li>TILGUNGS_AUSGESETZT</li>                                <li>ANFAENGLICHE_TILGUNG</li>                                <li>RATE</li>
+                            </ul>
+                          </div>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>tilgungsErsatzProduktId</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
   
   
                         </p>
@@ -38556,6 +39065,96 @@
                       <p>
   
                           <a href="#_string">array[String]</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>beschreibung</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>basisAngebotsId</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>zuGrundeLiegendesAngebot</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
   
   
                         </p>
@@ -41030,7 +41629,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BMN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>BMN</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Banco Mare Nostrum S.A.</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BORDESHOLMER_SPK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bordesholmer Spk</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bordesholmer Sparkasse</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BRANDENBURGER_BANK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Brandenburger Bank </p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Brandenburger Bank Volksbank-Raiffeisenbank eG</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BREMISCHE_VOLKSBANK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bremische Volksbank</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bremische Volksbank eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BREMISCHE_VOLKSBANK</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bremische Volksbank Weser-Wümme</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bremische Volksbank Weser-Wümme eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BSH_PLATTFORM</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bausparkasse Schwäbisch Hall</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bausparkasse Schwäbisch Hall</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>BSK_SCHWAEBISCH_HALL</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>BSK Schwäbisch Hall</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Bausparkasse Schwäbisch Hall AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code><del>BSQ_BAUSPAR</del></code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>BSQ Bauspar</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>BSQ Bauspar AG</p>    </div>  </div></td>
@@ -41205,7 +41804,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_HV_FAEH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code><del>LBS_BREMEN</del></code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Bremen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Bremen AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HESSEN_THUERINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest (MG Nord)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS_NordWest (MG Nord)</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst (MG Ost)</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst (MG Ost)</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_RHEINLAND_PFALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Rheinland-Pfalz</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Rheinland-Pfalz</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_SAAR</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Saar</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Saar</p>    </div>  </div></td>
@@ -41816,7 +42415,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ELSEN_WEWER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Elsen-Wewer-Borchen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Elsen-Wewer-Borchen eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ERFT</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Erft</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Erft eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ERMSTAL_ALB</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Ermstal-Alb</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Ermstal-Alb eG</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ESSEN_CAPPELN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Voba Essen-Cappeln</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Essen-Cappeln eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ESSEN_CAPPELN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa eG Emstek Essen Cappeln</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank eG Emstek Essen Cappeln</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ESSLINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Mittlerer Neckar</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Mittlerer Neckar eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ETTLINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Ettlingen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Ettlingen eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_FILDER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Filder</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Filder eG</p>    </div>  </div></td>
@@ -41965,7 +42564,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_SUEDMUENSTERL</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VB Südmünsterland-Mitte eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Südmünsterland-Mitte eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_SYKE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank eG, Syke</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank eG, Syke</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_TEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Testbank</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Testbank</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_TRIER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VB Trier</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Trier eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_TRIER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VB Trier Eifel</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Trier Eifel eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_UEBERLINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Überlingen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Überlingen eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_UELZEN_SALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Uelzen-Salzwedel</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Uelzen-Salzwedel eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VOBA_ULM_BIBERACH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Ulm-Biberach</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Ulm-Biberach eG</p>    </div>  </div></td>
@@ -42050,6 +42649,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_NORDEIFEL</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Nordeifel</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Nordeifel eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_NORDRHOEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank NordRhön</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank NordRhön eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_NUERNBERG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Nürnberg</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Raiffeisenbank Nürnberg eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_OBERBAYERN_SO</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Oberbayern Südost eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Raiffeisenbank Oberbayern Südost eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_OBERFRANKEN_MITTE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Oberfranken Mitte</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Oberfranken Mitte eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_ODER_SPREE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>RVB Oder-Spree eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Raiffeisen-Volksbank Oder-Spree eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_OSTHOLSTEIN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VRB zwischen den Meeren</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank zwischen den Meeren eG</p>    </div>  </div></td>
@@ -42177,18 +42777,26 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_ZF_X40_RIESTER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Z35x40 R - (FleX-Zuteilung 40%) 0,01% I 1,70%</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_ZF_X45</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Z35x45 - (FleX-Zuteilung 45%) 0,01% I 1,35%</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_ZF_X45_RIESTER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Z35x45 R - (FleX-Zuteilung 45%) 0,01% I 1,35%</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_F3</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>F3 LBS-Finanzierer 3 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_F4</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>F4 LBS-Finanzierer 4 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_F5</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>F5 LBS-Finanzierer 5 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_F6</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>F6 LBS-Finanzierer 6 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_F7</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>F7 LBS-Finanzierer 7 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_FINANZIERER_MEINZUHAUSE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Finanzierer MeinZuhause</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_MODERNISIERER_M8</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>M8 / LBS-Modern. 8 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_MODERNISIERER_MINIZINS</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MZ / LBS-MiniZins 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_MODERNISIERER_MX</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MX / LBS-Modern. 10 o/oo 2019</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_STARTER_S4</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Starter S4 2020</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_STARTER_S5</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Starter S5 2020</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD_N_STARTER_S6</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-Starter S6 2020</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_TRAUMSTART_YOUNG</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>TraumStart Young</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_10_V1_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Fin 10 V1-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_10_V1_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WohnTraum Finanzierer 10 V1 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_10_V2_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Fin 10 V2-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_10_V2_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WohnTraum Finanzierer 10 V2 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_12_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Fin 12-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_15_V1_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Fin 15 V1-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_15_V1_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WohnTraum Finanzierer 15 V1 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_15_V2_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Fin 15 V2-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_15_V2_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WohnTraum Finanzierer 15 V2 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_FIN_SPEZIAL_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT FinSpezial-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MINI_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mini-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_ECOFLEX_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod EcoFlex-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_ECOFLEX_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod EcoFlex-2024 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_ECOSPRINT_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod EcoSprint-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_FLEX_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod Flex-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_FLEX_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod Flex-2024 R</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_MOD_SPRINT_2024</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WT Mod Sprint-2024</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_PLUS</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>WohnTraumPlus</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORDWEST_WT_SPEZIAL_2024_R</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS-WohnTraum Finanzierer Spezial R</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HT_COMFORT_S</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Comfort S</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HT_FLEX</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Flex</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HT_HOME_L</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Home L</p>    </div>  </div></td>

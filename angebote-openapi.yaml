@@ -7,16 +7,15 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 2.7.29
+  version: 3.0.0
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
 - url: https://baufinanzierung.api.europace.de
   description: Produktionsserver
 tags:
-- name: Version 3 WIP
-  description: "ATTENTION still WIP - Eine Liste mit Finanzierungsvorschlägen abrufen,\
-    \ API-Version 3"
+- name: Version 3
+  description: "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3"
 - name: VersionController
   description: Liefert die Version der BaufiSmart-API
 - name: Version 1
@@ -1214,7 +1213,7 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste:
     post:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Ermittlung erzeugen
       description: Als Parameter wird eine Vorgangsnummer benötigt
       operationId: ermittleErgebnisse
@@ -1235,73 +1234,26 @@ paths:
         schema:
           pattern: "^[A-Z0-9]{6}"
           type: string
-      - name: ermitteln
-        in: query
-        required: false
-        schema:
-          type: boolean
-          default: true
-      - name: aktualisieren
-        in: query
-        required: false
-        schema:
-          type: boolean
-          default: true
-      - name: alternativen
-        in: query
-        required: false
-        schema:
-          type: boolean
-          default: false
-      - name: produktAnbieter
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: exkludierteProduktAnbieter
-        in: query
-        required: false
-        schema:
-          type: array
-          items:
-            type: string
-      - name: provisionsAusgabe
-        in: query
-        required: false
-        schema:
-          type: boolean
       requestBody:
         content:
           application/json:
             schema:
-              type: string
+              $ref: '#/components/schemas/ErmittleErgebnisseRequestBody'
       responses:
-        "200":
-          description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
-            der Url im 'location' Header abrufbar.
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Ergebnisliste'
+        "204":
+          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
+            Inhalt.
         "404":
           description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-        "204":
-          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
-            Inhalt.
+        "200":
+          description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
+            der Url im 'location' Header abrufbar.
           content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Ergebnisliste'
-        "302":
-          description: Found
-          content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/Ergebnisliste'
         "401":
@@ -1358,9 +1310,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Ergebnisse abrufen
-      description: Als Parameter wird die ErgebnislisteId benötigt.
+      description: Als Parameter werden die Vorgangsnummer sowie die ErgebnislisteId
+        benötigt.
       operationId: getErgebnisListe
       parameters:
       - name: Authorization
@@ -1386,18 +1339,18 @@ paths:
           pattern: "^[A-Z0-9]{6}"
           type: string
       responses:
-        "200":
-          description: Die Ergebnisliste wurde gefunden.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Ergebnisliste'
         "404":
           description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "200":
+          description: Die Ergebnisliste wurde gefunden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ergebnisliste'
         "401":
           description: Unauthorized
           content:
@@ -1446,8 +1399,11 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{angebotsnummer}/merken:
     post:
       tags:
-      - Version 3 WIP
-      summary: merken
+      - Version 3
+      summary: Angebot merken
+      description: "Das Angebot kann gemerkt und gespeichert werden. Als Parameter\
+        \ werden die vorgangsnummer, die ErgebnislisteId sowie Angebotsnummer benö\
+        tigt."
       operationId: merkeAngebot
       parameters:
       - name: Authorization
@@ -1488,7 +1444,7 @@ paths:
         "200":
           description: Angebot gespeichert
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/AngebotMerkenAntwort'
         "401":
@@ -1551,10 +1507,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Ergebnis abrufen
-      description: Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die ErgebnislisteId
-        und der Ergebnisnummer benötigt.
+      description: "Das Ergebnis einer Ermittlung abrufen. Als Parameter werden die\
+        \ Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt."
       operationId: getErgebnis
       parameters:
       - name: Authorization
@@ -1587,7 +1543,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Ergebnis wurde gefunden.
           content:
             application/json:
               schema:
@@ -1646,10 +1602,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten:
     get:
       tags:
-      - Version 3 WIP
-      summary: Berechnungsuebersichten abrufen
-      description: Die Berechnungsuebersichten abrufen. Als Parameter wird die ErgebnislisteIdId
-        sowie ErgebnisNummer benötigt.
+      - Version 3
+      summary: Berechnungsübersichten abrufen
+      description: "Die Berechnungsübersichten abrufen. Als Parameter werden die Vorgangsnummer,\
+        \ die ErgebnislisteId sowie der Ergebnisnummer benötigt."
       operationId: getBerechnungsuebersichten
       parameters:
       - name: Authorization
@@ -1682,7 +1638,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die berechnungsübersichten wurde gefunden.
           content:
             application/json:
               schema:
@@ -1741,10 +1697,11 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/meldungen:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Meldungen abrufen
-      description: Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter
-        wird die ErgebnislisteId und die Ergebnisnummer benötigt.
+      description: "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter\
+        \ werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer\
+        \ benötigt."
       operationId: getMeldungen
       parameters:
       - name: Authorization
@@ -1777,7 +1734,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Meldungen eines Finanzierungsvorschlags wurden gefunden.
           content:
             application/json:
               schema:
@@ -1836,10 +1793,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/provision:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Provision abrufen
-      description: Abruf der Provision des Darlehens. Als Parameter wird die ErgebnislisteId
-        und die Ergebnisnummer benötigt.
+      description: "Abruf der Provision des Darlehens. Als Parameter werden die Vorgangsnummer,\
+        \ die ErgebnislisteId sowie die Ergebnisnummer benötigt."
       operationId: getProvision
       parameters:
       - name: Authorization
@@ -1879,7 +1836,7 @@ paths:
           default: 0
       responses:
         "200":
-          description: OK
+          description: Die Provision des Darlehens wurde gefunden.
           content:
             application/json:
               schema:
@@ -1938,10 +1895,11 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/unterlagen:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Unterlagen abrufen
-      description: Abrufen der benötigten Unterlagen des Finanzierungsvorschlags.
-        Als Parameter wird die ErgebnislisteId und die Ergebnisnummer benötigt.
+      description: "Abrufen der benötigten Unterlagen des Finanzierungsvorschlags.\
+        \ Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer\
+        \ benötigt."
       operationId: getUnterlagen
       parameters:
       - name: Authorization
@@ -1974,7 +1932,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Unterlagen des Finanzierungsvorschlags wurden gefunden.
           content:
             application/json:
               schema:
@@ -2033,10 +1991,11 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Zahlungspläne abrufen
-      description: Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter
-        wird die ErgebnisListeId und die Ergebnisnummer benötigt.
+      description: "Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter\
+        \ werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer\
+        \ benötigt."
       operationId: getZahlungsplaene
       parameters:
       - name: Authorization
@@ -2069,7 +2028,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Zahlungspläne wurden gefunden.
           content:
             application/json:
               schema:
@@ -2128,11 +2087,11 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene/{zahlungsplanIndex}:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Zahlungsplan abrufen
       description: "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id\
-        \ abrufen. Als Parameter wird die ErgebnislisteId, die Ergebnisnummer sowie\
-        \ der Index des Zahlungsplans benötigt."
+        \ abrufen. Als Parameter werden die vorgangsnummer, die ErgebnislisteId, die\
+        \ Ergebnisnummer sowie der Index des Zahlungsplans benötigt."
       operationId: getZahlungsplan
       parameters:
       - name: Authorization
@@ -2170,7 +2129,7 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: Der Zahlungsplan wurde gefunden.
           content:
             application/json:
               schema:
@@ -2229,9 +2188,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Gemerkte Angebote abrufen
-      description: Gemerkte Angebote abrufen
+      description: Gemerkte Angebote abrufen. Als Parameter wird eine Vorgangsnummer
+        benötigt
       operationId: getGemerkteAngebote
       parameters:
       - name: Authorization
@@ -2252,7 +2212,7 @@ paths:
           type: string
       responses:
         "200":
-          description: OK
+          description: Die Gemerkte Angebote wurde abrufen.
           content:
             application/json:
               schema:
@@ -2313,9 +2273,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Gemerktes Angebot abrufen
-      description: Gemerktes Angebot abrufen
+      description: Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer
+        sowie die laufendeNummer benötigt.
       operationId: getGemerktesAngebot
       parameters:
       - name: Authorization
@@ -2343,7 +2304,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Das Gemerkte Angebot wurde abrufen.
           content:
             application/json:
               schema:
@@ -2402,10 +2363,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/berechnungsuebersichten:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Berechnungsuebersichten für gemerkte Angebote abrufen
       description: Die Berechnungsuebersichten für gemerkte Angebote abrufen. Als
-        Parameter wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots
+        Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots
         benötigt.
       operationId: getBerechnungsuebersichtenFuerGemerktesAngebot
       parameters:
@@ -2434,7 +2395,8 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Berechnungsuebersichten für das gemerkte Angebot wurden
+            abrufen.
           content:
             application/json:
               schema:
@@ -2490,12 +2452,104 @@ paths:
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
+  /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/entmerken:
+    post:
+      tags:
+      - Version 3
+      summary: entmerken
+      description: Das Angebot kann entmerkt werden. Als Parameter werden die vorgangsnummer
+        sowie die laufende Nummer des gemerkten Angebots benötigt.
+      operationId: entmerkeAngebot
+      parameters:
+      - name: Authorization
+        in: header
+        description: Authorization Bearer Token
+        required: true
+        schema:
+          type: string
+      - name: X-TraceId
+        in: header
+        schema:
+          type: string
+      - name: vorgangsnummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[A-Z0-9]{6}"
+          type: string
+      - name: laufendeNummer
+        in: path
+        required: true
+        schema:
+          pattern: "^[0-9]*"
+          type: integer
+          format: int32
+      responses:
+        "204":
+          description: Angebot erfolgreich entmerkt
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "405":
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "429":
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "502":
+          description: Bad Gateway
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "504":
+          description: Gateway Timeout
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      security:
+      - oAuth2:
+        - baufinanzierung:angebot:ermitteln
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Meldungen für gemerkte Angebote abrufen
-      description: Die Meldungen für gemerkte Angebote abrufen. Als Parameter wird
+      description: Die Meldungen für gemerkte Angebote abrufen. Als Parameter werden
         die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
       operationId: getMeldungenFuerGemerktesAngebot
       parameters:
@@ -2524,7 +2578,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Meldungen für das gemerkte Angebot wurden abrufen.
           content:
             application/json:
               schema:
@@ -2583,9 +2637,9 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/unterlagen:
     get:
       tags:
-      - Version 3 WIP
+      - Version 3
       summary: Die Unterlagen für gemerkte Angebote abrufen
-      description: Die Unterlagen für gemerkte Angebote abrufen. Als Parameter wird
+      description: Die Unterlagen für gemerkte Angebote abrufen. Als Parameter werden
         die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
       operationId: getUnterlagenFuerGemerktesAngebot
       parameters:
@@ -2614,7 +2668,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Unterlagen für das gemerkte Angebot wurden abrufen.
           content:
             application/json:
               schema:
@@ -2673,10 +2727,10 @@ paths:
   /v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene:
     get:
       tags:
-      - Version 3 WIP
-      summary: Die Zahlungsplaene für gemerkte Angebote abrufen
-      description: Die Zahlungsplaene für gemerkte Angebote abrufen. Als Parameter
-        wird die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
+      - Version 3
+      summary: Die Zahlungspläne für gemerkte Angebote abrufen
+      description: Die Zahlungspläne für gemerkte Angebote abrufen. Als Parameter
+        werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.
       operationId: getZahlungsplaeneFuerGemerktesAngebot
       parameters:
       - name: Authorization
@@ -2704,7 +2758,7 @@ paths:
           format: int32
       responses:
         "200":
-          description: OK
+          description: Die Zahlungspläne für das gemerkte Angebot wurden abrufen.
           content:
             application/json:
               schema:
@@ -2822,6 +2876,26 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    ErmittleErgebnisseRequestBody:
+      type: object
+      properties:
+        ermitteln:
+          type: boolean
+        aktualisieren:
+          type: boolean
+        alternativen:
+          type: boolean
+        produktAnbieter:
+          type: array
+          items:
+            type: string
+        exkludierteProduktAnbieter:
+          type: array
+          items:
+            type: string
+        provisionsAusgabe:
+          type: boolean
+      description: Anfrage Body für die Ermittlung von Ergebnissen.
     BausparAngebot:
       type: object
       properties:
@@ -3107,7 +3181,6 @@ components:
           type: string
         _links:
           $ref: '#/components/schemas/Links'
-      description: Kann z.B. bei KfW abweichen vom produktAnbieter
     ProduktFeature:
       type: object
       properties:
@@ -3147,6 +3220,15 @@ components:
         tilgungsfreieAnlaufJahre:
           type: integer
           format: int32
+        tilgungsart:
+          type: string
+          enum:
+          - VOLLTILGER
+          - TILGUNGS_AUSGESETZT
+          - ANFAENGLICHE_TILGUNG
+          - RATE
+        tilgungsErsatzProduktId:
+          type: string
     V3Ergebnis:
       type: object
       properties:
@@ -3272,6 +3354,12 @@ components:
           type: array
           items:
             type: string
+        beschreibung:
+          type: string
+        basisAngebotsId:
+          type: string
+        zuGrundeLiegendesAngebot:
+          type: string
         _links:
           $ref: '#/components/schemas/Links'
     ZinsBindung:
