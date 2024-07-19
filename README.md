@@ -66,12 +66,12 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to Baufismart.
 
-## Usecase find and recalculated offers <a name="findOffers"></a>
+## Usecase find and recalculate offers <a name="findOffers"></a>
 
 Finding offers can be controled by several parameters.
 If no body is given default parameters are used.
 
-```
+``` json
 { 
   // default parameters
   "ermitteln": true, // calculate fresh new offers
@@ -94,7 +94,7 @@ Authorization: Bearer {{access-token}}
 
 The sample response with a fresh calculated offer.
 
-```
+``` json
 {
   "ergebnislisteId": "LAPF9B",
   "ergebnisliste": [
@@ -185,7 +185,7 @@ A refreshed offer contains the details of the new offer and details of the saved
 This way the result data can be compared.
 Refreshed offers occur only in a result list if there are saved offers "gemerktesAngebot" in the case.
 
-```
+``` json
 {
   "ergebnislisteId": "Z4WQVT",
   "ergebnisliste": [
@@ -322,7 +322,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
+``` json
 {
   "darlehensSumme": 250000.00,
   "sollZins": 4.32000,
@@ -358,7 +358,7 @@ example-response:
 }
 ```
 
-## Usecase get details (Meldungen) of Offer
+## Usecase get details (Meldungen) of offer
 
 ``` http
 GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
@@ -369,7 +369,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
+``` json
 {
   "meldungen": [
     {
@@ -396,7 +396,7 @@ example-response:
 }
 ```
 
-## Usecase get details (Zahlungsplaene) of Offer
+## Usecase get details (Zahlungsplaene) of offer
 
 ``` http
 GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
@@ -407,7 +407,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
+``` json
 {
   "_links": {
     "_self": {
@@ -448,7 +448,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
+``` json
 {
   "unterlagen": [
     {
@@ -477,7 +477,7 @@ example-response:
 }
 ```
 
-## Usecase get details (Provision) of Offer
+## Usecase get details (Provision) of offer
 
 The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
 
@@ -490,14 +490,14 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
+``` json
 {
   "betrag": 2500,
   "partnerId": "PARTNER-ID"
 }
 ```
 
-## Usecase get details (Ueberischten) of offer
+## Usecase get details (Uebersichten) of offer
 
 Uebersichten are HTML snippets of Loan provider calculation details. These details may contain individual data and methods of loan providers.
 
@@ -509,7 +509,7 @@ Authorization: Bearer {{access-token}}
 ```
 example-response:
 
-```
+``` json
 {
   "haushaltsrechnung": [
     {
@@ -575,7 +575,7 @@ example-response:
 Get all gemerkte Angebote (saved offers) within a case.
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/gemerkteangebote
+GET /v3/vorgeange/{{case-id}}/gemerkteangebote HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -584,7 +584,7 @@ Authorization: Bearer {{access-token}}
 The response is very similar in its domain model to the angebot model of newly calculated offers.
 
 example-response:
-```
+``` json
 [
   {
     "id": "6675df4723bf6f0ac203dbb9",
@@ -609,7 +609,7 @@ example-response:
 Get one gemerktes Angebote (saved offer) based on ```laufendeNummerAmVorgang``` within a case.
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}}
+GET /v3/vorgeange/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}} HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -618,7 +618,7 @@ Authorization: Bearer {{access-token}}
 The response is very similar in its domain model to the angebot model of newly calculated offers.
 
 example-response:
-```
+``` json
 {
   "id": "6658753323880379d2043a2c",
   "laufendeNummer": 6,
@@ -655,7 +655,7 @@ example-response:
 }
 ```
 
-## Usecase get details of scved offers
+## Usecase get details of saved offers
 
 For gemerkte (saved) offers details can be queried similar to fresh calculated offers.
 Within a case the ```laufendeNummerAmVorgang``` is used to identify the saved offer.
@@ -663,7 +663,7 @@ This number is increasing with each new saved offer and for deleted saved offer 
 
 ### get Meldungen for saved offer
 ``` http
-GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -672,7 +672,7 @@ Example results are similar to Meldungen for fresh offers.
 
 ### get Berechungsuebersichten for saved offer
 ``` http
-GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -681,7 +681,7 @@ Example results are similar to berechnungsuebersichten for fresh offers.
 
 ### get Unterlagen for saved offer
 ``` http
-GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -691,7 +691,7 @@ Example results are similar to Unterlagen for fresh offers.
 
 ### get Zahlungplaene for saved offer
 ``` http
-GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -702,8 +702,8 @@ Example results are similar to Zahlungsplaene for fresh offers.
 
 Newly calculated and refreshed offers can be saved in a case and turned into gemerkteAngebote.
 
-```
-POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken
+``` http
+POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -712,7 +712,7 @@ Authorization: Bearer {{access-token}}
 example-response:
 The new number in the case ```laufendeNummerAmVorgang``` is returned which identifies a gemerktesAngebot.
 
-```
+``` json
 {
   "laufendeNummerAmVorgang": 14
 }
@@ -722,8 +722,8 @@ The new number in the case ```laufendeNummerAmVorgang``` is returned which ident
 
 A saved offers can be deleted in a case. Its ```laufendeNummerAmVorgang``` is not reused.
 
-```
-POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken
+``` http
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -731,8 +731,8 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-```
-HTTP/2 200 OK
+``` http
+HTTP/2 204 No Content
 ```
 
 
@@ -1112,7 +1112,7 @@ If `X-RateLimit-Remaining` reaches 0, then the status code `429 - Too Many Reque
 
 If you save a calculated offer it gets an id:
 
-```
+``` json
 {
   "id": "6658753323880379d2043a2c",
   "laufendeNummer": 6,
@@ -1136,7 +1136,7 @@ When saving the offer containing a recalculated saved offer you will get the sam
 the first save.
 If you now get the saved offer ```GET /v3/vorgeange/{{case-id}}/gemerkteangebote/6``` you receive:
 
-```
+``` json
 {
   "id": "669687df411eac7bb515b249",
   "laufendeNummer": 6,
@@ -1161,7 +1161,7 @@ offer is based.
 
 If you now repeat the steps from above, you will receive the following offer:
 
-```
+``` json
 {
   "id": "66968690b7585f5b9587ea1f",
   "laufendeNummer": 6,

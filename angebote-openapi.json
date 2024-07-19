@@ -1866,9 +1866,6 @@
           }
         },
         "responses" : {
-          "204" : {
-            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
-          },
           "404" : {
             "description" : "Not Found",
             "content" : {
@@ -1878,6 +1875,9 @@
                 }
               }
             }
+          },
+          "204" : {
+            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
           },
           "200" : {
             "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
@@ -2013,22 +2013,22 @@
           }
         } ],
         "responses" : {
-          "404" : {
-            "description" : "Not Found",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          },
           "200" : {
             "description" : "Die Ergebnisliste wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
                 }
               }
             }
@@ -5098,7 +5098,7 @@
           "aufenthaltsTitel" : {
             "type" : "string",
             "description" : "wenn keine deutsche StaatsangehÃ¶rigkeit",
-            "enum" : [ "VISUM", "AUFENTHALTS_ERLAUBNIS", "NIEDERLASSUNGS_ERLAUBNIS", "DAUERAUFENTHALT_EU" ]
+            "enum" : [ "VISUM", "AUFENTHALTS_ERLAUBNIS", "NIEDERLASSUNGS_ERLAUBNIS", "DAUERAUFENTHALT_EU", "BLAUE_KARTE_EU" ]
           },
           "aufenthaltsTitelBefristetBis" : {
             "type" : "string",
