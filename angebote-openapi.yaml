@@ -1240,15 +1240,15 @@ paths:
             schema:
               $ref: '#/components/schemas/ErmittleErgebnisseRequestBody'
       responses:
-        "204":
-          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
-            Inhalt.
         "404":
           description: Not Found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "204":
+          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
+            Inhalt.
         "200":
           description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
             der Url im 'location' Header abrufbar.
@@ -1339,18 +1339,18 @@ paths:
           pattern: "^[A-Z0-9]{6}"
           type: string
       responses:
-        "404":
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: Die Ergebnisliste wurde gefunden.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ergebnisliste'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
@@ -3503,6 +3503,7 @@ components:
           - AUFENTHALTS_ERLAUBNIS
           - NIEDERLASSUNGS_ERLAUBNIS
           - DAUERAUFENTHALT_EU
+          - BLAUE_KARTE_EU
         aufenthaltsTitelBefristetBis:
           type: string
           description: wenn Aufenthaltstitel befristet
