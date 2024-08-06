@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "3.0.0"
+    "version" : "3.0.1"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -1876,9 +1876,6 @@
               }
             }
           },
-          "204" : {
-            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
-          },
           "200" : {
             "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
             "content" : {
@@ -1888,6 +1885,9 @@
                 }
               }
             }
+          },
+          "204" : {
+            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
           },
           "401" : {
             "description" : "Unauthorized",
@@ -2013,22 +2013,22 @@
           }
         } ],
         "responses" : {
-          "200" : {
-            "description" : "Die Ergebnisliste wurde gefunden.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
-          },
           "404" : {
             "description" : "Not Found",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Die Ergebnisliste wurde gefunden.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Ergebnisliste"
                 }
               }
             }
@@ -4511,7 +4511,7 @@
           },
           "kfwProgramm" : {
             "type" : "string",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_358", "PROGRAMM_359" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_308", "PROGRAMM_358", "PROGRAMM_359" ]
           },
           "sollZins" : {
             "type" : "number"
@@ -6396,7 +6396,7 @@
           "kfwProgramm" : {
             "type" : "string",
             "description" : "Programm 261 wird nur noch in der Sanierungsvariante, die Programme 141, 151, 152, 153, 155, 167 und 262 werden gar nicht mehr angeboten",
-            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_358", "PROGRAMM_359" ]
+            "enum" : [ "PROGRAMM_124", "PROGRAMM_141", "PROGRAMM_151", "PROGRAMM_152", "PROGRAMM_153", "PROGRAMM_155", "PROGRAMM_159", "PROGRAMM_167", "PROGRAMM_261", "PROGRAMM_262", "PROGRAMM_297", "PROGRAMM_298", "PROGRAMM_300", "PROGRAMM_308", "PROGRAMM_358", "PROGRAMM_359" ]
           },
           "kfwEnergieEffizienzStandard" : {
             "type" : "string",
