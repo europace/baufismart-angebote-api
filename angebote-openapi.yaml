@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 3.0.1
+  version: 3.0.2
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1246,6 +1246,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+        "204":
+          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
+            Inhalt.
         "200":
           description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
             der Url im 'location' Header abrufbar.
@@ -1253,9 +1256,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ergebnisliste'
-        "204":
-          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
-            Inhalt.
         "401":
           description: Unauthorized
           content:
@@ -1339,18 +1339,18 @@ paths:
           pattern: "^[A-Z0-9]{6}"
           type: string
       responses:
-        "404":
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
         "200":
           description: Die Ergebnisliste wurde gefunden.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Ergebnisliste'
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
         "401":
           description: Unauthorized
           content:
@@ -4603,6 +4603,9 @@ components:
       properties:
         energieEffizienzAusweisTyp:
           type: string
+          description: 'Das Feld ist Deprecated und wird bis zur Löschung als Fallback
+            für ''ausweisTyp'' benutzt. Zur Angabe des Energieausweistyps dient das
+            Feld ''ausweisTyp''. '
           deprecated: true
           enum:
           - ENDENERGIEBEDARF
