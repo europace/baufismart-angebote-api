@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version" : "3.0.1"
+    "version": "3.0.2"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -1876,6 +1876,9 @@
               }
             }
           },
+          "204": {
+            "description": "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
+          },
           "200" : {
             "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
             "content" : {
@@ -1885,9 +1888,6 @@
                 }
               }
             }
-          },
-          "204" : {
-            "description" : "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
           },
           "401" : {
             "description" : "Unauthorized",
@@ -2013,22 +2013,22 @@
           }
         } ],
         "responses" : {
-          "404" : {
-            "description" : "Not Found",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          },
           "200" : {
             "description" : "Die Ergebnisliste wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -5733,6 +5733,7 @@
         "properties" : {
           "energieEffizienzAusweisTyp" : {
             "type" : "string",
+            "description": "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'ausweisTyp' benutzt. Zur Angabe des Energieausweistyps dient das Feld 'ausweisTyp'. ",
             "deprecated" : true,
             "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
           },
