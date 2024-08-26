@@ -2,14 +2,14 @@
   "openapi" : "3.0.1",
   "info" : {
     "title" : "Angebote API",
-    "description" : "Ein Service um eine Ergebnisliste mit FinanzierungsvorschlÃ¤gen zu ermitteln",
+    "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "contact" : {
       "name" : "Europace AG",
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version": "3.0.2"
+    "version" : "3.0.2"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -20,23 +20,23 @@
   } ],
   "tags" : [ {
     "name" : "Version 3",
-    "description" : "Eine Liste mit FinanzierungsvorschlÃ¤gen abrufen, API-Version 3"
+    "description" : "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3"
   }, {
     "name" : "VersionController",
     "description" : "Liefert die Version der BaufiSmart-API"
   }, {
     "name" : "Version 1",
-    "description" : "Eine Liste mit FinanzierungsvorschlÃ¤gen abrufen, API-Version 1"
+    "description" : "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 1"
   }, {
     "name" : "Version 2",
-    "description" : "Eine Liste mit FinanzierungsvorschlÃ¤gen abrufen, API-Version 2"
+    "description" : "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 2"
   } ],
   "paths" : {
     "/v1/finanzierungsvorschlaege" : {
       "post" : {
         "tags" : [ "Version 1" ],
         "summary" : "Ermittle Ergebnisse",
-        "description" : "Als Parameter wird der Vorgang als JSON im Body benÃ¶tigt",
+        "description" : "Als Parameter wird der Vorgang als JSON im Body benötigt",
         "operationId" : "getFinanzierungsVorschlaege",
         "parameters" : [ {
           "name" : "Authorization",
@@ -192,7 +192,7 @@
       "get" : {
         "tags" : [ "Version 1" ],
         "summary" : "Ermittle Ergebnisse",
-        "description" : "Als Parameter wird eine Vorgangsnummer benÃ¶tigt",
+        "description" : "Als Parameter wird eine Vorgangsnummer benötigt",
         "operationId" : "getFinanzierungsVorschlaege_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -335,7 +335,7 @@
       "post" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlung erzeugen",
-        "description" : "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON im Body benÃ¶tigt",
+        "description" : "Als Parameter wird eine Vorgangsnummer oder der Vorgang als JSON im Body benötigt",
         "operationId" : "ermittleErgebnisse_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -507,7 +507,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlung abrufen",
-        "description" : "Die Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
+        "description" : "Die Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benötigt.",
         "operationId" : "getErmittlung",
         "parameters" : [ {
           "name" : "Authorization",
@@ -633,7 +633,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnisse abrufen",
-        "description" : "Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
+        "description" : "Als Parameter wird die Ermittlungs-Id benötigt.",
         "operationId" : "getErgebnisListe_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -759,7 +759,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ergebnis abrufen",
-        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id und der Ergebnisnummer benÃ¶tigt.",
+        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id und der Ergebnisnummer benötigt.",
         "operationId" : "getErgebnis_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -893,7 +893,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Meldungen abrufen",
-        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.",
         "operationId" : "getMeldungen_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1027,7 +1027,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Provision abrufen",
-        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abruf der Provision des Darlehens. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.",
         "operationId" : "getProvision_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1170,7 +1170,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Unterlagen abrufen",
-        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abrufen der benötigten Unterlagen des Finanzierungsvorschlags. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.",
         "operationId" : "getUnterlagen_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1303,8 +1303,8 @@
     "/v2/ergebnisliste/ermittlung/{ermittlungsId}/ergebnisse/{ergebnisNummer}/zahlungsplaene" : {
       "get" : {
         "tags" : [ "Version 2" ],
-        "summary" : "ZahlungsplÃ¤ne abrufen",
-        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benÃ¶tigt.",
+        "summary" : "Zahlungspläne abrufen",
+        "description" : "Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter wird die Ermittlungs-Id und die Ergebnisnummer benötigt.",
         "operationId" : "getZahlungsplaene_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1438,7 +1438,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Zahlungsplan abrufen",
-        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
+        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter wird die Ermittlungs-Id, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.",
         "operationId" : "getZahlungsplan_1",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1579,7 +1579,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlungsanfrage abrufen",
-        "description" : "Die Ermittlungsanfrage einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
+        "description" : "Die Ermittlungsanfrage einer Ermittlung abrufen. Als Parameter wird die Ermittlungs-Id benötigt.",
         "operationId" : "getErmittlungsAnfrage",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1705,7 +1705,7 @@
       "get" : {
         "tags" : [ "Version 2" ],
         "summary" : "Ermittlungsdaten abrufen",
-        "description" : "Die Ermittlungsanfrage abrufen. Als Parameter wird die Ermittlungs-Id benÃ¶tigt.",
+        "description" : "Die Ermittlungsanfrage abrufen. Als Parameter wird die Ermittlungs-Id benötigt.",
         "operationId" : "getErfassteDaten",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1831,7 +1831,7 @@
       "post" : {
         "tags" : [ "Version 3" ],
         "summary" : "Ermittlung erzeugen",
-        "description" : "Als Parameter wird eine Vorgangsnummer benÃ¶tigt",
+        "description" : "Als Parameter wird eine Vorgangsnummer benötigt",
         "operationId" : "ermittleErgebnisse",
         "parameters" : [ {
           "name" : "Authorization",
@@ -1866,25 +1866,25 @@
           }
         },
         "responses" : {
-          "404" : {
-            "description" : "Not Found",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "204": {
-            "description": "Basierend auf dem Parameter gibt es keinen zurÃ¼ckzugebenden Inhalt."
-          },
           "200" : {
             "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Ergebnisliste"
+                }
+              }
+            }
+          },
+          "204" : {
+            "description" : "Basierend auf dem Parameter gibt es keinen zurückzugebenden Inhalt."
+          },
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
                 }
               }
             }
@@ -1979,7 +1979,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Ergebnisse abrufen",
-        "description" : "Als Parameter werden die Vorgangsnummer sowie die ErgebnislisteId benÃ¶tigt.",
+        "description" : "Als Parameter werden die Vorgangsnummer sowie die ErgebnislisteId benötigt.",
         "operationId" : "getErgebnisListe",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2023,12 +2023,12 @@
               }
             }
           },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
+          "404" : {
+            "description" : "Not Found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
                 }
               }
             }
@@ -2113,7 +2113,7 @@
       "post" : {
         "tags" : [ "Version 3" ],
         "summary" : "Angebot merken",
-        "description" : "Das Angebot kann gemerkt und gespeichert werden. Als Parameter werden die vorgangsnummer, die ErgebnislisteId sowie Angebotsnummer benÃ¶tigt.",
+        "description" : "Das Angebot kann gemerkt und gespeichert werden. Als Parameter werden die vorgangsnummer, die ErgebnislisteId sowie Angebotsnummer benötigt.",
         "operationId" : "merkeAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2275,7 +2275,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Ergebnis abrufen",
-        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
+        "description" : "Das Ergebnis einer Ermittlung abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.",
         "operationId" : "getErgebnis",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2416,8 +2416,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "BerechnungsÃ¼bersichten abrufen",
-        "description" : "Die BerechnungsÃ¼bersichten abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
+        "summary" : "Berechnungsübersichten abrufen",
+        "description" : "Die Berechnungsübersichten abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.",
         "operationId" : "getBerechnungsuebersichten",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2460,7 +2460,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die berechnungsÃ¼bersichten wurde gefunden.",
+            "description" : "Die berechnungsübersichten wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -2559,7 +2559,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Meldungen abrufen",
-        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
+        "description" : "Die Meldungen eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.",
         "operationId" : "getMeldungen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2701,7 +2701,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Provision abrufen",
-        "description" : "Abruf der Provision des Darlehens. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abruf der Provision des Darlehens. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benötigt.",
         "operationId" : "getProvision",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2852,7 +2852,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Unterlagen abrufen",
-        "description" : "Abrufen der benÃ¶tigten Unterlagen des Finanzierungsvorschlags. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benÃ¶tigt.",
+        "description" : "Abrufen der benötigten Unterlagen des Finanzierungsvorschlags. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie die Ergebnisnummer benötigt.",
         "operationId" : "getUnterlagen",
         "parameters" : [ {
           "name" : "Authorization",
@@ -2993,8 +2993,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/zahlungsplaene" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "ZahlungsplÃ¤ne abrufen",
-        "description" : "Die ZahlungsplÃ¤ne eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benÃ¶tigt.",
+        "summary" : "Zahlungspläne abrufen",
+        "description" : "Die Zahlungspläne eines Finanzierungsvorschlags abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.",
         "operationId" : "getZahlungsplaene",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3037,7 +3037,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die ZahlungsplÃ¤ne wurden gefunden.",
+            "description" : "Die Zahlungspläne wurden gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3136,7 +3136,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Zahlungsplan abrufen",
-        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter werden die vorgangsnummer, die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benÃ¶tigt.",
+        "description" : "Den Zahlungsplan eines Finanzierungsvorschlags anhand einer Id abrufen. Als Parameter werden die vorgangsnummer, die ErgebnislisteId, die Ergebnisnummer sowie der Index des Zahlungsplans benötigt.",
         "operationId" : "getZahlungsplan",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3285,7 +3285,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Gemerkte Angebote abrufen",
-        "description" : "Gemerkte Angebote abrufen. Als Parameter wird eine Vorgangsnummer benÃ¶tigt",
+        "description" : "Gemerkte Angebote abrufen. Als Parameter wird eine Vorgangsnummer benötigt",
         "operationId" : "getGemerkteAngebote",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3414,7 +3414,7 @@
       "get" : {
         "tags" : [ "Version 3" ],
         "summary" : "Gemerktes Angebot abrufen",
-        "description" : "Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benÃ¶tigt.",
+        "description" : "Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benötigt.",
         "operationId" : "getGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3548,8 +3548,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/berechnungsuebersichten" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Berechnungsuebersichten fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "summary" : "Berechnungsuebersichten für gemerkte Angebote abrufen",
+        "description" : "Die Berechnungsuebersichten für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.",
         "operationId" : "getBerechnungsuebersichtenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3585,7 +3585,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die Berechnungsuebersichten fÃ¼r das gemerkte Angebot wurden abrufen.",
+            "description" : "Die Berechnungsuebersichten für das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3684,7 +3684,7 @@
       "post" : {
         "tags" : [ "Version 3" ],
         "summary" : "entmerken",
-        "description" : "Das Angebot kann entmerkt werden. Als Parameter werden die vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "description" : "Das Angebot kann entmerkt werden. Als Parameter werden die vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
         "operationId" : "entmerkeAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3821,8 +3821,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "Meldungen fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Meldungen fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "summary" : "Meldungen für gemerkte Angebote abrufen",
+        "description" : "Die Meldungen für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.",
         "operationId" : "getMeldungenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3858,7 +3858,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die Meldungen fÃ¼r das gemerkte Angebot wurden abrufen.",
+            "description" : "Die Meldungen für das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -3956,8 +3956,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/unterlagen" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die Unterlagen fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "summary" : "Die Unterlagen für gemerkte Angebote abrufen",
+        "description" : "Die Unterlagen für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.",
         "operationId" : "getUnterlagenFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -3993,7 +3993,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die Unterlagen fÃ¼r das gemerkte Angebot wurden abrufen.",
+            "description" : "Die Unterlagen für das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4091,8 +4091,8 @@
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/zahlungsplaene" : {
       "get" : {
         "tags" : [ "Version 3" ],
-        "summary" : "Die ZahlungsplÃ¤ne fÃ¼r gemerkte Angebote abrufen",
-        "description" : "Die ZahlungsplÃ¤ne fÃ¼r gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benÃ¶tigt.",
+        "summary" : "Die Zahlungspläne für gemerkte Angebote abrufen",
+        "description" : "Die Zahlungspläne für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.",
         "operationId" : "getZahlungsplaeneFuerGemerktesAngebot",
         "parameters" : [ {
           "name" : "Authorization",
@@ -4128,7 +4128,7 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Die ZahlungsplÃ¤ne fÃ¼r das gemerkte Angebot wurden abrufen.",
+            "description" : "Die Zahlungspläne für das gemerkte Angebot wurden abrufen.",
             "content" : {
               "application/json" : {
                 "schema" : {
@@ -4352,7 +4352,7 @@
             "type" : "boolean"
           }
         },
-        "description" : "Anfrage Body fÃ¼r die Ermittlung von Ergebnissen."
+        "description" : "Anfrage Body für die Ermittlung von Ergebnissen."
       },
       "BausparAngebot" : {
         "type" : "object",
@@ -4988,10 +4988,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -5009,7 +5009,7 @@
           },
           "zinsBindungInJahren" : {
             "type" : "integer",
-            "description" : "Wert muss grÃ¶Ãer 0 sein.",
+            "description" : "Wert muss größer 0 sein.",
             "format" : "int32"
           },
           "riesterGefoerdert" : {
@@ -5023,7 +5023,7 @@
             "format" : "date"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "Antragsteller" : {
         "type" : "object",
@@ -5097,7 +5097,7 @@
           },
           "aufenthaltsTitel" : {
             "type" : "string",
-            "description" : "wenn keine deutsche StaatsangehÃ¶rigkeit",
+            "description" : "wenn keine deutsche Staatsangehörigkeit",
             "enum" : [ "VISUM", "AUFENTHALTS_ERLAUBNIS", "NIEDERLASSUNGS_ERLAUBNIS", "DAUERAUFENTHALT_EU", "BLAUE_KARTE_EU" ]
           },
           "aufenthaltsTitelBefristetBis" : {
@@ -5107,7 +5107,7 @@
           },
           "arbeitserlaubnis" : {
             "type" : "boolean",
-            "description" : "wenn keine deutsche StaatsangehÃ¶rigkeit"
+            "description" : "wenn keine deutsche Staatsangehörigkeit"
           },
           "arbeitserlaubnisBefristetBis" : {
             "type" : "string",
@@ -5169,7 +5169,7 @@
           },
           "ertrag" : {
             "type" : "number",
-            "description" : "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden VermÃ¶gens dient das Feld 'maximalAufzuloesenderWert'. ",
+            "description" : "Das Feld ist Deprecated und wird bis zur Löschung als Fallback für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden Vermögens dient das Feld 'maximalAufzuloesenderWert'. ",
             "deprecated" : true
           },
           "zukuenftigeEinnahmen" : {
@@ -5267,7 +5267,7 @@
         "properties" : {
           "id" : {
             "type" : "string",
-            "description" : "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben, dann wird dieses Feld automatisch befÃ¼llt."
+            "description" : "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben, dann wird dieses Feld automatisch befüllt."
           },
           "bausparTarife" : {
             "type" : "array",
@@ -5330,7 +5330,7 @@
             "enum" : [ "SONDERZAHLUNG", "VERRECHNUNG" ]
           }
         },
-        "description" : "Von den Feldern bausparSummeAbsolut, bausparSummeRelativ, sparBeitragMonatlichAbsolut, sparBeitragMonatlichRelativ, tilgungsBeitragMonatlich, zuteilungsDatum und sparBeginn kÃ¶nnen maximal drei befÃ¼llt werden."
+        "description" : "Von den Feldern bausparSummeAbsolut, bausparSummeRelativ, sparBeitragMonatlichAbsolut, sparBeitragMonatlichRelativ, tilgungsBeitragMonatlich, zuteilungsDatum und sparBeginn können maximal drei befüllt werden."
       },
       "Beschaeftigung" : {
         "type" : "object",
@@ -5341,8 +5341,8 @@
           },
           "branche" : {
             "type" : "string",
-            "description" : "Allgemeine Branche des Antragstellers. Wird verwendet um fÃ¼r die verschiedenen Banken die Zusatzangabe Branche zu bilden.",
-            "enum" : [ "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI", "BERGBAU_GEWINNUNG_VON_STEINEN_UND_ERDEN", "VERARBEITENDES_GEWERBE", "WASSERVERSORGUNG", "ENERGIEVERSORGUNG", "BAUGEWERBE", "HANDEL_INSTANDHALTUNG_VON_KRAFTFAHRZEUGEN", "VERKEHR_LOGISTIK", "GASTGEWERBE", "INFORMATION_KOMMUNIKATION", "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN", "GRUNDSTÃCKS_UND_WOHNUNGSWESEN", "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN", "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN", "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG", "ERZIEHUNG_UNTERRICHT", "GESUNDHEIT_UND_SOZIALWESEN", "KUNST_UNTERHALTUNG_ERHOLUNG", "SONSTIGE_DIENSTLEISTUNGEN", "PRIVATE_HAUSHALTE" ]
+            "description" : "Allgemeine Branche des Antragstellers. Wird verwendet um für die verschiedenen Banken die Zusatzangabe Branche zu bilden.",
+            "enum" : [ "LANDWIRTSCHAFT_FORSTWIRTSCHAFT_FISCHEREI", "BERGBAU_GEWINNUNG_VON_STEINEN_UND_ERDEN", "VERARBEITENDES_GEWERBE", "WASSERVERSORGUNG", "ENERGIEVERSORGUNG", "BAUGEWERBE", "HANDEL_INSTANDHALTUNG_VON_KRAFTFAHRZEUGEN", "VERKEHR_LOGISTIK", "GASTGEWERBE", "INFORMATION_KOMMUNIKATION", "FINANZ_UND_VERSICHERUNGSDIENSTLEISTUNGEN", "GRUNDSTÜCKS_UND_WOHNUNGSWESEN", "FREIBERUFLICHE_WISSENSCHAFTLICHE_UND_TECHNISCHE_DIENSTLEISTUNGEN", "SONSTIGE_WIRTSCHAFTLICHE_DIENSTLEISTUNGEN", "OEFFENTLICHE_VERWALTUNG_VERTEIDIGUNG_SOZIALVERSICHERUNG", "ERZIEHUNG_UNTERRICHT", "GESUNDHEIT_UND_SOZIALWESEN", "KUNST_UNTERHALTUNG_ERHOLUNG", "SONSTIGE_DIENSTLEISTUNGEN", "PRIVATE_HAUSHALTE" ]
           },
           "anzahlGehaelterProJahr" : {
             "type" : "number",
@@ -5419,7 +5419,7 @@
           },
           "vorlaeufigerVerkehrswert" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "effektivZinsErhoehendeKosten" : {
             "$ref" : "#/components/schemas/EffektivZinsErhoehendeKosten"
@@ -5442,7 +5442,7 @@
           },
           "keinBaulandFlaecheInQm" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "bodenRichtwert" : {
             "type" : "number"
@@ -5567,20 +5567,20 @@
           },
           "laufzeitEnde" : {
             "type" : "string",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "date"
           },
           "darlehensKontonummer" : {
             "type" : "string",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "sondertilgungZumZinsBindungsEnde" : {
             "type" : "number",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "darlehensBetrag" : {
             "type" : "number",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "sollZins" : {
             "type" : "number"
@@ -5623,20 +5623,20 @@
           },
           "laufzeitEnde" : {
             "type" : "string",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "date"
           },
           "darlehensKontonummer" : {
             "type" : "string",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "sondertilgungZumZinsBindungsEnde" : {
             "type" : "number",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "darlehensBetrag" : {
             "type" : "number",
-            "description" : "fÃ¼r Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
+            "description" : "für Prolongation, d.h. technisch: Vorhaben verwendungszweck == ANSCHLUSSFINANZIERUNG"
           },
           "sollZins" : {
             "type" : "number"
@@ -5657,7 +5657,7 @@
         "properties" : {
           "id" : {
             "type" : "string",
-            "description" : "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben, dann wird dieses Feld automatisch befÃ¼llt."
+            "description" : "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht angegeben, dann wird dieses Feld automatisch befüllt."
           },
           "annuitaetenDarlehen" : {
             "$ref" : "#/components/schemas/AnnuitaetenDarlehensWunsch"
@@ -5687,23 +5687,23 @@
         "properties" : {
           "anpassen" : {
             "type" : "boolean",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "wohnGebaeudeVersicherungsKostenJaehrlich" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "grundbuchEintragungsKostenEinmalig" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "sonstigeKostenBezeichnung" : {
             "type" : "string",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "sonstigeKostenEinmalig" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           }
         },
         "description" : "Effektivzinsbeeinflussende Kosten - Anpassungen nach PAngV"
@@ -5733,7 +5733,7 @@
         "properties" : {
           "energieEffizienzAusweisTyp" : {
             "type" : "string",
-            "description": "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'ausweisTyp' benutzt. Zur Angabe des Energieausweistyps dient das Feld 'ausweisTyp'. ",
+            "description" : "Das Feld ist Deprecated und wird bis zur Löschung als Fallback für 'ausweisTyp' benutzt. Zur Angabe des Energieausweistyps dient das Feld 'ausweisTyp'. ",
             "deprecated" : true,
             "enum" : [ "ENDENERGIEBEDARF", "ENDENERGIEVERBRAUCH" ]
           },
@@ -5768,7 +5768,7 @@
           },
           "laufzeitBisJahr" : {
             "type" : "string",
-            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "description" : "Die Jahreszahl wird als vierstellig repräsentiert.",
             "example" : "2037"
           }
         }
@@ -5915,7 +5915,7 @@
           },
           "vorlaeufigerVerkehrswert" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "effektivZinsErhoehendeKosten" : {
             "$ref" : "#/components/schemas/EffektivZinsErhoehendeKosten"
@@ -5938,7 +5938,7 @@
           },
           "keinBaulandFlaecheInQm" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "bodenRichtwert" : {
             "type" : "number"
@@ -6013,10 +6013,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -6039,11 +6039,11 @@
           },
           "zinsBindungInJahren" : {
             "type" : "integer",
-            "description" : "Wert muss grÃ¶Ãer 0 sein.",
+            "description" : "Wert muss größer 0 sein.",
             "format" : "int32"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "Gebaeude" : {
         "type" : "object",
@@ -6062,7 +6062,7 @@
           },
           "baujahr" : {
             "type" : "string",
-            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "description" : "Die Jahreszahl wird als vierstellig repräsentiert.",
             "example" : "2022"
           },
           "bauweise" : {
@@ -6160,7 +6160,7 @@
           },
           "ort" : {
             "type" : "string",
-            "description" : "Ort des als Grundbuchamt zustÃ¤ndigen Amtsgerichtes"
+            "description" : "Ort des als Grundbuchamt zuständigen Amtsgerichtes"
           },
           "flurstuecke" : {
             "type" : "array",
@@ -6220,21 +6220,21 @@
           },
           "anzahlKinderNichtImHaushalt" : {
             "type" : "integer",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "int32"
           },
           "anzahlErwachseneImHaushalt" : {
             "type" : "integer",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "int32"
           },
           "lebenshaltungsKostenMonatlich" : {
             "type" : "number",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "kfzAnzahl" : {
             "type" : "integer",
-            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt.",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "int32"
           },
           "erfahrungImmobilienFinanzierung" : {
@@ -6371,10 +6371,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -6386,12 +6386,12 @@
           },
           "tilgungsfreieAnlaufjahre" : {
             "type" : "integer",
-            "description" : "Erlaubt ist 1,2,3,4,5. Maximalwert abhÃ¤ngig von der Laufzeit",
+            "description" : "Erlaubt ist 1,2,3,4,5. Maximalwert abhängig von der Laufzeit",
             "format" : "int32"
           },
           "zinsBindungInJahren" : {
             "type" : "integer",
-            "description" : "Wert muss grÃ¶Ãer 0 sein. Bei Programm 124: 5 oder 10, sonst: 10 oder 20.",
+            "description" : "Wert muss größer 0 sein. Bei Programm 124: 5 oder 10, sonst: 10 oder 20.",
             "format" : "int32"
           },
           "kfwProgramm" : {
@@ -6405,7 +6405,7 @@
           },
           "kfwEnergieEffizienzGruppe" : {
             "type" : "string",
-            "description" : "Nur bei Programm 261 (SANIERUNG) notwendig. STANDARD ist nur fÃ¼r alte Programme vorgesehen.",
+            "description" : "Nur bei Programm 261 (SANIERUNG) notwendig. STANDARD ist nur für alte Programme vorgesehen.",
             "enum" : [ "STANDARD", "NEUBAU", "SANIERUNG" ]
           },
           "kfwSanierungsFahrplanLiegtVor" : {
@@ -6413,7 +6413,7 @@
             "description" : "serielles Sanieren"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "Kind" : {
         "type" : "object",
@@ -6561,7 +6561,7 @@
           },
           "modernisierungsJahr" : {
             "type" : "string",
-            "description" : "Die Jahreszahl wird als vierstellig reprÃ¤sentiert.",
+            "description" : "Die Jahreszahl wird als vierstellig repräsentiert.",
             "example" : "2022"
           },
           "bodenWandTreppe" : {
@@ -6703,10 +6703,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -6714,11 +6714,11 @@
           },
           "laufzeitInMonaten" : {
             "type" : "integer",
-            "description" : "Wert muss grÃ¶Ãer 0 sein.",
+            "description" : "Wert muss größer 0 sein.",
             "format" : "int32"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "RechteAbteilung2" : {
         "type" : "object",
@@ -6733,7 +6733,7 @@
             "type" : "number"
           }
         },
-        "description" : "Belastungen und BeschrÃ¤nkungen in der Nutzbarkeit des GrundstÃ¼cks. Leitungsrechte, Verzichte auf AbstandsflÃ¤chen, Wegerechte, Insolvenzvermerke."
+        "description" : "Belastungen und Beschränkungen in der Nutzbarkeit des Grundstücks. Leitungsrechte, Verzichte auf Abstandsflächen, Wegerechte, Insolvenzvermerke."
       },
       "RegionalFoerderDarlehensWunsch" : {
         "required" : [ "darlehensBetrag", "regionalFoerderbankProgramm" ],
@@ -6745,10 +6745,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -6764,7 +6764,7 @@
           },
           "zinsBindungInJahren" : {
             "type" : "integer",
-            "description" : "Wert muss grÃ¶Ãer 0 sein.",
+            "description" : "Wert muss größer 0 sein.",
             "format" : "int32"
           },
           "regionalFoerderbankProgramm" : {
@@ -6772,7 +6772,7 @@
             "enum" : [ "L_BANK_KOMBI_DARLEHEN_WOHNEN", "L_BANK_WOHNEN_MIT_KIND", "L_BANK_WOHNEN_MIT_ZUKUNFT", "NRW_BANK_WOHNEIGENTUM", "NRW_BANK_GEBAEUDESANIERUNG", "NRW_BANK_NACHHALTIG_WOHNEN" ]
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "SituationNachRenteneintritt" : {
         "type" : "object",
@@ -6825,7 +6825,7 @@
           },
           "ertrag" : {
             "type" : "number",
-            "description" : "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden VermÃ¶gens dient das Feld 'maximalAufzuloesenderWert'. ",
+            "description" : "Das Feld ist Deprecated und wird bis zur Löschung als Fallback für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden Vermögens dient das Feld 'maximalAufzuloesenderWert'. ",
             "deprecated" : true
           },
           "zukuenftigeEinnahmen" : {
@@ -6870,7 +6870,7 @@
         "properties" : {
           "anfaenglicheTilgung" : {
             "type" : "number",
-            "description" : "Darf nur angegeben werden, wenn 'volltilgerWennAnnuitaetenOderForward' und 'rate' nicht gesetzt sind. Wert muss grÃ¶Ãer/gleich 0 sein"
+            "description" : "Darf nur angegeben werden, wenn 'volltilgerWennAnnuitaetenOderForward' und 'rate' nicht gesetzt sind. Wert muss größer/gleich 0 sein"
           },
           "volltilgerWennAnnuitaetenOderForward" : {
             "type" : "boolean",
@@ -6878,15 +6878,15 @@
           },
           "rate" : {
             "type" : "number",
-            "description" : "Darf nur angegeben werden, wenn 'anfaenglicheTilgung' und 'volltilgerWennAnnuitaetenOderForward' nicht gesetzt sind. Wert muss grÃ¶Ãer 0 sein"
+            "description" : "Darf nur angegeben werden, wenn 'anfaenglicheTilgung' und 'volltilgerWennAnnuitaetenOderForward' nicht gesetzt sind. Wert muss größer 0 sein"
           },
           "ausgesetztBerechnet" : {
             "type" : "boolean",
-            "description" : "ausgesetztBerechnet und ausgesetztEigenesAngebot dÃ¼rfen nicht beide true sein"
+            "description" : "ausgesetztBerechnet und ausgesetztEigenesAngebot dürfen nicht beide true sein"
           },
           "ausgesetztEigenesAngebot" : {
             "type" : "boolean",
-            "description" : "ausgesetztBerechnet und ausgesetztEigenesAngebot dÃ¼rfen nicht beide true sein"
+            "description" : "ausgesetztBerechnet und ausgesetztEigenesAngebot dürfen nicht beide true sein"
           },
           "tilgungsErsatzProduktId" : {
             "type" : "string"
@@ -6910,10 +6910,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -6923,7 +6923,7 @@
             "$ref" : "#/components/schemas/TilgungsWunsch"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "Verbindlichkeit" : {
         "type" : "object",
@@ -6978,7 +6978,7 @@
           },
           "ertrag" : {
             "type" : "number",
-            "description" : "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden VermÃ¶gens dient das Feld 'maximalAufzuloesenderWert'. ",
+            "description" : "Das Feld ist Deprecated und wird bis zur Löschung als Fallback für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden Vermögens dient das Feld 'maximalAufzuloesenderWert'. ",
             "deprecated" : true
           },
           "zukuenftigeEinnahmen" : {
@@ -7017,7 +7017,7 @@
             }
           }
         },
-        "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berÃ¼cksichtigt."
+        "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
       },
       "VertriebsOrganisation" : {
         "type" : "object",
@@ -7064,7 +7064,7 @@
           },
           "verwendungszweck" : {
             "type" : "string",
-            "description" : "Wenn es sich um eine Anschlussfinanzierung handelt und ein bestehendes Darlehen vorhanden ist, dann muss dieses den Wert 'verwendenAls'='ABLOESEN' beinhalten. AuÃerdem wird bei einer Anschlussfinanzierung ein Haushalt mit einem Antragsteller und Einkommen benÃ¶tigt.",
+            "description" : "Wenn es sich um eine Anschlussfinanzierung handelt und ein bestehendes Darlehen vorhanden ist, dann muss dieses den Wert 'verwendenAls'='ABLOESEN' beinhalten. Außerdem wird bei einer Anschlussfinanzierung ein Haushalt mit einem Antragsteller und Einkommen benötigt.",
             "enum" : [ "ANSCHLUSSFINANZIERUNG", "KAUF", "KAUF_NEUBAU_VOM_BAUTRAEGER", "MODERNISIERUNG_UMBAU_ANBAU", "NEUBAU", "KAPITALBESCHAFFUNG" ]
           },
           "finanzbedarf" : {
@@ -7098,7 +7098,7 @@
           },
           "ertrag" : {
             "type" : "number",
-            "description" : "Das Feld ist Deprecated und wird bis zur LÃ¶schung als Fallback fÃ¼r 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden VermÃ¶gens dient das Feld 'maximalAufzuloesenderWert'. ",
+            "description" : "Das Feld ist Deprecated und wird bis zur Löschung als Fallback für 'maximalAufzuloesenderWert' benutzt. Zur Angabe des einzusetzenden Vermögens dient das Feld 'maximalAufzuloesenderWert'. ",
             "deprecated" : true
           },
           "zukuenftigeEinnahmen" : {
@@ -7119,10 +7119,10 @@
           },
           "bestehendesDarlehenDerImmobilieIdsBeiAbloesung" : {
             "type" : "array",
-            "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
+            "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG",
             "items" : {
               "type" : "string",
-              "description" : "fÃ¼r Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
+              "description" : "für Vorhaben verwendungszweck==ANSCHLUSSFINANZIERUNG"
             }
           },
           "provision" : {
@@ -7140,7 +7140,7 @@
             "type" : "string"
           }
         },
-        "description" : "muss leer sein, wenn eines der anderen Attribute gefÃ¼llt ist"
+        "description" : "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
       },
       "Eintrag" : {
         "type" : "object",
