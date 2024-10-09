@@ -84,7 +84,7 @@ If no body is given default parameters are used.
 ```
 
 ``` http
-POST /v3/vorgae
+POST /v3/vorgeange/{{case-id}}/ergebnisliste HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}

@@ -7,7 +7,7 @@ info:
     name: Europace AG
     url: https://developer.europace.de
     email: devsupport@europace2.de
-  version: 3.0.2
+  version: 3.0.3
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -58,7 +58,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ErfassteDaten'
+              $ref: "#/components/schemas/ErfassteDaten"
         required: true
       responses:
         "200":
@@ -72,55 +72,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -172,49 +172,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -271,7 +271,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ErfassteDaten'
+              $ref: "#/components/schemas/ErfassteDaten"
       responses:
         "302":
           description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
@@ -281,55 +281,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -363,55 +363,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ermittlung'
+                $ref: "#/components/schemas/Ermittlung"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -445,55 +445,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErgebnisListe'
+                $ref: "#/components/schemas/ErgebnisListe"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -534,55 +534,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ergebnis'
+                $ref: "#/components/schemas/Ergebnis"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -623,55 +623,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Meldungen'
+                $ref: "#/components/schemas/Meldungen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -719,55 +719,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProvisionsInfo'
+                $ref: "#/components/schemas/ProvisionsInfo"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -808,55 +808,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Unterlagen'
+                $ref: "#/components/schemas/Unterlagen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -897,55 +897,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Zahlungsplaene'
+                $ref: "#/components/schemas/Zahlungsplaene"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -992,55 +992,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Zahlungsplan'
+                $ref: "#/components/schemas/Zahlungsplan"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1075,55 +1075,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErmittlungsAnfrage'
+                $ref: "#/components/schemas/ErmittlungsAnfrage"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1158,55 +1158,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErfassteDaten'
+                $ref: "#/components/schemas/ErfassteDaten"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1238,72 +1238,72 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ErmittleErgebnisseRequestBody'
+              $ref: "#/components/schemas/ErmittleErgebnisseRequestBody"
       responses:
-        "404":
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        "204":
-          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
-            Inhalt.
         "200":
           description: Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter
             der Url im 'location' Header abrufbar.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ergebnisliste'
+                $ref: "#/components/schemas/Ergebnisliste"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "204":
+          description: Basierend auf dem Parameter gibt es keinen zurückzugebenden
+            Inhalt.
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1344,55 +1344,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ergebnisliste'
+                $ref: "#/components/schemas/Ergebnisliste"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1446,61 +1446,61 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AngebotMerkenAntwort'
+                $ref: "#/components/schemas/AngebotMerkenAntwort"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1547,55 +1547,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/V3Ergebnis'
+                $ref: "#/components/schemas/V3Ergebnis"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1642,55 +1642,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BerechnungsUebersichten'
+                $ref: "#/components/schemas/BerechnungsUebersichten"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1738,55 +1738,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Meldungen'
+                $ref: "#/components/schemas/Meldungen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1840,55 +1840,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProvisionsInfo'
+                $ref: "#/components/schemas/ProvisionsInfo"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -1936,55 +1936,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Unterlagen'
+                $ref: "#/components/schemas/Unterlagen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2032,55 +2032,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Zahlungsplaene'
+                $ref: "#/components/schemas/Zahlungsplaene"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2133,55 +2133,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Zahlungsplan'
+                $ref: "#/components/schemas/Zahlungsplan"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2218,55 +2218,55 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/V3GemerktesAngebot'
+                  $ref: "#/components/schemas/V3GemerktesAngebot"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2308,55 +2308,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/V3GemerktesAngebot'
+                $ref: "#/components/schemas/V3GemerktesAngebot"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2400,55 +2400,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BerechnungsUebersichten'
+                $ref: "#/components/schemas/BerechnungsUebersichten"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2492,55 +2492,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2582,55 +2582,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Meldungen'
+                $ref: "#/components/schemas/Meldungen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2672,55 +2672,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Unterlagen'
+                $ref: "#/components/schemas/Unterlagen"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2762,55 +2762,55 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Zahlungsplaene'
+                $ref: "#/components/schemas/Zahlungsplaene"
         "401":
           description: Unauthorized
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
       security:
       - oAuth2:
         - baufinanzierung:angebot:ermitteln
@@ -2831,49 +2831,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "403":
           description: Forbidden
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "404":
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "405":
           description: Method Not Allowed
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "429":
           description: Too Many Requests
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "500":
           description: Internal Server Error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "502":
           description: Bad Gateway
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
         "504":
           description: Gateway Timeout
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
 components:
   schemas:
     ErmittleErgebnisseRequestBody:
@@ -2944,15 +2944,15 @@ components:
         sollZinsNachZuteilung:
           type: number
         bausparkasse:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         antragEntscheider:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         effektivZinsNachZuteilungProzent:
           type: number
         sonderZahlungen:
           type: array
           items:
-            $ref: '#/components/schemas/SonderZahlung'
+            $ref: "#/components/schemas/SonderZahlung"
         sparBeginn:
           type: string
           format: date
@@ -2982,7 +2982,7 @@ components:
       type: object
       properties:
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         summe:
           type: number
         auslauf:
@@ -3035,7 +3035,7 @@ components:
         effektivZins:
           type: number
         effektivZinsRelevanteKosten:
-          $ref: '#/components/schemas/EffektivZinsRelevanteKosten'
+          $ref: "#/components/schemas/EffektivZinsRelevanteKosten"
         rateMonatlich:
           type: number
         darlehensBetrag:
@@ -3044,18 +3044,18 @@ components:
           type: number
           description: Der Auszahlungsbetrag ist der Nettodarlehensbetrag
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         finanzierenderProduktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         zinsZahlungsBeginnAm:
           type: string
           format: date
         zinsBindung:
-          $ref: '#/components/schemas/ZinsBindung'
+          $ref: "#/components/schemas/ZinsBindung"
         tilgung:
-          $ref: '#/components/schemas/Tilgung'
+          $ref: "#/components/schemas/Tilgung"
         bereitstellung:
-          $ref: '#/components/schemas/Bereitstellung'
+          $ref: "#/components/schemas/Bereitstellung"
         gesamtlaufzeitInMonaten:
           type: integer
           format: int32
@@ -3065,7 +3065,7 @@ components:
           type: string
           format: date
         bearbeitungszeit:
-          $ref: '#/components/schemas/Bearbeitungszeit'
+          $ref: "#/components/schemas/Bearbeitungszeit"
         forwardperiodeInMonaten:
           type: integer
           format: int32
@@ -3078,7 +3078,7 @@ components:
         rateMonatlichInDerTilgungsfreienAnlaufzeit:
           type: number
         zwischenfinanzierung:
-          $ref: '#/components/schemas/Zwischenfinanzierung'
+          $ref: "#/components/schemas/Zwischenfinanzierung"
         kalkulatorischesLaufzeitEnde:
           type: string
           format: date
@@ -3130,13 +3130,13 @@ components:
         ergebnisliste:
           type: array
           items:
-            $ref: '#/components/schemas/V3Ergebnis'
+            $ref: "#/components/schemas/V3Ergebnis"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     Links:
       type: object
       additionalProperties:
-        $ref: '#/components/schemas/Link'
+        $ref: "#/components/schemas/Link"
     Meldung:
       type: object
       properties:
@@ -3181,7 +3181,7 @@ components:
         name:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     ProduktFeature:
       type: object
       properties:
@@ -3244,15 +3244,15 @@ components:
         darlehen:
           type: array
           items:
-            $ref: '#/components/schemas/Darlehen'
+            $ref: "#/components/schemas/Darlehen"
         beleihung:
           type: array
           items:
-            $ref: '#/components/schemas/Beleihung'
+            $ref: "#/components/schemas/Beleihung"
         meldungen:
           type: array
           items:
-            $ref: '#/components/schemas/Meldung'
+            $ref: "#/components/schemas/Meldung"
         machbarkeit:
           type: string
           enum:
@@ -3268,7 +3268,7 @@ components:
         bausparAngebote:
           type: array
           items:
-            $ref: '#/components/schemas/BausparAngebot'
+            $ref: "#/components/schemas/BausparAngebot"
         anpassungsStatus:
           type: string
           enum:
@@ -3289,11 +3289,11 @@ components:
         produktFeatures:
           type: array
           items:
-            $ref: '#/components/schemas/ProduktFeature'
+            $ref: "#/components/schemas/ProduktFeature"
         gemerktesAngebot:
-          $ref: '#/components/schemas/V3GemerktesAngebot'
+          $ref: "#/components/schemas/V3GemerktesAngebot"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     V3GemerktesAngebot:
       type: object
       properties:
@@ -3313,11 +3313,11 @@ components:
         darlehen:
           type: array
           items:
-            $ref: '#/components/schemas/Darlehen'
+            $ref: "#/components/schemas/Darlehen"
         beleihung:
           type: array
           items:
-            $ref: '#/components/schemas/Beleihung'
+            $ref: "#/components/schemas/Beleihung"
         machbarkeit:
           type: string
           enum:
@@ -3333,7 +3333,7 @@ components:
         bausparAngebote:
           type: array
           items:
-            $ref: '#/components/schemas/BausparAngebot'
+            $ref: "#/components/schemas/BausparAngebot"
         anpassungsStatus:
           type: string
           enum:
@@ -3362,7 +3362,7 @@ components:
         zuGrundeLiegendesAngebot:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     ZinsBindung:
       type: object
       properties:
@@ -3418,7 +3418,7 @@ components:
         provision:
           type: number
         tilgungsWunsch:
-          $ref: '#/components/schemas/TilgungsWunsch'
+          $ref: "#/components/schemas/TilgungsWunsch"
         bereitstellungsZinsFreieZeitInMonaten:
           type: integer
           format: int32
@@ -3450,12 +3450,9 @@ components:
           - FRAU
           - HERR
         anschrift:
-          $ref: '#/components/schemas/Postadresse'
+          $ref: "#/components/schemas/Postadresse"
         beschaeftigung:
-          $ref: '#/components/schemas/Beschaeftigung'
-        email:
-          type: string
-          example: max.mustermann@test.de
+          $ref: "#/components/schemas/Beschaeftigung"
         familienstand:
           type: string
           enum:
@@ -3476,7 +3473,7 @@ components:
         nachname:
           type: string
         staatsangehoerigkeit:
-          $ref: '#/components/schemas/Staat'
+          $ref: "#/components/schemas/Staat"
         telefonnummer:
           type: string
         telefonnummerVorwahl:
@@ -3486,7 +3483,7 @@ components:
         titelProfessor:
           type: boolean
         vorAnschrift:
-          $ref: '#/components/schemas/Postadresse'
+          $ref: "#/components/schemas/Postadresse"
         vorname:
           type: string
         weitereKontaktMoeglichkeiten:
@@ -3495,7 +3492,7 @@ components:
           type: string
           format: date
         legitimationsDaten:
-          $ref: '#/components/schemas/LegitimationsDaten'
+          $ref: "#/components/schemas/LegitimationsDaten"
         aufenthaltsTitel:
           type: string
           description: wenn keine deutsche Staatsangehörigkeit
@@ -3603,7 +3600,7 @@ components:
         bausparSumme:
           type: number
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         zuteilungsDatum:
           type: string
           format: date
@@ -3612,13 +3609,13 @@ components:
         verwaltungsgebuehrenJaehrlich:
           type: number
         sparPhase:
-          $ref: '#/components/schemas/SparPhase'
+          $ref: "#/components/schemas/SparPhase"
         tilgungsPhase:
-          $ref: '#/components/schemas/TilgungsPhase'
+          $ref: "#/components/schemas/TilgungsPhase"
         sonderZahlungen:
           type: array
           items:
-            $ref: '#/components/schemas/SonderZahlung'
+            $ref: "#/components/schemas/SonderZahlung"
         angebotsHinweisFuerAntragsteller:
           type: string
         sparBeginn:
@@ -3653,6 +3650,7 @@ components:
             - BKM_ZINS_PLUS_2_BONUS
             - BKM_ZINS_PLUS_3_BONUS
             - BKM_HAUS_PLUS_WAHLZUTEILUNG
+            - BKM_HAUS_PLUS_KOMBI
             - FUCHS_IMMO_1
             - FUCHS_IMMO_1_PLUS
             - FUCHS_IMMO_2
@@ -3670,6 +3668,15 @@ components:
             - FUCHS_IMMO_XS
             - FUCHS_START_XX
             - FUCHS_START_XY
+            - FUCHS_ECO_XE_06
+            - FUCHS_IMMO_XL_06
+            - FUCHS_IMMO_XP_06
+            - FUCHS_IMMO_XS_06
+            - FUCHS_START_XX_06
+            - FUCHS_START_XR_06
+            - FUCHS_IMMO_WP_06
+            - FUCHS_IMMO_WS_06
+            - FUCHS_IMMO_WL_06
             - LBS_BAYERN_F6_PLUS
             - LBS_BAYERN_F9
             - LBS_BAYERN_FU4
@@ -3737,6 +3744,16 @@ components:
             - LBS_BAYERN_ZF_X40_RIESTER
             - LBS_BAYERN_ZF_X35
             - LBS_BAYERN_ZF_X35_RIESTER
+            - LBS_SUED_ANKOMMER_3_5
+            - LBS_SUED_ANKOMMER_5
+            - LBS_SUED_ANKOMMER_6
+            - LBS_SUED_BONUSBRINGER
+            - LBS_SUED_SPRINTER
+            - LBS_SUED_SPRINTER_E
+            - LBS_SUED_ZINSSPARER
+            - LBS_SUED_SPRINTER_RIESTER
+            - LBS_SUED_SPRINTER_E_RIESTER
+            - LBS_SUED_VORSORGER_RIESTER
             - LBS_HT_CLASSIC_S_2015
             - LBS_HT_CLASSIC_F_2015
             - LBS_HT_CLASSIC_L_2015
@@ -3747,19 +3764,6 @@ components:
             - LBS_HT_COMFORT_S
             - LBS_HT_COMFORT_N
             - LBS_HT_FLEX
-            - LBS_NORD_N_STARTER_S4
-            - LBS_NORD_N_STARTER_Q5
-            - LBS_NORD_N_STARTER_S5
-            - LBS_NORD_N_STARTER_S6
-            - LBS_NORD_N_FINANZIERER_F3
-            - LBS_NORD_N_FINANZIERER_F4
-            - LBS_NORD_N_FINANZIERER_F5
-            - LBS_NORD_N_FINANZIERER_F6
-            - LBS_NORD_N_FINANZIERER_F7
-            - LBS_NORD_N_FINANZIERER_MEINZUHAUSE
-            - LBS_NORD_N_MODERNISIERER_MINIZINS
-            - LBS_NORD_N_MODERNISIERER_M8
-            - LBS_NORD_N_MODERNISIERER_MX
             - LBS_NORDWEST_TRAUMSTART_YOUNG
             - LBS_NORDWEST_WT_FIN_10_V1_2024
             - LBS_NORDWEST_WT_FIN_10_V2_2024
@@ -3800,18 +3804,35 @@ components:
             - LBS_NORD_STARTER_S4_2016
             - LBS_NORD_STARTER_S5_2016
             - LBS_NORD_STARTER_S6_2016
-            - LBS_OST_CLASSIC15_F5
+            - LBS_NORD_N_STARTER_S4
+            - LBS_NORD_N_STARTER_S5
+            - LBS_NORD_N_STARTER_S6
+            - LBS_NORD_N_FINANZIERER_F3
+            - LBS_NORD_N_FINANZIERER_F4
+            - LBS_NORD_N_FINANZIERER_F5
+            - LBS_NORD_N_FINANZIERER_F6
+            - LBS_NORD_N_FINANZIERER_F7
+            - LBS_NORD_N_FINANZIERER_MEINZUHAUSE
+            - LBS_NORD_N_MODERNISIERER_MINIZINS
+            - LBS_NORD_N_MODERNISIERER_M8
+            - LBS_NORD_N_MODERNISIERER_MX
+            - LBS_NORD_N_STARTER_Q5
+            - LBS_WEST_BESTAND_ZUHAUSE_DIREKT_10
+            - LBS_WEST_BESTAND_ZUHAUSE_DIREKT_15
+            - LBS_WEST_BESTAND_ZUHAUSE_PRIMA
+            - LBS_WEST_BESTAND_ZUHAUSE_FLEX_4
+            - LBS_WEST_BESTAND_ZUHAUSE_FLEX_5
+            - LBS_WEST_BESTAND_ZUHAUSE_FLEX_8
+            - LBS_WEST_BESTAND_ZUHAUSE_SPEZIAL
+            - LBS_WEST_BESTAND_RIESTER_ZUHAUSE_DIREKT_10
+            - LBS_WEST_BESTAND_RIESTER_ZUHAUSE_DIREKT_15
+            - LBS_WEST_BESTAND_RIESTER_ZUHAUSE_FLEX_4
+            - LBS_WEST_BESTAND_RIESTER_ZUHAUSE_SPEZIAL
             - LBS_OST_CLASSIC_F15_F5
             - LBS_OST_CLASSIC_F_H4
             - LBS_OST_CLASSIC_F_H5
             - LBS_OST_CLASSIC_12_C4
             - LBS_OST_CLASSIC_12_C9
-            - LBS_OST_CLASSIC15_F3
-            - LBS_OST_CLASSIC15_F4
-            - LBS_OST_CLASSIC15_F6
-            - LBS_OST_CLASSIC15_F8
-            - LBS_OST_CLASSIC15_PLUS_F
-            - LBS_OST_CLASSIC15_PLUS_S
             - LBS_OST_VARIO_FLEX
             - LBS_OST_CLASSIC20_F3
             - LBS_OST_CLASSIC20_F8
@@ -3843,6 +3864,16 @@ components:
             - LBS_OST_KONSTANT30_V510
             - LBS_OST_KONSTANT30_V530
             - LBS_OST_KONSTANT30_V550
+            - LBS_OST_CLASSIC15_F3
+            - LBS_OST_CLASSIC15_F4
+            - LBS_OST_CLASSIC15_F5
+            - LBS_OST_CLASSIC15_F6
+            - LBS_OST_CLASSIC15_F8
+            - LBS_OST_CLASSIC15_PLUS_F
+            - LBS_OST_CLASSIC15_PLUS_S
+            - LBS_OST_BESTAND_CLASSIC_F4
+            - LBS_OST_BESTAND_CLASSIC_F5
+            - LBS_OST_BESTAND_CLASSIC_F6
             - LBS_SHH_PRIMUS_SC
             - LBS_SHH_PRIMUS_SD
             - LBS_SHH_PRIMUS_SH
@@ -3937,6 +3968,16 @@ components:
             - LBS_SUEDWEST_LANGZEIT_PLUS_SPEZIAL
             - LBS_SUEDWEST_NIEDRIGZINS
             - LBS_SUEDWEST_ZUKUNFT_PLUS
+            - LBS_SUEDWEST_ANKOMMER_3_5
+            - LBS_SUEDWEST_ANKOMMER_5
+            - LBS_SUEDWEST_ANKOMMER_6
+            - LBS_SUEDWEST_BONUSBRINGER
+            - LBS_SUEDWEST_SPRINTER
+            - LBS_SUEDWEST_SPRINTER_E
+            - LBS_SUEDWEST_ZINSSPARER
+            - LBS_SUEDWEST_SPRINTER_RIESTER
+            - LBS_SUEDWEST_SPRINTER_E_RIESTER
+            - LBS_SUEDWEST_VORSORGER_RIESTER
             - LBS_SAAR_PREMIUM_FLEX_18
             - LBS_SAAR_PREMIUM_SICHER_18
             - LBS_SAAR_PREMIUM_TOP_18
@@ -4178,7 +4219,7 @@ components:
         sonderZahlungen:
           type: array
           items:
-            $ref: '#/components/schemas/SonderZahlung'
+            $ref: "#/components/schemas/SonderZahlung"
         zulagenVerwendung:
           type: string
           enum:
@@ -4315,30 +4356,30 @@ components:
           type: string
           description: nur bei art != RENTNER
         situationNachRenteneintritt:
-          $ref: '#/components/schemas/SituationNachRenteneintritt'
+          $ref: "#/components/schemas/SituationNachRenteneintritt"
         arbeitgeberLand:
-          $ref: '#/components/schemas/Staat'
+          $ref: "#/components/schemas/Staat"
     BestehendeImmobilie:
       type: object
       properties:
         id:
           type: string
         adresse:
-          $ref: '#/components/schemas/Postadresse'
+          $ref: "#/components/schemas/Postadresse"
         autostellplaetze:
           type: array
           items:
-            $ref: '#/components/schemas/Autostellplatz'
+            $ref: "#/components/schemas/Autostellplatz"
         erbbaurecht:
-          $ref: '#/components/schemas/Erbbaurecht'
+          $ref: "#/components/schemas/Erbbaurecht"
         grundbuchAngabe:
-          $ref: '#/components/schemas/GrundbuchAngabe'
+          $ref: "#/components/schemas/GrundbuchAngabe"
         vorlaeufigerVerkehrswert:
           type: number
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
             \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
         effektivZinsErhoehendeKosten:
-          $ref: '#/components/schemas/EffektivZinsErhoehendeKosten'
+          $ref: "#/components/schemas/EffektivZinsErhoehendeKosten"
         bewirtschaftungsKostenJaehrlich:
           type: number
         wohnlage:
@@ -4360,9 +4401,9 @@ components:
         bodenRichtwert:
           type: number
         grundstueck:
-          $ref: '#/components/schemas/Grundstueck'
+          $ref: "#/components/schemas/Grundstueck"
         gebaeude:
-          $ref: '#/components/schemas/Gebaeude'
+          $ref: "#/components/schemas/Gebaeude"
         objektArt:
           type: string
           enum:
@@ -4386,7 +4427,7 @@ components:
         bestehendeDarlehen:
           type: array
           items:
-            $ref: '#/components/schemas/BestehendesDarlehen'
+            $ref: "#/components/schemas/BestehendesDarlehen"
     BestehenderBausparvertrag:
       type: object
       properties:
@@ -4402,7 +4443,7 @@ components:
         bausparSumme:
           type: number
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         zuteilungsDatum:
           type: string
           format: date
@@ -4447,7 +4488,7 @@ components:
           - SONSTIGES_DARLEHEN
           - PRIVATDARLEHEN
         darlehensGeber:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         eingetrageneGrundschuld:
           type: number
         rateMonatlich:
@@ -4498,7 +4539,7 @@ components:
           - SONSTIGES_DARLEHEN
           - PRIVATDARLEHEN
         darlehensGeber:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         eingetrageneGrundschuld:
           type: number
         rateMonatlich:
@@ -4548,19 +4589,19 @@ components:
           description: "Zur Referenzierung an anderer Stelle notwendig. Wenn nicht\
             \ angegeben, dann wird dieses Feld automatisch befüllt."
         annuitaetenDarlehen:
-          $ref: '#/components/schemas/AnnuitaetenDarlehensWunsch'
+          $ref: "#/components/schemas/AnnuitaetenDarlehensWunsch"
         forwardDarlehen:
-          $ref: '#/components/schemas/ForwardDarlehensWunsch'
+          $ref: "#/components/schemas/ForwardDarlehensWunsch"
         regionalFoerderDarlehen:
-          $ref: '#/components/schemas/RegionalFoerderDarlehensWunsch'
+          $ref: "#/components/schemas/RegionalFoerderDarlehensWunsch"
         kfwDarlehen:
-          $ref: '#/components/schemas/KfwDarlehensWunsch'
+          $ref: "#/components/schemas/KfwDarlehensWunsch"
         privatDarlehen:
-          $ref: '#/components/schemas/PrivatDarlehensWunsch'
+          $ref: "#/components/schemas/PrivatDarlehensWunsch"
         zwischenFinanzierung:
-          $ref: '#/components/schemas/ZwischenFinanzierungsWunsch'
+          $ref: "#/components/schemas/ZwischenFinanzierungsWunsch"
         variablesDarlehen:
-          $ref: '#/components/schemas/VariablesDarlehensWunsch'
+          $ref: "#/components/schemas/VariablesDarlehensWunsch"
     EffektivZinsErhoehendeKosten:
       type: object
       properties:
@@ -4663,23 +4704,23 @@ components:
           format: date
           readOnly: true
         tippGeber:
-          $ref: '#/components/schemas/Partner'
+          $ref: "#/components/schemas/Partner"
         kundenBetreuer:
-          $ref: '#/components/schemas/Partner'
+          $ref: "#/components/schemas/Partner"
         vorgangsBearbeiter:
-          $ref: '#/components/schemas/Partner'
+          $ref: "#/components/schemas/Partner"
         bankverbindung:
-          $ref: '#/components/schemas/Bankverbindung'
+          $ref: "#/components/schemas/Bankverbindung"
         haushalte:
           type: array
           items:
-            $ref: '#/components/schemas/Haushalt'
+            $ref: "#/components/schemas/Haushalt"
         finanzierungsObjekt:
-          $ref: '#/components/schemas/FinanzierungsObjekt'
+          $ref: "#/components/schemas/FinanzierungsObjekt"
         vorhaben:
-          $ref: '#/components/schemas/Vorhaben'
+          $ref: "#/components/schemas/Vorhaben"
         leadTracking:
-          $ref: '#/components/schemas/LeadTracking'
+          $ref: "#/components/schemas/LeadTracking"
         datenKontext:
           type: string
           enum:
@@ -4740,21 +4781,21 @@ components:
         id:
           type: string
         adresse:
-          $ref: '#/components/schemas/Postadresse'
+          $ref: "#/components/schemas/Postadresse"
         autostellplaetze:
           type: array
           items:
-            $ref: '#/components/schemas/Autostellplatz'
+            $ref: "#/components/schemas/Autostellplatz"
         erbbaurecht:
-          $ref: '#/components/schemas/Erbbaurecht'
+          $ref: "#/components/schemas/Erbbaurecht"
         grundbuchAngabe:
-          $ref: '#/components/schemas/GrundbuchAngabe'
+          $ref: "#/components/schemas/GrundbuchAngabe"
         vorlaeufigerVerkehrswert:
           type: number
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
             \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
         effektivZinsErhoehendeKosten:
-          $ref: '#/components/schemas/EffektivZinsErhoehendeKosten'
+          $ref: "#/components/schemas/EffektivZinsErhoehendeKosten"
         bewirtschaftungsKostenJaehrlich:
           type: number
         wohnlage:
@@ -4776,9 +4817,9 @@ components:
         bodenRichtwert:
           type: number
         grundstueck:
-          $ref: '#/components/schemas/Grundstueck'
+          $ref: "#/components/schemas/Grundstueck"
         gebaeude:
-          $ref: '#/components/schemas/Gebaeude'
+          $ref: "#/components/schemas/Gebaeude"
         objektArt:
           type: string
           enum:
@@ -4792,7 +4833,7 @@ components:
         bestehendeDarlehen:
           type: array
           items:
-            $ref: '#/components/schemas/BestehendesDarlehenDesFinanzierungsObjekts'
+            $ref: "#/components/schemas/BestehendesDarlehenDesFinanzierungsObjekts"
     Finanzierungswunsch:
       required:
       - darlehensWuensche
@@ -4803,16 +4844,16 @@ components:
         darlehensWuensche:
           type: array
           items:
-            $ref: '#/components/schemas/DarlehensWunsch'
+            $ref: "#/components/schemas/DarlehensWunsch"
         bausparWuensche:
           type: array
           items:
-            $ref: '#/components/schemas/BausparWunsch'
+            $ref: "#/components/schemas/BausparWunsch"
     Flurstueck:
       type: object
       properties:
         anteil:
-          $ref: '#/components/schemas/MiteigentumsAnteil'
+          $ref: "#/components/schemas/MiteigentumsAnteil"
         flur:
           type: string
         flurstuecksNummer:
@@ -4838,7 +4879,7 @@ components:
         provision:
           type: number
         tilgungsWunsch:
-          $ref: '#/components/schemas/TilgungsWunsch'
+          $ref: "#/components/schemas/TilgungsWunsch"
         auszahlungsDatum:
           type: string
           format: date
@@ -4890,21 +4931,21 @@ components:
         aufzugVorhanden:
           type: boolean
         gewerbeflaeche:
-          $ref: '#/components/schemas/GebaeudeFlaeche'
+          $ref: "#/components/schemas/GebaeudeFlaeche"
         aufbauFinanzierung:
           type: boolean
         kubatur:
           type: number
           description: Angabe in Kubikmetern.
         modernisierungsAngaben:
-          $ref: '#/components/schemas/ModernisierungsAngaben'
+          $ref: "#/components/schemas/ModernisierungsAngaben"
         wohnflaeche:
-          $ref: '#/components/schemas/GebaeudeFlaeche'
+          $ref: "#/components/schemas/GebaeudeFlaeche"
         bezeichnungWohneinheit:
           type: string
           description: Nur bei ObjektArt == EIGENTUMSWOHNUNG.
         miteigentumsAnteil:
-          $ref: '#/components/schemas/MiteigentumsAnteil'
+          $ref: "#/components/schemas/MiteigentumsAnteil"
         geschossLage:
           type: string
           description: Nur bei ObjektArt == EIGENTUMSWOHNUNG.
@@ -4957,12 +4998,12 @@ components:
           - TEILWEISE_UNTERKELLERT
           - UNTERKELLERT
         energieEffizienzAusweis:
-          $ref: '#/components/schemas/EnergieEffizienzAusweis'
+          $ref: "#/components/schemas/EnergieEffizienzAusweis"
     GebaeudeFlaeche:
       type: object
       properties:
         vermietungsInformationen:
-          $ref: '#/components/schemas/VermietungsInformationen'
+          $ref: "#/components/schemas/VermietungsInformationen"
         gesamtGroesse:
           type: number
     GrundbuchAngabe:
@@ -4976,9 +5017,9 @@ components:
         flurstuecke:
           type: array
           items:
-            $ref: '#/components/schemas/Flurstueck'
+            $ref: "#/components/schemas/Flurstueck"
         rechteInAbteilung2:
-          $ref: '#/components/schemas/RechteAbteilung2'
+          $ref: "#/components/schemas/RechteAbteilung2"
         anmerkungen:
           type: string
     Grundstueck:
@@ -5002,19 +5043,19 @@ components:
         antragsteller:
           type: array
           items:
-            $ref: '#/components/schemas/Antragsteller'
+            $ref: "#/components/schemas/Antragsteller"
         bestehendeImmobilien:
           type: array
           items:
-            $ref: '#/components/schemas/BestehendeImmobilie'
+            $ref: "#/components/schemas/BestehendeImmobilie"
         positionen:
-          $ref: '#/components/schemas/HaushaltsPositionen'
+          $ref: "#/components/schemas/HaushaltsPositionen"
         obligo:
-          $ref: '#/components/schemas/VermoegenVerbindlichkeiten'
+          $ref: "#/components/schemas/VermoegenVerbindlichkeiten"
         kinder:
           type: array
           items:
-            $ref: '#/components/schemas/Kind'
+            $ref: "#/components/schemas/Kind"
         anzahlKinderNichtImHaushalt:
           type: integer
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
@@ -5042,79 +5083,79 @@ components:
         sonstigeAusgaben:
           type: array
           items:
-            $ref: '#/components/schemas/AusgabenMonatlich'
+            $ref: "#/components/schemas/AusgabenMonatlich"
         bankUndSparguthaben:
           type: array
           items:
-            $ref: '#/components/schemas/BankUndSparguthaben'
+            $ref: "#/components/schemas/BankUndSparguthaben"
         bausparvertraege:
           type: array
           items:
-            $ref: '#/components/schemas/BestehenderBausparvertrag'
+            $ref: "#/components/schemas/BestehenderBausparvertrag"
         ehegattenUnterhalt:
           type: array
           items:
-            $ref: '#/components/schemas/EinnahmenMonatlich'
+            $ref: "#/components/schemas/EinnahmenMonatlich"
         einkuenfteAusNebentaetigkeit:
           type: array
           items:
-            $ref: '#/components/schemas/EinkuenfteAusNebentaetigkeit'
+            $ref: "#/components/schemas/EinkuenfteAusNebentaetigkeit"
         sonstigeEinnahmen:
           type: array
           items:
-            $ref: '#/components/schemas/EinnahmenMonatlich'
+            $ref: "#/components/schemas/EinnahmenMonatlich"
         lebensUndRentenVersicherungen:
           type: array
           items:
-            $ref: '#/components/schemas/LebensOderRentenversicherungVermoegen'
+            $ref: "#/components/schemas/LebensOderRentenversicherungVermoegen"
         mietAusgaben:
           type: array
           items:
-            $ref: '#/components/schemas/MietAusgaben'
+            $ref: "#/components/schemas/MietAusgaben"
         privateDarlehen:
           type: array
           items:
-            $ref: '#/components/schemas/Verbindlichkeit'
+            $ref: "#/components/schemas/Verbindlichkeit"
         privateKrankenversicherung:
           type: array
           items:
-            $ref: '#/components/schemas/AusgabenMonatlich'
+            $ref: "#/components/schemas/AusgabenMonatlich"
         ratenkredite:
           type: array
           items:
-            $ref: '#/components/schemas/Verbindlichkeit'
+            $ref: "#/components/schemas/Verbindlichkeit"
         sparplaene:
           type: array
           items:
-            $ref: '#/components/schemas/Sparplaene'
+            $ref: "#/components/schemas/Sparplaene"
         unbefristeteZusatzRenten:
           type: array
           items:
-            $ref: '#/components/schemas/EinnahmenMonatlich'
+            $ref: "#/components/schemas/EinnahmenMonatlich"
         unterhaltsVerpflichtungen:
           type: array
           items:
-            $ref: '#/components/schemas/AusgabenMonatlich'
+            $ref: "#/components/schemas/AusgabenMonatlich"
         variableEinkuenfte:
           type: array
           items:
-            $ref: '#/components/schemas/EinnahmenMonatlich'
+            $ref: "#/components/schemas/EinnahmenMonatlich"
         sonstigeVerbindlichkeiten:
           type: array
           items:
-            $ref: '#/components/schemas/Verbindlichkeit'
+            $ref: "#/components/schemas/Verbindlichkeit"
         sonstigeVermoegen:
           type: array
           items:
-            $ref: '#/components/schemas/Vermoegen'
+            $ref: "#/components/schemas/Vermoegen"
         versicherungsAusgaben:
           type: array
           items:
-            $ref: '#/components/schemas/AusgabenMonatlich'
+            $ref: "#/components/schemas/AusgabenMonatlich"
         wertpapiere:
           type: array
           items:
-            $ref: '#/components/schemas/Wertpapiere'
+            $ref: "#/components/schemas/Wertpapiere"
     KfwDarlehensWunsch:
       required:
       - darlehensBetrag
@@ -5351,13 +5392,11 @@ components:
         rateMonatlich:
           type: number
         zinsBindung:
-          $ref: '#/components/schemas/ZinsBindung'
+          $ref: "#/components/schemas/ZinsBindung"
     Partner:
       type: object
       properties:
         id:
-          type: string
-        partnerId:
           type: string
         anrede:
           type: string
@@ -5381,7 +5420,7 @@ components:
         mobilTelefon:
           type: string
         anschrift:
-          $ref: '#/components/schemas/Postadresse'
+          $ref: "#/components/schemas/Postadresse"
         fax:
           type: string
         webseite:
@@ -5389,7 +5428,7 @@ components:
         firmenNameZusatz:
           type: string
         vertriebsOrganisation:
-          $ref: '#/components/schemas/VertriebsOrganisation'
+          $ref: "#/components/schemas/VertriebsOrganisation"
         geburtsdatum:
           type: string
           format: date
@@ -5574,7 +5613,7 @@ components:
           type: string
           format: date
         bausparWunsch:
-          $ref: '#/components/schemas/BausparWunsch'
+          $ref: "#/components/schemas/BausparWunsch"
     VariablesDarlehensWunsch:
       required:
       - darlehensBetrag
@@ -5594,7 +5633,7 @@ components:
         provision:
           type: number
         tilgungsWunsch:
-          $ref: '#/components/schemas/TilgungsWunsch'
+          $ref: "#/components/schemas/TilgungsWunsch"
       description: "muss leer sein, wenn eines der anderen Attribute gefüllt ist"
     Verbindlichkeit:
       type: object
@@ -5668,7 +5707,7 @@ components:
         vermoegenOderVerbindlichkeiten:
           type: array
           items:
-            $ref: '#/components/schemas/VermoegenVerbindlichkeit'
+            $ref: "#/components/schemas/VermoegenVerbindlichkeit"
       description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von\
         \ allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
     VertriebsOrganisation:
@@ -5698,7 +5737,7 @@ components:
         nachrangigeExterneDarlehen:
           type: array
           items:
-            $ref: '#/components/schemas/NachrangigesExternesDarlehen'
+            $ref: "#/components/schemas/NachrangigesExternesDarlehen"
         nachfinanzierung:
           type: boolean
           description: "Wenn es sich um eine Nachfinanzierung handelt, dann dieses\
@@ -5719,13 +5758,13 @@ components:
           - NEUBAU
           - KAPITALBESCHAFFUNG
         finanzbedarf:
-          $ref: '#/components/schemas/Finanzbedarf'
+          $ref: "#/components/schemas/Finanzbedarf"
         finanzierungswunsch:
-          $ref: '#/components/schemas/Finanzierungswunsch'
+          $ref: "#/components/schemas/Finanzierungswunsch"
         externeBausparAngebote:
           type: array
           items:
-            $ref: '#/components/schemas/BausparAngebotExtern'
+            $ref: "#/components/schemas/BausparAngebotExtern"
     Wertpapiere:
       type: object
       properties:
@@ -5808,11 +5847,11 @@ components:
       type: object
       properties:
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
         zahlungsplaene:
           type: array
           items:
-            $ref: '#/components/schemas/Zahlungsplan'
+            $ref: "#/components/schemas/Zahlungsplan"
     Zahlungsplan:
       type: object
       properties:
@@ -5837,15 +5876,15 @@ components:
         zahlungen:
           type: array
           items:
-            $ref: '#/components/schemas/Eintrag'
+            $ref: "#/components/schemas/Eintrag"
         summeEndeDerZinsbindung:
-          $ref: '#/components/schemas/Eintrag'
+          $ref: "#/components/schemas/Eintrag"
         sparplanSummenEintragZumZuteilungsZeitpunkt:
-          $ref: '#/components/schemas/Eintrag'
+          $ref: "#/components/schemas/Eintrag"
         gesamtSumme:
-          $ref: '#/components/schemas/Eintrag'
+          $ref: "#/components/schemas/Eintrag"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     Unterlage:
       type: object
       properties:
@@ -5880,18 +5919,18 @@ components:
         unterlagen:
           type: array
           items:
-            $ref: '#/components/schemas/Unterlage'
+            $ref: "#/components/schemas/Unterlage"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     Meldungen:
       type: object
       properties:
         meldungen:
           type: array
           items:
-            $ref: '#/components/schemas/Meldung'
+            $ref: "#/components/schemas/Meldung"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     BerechnungsUebersicht:
       type: object
       properties:
@@ -5900,28 +5939,28 @@ components:
         exzerpt:
           type: string
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
     BerechnungsUebersichten:
       type: object
       properties:
         haushaltsrechnung:
           type: array
           items:
-            $ref: '#/components/schemas/BerechnungsUebersicht'
+            $ref: "#/components/schemas/BerechnungsUebersicht"
         lebensphasenplanung:
           type: array
           items:
-            $ref: '#/components/schemas/BerechnungsUebersicht'
+            $ref: "#/components/schemas/BerechnungsUebersicht"
         kondition:
           type: array
           items:
-            $ref: '#/components/schemas/KonditionsUebersicht'
+            $ref: "#/components/schemas/KonditionsUebersicht"
         beleihungsauslauf:
           type: array
           items:
-            $ref: '#/components/schemas/BerechnungsUebersicht'
+            $ref: "#/components/schemas/BerechnungsUebersicht"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     KonditionsUebersicht:
       type: object
       properties:
@@ -5930,7 +5969,7 @@ components:
         exzerpt:
           type: string
         produktAnbieter:
-          $ref: '#/components/schemas/ProduktAnbieter'
+          $ref: "#/components/schemas/ProduktAnbieter"
         darlehenId:
           type: string
     ProvisionsInfo:
@@ -5941,7 +5980,7 @@ components:
         partnerId:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     Ergebnis:
       type: object
       properties:
@@ -5956,15 +5995,15 @@ components:
         darlehen:
           type: array
           items:
-            $ref: '#/components/schemas/Darlehen'
+            $ref: "#/components/schemas/Darlehen"
         beleihung:
           type: array
           items:
-            $ref: '#/components/schemas/Beleihung'
+            $ref: "#/components/schemas/Beleihung"
         meldungen:
           type: array
           items:
-            $ref: '#/components/schemas/Meldung'
+            $ref: "#/components/schemas/Meldung"
         machbarkeit:
           type: string
           enum:
@@ -5980,7 +6019,7 @@ components:
         bausparAngebote:
           type: array
           items:
-            $ref: '#/components/schemas/BausparAngebot'
+            $ref: "#/components/schemas/BausparAngebot"
         anpassungsStatus:
           type: string
           enum:
@@ -6001,36 +6040,32 @@ components:
         produktFeatures:
           type: array
           items:
-            $ref: '#/components/schemas/ProduktFeature'
+            $ref: "#/components/schemas/ProduktFeature"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     ErgebnisListe:
       type: object
       properties:
         ergebnisse:
           type: array
           items:
-            $ref: '#/components/schemas/Ergebnis'
+            $ref: "#/components/schemas/Ergebnis"
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     Ermittlung:
       type: object
       properties:
         ermittlungsId:
           type: string
-        ergebnisse:
-          type: array
-          items:
-            $ref: '#/components/schemas/Ergebnis'
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
     ErmittlungsAnfrage:
       type: object
       properties:
         ermittlungsId:
           type: string
         erfassteDaten:
-          $ref: '#/components/schemas/ErfassteDaten'
+          $ref: "#/components/schemas/ErfassteDaten"
         alternativen:
           type: boolean
         provisionsAusgabe:
@@ -6038,7 +6073,7 @@ components:
         partnerId:
           type: string
         _links:
-          $ref: '#/components/schemas/Links'
+          $ref: "#/components/schemas/Links"
         erstelltAm:
           type: string
           format: date-time
