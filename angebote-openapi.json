@@ -9,7 +9,7 @@
       "url" : "https://developer.europace.de",
       "email" : "devsupport@europace2.de"
     },
-    "version": "3.0.3"
+    "version": "3.0.4"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -1866,22 +1866,22 @@
           }
         },
         "responses" : {
-          "200" : {
-            "description" : "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
-          },
           "404" : {
             "description" : "Not Found",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Die Ermittlung wurde erzeugt und ist maximal eine Stunde unter der Url im 'location' Header abrufbar.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ergebnisliste"
                 }
               }
             }
@@ -2013,22 +2013,22 @@
           }
         } ],
         "responses" : {
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
           "200" : {
             "description" : "Die Ergebnisliste wurde gefunden.",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "$ref" : "#/components/schemas/Ergebnisliste"
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "Not Found",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
                 }
               }
             }
@@ -5417,6 +5417,36 @@
                 "LBS_NORDWEST_WT_SPEZIAL_2024_R",
                 "LBS_NORDWEST_WT_MOD_ECOFLEX_2024_R",
                 "LBS_NORDWEST_WT_MOD_FLEX_2024_R",
+                "LBS_NORDWEST_BESTAND_CLASSIC_06_L",
+                "LBS_NORDWEST_BESTAND_CLASSIC_06_N",
+                "LBS_NORDWEST_BESTAND_CLASSIC_06_S",
+                "LBS_NORDWEST_BESTAND_CLASSIC_11_F",
+                "LBS_NORDWEST_BESTAND_CLASSIC_11_F_MAXI",
+                "LBS_NORDWEST_BESTAND_CLASSIC_11_L",
+                "LBS_NORDWEST_BESTAND_CLASSIC_11_N",
+                "LBS_NORDWEST_BESTAND_CLASSIC_11_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_4_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_4_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_5_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_5_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_6_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_6_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_8_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_FLEX_8_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_13_PLUS",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_DIREKT_10",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_DIREKT_15",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_4_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_4_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_5_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_5_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_6_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_6_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_8_L",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_FLEX_8_S",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_15_PLUS",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_17_PRIMA",
+                "LBS_NORDWEST_BESTAND_ZUHAUSE_17_PRIMA_10",
                 "LBS_NORD_CLASSIC_GU",
                 "LBS_NORD_CLASSIC_GV",
                 "LBS_NORD_CLASSIC_MINI_GM",
