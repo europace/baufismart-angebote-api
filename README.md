@@ -84,7 +84,7 @@ If no body is given default parameters are used.
 ```
 
 ``` http
-POST /v3/vorgeange/{{case-id}}/ergebnisliste HTTP/1.1
+POST /v3/vorgaenge/{{case-id}}/ergebnisliste HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -314,7 +314,7 @@ Refreshed offers occur only in a result list if there are saved offers "gemerkte
 ## Usecase get offer details of single offer
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -361,7 +361,7 @@ example-response:
 ## Usecase get details (Meldungen) of offer
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -399,7 +399,7 @@ example-response:
 ## Usecase get details (Zahlungsplaene) of offer
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -440,7 +440,7 @@ example-response:
 ## Usecase get details (Unterlagen) of Offer
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -482,7 +482,7 @@ example-response:
 The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -502,7 +502,7 @@ example-response:
 Uebersichten are HTML snippets of Loan provider calculation details. These details may contain individual data and methods of loan providers.
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -575,7 +575,7 @@ example-response:
 Get all gemerkte Angebote (saved offers) within a case.
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/gemerkteangebote HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/gemerkteangebote HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -609,7 +609,7 @@ example-response:
 Get one gemerktes Angebote (saved offer) based on ```laufendeNummerAmVorgang``` within a case.
 
 ``` http
-GET /v3/vorgeange/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}} HTTP/1.1
+GET /v3/vorgaenge/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}} HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -1134,7 +1134,7 @@ If you save a calculated offer it gets an id:
 If you now recalculate the offers in the case, you will get new and recalculated saved offers.
 When saving the offer containing a recalculated saved offer you will get the same ```laufendeNummerAmVorgang``` as with
 the first save.
-If you now get the saved offer ```GET /v3/vorgeange/{{case-id}}/gemerkteangebote/6``` you receive:
+If you now get the saved offer ```GET /v3/vorgaenge/{{case-id}}/gemerkteangebote/6``` you receive:
 
 ``` json
 {
