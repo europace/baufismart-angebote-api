@@ -1,6 +1,6 @@
 # Angebote API
 
-As advisor you can find offers, compare, save and refresh them to get the best customer solution.
+As an advisor you can find offers, compare, save and refresh them to get the best customer solution.
 
 ![advisor](https://img.shields.io/badge/-advisor-lightblue)
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
@@ -29,14 +29,14 @@ To test our APIs and your use cases as quickly as possible, we have created a [P
 
 Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
 
-| Scope                               | API Use case                                                         |
-|-------------------------------------|----------------------------------------------------------------------|
-| `baufinanzierung:angebot:ermitteln` | to find offers and show details    
-| `baufinanzierung:angebot:loeschen`  | to delete saved offers     
+| Scope                               | API Use case                    |
+|-------------------------------------|---------------------------------|
+| `baufinanzierung:angebot:ermitteln` | to find offers and show details |
+| `baufinanzierung:angebot:loeschen`  | to delete saved offers          |
 
 # Angebote API versions and functionalities
 
-| UseCase                                                       | Version 1 | Version 2 | Version 3 |
+| Use case                                                      | Version 1 | Version 2 | Version 3 |
 |---------------------------------------------------------------|-----------|-----------|-----------|
 | calculate new offers without case                             | ✅         | ✅         |           |
 | calculate new offers with case                                | ✅         | ✅         | ✅         |
@@ -53,9 +53,9 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 - Fresh and recalculated offers are available for 60 min after calculation over the API.
 - Saved offers are never deleted unless deleted by client.
 
-# Documention Version 3
+# Documentation Version 3
 
-## Usecases
+## Use cases
 
 - as advisor you can find offers and compare them to get the best customer solution
 - as advisor or loan provider find prolongation offers
@@ -64,16 +64,16 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 - as advisor recalculate saved offers
 - as advisor save a refreshed offer in a case
 
-As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to Baufismart.
+As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to BaufiSmart.
 
-## Usecase find and recalculate offers <a name="findOffers"></a>
+## Use case find and recalculate offers <a name="findOffers"></a>
 
-Finding offers can be controled by several parameters.
-If no body is given default parameters are used.
+Finding offers can be controlled by several parameters.
+If an empty body is given default parameters are used.
 
-``` json
+```json
 { 
-  // default parameters
+  // default parameters 
   "ermitteln": true, // calculate fresh new offers
   "aktualisieren": true, // recalculate gemerkte (saved) offers in case
   "alternativen": false, // no alternative offers are generated
@@ -83,7 +83,7 @@ If no body is given default parameters are used.
 }
 ```
 
-``` http
+```http
 POST /v3/vorgaenge/{{case-id}}/ergebnisliste HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -94,7 +94,7 @@ Authorization: Bearer {{access-token}}
 
 The sample response with a fresh calculated offer.
 
-``` json
+```json
 {
   "ergebnislisteId": "LAPF9B",
   "ergebnisliste": [
@@ -185,7 +185,7 @@ A refreshed offer contains the details of the new offer and details of the saved
 This way the result data can be compared.
 Refreshed offers occur only in a result list if there are saved offers "gemerktesAngebot" in the case.
 
-``` json
+```json
 {
   "ergebnislisteId": "Z4WQVT",
   "ergebnisliste": [
@@ -311,9 +311,9 @@ Refreshed offers occur only in a result list if there are saved offers "gemerkte
 ```
 
 
-## Usecase get offer details of single offer
+## Use case get offer details of single offer
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -322,7 +322,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
   "darlehensSumme": 250000.00,
   "sollZins": 4.32000,
@@ -358,9 +358,9 @@ example-response:
 }
 ```
 
-## Usecase get details (Meldungen) of offer
+## Use case get details (Meldungen) of offer
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -369,7 +369,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
   "meldungen": [
     {
@@ -396,9 +396,9 @@ example-response:
 }
 ```
 
-## Usecase get details (Zahlungsplaene) of offer
+## Use case get details (Zahlungsplaene) of offer
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -407,7 +407,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
   "_links": {
     "_self": {
@@ -437,9 +437,9 @@ example-response:
 }
 ```
 
-## Usecase get details (Unterlagen) of Offer
+## Use case get details (Unterlagen) of Offer
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -448,7 +448,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
   "unterlagen": [
     {
@@ -477,11 +477,11 @@ example-response:
 }
 ```
 
-## Usecase get details (Provision) of offer
+## Use case get details (Provision) of offer
 
-The return of the provision data is dependent on the ```provisionsAusgabe``` field set to ``true`` in the initial calculation request. [See here](#findOffers)
+The return of the provision data is dependent on the `provisionsAusgabe` field set to `true` in the initial calculation request. [See here](#findOffers)
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -490,18 +490,18 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
   "betrag": 2500,
   "partnerId": "PARTNER-ID"
 }
 ```
 
-## Usecase get details (Uebersichten) of offer
+## Use case get details (Uebersichten) of offer
 
 Uebersichten are HTML snippets of Loan provider calculation details. These details may contain individual data and methods of loan providers.
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -509,7 +509,7 @@ Authorization: Bearer {{access-token}}
 ```
 example-response:
 
-``` json
+```json
 {
   "haushaltsrechnung": [
     {
@@ -570,11 +570,11 @@ example-response:
 ```
 
 
-## Usecase get saved offers
+## Use case get saved offers
 
 Get all gemerkte Angebote (saved offers) within a case.
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/gemerkteangebote HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -584,7 +584,7 @@ Authorization: Bearer {{access-token}}
 The response is very similar in its domain model to the angebot model of newly calculated offers.
 
 example-response:
-``` json
+```json
 [
   {
     "id": "6675df4723bf6f0ac203dbb9",
@@ -604,11 +604,11 @@ example-response:
 ]
 ```
 
-## Usecase get specific saved offer
+## Use case get specific saved offer
 
 Get one gemerktes Angebote (saved offer) based on ```laufendeNummerAmVorgang``` within a case.
 
-``` http
+```http
 GET /v3/vorgaenge/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}} HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -618,7 +618,7 @@ Authorization: Bearer {{access-token}}
 The response is very similar in its domain model to the angebot model of newly calculated offers.
 
 example-response:
-``` json
+```json
 {
   "id": "6658753323880379d2043a2c",
   "laufendeNummer": 6,
@@ -655,14 +655,14 @@ example-response:
 }
 ```
 
-## Usecase get details of saved offers
+## Use case get details of saved offers
 
 For gemerkte (saved) offers details can be queried similar to fresh calculated offers.
 Within a case the ```laufendeNummerAmVorgang``` is used to identify the saved offer.
 This number is increasing with each new saved offer and for deleted saved offer the number is not reused later on.
 
 ### get Meldungen for saved offer
-``` http
+```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -671,7 +671,7 @@ Authorization: Bearer {{access-token}}
 Example results are similar to Meldungen for fresh offers.
 
 ### get Berechungsuebersichten for saved offer
-``` http
+```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -680,7 +680,7 @@ Authorization: Bearer {{access-token}}
 Example results are similar to berechnungsuebersichten for fresh offers.
 
 ### get Unterlagen for saved offer
-``` http
+```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -690,7 +690,7 @@ Authorization: Bearer {{access-token}}
 Example results are similar to Unterlagen for fresh offers.
 
 ### get Zahlungplaene for saved offer
-``` http
+```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -698,11 +698,11 @@ Authorization: Bearer {{access-token}}
 ```
 Example results are similar to Zahlungsplaene for fresh offers.
 
-## Usecase save calculated offer
+## Use case save calculated offer
 
 Newly calculated and refreshed offers can be saved in a case and turned into gemerkteAngebote.
 
-``` http
+```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -712,17 +712,17 @@ Authorization: Bearer {{access-token}}
 example-response:
 The new number in the case ```laufendeNummerAmVorgang``` is returned which identifies a gemerktesAngebot.
 
-``` json
+```json
 {
   "laufendeNummerAmVorgang": 14
 }
 ```
 
-## Usecase delete saved offer
+## Use case delete saved offer
 
 A saved offers can be deleted in a case. Its ```laufendeNummerAmVorgang``` is not reused.
 
-``` http
+```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken HTTP/1.1
 Host: api.europace2.de
 Content-Type: application/json
@@ -731,17 +731,17 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` http
+```http
 HTTP/2 204 No Content
 ```
 
 
 
-# Documention Version 2
+# Documentation Version 2
 
-## Usecases
+## Use cases
 
-- as advisor you can find offers and compare them to get the best customer solution
+- as an advisor you can find offers and compare them to get the best customer solution
 - as advisor or loan provider find prolongation offers
 
 
@@ -757,7 +757,7 @@ As advisor you want to check the current loan rates for a past offering, to deci
 
 example-request:
 
-``` http
+```http
 POST /v2/ergebnisliste/ermittlung?vorgangsNummer={{case-id}} HTTP/1.1
 Host: baufismart.api.europace.de
 Content-Type: application/json
@@ -766,7 +766,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
     "ermittlungsId": "CJAMN4",
     "ergebnisse": [
@@ -866,8 +866,8 @@ To find the best offers you have to set the financing parameters in the body. Th
 
 example-request:
 
-``` http
-POST /v2/ergebnisliste/ermittlung/ HTTP/1.1
+```http
+POST /v2/ergebnisliste/ermittlung HTTP/1.1
 Host: baufismart.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
@@ -912,7 +912,7 @@ As parameter you need the offerfinding-id (like CJAMN4) and the offer-iterator (
 
 example-request:
 
-``` http
+```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/meldungen HTTP/1.1
 Host: baufismart.api.europace.de
 Content-Type: application/json
@@ -921,7 +921,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
     "meldungen": [
         {
@@ -963,7 +963,7 @@ You can get a list of needed proofs for an offer, to inform your customer wich d
 
 example-request:
 
-``` http
+```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/unterlagen HTTP/1.1
 Host: baufismart.api.europace.de
 Content-Type: application/json
@@ -972,7 +972,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
     "unterlagen": [
         {
@@ -1001,7 +1001,7 @@ You can get a redemption plan for an offer, to show your customer his cashflow.
 
 example-request:
 
-``` http
+```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/zahlungsplaene HTTP/1.1
 Host: baufismart.api.europace.de
 Content-Type: application/json
@@ -1010,7 +1010,7 @@ Authorization: Bearer {{access-token}}
 
 example-response:
 
-``` json
+```json
 {
     "zahlungsplaene": [
         {
@@ -1088,7 +1088,7 @@ example-request:
 
 example-response:
 
-``` json
+```json
 {
     betrag: 100000,    // amount in cents
     partnerId: "WER03" // PartnerId of the recipient
@@ -1112,7 +1112,7 @@ If `X-RateLimit-Remaining` reaches 0, then the status code `429 - Too Many Reque
 
 If you save a calculated offer it gets an id:
 
-``` json
+```json
 {
   "id": "6658753323880379d2043a2c",
   "laufendeNummer": 6,
@@ -1136,7 +1136,7 @@ When saving the offer containing a recalculated saved offer you will get the sam
 the first save.
 If you now get the saved offer ```GET /v3/vorgaenge/{{case-id}}/gemerkteangebote/6``` you receive:
 
-``` json
+```json
 {
   "id": "669687df411eac7bb515b249",
   "laufendeNummer": 6,
@@ -1161,7 +1161,7 @@ offer is based.
 
 If you now repeat the steps from above, you will receive the following offer:
 
-``` json
+```json
 {
   "id": "66968690b7585f5b9587ea1f",
   "laufendeNummer": 6,
