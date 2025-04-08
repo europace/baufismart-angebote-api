@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.6
+  version: 3.0.7
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -4332,6 +4332,13 @@ components:
           - PROGRAMM_308
           - PROGRAMM_358
           - PROGRAMM_359
+        kontoCheck:
+          type: boolean
+          description: Zeig an ob das Darlehen Kontocheck-fähig ist
+        kontocheckAnreizeText:
+          type: string
+          description: Freitext für Information über Vorteile die durch Kontocheck
+            entstehen
         laufzeitInJahren:
           type: integer
           format: int32
@@ -4389,6 +4396,8 @@ components:
           format: date
         zwischenfinanzierung:
           $ref: "#/components/schemas/Zwischenfinanzierung"
+      required:
+      - kontoCheck
     DarlehensWunsch:
       type: object
       properties:
@@ -5003,6 +5012,15 @@ components:
           - UNTERKELLERT
         wohnflaeche:
           $ref: "#/components/schemas/GebaeudeFlaeche"
+        zustand:
+          type: string
+          description: Nur bei ObjektArt != GRUNDSTUECK.
+          enum:
+          - SEHR_GUT
+          - GUT
+          - MITTEL
+          - MAESSIG
+          - SCHLECHT
     GebaeudeFlaeche:
       type: object
       properties:
