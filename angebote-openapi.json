@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.7"
+    "version" : "3.0.8"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -4436,6 +4436,10 @@
           "bruttoVorjahresEinkommen" : {
             "type" : "number"
           },
+          "email" : {
+            "type" : "string",
+            "example" : "max.mustermann@test.de"
+          },
           "familienstand" : {
             "type" : "string",
             "enum" : [ "GESCHIEDEN", "GETRENNT_LEBEND", "LEBENSPARTNERSCHAFT", "LEDIG", "VERHEIRATET", "VERWITWET" ]
@@ -5559,6 +5563,9 @@
           },
           "leadTracking" : {
             "$ref" : "#/components/schemas/LeadTracking"
+          },
+          "praeferenzen" : {
+            "$ref" : "#/components/schemas/Praeferenzen"
           },
           "tippGeber" : {
             "$ref" : "#/components/schemas/Partner"
@@ -6722,6 +6729,10 @@
           "nachname" : {
             "type" : "string"
           },
+          "partnerId" : {
+            "type" : "string",
+            "description" : "Die ID eines Partners im Europace2 System"
+          },
           "telefonnummer" : {
             "type" : "string"
           },
@@ -6750,6 +6761,14 @@
           },
           "strasse" : {
             "type" : "string"
+          }
+        }
+      },
+      "Praeferenzen" : {
+        "type" : "object",
+        "properties" : {
+          "tilgungssatzwechselPraeferenz" : {
+            "$ref" : "#/components/schemas/TilgungsSatzWechselPraeferenz"
           }
         }
       },
@@ -7010,6 +7029,19 @@
           "tilgungsPhaseInJahren" : {
             "type" : "integer",
             "format" : "int32"
+          }
+        }
+      },
+      "TilgungsSatzWechselPraeferenz" : {
+        "type" : "object",
+        "properties" : {
+          "mindestensBenoetigt" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tilgungsSatzwechselPraeferenz" : {
+            "type" : "string",
+            "enum" : [ "MINDESTENS_BENOETIGT", "NICHT_EINGEPLANT_ODER_ABSEHBAR", "EGAL" ]
           }
         }
       },
