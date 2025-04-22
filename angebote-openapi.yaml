@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.7
+  version: 3.0.8
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -2967,6 +2967,9 @@ components:
           type: number
         bruttoVorjahresEinkommen:
           type: number
+        email:
+          type: string
+          example: max.mustermann@test.de
         familienstand:
           type: string
           enum:
@@ -5525,6 +5528,9 @@ components:
           type: string
         nachname:
           type: string
+        partnerId:
+          type: string
+          description: Die ID eines Partners im Europace2 System
         telefonnummer:
           type: string
         vertriebsOrganisation:
