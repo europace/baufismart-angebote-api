@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.8"
+    "version" : "3.0.9"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -4522,6 +4522,9 @@
           "typ" : {
             "type" : "string",
             "enum" : [ "STELLPLATZ", "CARPORT", "GARAGE", "DOPPEL_GARAGE", "KELLER_GARAGE", "TIEFGARAGEN_STELLPLATZ" ]
+          },
+          "vermietet" : {
+            "type" : "boolean"
           }
         }
       },
