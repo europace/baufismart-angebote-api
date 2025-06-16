@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.9
+  version: 3.0.10
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -1431,7 +1431,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       requestBody:
         content:
           application/json:
@@ -1538,6 +1538,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       responses:
         "200":
           content:
@@ -1633,6 +1634,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       responses:
         "200":
           content:
@@ -1729,6 +1731,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       responses:
         "200":
           content:
@@ -1824,6 +1827,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       - in: query
         name: repeat
         required: false
@@ -1831,6 +1835,7 @@ paths:
           type: integer
           format: int32
           default: 0
+          minimum: 0
       responses:
         "200":
           content:
@@ -1927,6 +1932,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       responses:
         "200":
           content:
@@ -2023,6 +2029,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       responses:
         "200":
           content:
@@ -2119,6 +2126,7 @@ paths:
         schema:
           type: integer
           format: int32
+          minimum: 1
       - in: path
         name: zahlungsplanIndex
         required: true
@@ -2298,7 +2306,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "200":
           content:
@@ -2389,7 +2397,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "200":
           content:
@@ -2480,7 +2488,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "204":
           description: Angebot erfolgreich entmerkt
@@ -2572,7 +2580,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "200":
           content:
@@ -2662,7 +2670,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "200":
           content:
@@ -2752,7 +2760,7 @@ paths:
         schema:
           type: integer
           format: int32
-          pattern: "^[0-9]*"
+          minimum: 1
       responses:
         "200":
           content:
@@ -2982,6 +2990,8 @@ components:
         geburtsdatum:
           type: string
           format: date
+        geburtsland:
+          $ref: "#/components/schemas/Staat"
         geburtsort:
           type: string
         guetertrennungVereinbartWennVerheiratet:
@@ -2999,6 +3009,8 @@ components:
           $ref: "#/components/schemas/LegitimationsDaten"
         nachname:
           type: string
+        privateKrankenversicherungMonatlicheAusgaben:
+          type: number
         sozialVersicherungsNummer:
           type: string
         staatsangehoerigkeit:
