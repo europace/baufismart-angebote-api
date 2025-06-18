@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.9"
+    "version" : "3.0.11"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -2148,7 +2148,7 @@
           "name" : "angebotsnummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -2310,6 +2310,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -2452,6 +2453,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -2594,6 +2596,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -2736,6 +2739,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -2744,6 +2748,7 @@
           "name" : "repeat",
           "required" : false,
           "schema" : {
+            "minimum" : 0,
             "type" : "integer",
             "format" : "int32",
             "default" : 0
@@ -2887,6 +2892,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3029,6 +3035,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3171,6 +3178,7 @@
           "name" : "ergebnisnummer",
           "required" : true,
           "schema" : {
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3441,7 +3449,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3576,7 +3584,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3711,7 +3719,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3849,7 +3857,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -3984,7 +3992,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -4119,7 +4127,7 @@
           "name" : "laufendeNummer",
           "required" : true,
           "schema" : {
-            "pattern" : "^[0-9]*",
+            "minimum" : 1,
             "type" : "integer",
             "format" : "int32"
           }
@@ -4448,6 +4456,9 @@
             "type" : "string",
             "format" : "date"
           },
+          "geburtsland" : {
+            "$ref" : "#/components/schemas/Staat"
+          },
           "geburtsort" : {
             "type" : "string"
           },
@@ -4468,6 +4479,9 @@
           },
           "nachname" : {
             "type" : "string"
+          },
+          "privateKrankenversicherungMonatlicheAusgaben" : {
+            "type" : "number"
           },
           "sozialVersicherungsNummer" : {
             "type" : "string"
@@ -4992,6 +5006,9 @@
           },
           "effektivZinsErhoehendeKosten" : {
             "$ref" : "#/components/schemas/EffektivZinsErhoehendeKosten"
+          },
+          "einzusetzenderBetragBeiEinsatzAlsZusatzsicherheit" : {
+            "type" : "number"
           },
           "erbbaurecht" : {
             "$ref" : "#/components/schemas/Erbbaurecht"
