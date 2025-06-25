@@ -66,6 +66,15 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to BaufiSmart.
 
+## Mock Server
+
+You can simulate and explore the Baufismart Angebote API without needing credentials or a live environment. By launching a hosted mock server from the OpenAPI spec, you get instant access to example requests and dynamic responses—making it easier to prototype, validate, or demo integrations before production access is in place.
+
+Click below to launch the mock server instantly:
+
+<a href="https://beeceptor.com/openapi-mock-server/?utm_source=github&utm_campaign=europace-baufismart&url=https://raw.githubusercontent.com/europace/baufismart-angebote-api/refs/heads/master/angebote-openapi.yaml" target="_blank"><img src="https://cdn.beeceptor.com/assets/images/buttons/mock-openapi-with-beeceptor.png" alt="Mock These APIs Instantly" style="height: 60px;"></a>
+
+
 ## Use case find and recalculate offers <a name="findOffers"></a>
 
 Finding offers can be controlled by several parameters.
