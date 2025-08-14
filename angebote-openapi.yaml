@@ -7,13 +7,16 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.11
+  version: 3.0.13
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
 - description: Produktionsserver
   url: https://baufinanzierung.api.europace.de
 tags:
+- description: "Gemerkte Angebote abrufen, verändern und weitere Detail-Operation.\
+    \ API-Version 3"
+  name: Version 3
 - description: "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3"
   name: Version 3
 - description: Liefert die Version der BaufiSmart-API
@@ -4690,7 +4693,7 @@ components:
           type: string
     ErmittleErgebnisseRequestBody:
       type: object
-      description: Anfrage Body für die Ermittlung von Ergebnissen.
+      description: Anfrage Body für die Ermittlung von Ergebnissen
       properties:
         aktualisieren:
           type: boolean
@@ -4764,10 +4767,14 @@ components:
           type: number
         co2EmissionenGeplant:
           type: number
-          description: in Kilogramm p.a. je qm
+          deprecated: true
+          description: "Das Feld ist Deprecated, bitte den Wert in Vorhaben.geplanterCo2Wert\
+            \ erfassen; in Kilogramm p.a. je qm"
         endEnergieGeplant:
           type: number
-          description: in Kilowattstunden p.a. je qm
+          deprecated: true
+          description: "Das Feld ist Deprecated, bitte den Wert in Vorhaben.geplanteEnergie\
+            \ erfassen; in Kilowattstunden p.a. je qm"
         erschliessung:
           type: number
         grunderwerbsteuer:
@@ -5951,6 +5958,11 @@ components:
             $ref: "#/components/schemas/Beleihung"
         beschreibung:
           type: string
+        bewertung:
+          type: string
+          enum:
+          - ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG
+          - ANGEBOT_ENTSPRICHT_DEM_WUNSCH_DES_KUNDEN
         darlehen:
           type: array
           items:
@@ -5964,6 +5976,8 @@ components:
         erzeugtAm:
           type: string
           format: date-time
+        fazit:
+          type: string
         id:
           type: string
         kennung:
@@ -6120,6 +6134,12 @@ components:
           $ref: "#/components/schemas/Finanzbedarf"
         finanzierungswunsch:
           $ref: "#/components/schemas/Finanzierungswunsch"
+        geplanteEnergie:
+          type: number
+          description: in Kilowattstunden p.a. je qm
+        geplanterCo2Wert:
+          type: number
+          description: in Kilogramm p.a. je qm
         id:
           type: string
         nachfinanzierung:
