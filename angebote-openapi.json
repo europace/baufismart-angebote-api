@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.11"
+    "version" : "3.0.12"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -19,6 +19,9 @@
     "description" : "Produktionsserver"
   } ],
   "tags" : [ {
+    "description" : "Gemerkte Angebote abrufen, verändern und weitere Detail-Operation. API-Version 3",
+    "name" : "Version 3"
+  }, {
     "description" : "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3",
     "name" : "Version 3"
   }, {
@@ -5739,7 +5742,7 @@
             "type" : "boolean"
           }
         },
-        "description" : "Anfrage Body für die Ermittlung von Ergebnissen."
+        "description" : "Anfrage Body für die Ermittlung von Ergebnissen"
       },
       "Ermittlung" : {
         "type" : "object",
@@ -7256,6 +7259,10 @@
           "beschreibung" : {
             "type" : "string"
           },
+          "bewertung" : {
+            "type" : "string",
+            "enum" : [ "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG", "ANGEBOT_ENTSPRICHT_DEM_WUNSCH_DES_KUNDEN" ]
+          },
           "darlehen" : {
             "type" : "array",
             "items" : {
@@ -7274,6 +7281,9 @@
           "erzeugtAm" : {
             "type" : "string",
             "format" : "date-time"
+          },
+          "fazit" : {
+            "type" : "string"
           },
           "id" : {
             "type" : "string"
