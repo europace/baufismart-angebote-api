@@ -5243,7 +5243,7 @@
         }
       },
       "Darlehen" : {
-        "required" : [ "kontoCheck" ],
+        "required" : [ "kontoCheck", "kontoCheckVerpflichtend" ],
         "type" : "object",
         "properties" : {
           "auszahlungsBetrag" : {
@@ -5300,6 +5300,10 @@
           "kontoCheck" : {
             "type" : "boolean",
             "description" : "Zeig an ob das Darlehen Kontocheck-fähig ist"
+          },
+          "kontoCheckVerpflichtend" : {
+            "type" : "boolean",
+            "description" : "Zeigt an, ob ein Angebot mit diesem Darlehen nur nach abgeschlossenem Kontocheck angenommen werden kann"
           },
           "kontocheckAnreizeText" : {
             "type" : "string",
