@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.14
+  version: 3.0.15
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -4888,6 +4888,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/DarlehensWunsch"
+          minItems: 1
         id:
           type: string
       required:
@@ -5318,6 +5319,25 @@ components:
           type: string
         produktAnbieter:
           $ref: "#/components/schemas/ProduktAnbieter"
+    KundenangabenApiInfo:
+      type: object
+      description: Informationen zur Anpassung der Kundenangaben-API basierend auf
+        der Meldung.
+      properties:
+        betroffeneFelder:
+          type: array
+          description: "Bei der angegebenen Meldung sind die betroffenen Felder in\
+            \ der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
+            \ welche konkreten Felder angepasst werden müssen."
+          items:
+            type: string
+            description: "Bei der angegebenen Meldung sind die betroffenen Felder\
+              \ in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
+              \ welche konkreten Felder angepasst werden müssen."
+        id:
+          type: string
+          description: "Die ID ist in der Kundenangaben-API erforderlich, um die Entitä\
+            t zu identifizieren, welche angepasst werden muss."
     LeadTracking:
       type: object
       properties:
@@ -5426,6 +5446,8 @@ components:
           - UNBERUECKSICHTIGTE_ANGABE
         code:
           type: string
+        kundenangabenApiInfo:
+          $ref: "#/components/schemas/KundenangabenApiInfo"
         meldungsKategorie:
           type: string
           enum:

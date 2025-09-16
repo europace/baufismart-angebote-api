@@ -2269,6 +2269,7 @@
               <li><a href="#_KfwDarlehensWunsch">KfwDarlehensWunsch</a></li>
               <li><a href="#_Kind">Kind</a></li>
               <li><a href="#_KonditionsUebersicht">KonditionsUebersicht</a></li>
+              <li><a href="#_KundenangabenApiInfo">KundenangabenApiInfo</a></li>
               <li><a href="#_LeadTracking">LeadTracking</a></li>
               <li><a href="#_LebensOderRentenversicherungVermoegen">LebensOderRentenversicherungVermoegen</a></li>
               <li><a href="#_LegitimationsDaten">LegitimationsDaten</a></li>
@@ -2339,7 +2340,7 @@
           <div class="sect2">
             <h3 id="_aktuelle_version">Aktuelle Version</h3>
             <div class="paragraph">
-              <p><em>Version</em> : 3.0.13</p>
+              <p><em>Version</em> : 3.0.15</p>
             </div>
           </div>
         <div class="sect2">
@@ -28735,7 +28736,7 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
-                        <p>in Kilogramm p.a. je qm</p>
+                        <p>Das Feld ist Deprecated, bitte den Wert in Vorhaben.geplanterCo2Wert erfassen; in Kilogramm p.a. je qm</p>
                       </div>
                     </div>
                   </td>
@@ -28765,7 +28766,7 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
-                        <p>in Kilowattstunden p.a. je qm</p>
+                        <p>Das Feld ist Deprecated, bitte den Wert in Vorhaben.geplanteEnergie erfassen; in Kilowattstunden p.a. je qm</p>
                       </div>
                     </div>
                   </td>
@@ -33152,6 +33153,88 @@
             </table>
           </div>
           <div class="sect2">
+            <h3 id="_KundenangabenApiInfo">KundenangabenApiInfo</h3>
+            <div class="paragraph">
+              <p>Informationen zur Anpassung der Kundenangaben-API basierend auf der Meldung.</p>
+            </div>
+            <table class="tableblock frame-all grid-all stretch">
+              <colgroup>
+                <col style="width: 16.6666%;">
+                <col style="width: 61.1111%;">
+                <col style="width: 22.2223%;">
+              </colgroup>
+              <thead>
+              <tr>
+                <th class="tableblock halign-left valign-middle">Name</th>
+                <th class="tableblock halign-left valign-middle">Beschreibung</th>
+                <th class="tableblock halign-left valign-middle">Typ</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>betroffeneFelder</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p>Bei der angegebenen Meldung sind die betroffenen Felder in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren, welche konkreten Felder angepasst werden müssen.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">array[String]</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>id</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p>Die ID ist in der Kundenangaben-API erforderlich, um die Entität zu identifizieren, welche angepasst werden muss.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="sect2">
             <h3 id="_LeadTracking">LeadTracking</h3>
             <div class="paragraph">
               <p></p>
@@ -34257,6 +34340,36 @@
                       <p>
   
                           <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>kundenangabenApiInfo</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_KundenangabenApiInfo">KundenangabenApiInfo</a>
   
   
                         </p>
@@ -41074,6 +41187,66 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
+                        <p><strong>geplanteEnergie</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p>in Kilowattstunden p.a. je qm</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p><strong>geplanterCo2Wert</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p>in Kilogramm p.a. je qm</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_BigDecimal">BigDecimal</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
                         <p><strong>id</strong>
                           <br><em>optional</em>
                         </p>
@@ -42500,6 +42673,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_BAYERN_HV_FAEH</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Süd (Marktgebiet Bayern) Vertrieb</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code><del>LBS_BREMEN</del></code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Bremen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Bremen AG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_HESSEN_THUERINGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Hessen-Thüringen</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_MUSTER</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Muster</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Muster</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_NORD</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordWest</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_OST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS NordOst</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>LBS_RHEINLAND_PFALZ</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Rheinland-Pfalz</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>LBS Landesbausparkasse Rheinland-Pfalz</p>    </div>  </div></td>
@@ -42516,6 +42690,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MAINZ_VOBA</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VoBa Darmstadt Mainz</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank Darmstadt Mainz eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MHB</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MHB</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Münchener Hypothekenbank eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MHB_GENO_KOMBI_EP</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MHB Kombination</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Münchener Hypothekenbank eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MHB_VERBUND_RELAX</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MHB Relax</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Münchener Hypothekenbank eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MHB_VERBUND_VV</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>MHB Verbund</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Münchener Hypothekenbank eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MITTELBRANDENBURGISCHE_SPK_POTSDAM</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Mittelbrandenb. Spk</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Mittelbrandenburgische Sparkasse</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>MITTELBRANDENBURGISCHE_SPK_TEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Mittelbrandenb. Spk Test</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Mittelbrandenburgische Sparkasse</p>    </div>  </div></td>
@@ -43321,7 +43496,7 @@
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_DZPB_TEST</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank DZPB Test</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>Volksbank DZPB Test</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_ELLWANGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Ellwangen eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Ellwangen eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_ERDING</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Erding eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Erding eG</p>    </div>  </div></td>
-            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_ERLANGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Metropolregion Nürnberg eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank Metropolregion Nürnberg eG</p>    </div>  </div></td>
+            <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_ERLANGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR TeilhaberBank</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR TeilhaberBank</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_FEUCHTWANGEN</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR Bank im südlichen Franken</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank im südlichen Franken eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_FICHTELGEBIRGE</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Fichtelgebirge-Frankenwald </p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Fichtelgebirge-Frankenwald eG</p>    </div>  </div></td>
             <tr><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p><code>VR_FLAEMING</code></p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Fläming-Elsterland eG</p>    </div>  </div></td><td class="tableblock halign-left valign-middle">  <div class="content">    <div class="paragraph">      <p>VR-Bank Fläming-Elsterland eG</p>    </div>  </div></td>
