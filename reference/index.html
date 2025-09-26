@@ -2269,7 +2269,6 @@
               <li><a href="#_KfwDarlehensWunsch">KfwDarlehensWunsch</a></li>
               <li><a href="#_Kind">Kind</a></li>
               <li><a href="#_KonditionsUebersicht">KonditionsUebersicht</a></li>
-              <li><a href="#_KundenangabenApiInfo">KundenangabenApiInfo</a></li>
               <li><a href="#_LeadTracking">LeadTracking</a></li>
               <li><a href="#_LebensOderRentenversicherungVermoegen">LebensOderRentenversicherungVermoegen</a></li>
               <li><a href="#_LegitimationsDaten">LegitimationsDaten</a></li>
@@ -2340,7 +2339,7 @@
           <div class="sect2">
             <h3 id="_aktuelle_version">Aktuelle Version</h3>
             <div class="paragraph">
-              <p><em>Version</em> : 3.0.15</p>
+              <p><em>Version</em> : 3.0.16</p>
             </div>
           </div>
         <div class="sect2">
@@ -33153,88 +33152,6 @@
             </table>
           </div>
           <div class="sect2">
-            <h3 id="_KundenangabenApiInfo">KundenangabenApiInfo</h3>
-            <div class="paragraph">
-              <p>Informationen zur Anpassung der Kundenangaben-API basierend auf der Meldung.</p>
-            </div>
-            <table class="tableblock frame-all grid-all stretch">
-              <colgroup>
-                <col style="width: 16.6666%;">
-                <col style="width: 61.1111%;">
-                <col style="width: 22.2223%;">
-              </colgroup>
-              <thead>
-              <tr>
-                <th class="tableblock halign-left valign-middle">Name</th>
-                <th class="tableblock halign-left valign-middle">Beschreibung</th>
-                <th class="tableblock halign-left valign-middle">Typ</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                        <p><strong>betroffeneFelder</strong>
-                          <br><em>optional</em>
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                        <p>Bei der angegebenen Meldung sind die betroffenen Felder in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren, welche konkreten Felder angepasst werden müssen.</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                      <p>
-  
-                          <a href="#_string">array[String]</a>
-  
-  
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                        <p><strong>id</strong>
-                          <br><em>optional</em>
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                        <p>Die ID ist in der Kundenangaben-API erforderlich, um die Entität zu identifizieren, welche angepasst werden muss.</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td class="tableblock halign-left valign-middle">
-                    <div class="content">
-                      <div class="paragraph">
-                      <p>
-  
-                          <a href="#_string">String</a>
-  
-  
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="sect2">
             <h3 id="_LeadTracking">LeadTracking</h3>
             <div class="paragraph">
               <p></p>
@@ -34321,6 +34238,36 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
+                        <p><strong>bereichsZuordnungId</strong>
+                          <br><em>optional</em>
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                        <p>Die ID ist in der Kundenangaben-API erforderlich, um die Entität zu identifizieren, welche angepasst werden muss.</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
+                      <p>
+  
+                          <a href="#_string">String</a>
+  
+  
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tableblock halign-left valign-middle">
+                    <div class="content">
+                      <div class="paragraph">
                         <p><strong>code</strong>
                           <br><em>optional</em>
                         </p>
@@ -34351,7 +34298,7 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
-                        <p><strong>kundenangabenApiInfo</strong>
+                        <p><strong>kundenangabenApiFelder</strong>
                           <br><em>optional</em>
                         </p>
                       </div>
@@ -34360,7 +34307,7 @@
                   <td class="tableblock halign-left valign-middle">
                     <div class="content">
                       <div class="paragraph">
-                        <p></p>
+                        <p>Bei der angegebenen Meldung sind die betroffenen Felder in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren, welche konkreten Felder angepasst werden müssen.</p>
                       </div>
                     </div>
                   </td>
@@ -34369,7 +34316,7 @@
                       <div class="paragraph">
                       <p>
   
-                          <a href="#_KundenangabenApiInfo">KundenangabenApiInfo</a>
+                          <a href="#_string">array[String]</a>
   
   
                         </p>
