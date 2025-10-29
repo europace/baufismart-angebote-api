@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.15
+  version: 3.0.16
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -5319,25 +5319,6 @@ components:
           type: string
         produktAnbieter:
           $ref: "#/components/schemas/ProduktAnbieter"
-    KundenangabenApiInfo:
-      type: object
-      description: Informationen zur Anpassung der Kundenangaben-API basierend auf
-        der Meldung.
-      properties:
-        betroffeneFelder:
-          type: array
-          description: "Bei der angegebenen Meldung sind die betroffenen Felder in\
-            \ der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
-            \ welche konkreten Felder angepasst werden müssen."
-          items:
-            type: string
-            description: "Bei der angegebenen Meldung sind die betroffenen Felder\
-              \ in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
-              \ welche konkreten Felder angepasst werden müssen."
-        id:
-          type: string
-          description: "Die ID ist in der Kundenangaben-API erforderlich, um die Entitä\
-            t zu identifizieren, welche angepasst werden muss."
     LeadTracking:
       type: object
       properties:
@@ -5444,10 +5425,22 @@ components:
           - ALTERNATIV
           - ANPASSUNG
           - UNBERUECKSICHTIGTE_ANGABE
+        bereichsZuordnungId:
+          type: string
+          description: "Die ID ist in der Kundenangaben-API erforderlich, um die Entitä\
+            t zu identifizieren, welche angepasst werden muss."
         code:
           type: string
-        kundenangabenApiInfo:
-          $ref: "#/components/schemas/KundenangabenApiInfo"
+        kundenangabenApiFelder:
+          type: array
+          description: "Bei der angegebenen Meldung sind die betroffenen Felder in\
+            \ der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
+            \ welche konkreten Felder angepasst werden müssen."
+          items:
+            type: string
+            description: "Bei der angegebenen Meldung sind die betroffenen Felder\
+              \ in der Kundenangaben-API anzupassen. Nutze diese Info, um zu identifizieren,\
+              \ welche konkreten Felder angepasst werden müssen."
         meldungsKategorie:
           type: string
           enum:
