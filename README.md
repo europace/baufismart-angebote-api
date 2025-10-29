@@ -759,7 +759,7 @@ example-request:
 
 ```http
 POST /v2/ergebnisliste/ermittlung?vorgangsNummer={{case-id}} HTTP/1.1
-Host: baufismart.api.europace.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -849,7 +849,7 @@ example-response:
             "anpassungsStatus": "ANGEPASST",
             "_links": {
                 "_self": {
-                    "href": "https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30"
+                    "href": "https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30"
                 }
             }
         },
@@ -868,7 +868,7 @@ example-request:
 
 ```http
 POST /v2/ergebnisliste/ermittlung HTTP/1.1
-Host: baufismart.api.europace.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 Content-Length: 762
@@ -914,7 +914,7 @@ example-request:
 
 ```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/meldungen HTTP/1.1
-Host: baufismart.api.europace.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -965,7 +965,7 @@ example-request:
 
 ```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/unterlagen HTTP/1.1
-Host: baufismart.api.europace.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -1003,7 +1003,7 @@ example-request:
 
 ```http
 GET /v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30/zahlungsplaene HTTP/1.1
-Host: baufismart.api.europace.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -1067,7 +1067,7 @@ Some providers are only active regionally - to receive these offers "Haushalte" 
 
 ### How do I receive offers with KfW products?
 
-For this, you must explicitly request the calculation of alternatives: `https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
+For this, you must explicitly request the calculation of alternatives: `https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=AB1234&alternativen=true`
 
 ### Can I get the commission of an offer?
 
@@ -1075,13 +1075,13 @@ In order to activate the commission calculation, the request parameter provision
 
 example-request:
 
-`POST https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
+`POST https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung?vorgangsNummer=SG4516&provisionsAusgabe=true`
 
 In response, you receive an investigation ID. You can then use the determination ID to query the commission for an offer. It is always the commission of the person who has determined the offers.
 
 example-request:
 
-`GET https://baufismart.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
+`GET https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung/UQXSFG/ergebnisse/11/provision`
 
 > Attention:
 > The calculation of the commission is expensive and therefore takes place asynchronously in the background. If the commission calculation is not yet completed, there is a temporary redirect with a short time delay. The Http client should then repeat the retrieval a short time later.
