@@ -19,9 +19,6 @@
     "description" : "Produktionsserver"
   } ],
   "tags" : [ {
-    "description" : "Gemerkte Angebote abrufen, verändern und weitere Detail-Operation. API-Version 3",
-    "name" : "Version 3"
-  }, {
     "description" : "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3",
     "name" : "Version 3"
   }, {
@@ -6164,6 +6161,20 @@
           }
         }
       },
+      "GirokontoPraeferenz" : {
+        "type" : "object",
+        "properties" : {
+          "bestehendeKontoverbindungBei" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "kontowechselWirdBeabsichtigt" : {
+            "type" : "boolean"
+          }
+        }
+      },
       "GrundbuchAngabe" : {
         "type" : "object",
         "properties" : {
@@ -6235,6 +6246,10 @@
             "type" : "integer",
             "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt.",
             "format" : "int32"
+          },
+          "kfzKostenMonatlich" : {
+            "type" : "number",
+            "description" : "Diese Angabe ist produktanbieterspezifisch, sie wird nicht von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
           },
           "kinder" : {
             "type" : "array",
@@ -6809,6 +6824,9 @@
       "Praeferenzen" : {
         "type" : "object",
         "properties" : {
+          "girokonto" : {
+            "$ref" : "#/components/schemas/GirokontoPraeferenz"
+          },
           "tilgungssatzwechselPraeferenz" : {
             "$ref" : "#/components/schemas/TilgungsSatzWechselPraeferenz"
           }
