@@ -7,16 +7,13 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.16
+  version: 3.0.17
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
 - description: Produktionsserver
   url: https://baufinanzierung.api.europace.de
 tags:
-- description: "Gemerkte Angebote abrufen, verändern und weitere Detail-Operation.\
-    \ API-Version 3"
-  name: Version 3
 - description: "Eine Liste mit Finanzierungsvorschlägen abrufen, API-Version 3"
   name: Version 3
 - description: Liefert die Version der BaufiSmart-API
@@ -5062,6 +5059,15 @@ components:
           type: number
         vermietungsInformationen:
           $ref: "#/components/schemas/VermietungsInformationen"
+    GirokontoPraeferenz:
+      type: object
+      properties:
+        bestehendeKontoverbindungBei:
+          type: array
+          items:
+            type: string
+        kontowechselWirdBeabsichtigt:
+          type: boolean
     GrundbuchAngabe:
       type: object
       properties:
@@ -5119,6 +5125,10 @@ components:
         kfzAnzahl:
           type: integer
           format: int32
+          description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
+            \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
+        kfzKostenMonatlich:
+          type: number
           description: "Diese Angabe ist produktanbieterspezifisch, sie wird nicht\
             \ von allen Produktanbietern bei der Angebotsermittlung berücksichtigt."
         kinder:
@@ -5228,8 +5238,8 @@ components:
             10 Milliarden sein.
         kfwEnergieEffizienzGruppe:
           type: string
-          description: Nur bei Programm 261 (SANIERUNG) notwendig. STANDARD ist nur
-            für alte Programme vorgesehen.
+          description: "Nur bei Programm 261 (SANIERUNG), 297 (NEUBAU) und 298 (NEUBAU)\
+            \ notwendig. STANDARD ist nur für alte Programme vorgesehen."
           enum:
           - STANDARD
           - NEUBAU
@@ -5598,6 +5608,8 @@ components:
     Praeferenzen:
       type: object
       properties:
+        girokonto:
+          $ref: "#/components/schemas/GirokontoPraeferenz"
         tilgungssatzwechselPraeferenz:
           $ref: "#/components/schemas/TilgungsSatzWechselPraeferenz"
     PrivatDarlehensWunsch:
