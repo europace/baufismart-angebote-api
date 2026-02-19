@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.0.17
+  version: 3.0.18
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -2896,6 +2896,69 @@ components:
       schema:
         type: string
   schemas:
+    Absicherung:
+      type: object
+      properties:
+        antragsEntscheider:
+          $ref: "#/components/schemas/ProduktAnbieter"
+        externeAngebotsNummer:
+          type: string
+        gesamtPraemie:
+          type: number
+        praemienZahlungsweise:
+          type: string
+          enum:
+          - MONATLICH
+          - EINMALIG
+        produktAnbieter:
+          $ref: "#/components/schemas/ProduktAnbieter"
+        risiken:
+          type: array
+          items:
+            $ref: "#/components/schemas/AbsicherungsRisiko"
+        tarifBezeichnung:
+          type: string
+        tarifKennung:
+          type: string
+        versichertePersonId:
+          type: string
+        versicherungsArt:
+          type: string
+          enum:
+          - RATENSCHUTZVERSICHERUNG
+        versicherungsNummer:
+          type: string
+        versicherungsZeitraum:
+          $ref: "#/components/schemas/AbsicherungsZeitraum"
+    AbsicherungsRisiko:
+      type: object
+      properties:
+        anteilAnPraemie:
+          type: number
+        risikoTyp:
+          type: string
+          enum:
+          - TODESFALL
+          - ARBEITSLOSIGKEIT
+          - ARBEITSUNFAEHIGKEIT
+          - INVALIDITAET
+          - SCHWERE_KRANKHEIT
+          - ASSISTANCE_ARBEITSUNFAEHIGKEIT
+          - ASSISTANCE_ARBEITSLOSIGKEIT
+        versicherungsSumme:
+          type: number
+    AbsicherungsZeitraum:
+      type: object
+      properties:
+        beginn:
+          type: string
+          format: date
+        ende:
+          type: string
+          format: date
+        versicherungsDauerInMonaten:
+          type: integer
+          format: int32
     AngebotMerkenAntwort:
       type: object
       properties:
@@ -3678,14 +3741,25 @@ components:
             - SIGNAL_IDUNA_FREIRAUM_F_50
             - SIGNAL_IDUNA_FREIRAUM_F_50_16
             - BHW_TARIF_FI1
+            - BHW_TARIF_DB_FI1
             - BHW_TARIF_FI2
+            - BHW_TARIF_DB_FI2
             - BHW_TARIF_FI3
+            - BHW_TARIF_DB_FI3
             - BHW_TARIF_FI3N
             - BHW_TARIF_FI4
+            - BHW_TARIF_DB_FI4
             - BHW_TARIF_FI4N
+            - BHW_TARIF_DB_FI5
+            - BHW_TARIF_DB_FI6
             - BHW_TARIF_FX1
+            - BHW_TARIF_DB_FX1
             - BHW_TARIF_FX2
+            - BHW_TARIF_DB_FX2
+            - BHW_TARIF_DB_FX5
+            - BHW_TARIF_DB_FX6
             - BHW_TARIF_REN
+            - BHW_TARIF_DB_REN
             - BHW_TARIF_DISPOPLUS
             - BHW_TARIF_DX3
             - BHW_TARIF_DX4
@@ -3706,6 +3780,10 @@ components:
             - BHW_TARIF_DV3
             - BHW_TARIF_DV3N
             - BHW_TARIF_WM
+            - BHW_TARIF_DB_WR1
+            - BHW_TARIF_DB_WR2
+            - BHW_TARIF_DB_WU1
+            - BHW_TARIF_DB_WU2
             - BHW_TARIF_FI1N
             - BHW_TARIF_FI2N
             - BHW_TARIF_FX1N
@@ -5300,8 +5378,8 @@ components:
         zinsBindungInJahren:
           type: integer
           format: int32
-          description: "Wert muss größer 0 sein. Bei Programm 124: 5 oder 10, sonst:\
-            \ 10 oder 20."
+          description: "Wert muss größer 0 sein. Bei Programm 124: 5 oder 10, bei\
+            \ Programm 300/308 nur 10, sonst: 10 oder 20."
       required:
       - darlehensBetrag
     Kind:
@@ -5903,6 +5981,10 @@ components:
       properties:
         _links:
           $ref: "#/components/schemas/Links"
+        absicherungen:
+          type: array
+          items:
+            $ref: "#/components/schemas/Absicherung"
         annahmeFrist:
           type: string
           format: date-time
@@ -5969,6 +6051,10 @@ components:
       properties:
         _links:
           $ref: "#/components/schemas/Links"
+        absicherungen:
+          type: array
+          items:
+            $ref: "#/components/schemas/Absicherung"
         annahmeFrist:
           type: string
           format: date-time
@@ -6035,6 +6121,11 @@ components:
           type: number
         sollZins:
           type: number
+        uebergabeAn:
+          type: string
+        uebergabeDatum:
+          type: string
+          format: date-time
         vollstaendigkeitsStatus:
           type: string
           enum:
