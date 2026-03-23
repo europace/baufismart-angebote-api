@@ -17,6 +17,11 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.json)
 
+## End-of-Life Notice – Angebote API v1 & v2
+##### ⚠️ End of Life
+The Angebote API versions v1 and v2 have reached end of life and are no longer supported.
+Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative.
+
 ## Requirements
 
 - authenticated as loan provider
