@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.18"
+    "version" : "3.0.19"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -4706,6 +4706,12 @@
             "format" : "int32"
           },
           "guthabenBeiZuteilung" : {
+            "type" : "number"
+          },
+          "guthabenZins" : {
+            "type" : "number"
+          },
+          "guthabenZinsGesamt" : {
             "type" : "number"
           },
           "id" : {
