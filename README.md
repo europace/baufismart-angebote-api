@@ -17,6 +17,11 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 [![YAML](https://img.shields.io/badge/OAS-YAML-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.yaml)
 [![JSON](https://img.shields.io/badge/OAS-JSON-lightgrey)](https://raw.githubusercontent.com/europace/baufismart-angebote-api/master/angebote-openapi.json)
 
+## End-of-Life Notice – Angebote API v1 & v2
+##### ⚠️ End of Life
+The Angebote API versions v1 and v2 have reached end of life and are no longer supported.
+Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative.
+
 ## Requirements
 
 - authenticated as loan provider
@@ -36,17 +41,26 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 # Angebote API versions and functionalities
 
-| Use case                                                      | Version 1 | Version 2 | Version 3 |
-|---------------------------------------------------------------|-----------|-----------|-----------|
-| calculate new offers without case                             | ✅         | ✅         |           |
-| calculate new offers with case                                | ✅         | ✅         | ✅         |
-| get offer details (Unterlagen, Meldungen, ...)                |           | ✅         | ✅         |
-| get calculation overviews (Haushaltsrechnung, Kondition, ...) |           |           | ✅         |
-| save newly calculated offer (favorite)                        |           |           | ✅         |
-| get all saved offers from case                                |           |           | ✅         |
-| get details of saved offers from case                         |           |           | ✅         |
-| delete saved offer in case                                    |           |           | ✅         |
-| recalculate saved offer in case                               |           |           | ✅         |
+| Use case                                                                | Version 1 | Version 2 | Version 3 |
+|-------------------------------------------------------------------------|-----------|-----------|-----------|
+| calculate new offers without case                                       | ✅         | ✅         |           |
+| calculate new offers with case                                          | ✅         | ✅         | ✅         |
+| get offer details (Unterlagen, Meldungen, ...)                          |           | ✅         | ✅         |
+| get calculation overviews (Haushaltsrechnung, Kondition, ...)           |           |           | ✅         |
+| save newly calculated offer (favorite)                                  |           |           | ✅         |
+| get all saved offers from case                                          |           |           | ✅         |
+| get details of saved offers from case                                   |           |           | ✅         |
+| delete saved offer in case                                              |           |           | ✅         |
+| recalculate saved offer in case                                         |           |           | ✅         |
+| get offer details (offer documents)                                     |           |           | ✅ v 3.1   |
+| patch metadata to a saved offer                                         |           |           | ✅ v 3.1   |
+| get financing documents of saved offer                                  |           |           | ✅ v 3.1   |
+| get offer documents of saved offer                                      |           |           | ✅ v 3.1   |
+| create proof offer request (anfrage) for saved offer at a loan provider |           |           | ✅ v 3.1   |
+| get condition information for saved offer in case                       |           |           | ✅ v 3.1   |
+| set condition for saved offer in case                                   |           |           | ✅ v 3.1   |
+| validate/check saved offer in case                                      |           |           | ✅ v 3.1   |
+| accept saved offer in case                                              |           |           | ✅ v 3.1   |
 
 ## Offer lifecycle
 
@@ -63,8 +77,17 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 - as advisor delete a saved offer in a case
 - as advisor recalculate saved offers
 - as advisor save a refreshed offer in a case
+- as advisor get offer documents of a single offer
+- as advisor get Finanzierungsvorschlag documents of several offers
+- as advisor get and set conditions of a saved offer
+- as advisor set the recommendation status of a saved offer
+- as advisor create a proof offer request (Anfrage) for a saved offer at a loan provider
+- as advisor validate (pruefen)  of a saved offer
+- as advisor accept (annehmen) of a saved offer
 
 As an advisor organisation or technology provider these functionalities may enable the building of a result list GUI similar to BaufiSmart.
+
+![standard process flow](eli-api-process-flow.png "standard process flow")
 
 ## Use case find and recalculate offers <a name="findOffers"></a>
 
@@ -569,6 +592,30 @@ example-response:
 }
 ```
 
+## Use case get details (offer documents) of offer
+
+Get documents related to a specific saved offer.
+
+```http
+GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/angebotsdokumente HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```json
+[
+  {
+    "anzeigeName": "Datenschutzhinweise Sparda Baden-Württemberg",
+    "mimeType": "application/pdf",
+    "url": "https://europacewiki.zendesk.com/hc/de/article_attachments/13859513479964",
+    "produktAnbieter": "SPARDA_BW"
+  }
+]
+```
+
 
 ## Use case get saved offers
 
@@ -698,6 +745,31 @@ Authorization: Bearer {{access-token}}
 ```
 Example results are similar to Zahlungsplaene for fresh offers.
 
+### get offer documents of saved offer
+
+Get documents related to a specific saved offer.
+
+```http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/angebotsdokumente HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```json
+[
+  {
+    "anzeigeName": "Datenschutzhinweise Sparda Baden-Württemberg",
+    "mimeType": "application/pdf",
+    "url": "https://europacewiki.zendesk.com/hc/de/article_attachments/13859513479964",
+    "produktAnbieter": "SPARDA_BW"
+  }
+]
+```
+
+
 ## Use case save calculated offer
 
 Newly calculated and refreshed offers can be saved in a case and turned into gemerkteAngebote.
@@ -735,6 +807,279 @@ example-response:
 HTTP/2 204 No Content
 ```
 
+## Patch documentation to a saved offer
+
+Patch saved offer in order to store description and recommendation status.
+
+```http
+PATCH {{eli-base-uri-api}}/v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/1
+Authorization: Bearer {{jwt_access_token}}
+Content-Type: application/json
+```
+
+example request body:
+
+```json
+{
+"fazit": "This offer was proposed by the advisor",
+"beschreibung": "Cost effective offer with good conditions",
+"bewertungDesAngebots": "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG"
+}
+```
+
+## Use case get financing proposal documents
+
+Get financing proposal documents (Finanzierungsvorschlag and optionally Selbstauskunft) for multiple saved offers.
+Each saved offer is identified by its laufendeNummer within the case and multiple offers can be requested at once by providing multiple laufendeNummern in the request body.
+
+```http
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/finanzierungsvorschlagsdokumente HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+example body:
+
+```json
+{
+  "laufendeNummern": [1,2,3],
+  "produktAnbieterAnzeigen": true,
+  "selbstauskunftErstellen": true
+}
+```
+
+example-response:
+
+```json
+{
+  "finanzierungsvorschlag": {
+    "anzeigeName": "Ihre Finanzierungsanfrage (Ratenschutz ELI und RSV) (17.03.2026)",
+    "mimeType": "application/pdf",
+    "url": "https://www.europace2.de/dokumentenverwaltung/download/?id=18a14630a0fa57500c630bab5d781b781d8d8d1168915aa00a06a904e7cdf0182f878f94a6fffeca1dec84d1dd8ff1a8330a91459af0989d0d3e2b7a158a6aa1"
+  },
+  "selbstauskunft": {
+    "anzeigeName": "Selbstauskunft vom 17.03.2026",
+    "mimeType": "application/pdf",
+    "url": "https://www.europace2.de/dokumentenverwaltung/download/?id=361d2f580c0cdf849d686111ea624c8a262721334cc415d9a82adec3ac63edd02a2d85e82c2dce83b29a6c6ed00579b2fb8752cb1d9b37066403ffebdaa4dd6"
+  }
+}
+```
+
+
+
+## Use case create proof offer request (anfrage) for saved offer at a loan provider
+
+Turn a saved offer into an offer request (anfrage).
+If the saved offer is not complete information is given regarding the necessary fields which are incomplete.
+
+```http
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/anfragen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example request body:
+```json
+
+{
+  "hinweistextFuerProduktanbieter": "Anfrage mit Bitte um Prüfung der Eigenkapitalsituation."
+}
+
+```
+
+example-response:
+
+```json
+{
+  "gemerktesAngebot": {
+    "id": "69bc09dcc71695fc56722e65",
+    ...
+  }
+}
+```
+
+## Use case get conditions adjustment
+
+Get data for manual conditions of a saved offer.
+
+This returns information about the possibility of manual conditions adjustment and the resulting effective interest rates.
+
+The "einstandsTyp" field indicates the possible types of conditions adjustment. If the type is "EFFEKTIV", an adjustment of the "effektivZins" rate is possible. If the type is "NOMINAL", an adjustment of the "sollZins" rate is possible. 
+If "zulaessigeEinstandWunschDaten" values are given a date based "Rückdatierung" is possible. 
+
+
+```http
+GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/konditionsanpassung HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```json
+{
+  "zulaessigeEinstandWunschDaten": [],
+  "darlehen": [
+    {
+      "darlehenId": "69bc08ce8005e50be974d9e1",
+      "einstandsDatum": "2026-03-19",
+      "einstandsTyp": "EFFEKTIV",
+      "konditionAnpassungsDelta": -0.08,
+      "effektivZins": 3.0,
+      "sollZins": 2.94
+    }
+  ],
+  "begruendung": "Begründung"
+}
+```
+
+## Use case Set conditions adjustment
+
+This use case enables the setting of a manual conditions adjustment for a saved offer.
+Three types of adjustments are possible: "EFFEKTIV", "NOMINAL" and backdating (Rückdatierung).
+
+### Set conditions adjustment for effective interest rate
+
+```http
+POST {{eli-base-uri-api}}/v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/556/konditionsanpassung
+Authorization: Bearer {{jwt_access_token}}
+Content-Type: application/json
+```
+
+example request body:
+
+```json
+
+{
+  "darlehenKonditionsAnpassungen": [
+    {
+      "darlehensId": "69bc08ce8005e50be974d9e1",
+      "effektivZins": 4.4
+    }
+  ],
+  "begruendung": "Konditionsanpassung via API"
+}
+```
+
+### Set conditions adjustment for nominal interest rate
+
+```http
+POST {{eli-base-uri-api}}/v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/556/konditionsanpassung
+Authorization: Bearer {{jwt_access_token}}
+Content-Type: application/json
+```
+
+example request body:
+
+```json
+
+{
+  "darlehenKonditionsAnpassungen": [
+    {
+      "darlehensId": "69bc08ce8005e50be974d9e1",
+      "sollZins": 4.2
+    }
+  ],
+  "begruendung": "Konditionsanpassung via API"
+}
+```
+
+## Use case check/validate saved offer
+
+Validate or check a saved offer for completeness and accuracy.
+This is a relevant step before accepting an offer. 
+The field "pruefungsStatus" in the response indicates the result of the check/validation.
+A value of "ANNEHMBAR" is required to proceed with accepting the offer. 
+Check meldungen of saved offer for details regarding incomplete or incorrect information in the offer.
+If the response "pruefungsStatus" is "ANNEHMBAR" the offer can be accepted via /annehmen.
+
+```http
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/pruefen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+example-response:
+
+```json
+{
+  "geprueftesAngebot": {
+    "id": "69bc16ffc71695fc56722ee8",
+    "laufendeNummer": 556,
+  },
+  "pruefungsErgebnis": {
+    "pruefungsStatus": "ANNEHMBAR",
+    "externGeprueft": false
+  },
+  ...  
+}
+```
+
+## Use case accept saved offer
+
+Accept a saved offer.
+This is the final step of the offer process and turns a saved offer into an accepted offer.
+
+The saved offer has to be in a state where the documentation process is complete (via Patch saved offer). 
+It is recommended to check the offer for completeness and accuracy via the `/pruefen` endpoint before accepting it.
+ 
+
+```http
+POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/annehmen HTTP/1.1
+Host: api.europace2.de
+Content-Type: application/json
+Authorization: Bearer {{access-token}}
+```
+
+```json
+{
+  "hinweistextFuerProduktanbieter": "Hinweistext für Produktanbieter",
+  "artDerBeratung": "IN_DER_FILIALE"
+}
+```
+
+
+example-response:
+
+```json
+{
+  "annahmeZustand": {
+    "status": "ANGENOMMEN",
+    "beschreibung": "Annahme erfolgreich."
+  },
+  "gemerktesAngebot": {
+    "id": "69bd35069393a69258cd8eb9",
+    "laufendeNummer": 556,
+    "darlehensSumme": 100000,
+    "sollZins": 4.31,
+    "effektivZins": 4.42,
+    "machbarkeit": "MACHBAR",
+    "annahmeFrist": "2026-03-27T22:59:59Z",
+    "bausparAngebote": [],
+    "anpassungsStatus": "ANGEPASST",
+    "elektronischeUnterlagenEinreichung": false,
+    "vollstaendigkeitsStatus": "VOLLSTAENDIG",
+    "rateMonatlich": 525.83,
+    "provisionKundenbetreuerRelativ": 1.0,
+    "produktFeatures": [
+      "kostenloser Tilgungssatzwechsel innerhalb der Zinsbindung"
+    ],
+    "beschreibung": "Gutes Angebot",
+    "basisAngebotsId": "69bc0c9ac71695fc56722e8d",
+    "zuGrundeLiegendesAngebot": "69bd34589393a69258cd8eb6",
+    "bewertung": "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG",
+    "fazit": "Gut"
+    ...
+  },
+  "teilAntragIds": [
+    "WB8JJN/1/1"
+  ],
+  ...
+}
+```
 
 
 # Documentation Version 2
