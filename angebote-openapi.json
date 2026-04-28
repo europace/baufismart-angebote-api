@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.0.19"
+    "version" : "3.1.0"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -2414,6 +2414,151 @@
         "tags" : [ "Version 3" ]
       }
     },
+    "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/angebotsdokumente" : {
+      "get" : {
+        "operationId" : "getAngebotsdokumente",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "ergebnislisteId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "ergebnisnummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/AngebotsDokument"
+                  }
+                }
+              }
+            },
+            "description" : "Die Angebotsdokumente werden abgerufen."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Angebotsdokumente abrufen",
+        "tags" : [ "Version 3" ]
+      }
+    },
     "/v3/vorgaenge/{vorgangsnummer}/ergebnisliste/{ergebnislisteId}/{ergebnisnummer}/berechnungsuebersichten" : {
       "get" : {
         "description" : "Die Berechnungsübersichten abrufen. Als Parameter werden die Vorgangsnummer, die ErgebnislisteId sowie der Ergebnisnummer benötigt.",
@@ -3418,6 +3563,152 @@
         "tags" : [ "Version 3" ]
       }
     },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/finanzierungsvorschlagsdokumente" : {
+      "post" : {
+        "description" : "Finanzierungsvorschlagdokumente (Finanzierungsvorschlag und optional Selbstauskunft) für mehrere gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer bzw. die Nummern des gemerkten Angebots benötigt.",
+        "operationId" : "getFinanzierungsvorschlagsDokumente",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/FinanzierungsvorschlagDokumenteRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FinanzierungsvorschlagDokumente"
+                }
+              }
+            },
+            "description" : "Finanzierungsvorschlagdokumente für mehrere gemerkte Angebote abrufen."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Finanzierungsvorschlagdokumente für mehrere gemerkte Angebote abrufen.",
+        "tags" : [ "Version 3" ]
+      }
+    },
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}" : {
       "get" : {
         "description" : "Abrufen das Gemerkte Angebot. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benötigt.",
@@ -3551,6 +3842,593 @@
         } ],
         "summary" : "Gemerktes Angebot abrufen",
         "tags" : [ "Version 3" ]
+      },
+      "patch" : {
+        "description" : "Informationen an einem gemerkten Angebot speichern. Als Parameter werden die Vorgangsnummer sowie die laufendeNummer benötigt.",
+        "operationId" : "updateGemerktesAngebot",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/GemerktesAngebotUpdateRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "Die Daten wurden erfolgreich gespeichert."
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "422" : {
+            "description" : "Die Anfrage enthält keine Daten."
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Informationen an einem gemerkten Angebot speichern",
+        "tags" : [ "Version 3" ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/anfragen" : {
+      "post" : {
+        "description" : "Anfrage eines Angebots. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
+        "operationId" : "frageAngebotAn",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AngebotAnfrageRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/V3GemerktesAngebot"
+                }
+              }
+            },
+            "description" : "Das gemerkte Angebot wurde angefragt."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln", "baufinanzierung:antrag:schreiben" ]
+        } ],
+        "summary" : "Gemerktes Angebot wird angefragt",
+        "tags" : [ "eli-v-3-angebot-annahme-controller" ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/angebotsdokumente" : {
+      "get" : {
+        "description" : "Zu Angeboten können Produktanbieter spezifische Dokumente abgerufen werden.",
+        "operationId" : "getAngebotsDokumenteMetadaten",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/AngebotsDokument"
+                  }
+                }
+              }
+            },
+            "description" : "Angebotsdokumente abrufen"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Angebotsdokumente abrufen",
+        "tags" : [ "Version 3" ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/annehmen" : {
+      "post" : {
+        "description" : "Annahme eines Angebots. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
+        "operationId" : "nehmeAngebotAn",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "maximum" : 2147483647,
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AngebotAnnahmeRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AngebotAnnahmeErgebnis"
+                }
+              }
+            },
+            "description" : "Das gemerkte Angebot wurde angenommen."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln", "baufinanzierung:antrag:schreiben" ]
+        } ],
+        "summary" : "Gemerktes Angebot wird angenommen",
+        "tags" : [ "eli-v-3-angebot-annahme-controller" ]
       }
     },
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/berechnungsuebersichten" : {
@@ -3826,6 +4704,304 @@
         "tags" : [ "Version 3" ]
       }
     },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/konditionsanpassung" : {
+      "get" : {
+        "description" : "Daten der manuellen Konditionsanpassung erhalten. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
+        "operationId" : "ermittleKonditionsAnpassungsAngebot",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/KonditionsAnpassungAngebot"
+                }
+              }
+            },
+            "description" : "Daten für manuelle Konditionsanpassung erhalten."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Daten der manuellen Konditionsanpassung erhalten.",
+        "tags" : [ "Version 3" ]
+      },
+      "post" : {
+        "description" : "Manuelle Konditionsanpassung für ein oder mehrere Darlehen durchführen. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
+        "operationId" : "aktualisiereMitAngepassterKondition",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/KonditionsAnpassungRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/V3GemerktesAngebot"
+                }
+              }
+            },
+            "description" : "Die manuelle Konditionsanpassung für ein oder mehrere Darlehen wurde erfolgreich durchgeführt."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln" ]
+        } ],
+        "summary" : "Manuelle Konditionsanpassung für ein oder mehrere Darlehen durchführen.",
+        "tags" : [ "Version 3" ]
+      }
+    },
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/meldungen" : {
       "get" : {
         "description" : "Die Meldungen für gemerkte Angebote abrufen. Als Parameter werden die Vorgangsnummer sowie laufende Nummer des gemerkten Angebots benötigt.",
@@ -3959,6 +5135,152 @@
         } ],
         "summary" : "Meldungen für gemerkte Angebote abrufen",
         "tags" : [ "Version 3" ]
+      }
+    },
+    "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/pruefen" : {
+      "post" : {
+        "description" : "Prüfen eines Angebots. Als Parameter werden die Vorgangsnummer sowie die laufende Nummer des gemerkten Angebots benötigt.",
+        "operationId" : "pruefeAngebot",
+        "parameters" : [ {
+          "description" : "Authorization Bearer Token",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "X-TraceId",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "vorgangsnummer",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^[A-Z0-9]{6}",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "laufendeNummer",
+          "required" : true,
+          "schema" : {
+            "maximum" : 2147483647,
+            "minimum" : 1,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GeprueftesAngebot"
+                }
+              }
+            },
+            "description" : "Das gemerkte Angebot wurde geprüft."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Request"
+          },
+          "401" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Not Found"
+          },
+          "405" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Method Not Allowed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Too Many Requests"
+          },
+          "500" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Internal Server Error"
+          },
+          "502" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Bad Gateway"
+          },
+          "504" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            },
+            "description" : "Gateway Timeout"
+          }
+        },
+        "security" : [ {
+          "oAuth2" : [ "baufinanzierung:angebot:ermitteln", "baufinanzierung:antrag:schreiben" ]
+        } ],
+        "summary" : "Gemerktes Angebot wird geprüft",
+        "tags" : [ "eli-v-3-angebot-annahme-controller" ]
       }
     },
     "/v3/vorgaenge/{vorgangsnummer}/gemerkteangebote/{laufendeNummer}/unterlagen" : {
@@ -4428,12 +5750,88 @@
           }
         }
       },
+      "AggregiertesPruefungsErgebnis" : {
+        "type" : "object",
+        "properties" : {
+          "externGeprueft" : {
+            "type" : "boolean"
+          },
+          "pruefungsStatus" : {
+            "type" : "string",
+            "enum" : [ "NICHT_ANNEHMBAR", "ANNEHMBAR" ]
+          }
+        }
+      },
+      "AngebotAnfrageRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "hinweistextFuerProduktanbieter" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Anfrage Body für die Angebotsanfrage"
+      },
+      "AngebotAnnahmeErgebnis" : {
+        "type" : "object",
+        "properties" : {
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "annahmeZustand" : {
+            "type" : "string",
+            "enum" : [ "ANGENOMMEN", "NICHT_ANGENOMMEN_RUECKFRAGE", "NICHT_ANGENOMMEN_ANFRAGBAR" ]
+          },
+          "gemerktesAngebot" : {
+            "$ref" : "#/components/schemas/V3GemerktesAngebot"
+          },
+          "teilAntragIds" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "AngebotAnnahmeRequestBody" : {
+        "required" : [ "artDerBeratung" ],
+        "type" : "object",
+        "properties" : {
+          "artDerBeratung" : {
+            "pattern" : "IN_DER_FILIALE|TELEFONISCH|AUSSERHALB_DER_FILIALE",
+            "type" : "string"
+          },
+          "hinweistextFuerProduktanbieter" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Anfrage Body für die Angebotsannahme"
+      },
       "AngebotMerkenAntwort" : {
         "type" : "object",
         "properties" : {
           "laufendeNummerAmVorgang" : {
             "type" : "integer",
             "format" : "int32"
+          }
+        }
+      },
+      "AngebotsDokument" : {
+        "type" : "object",
+        "properties" : {
+          "anzeigeName" : {
+            "type" : "string"
+          },
+          "filename" : {
+            "type" : "string"
+          },
+          "mimeType" : {
+            "type" : "string"
+          },
+          "produktAnbieter" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
           }
         }
       },
@@ -5454,6 +6852,28 @@
           }
         }
       },
+      "DarlehenKonditionsAnpassungRequestBody" : {
+        "required" : [ "darlehensId" ],
+        "type" : "object",
+        "properties" : {
+          "darlehensId" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "effektivZins" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "empty" : {
+            "type" : "boolean"
+          },
+          "sollZins" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        },
+        "description" : "Anfrage Body für manuelle Konditionsanpassung eines Darlehens"
+      },
       "DarlehensWunsch" : {
         "type" : "object",
         "properties" : {
@@ -6048,6 +7468,46 @@
           }
         }
       },
+      "FinanzierungsvorschlagDokumente" : {
+        "type" : "object",
+        "properties" : {
+          "finanzierungsvorschlag" : {
+            "$ref" : "#/components/schemas/AngebotsDokument"
+          },
+          "selbstauskunft" : {
+            "$ref" : "#/components/schemas/AngebotsDokument"
+          }
+        },
+        "description" : "Response Body für Finanzierungsvorschlagdokumente"
+      },
+      "FinanzierungsvorschlagDokumenteRequestBody" : {
+        "required" : [ "laufendeNummern" ],
+        "type" : "object",
+        "properties" : {
+          "empty" : {
+            "type" : "boolean"
+          },
+          "laufendeNummern" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "Die laufende Nummer oder die Nummern des gemerkten Angebots.",
+            "items" : {
+              "type" : "integer",
+              "description" : "Die laufende Nummer oder die Nummern des gemerkten Angebots.",
+              "format" : "int32"
+            }
+          },
+          "produktAnbieterAnzeigen" : {
+            "type" : "boolean",
+            "description" : "Muss True sein, um die ProduktAnbieter im Finanzierungsvorschlag zu zeigen."
+          },
+          "selbstauskunftErstellen" : {
+            "type" : "boolean",
+            "description" : "Muss True sein, um die Selbstauskunft zu erstellen."
+          }
+        },
+        "description" : "Anfrage Body für FinanzierungsvorschlagDokument"
+      },
       "Finanzierungswunsch" : {
         "required" : [ "darlehensWuensche" ],
         "type" : "object",
@@ -6242,6 +7702,36 @@
           },
           "vermietungsInformationen" : {
             "$ref" : "#/components/schemas/VermietungsInformationen"
+          }
+        }
+      },
+      "GemerktesAngebotUpdateRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "beschreibung" : {
+            "type" : "string"
+          },
+          "bewertungDesAngebots" : {
+            "pattern" : "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG|ANGEBOT_ENTSPRICHT_DEM_WUNSCH_DES_KUNDEN|",
+            "type" : "string"
+          },
+          "fazit" : {
+            "type" : "string"
+          }
+        },
+        "description" : "Anfrage Body für die Aktualisierung eines gemerkten Angebots"
+      },
+      "GeprueftesAngebot" : {
+        "type" : "object",
+        "properties" : {
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "geprueftesAngebot" : {
+            "$ref" : "#/components/schemas/V3GemerktesAngebot"
+          },
+          "pruefungsErgebnis" : {
+            "$ref" : "#/components/schemas/AggregiertesPruefungsErgebnis"
           }
         }
       },
@@ -6547,6 +8037,80 @@
           }
         }
       },
+      "KonditionsAnpassungAngebot" : {
+        "type" : "object",
+        "properties" : {
+          "_links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "begruendung" : {
+            "type" : "string"
+          },
+          "darlehen" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/KonditionsAnpassungDarlehen"
+            }
+          },
+          "zulaessigeEinstandWunschDaten" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "format" : "date"
+            }
+          }
+        }
+      },
+      "KonditionsAnpassungDarlehen" : {
+        "type" : "object",
+        "properties" : {
+          "darlehenId" : {
+            "type" : "string"
+          },
+          "effektivZins" : {
+            "type" : "number"
+          },
+          "einstandsDatum" : {
+            "type" : "string",
+            "format" : "date"
+          },
+          "einstandsTyp" : {
+            "type" : "string",
+            "enum" : [ "NOMINAL", "EFFEKTIV", "KEINE" ]
+          },
+          "konditionAnpassungsDelta" : {
+            "type" : "number"
+          },
+          "sollZins" : {
+            "type" : "number"
+          }
+        }
+      },
+      "KonditionsAnpassungRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "begruendung" : {
+            "type" : "string",
+            "description" : "Optionale Begründung der Anpassung."
+          },
+          "darlehenKonditionsAnpassungen" : {
+            "type" : "array",
+            "description" : "Liste der Konditionsanpassungen pro Darlehen",
+            "items" : {
+              "$ref" : "#/components/schemas/DarlehenKonditionsAnpassungRequestBody"
+            }
+          },
+          "einstandWunschDatum" : {
+            "type" : "string",
+            "description" : "Einstand-Wunschdatum im ISO-Format (yyyy-MM-dd). Optional, darf jedoch nicht leer sein, wenn angegeben.",
+            "format" : "date"
+          },
+          "einstandWunschDatumOderKonditionsAnpassungenValide" : {
+            "type" : "boolean"
+          }
+        },
+        "description" : "Anfrage Body für manuelle Konditionsanpassung"
+      },
       "KonditionsUebersicht" : {
         "type" : "object",
         "properties" : {
@@ -6656,28 +8220,34 @@
         "type" : "object",
         "properties" : {
           "deprecation" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           },
           "href" : {
             "type" : "string"
           },
           "hreflang" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           },
           "name" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           },
           "profile" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           },
           "templated" : {
             "type" : "boolean"
           },
           "title" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           },
           "type" : {
-            "type" : "string"
+            "type" : "string",
+            "nullable" : true
           }
         }
       },
