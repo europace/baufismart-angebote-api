@@ -5,7 +5,7 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 ![advisor](https://img.shields.io/badge/-advisor-lightblue)
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
 
-[![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
+[![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentication/authorization-api/)
 [![Github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/europace/baufismart-angebote-api)
 [![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-angebote-api)](https://github.com/europace/baufismart-angebote-api/releases)
 
@@ -20,7 +20,7 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 ## End-of-Life Notice – Angebote API v1 & v2
 ##### ⚠️ End of Life
 The Angebote API versions v1 and v2 have reached end of life and are no longer supported.
-Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative.
+Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative - see the [Migration Guide](/baufinanzierung/migration-angebote-vorgaenge-v3/) for details.
 
 ## Requirements
 
@@ -32,12 +32,13 @@ To test our APIs and your use cases as quickly as possible, we have created a [P
 
 ### Authentication
 
-Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
+Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentication/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
 
-| Scope                               | API Use case                    |
-|-------------------------------------|---------------------------------|
-| `baufinanzierung:angebot:ermitteln` | to find offers and show details |
-| `baufinanzierung:angebot:loeschen`  | to delete saved offers          |
+| Scope                               | API Use case                                          |
+|-------------------------------------|-------------------------------------------------------|
+| `baufinanzierung:angebot:ermitteln` | to find offers and show details                       |
+| `baufinanzierung:angebot:loeschen`  | to delete saved offers                                |
+| `baufinanzierung:antrag:schreiben`  | for /pruefen /anfragen and /annehmen (v3.1) endpoints |
 
 # Angebote API versions and functionalities
 
