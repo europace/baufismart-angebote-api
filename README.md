@@ -5,7 +5,7 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 ![advisor](https://img.shields.io/badge/-advisor-lightblue)
 ![mortgageLoan](https://img.shields.io/badge/-mortgageLoan-lightblue)
 
-[![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/)
+[![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentication/authorization-api/)
 [![Github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/europace/baufismart-angebote-api)
 [![GitHub release](https://img.shields.io/github/v/release/europace/baufismart-angebote-api)](https://github.com/europace/baufismart-angebote-api/releases)
 
@@ -20,7 +20,7 @@ As an advisor you can find offers, compare, save and refresh them to get the bes
 ## End-of-Life Notice – Angebote API v1 & v2
 ##### ⚠️ End of Life
 The Angebote API versions v1 and v2 have reached end of life and are no longer supported.
-Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative.
+Please migrate to Angebote API v3. Some legacy features are not available in v3 and may require using the Vorschlaege API as an alternative - see the [Migration Guide](/baufinanzierung/migration-angebote-vorgaenge-v3/) for details.
 
 ## Requirements
 
@@ -32,12 +32,13 @@ To test our APIs and your use cases as quickly as possible, we have created a [P
 
 ### Authentication
 
-Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentifizierung/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
+Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](https://docs.api.europace.de/common/authentication/authorization-api/) to get access to the APIs. The OAuth2 client requires the following scopes:
 
-| Scope                               | API Use case                    |
-|-------------------------------------|---------------------------------|
-| `baufinanzierung:angebot:ermitteln` | to find offers and show details |
-| `baufinanzierung:angebot:loeschen`  | to delete saved offers          |
+| Scope                               | API Use case                                          |
+|-------------------------------------|-------------------------------------------------------|
+| `baufinanzierung:angebot:ermitteln` | to find offers and show details                       |
+| `baufinanzierung:angebot:loeschen`  | to delete saved offers                                |
+| `baufinanzierung:antrag:schreiben`  | for /pruefen /anfragen and /annehmen (v3.1) endpoints |
 
 # Angebote API versions and functionalities
 
@@ -95,7 +96,7 @@ Finding offers can be controlled by several parameters.
 If an empty body is given default parameters are used.
 
 ```json
-{ 
+{
   // default parameters 
   "ermitteln": true, // calculate fresh new offers
   "aktualisieren": true, // recalculate gemerkte (saved) offers in case
@@ -194,7 +195,7 @@ The sample response with a fresh calculated offer.
       }
     },
     ...
-  ],  
+  ],
   "_links": {
     "_self": {
       "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B"
@@ -355,30 +356,30 @@ example-response:
       "id": "64799f25ce9d3daff2f7335a",
       "typ": "ANNUITAETEN_DARLEHEN",
       ...
-     },
-      
-  ..,
-  "_links": {
-    "berechnungsuebersichten": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
     },
-    "zahlungsplaene": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
-    },
-    "meldungen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
-    },
-    "unterlagen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
-    },
-    "provision": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
-    },
-    "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+
+    ..,
+    "_links": {
+      "berechnungsuebersichten": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
+      },
+      "zahlungsplaene": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+      },
+      "meldungen": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+      },
+      "unterlagen": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+      },
+      "provision": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
+      },
+      "_self": {
+        "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+      }
     }
-  }
-}
+    }
 ```
 
 ## Use case get details (Meldungen) of offer
@@ -449,15 +450,15 @@ example-response:
           "zinsen": 0.00,
           "saldo": -250000.00
         },
-      ..., 
-      "_links": {
-        "_self": {
-          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
+        ...,
+        "_links": {
+          "_self": {
+            "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
+          }
         }
-      }
+        }
+      ]
     }
-  ]
-}
 ```
 
 ## Use case get details (Unterlagen) of Offer
@@ -647,7 +648,7 @@ example-response:
     ],
     ...
   }
-  
+
 ]
 ```
 
@@ -821,9 +822,9 @@ example request body:
 
 ```json
 {
-"fazit": "This offer was proposed by the advisor",
-"beschreibung": "Cost effective offer with good conditions",
-"bewertungDesAngebots": "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG"
+  "fazit": "This offer was proposed by the advisor",
+  "beschreibung": "Cost effective offer with good conditions",
+  "bewertungDesAngebots": "ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG"
 }
 ```
 
@@ -905,8 +906,8 @@ Get data for manual conditions of a saved offer.
 
 This returns information about the possibility of manual conditions adjustment and the resulting effective interest rates.
 
-The "einstandsTyp" field indicates the possible types of conditions adjustment. If the type is "EFFEKTIV", an adjustment of the "effektivZins" rate is possible. If the type is "NOMINAL", an adjustment of the "sollZins" rate is possible. 
-If "zulaessigeEinstandWunschDaten" values are given a date based "Rückdatierung" is possible. 
+The "einstandsTyp" field indicates the possible types of conditions adjustment. If the type is "EFFEKTIV", an adjustment of the "effektivZins" rate is possible. If the type is "NOMINAL", an adjustment of the "sollZins" rate is possible.
+If "zulaessigeEinstandWunschDaten" values are given a date based "Rückdatierung" is possible.
 
 
 ```http
@@ -989,9 +990,9 @@ example request body:
 ## Use case check/validate saved offer
 
 Validate or check a saved offer for completeness and accuracy.
-This is a relevant step before accepting an offer. 
+This is a relevant step before accepting an offer.
 The field "pruefungsStatus" in the response indicates the result of the check/validation.
-A value of "ANNEHMBAR" is required to proceed with accepting the offer. 
+A value of "ANNEHMBAR" is required to proceed with accepting the offer.
 Check meldungen of saved offer for details regarding incomplete or incorrect information in the offer.
 If the response "pruefungsStatus" is "ANNEHMBAR" the offer can be accepted via /annehmen.
 
@@ -1014,7 +1015,7 @@ example-response:
     "pruefungsStatus": "ANNEHMBAR",
     "externGeprueft": false
   },
-  ...  
+  ...
 }
 ```
 
@@ -1023,9 +1024,9 @@ example-response:
 Accept a saved offer.
 This is the final step of the offer process and turns a saved offer into an accepted offer.
 
-The saved offer has to be in a state where the documentation process is complete (via Patch saved offer). 
+The saved offer has to be in a state where the documentation process is complete (via Patch saved offer).
 It is recommended to check the offer for completeness and accuracy via the `/pruefen` endpoint before accepting it.
- 
+
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/annehmen HTTP/1.1
@@ -1113,93 +1114,93 @@ example-response:
 
 ```json
 {
-    "ermittlungsId": "CJAMN4",
-    "ergebnisse": [
+  "ermittlungsId": "CJAMN4",
+  "ergebnisse": [
+    {
+      "kennung": "",
+      "darlehensSumme": 100000.00,
+      "sollZins": 1.19000,
+      "effektivZins": 1.23000,
+      "darlehen": [
         {
-            "kennung": "",
-            "darlehensSumme": 100000.00,
-            "sollZins": 1.19000,
-            "effektivZins": 1.23000,
-            "darlehen": [
-                {
-                    "id": "620d2b1aa52cfa08e9ef171b",
-                    "typ": "ANNUITAETEN_DARLEHEN",
-                    "sollZins": 1.19000,
-                    "effektivZins": 1.23000,
-                    "effektivZinsRelevanteKosten": {
-                        "grundbuchKosten": 273.00
-                    },
-                    "rateMonatlich": 265.83,
-                    "darlehensBetrag": 100000.00,
-                    "auszahlungsBetrag": 100000.00,
-                    "produktAnbieter": {
-                        "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "PARTNER-ID",
-                        "name": "Musterbank",
-                        "_links": {
-                            "logo": {
-                                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
-                            }
-                        }
-                    },
-                    "finanzierenderProduktAnbieter": {
-                        "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "PARTNER-ID",
-                        "name": "Musterbank",
-                        "_links": {
-                            "logo": {
-                                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
-                            }
-                        }
-                    },
-                    "zinsZahlungsBeginnAm": "2022-04-30",
-                    "zinsBindung": {
-                        "jahre": 10,
-                        "restschuldNachZinsBindungsEnde": 78772.98
-                    },
-                    "tilgung": {
-                        "anfaenglicheTilgung": 2.00000,
-                        "tilgungsBeginn": "2022-04-30",
-                        "sonderTilgungJaehrlich": 10.00000
-                    },
-                    "bereitstellung": {
-                        "bereitstellungsZinsfreieZeitInMonaten": 3,
-                        "bereitstellungsZins": 3.00000
-                    },
-                    "gesamtlaufzeitInMonaten": 472,
-                    "gesamtkosten": 125216.08,
-                    "auszahlungsDatum": "2022-03-31"
-                }
-            ],
-            "beleihung": [
-                {
-                    "produktAnbieter": {
-                        "produktAnbieterId": "MUSTERBANK",
-                        "partnerId": "PARTNER-ID",
-                        "name": "Musterbank",
-                        "_links": {
-                            "logo": {
-                                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
-                            }
-                        }
-                    },
-                    "summe": 180000.00,
-                    "auslauf": 55.56000
-                }
-            ],
-            "machbarkeit": "MACHBAR",
-            "annahmeFrist": "2022-03-04T23:59:59+01:00",
-            "erzeugtAm": "2022-02-25T11:39:13.621+01:00",
-            "bausparAngebote": [],
-            "anpassungsStatus": "ANGEPASST",
+          "id": "620d2b1aa52cfa08e9ef171b",
+          "typ": "ANNUITAETEN_DARLEHEN",
+          "sollZins": 1.19000,
+          "effektivZins": 1.23000,
+          "effektivZinsRelevanteKosten": {
+            "grundbuchKosten": 273.00
+          },
+          "rateMonatlich": 265.83,
+          "darlehensBetrag": 100000.00,
+          "auszahlungsBetrag": 100000.00,
+          "produktAnbieter": {
+            "produktAnbieterId": "MUSTERBANK",
+            "partnerId": "PARTNER-ID",
+            "name": "Musterbank",
             "_links": {
-                "_self": {
-                    "href": "https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30"
-                }
+              "logo": {
+                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+              }
             }
-        },
-        ....
-    ]
+          },
+          "finanzierenderProduktAnbieter": {
+            "produktAnbieterId": "MUSTERBANK",
+            "partnerId": "PARTNER-ID",
+            "name": "Musterbank",
+            "_links": {
+              "logo": {
+                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+              }
+            }
+          },
+          "zinsZahlungsBeginnAm": "2022-04-30",
+          "zinsBindung": {
+            "jahre": 10,
+            "restschuldNachZinsBindungsEnde": 78772.98
+          },
+          "tilgung": {
+            "anfaenglicheTilgung": 2.00000,
+            "tilgungsBeginn": "2022-04-30",
+            "sonderTilgungJaehrlich": 10.00000
+          },
+          "bereitstellung": {
+            "bereitstellungsZinsfreieZeitInMonaten": 3,
+            "bereitstellungsZins": 3.00000
+          },
+          "gesamtlaufzeitInMonaten": 472,
+          "gesamtkosten": 125216.08,
+          "auszahlungsDatum": "2022-03-31"
+        }
+      ],
+      "beleihung": [
+        {
+          "produktAnbieter": {
+            "produktAnbieterId": "MUSTERBANK",
+            "partnerId": "PARTNER-ID",
+            "name": "Musterbank",
+            "_links": {
+              "logo": {
+                "href": "https://www.europace2.de/produktanbieter-logos/logo/MUSTERBANK.svg"
+              }
+            }
+          },
+          "summe": 180000.00,
+          "auslauf": 55.56000
+        }
+      ],
+      "machbarkeit": "MACHBAR",
+      "annahmeFrist": "2022-03-04T23:59:59+01:00",
+      "erzeugtAm": "2022-02-25T11:39:13.621+01:00",
+      "bausparAngebote": [],
+      "anpassungsStatus": "ANGEPASST",
+      "_links": {
+        "_self": {
+          "href": "https://baufinanzierung.api.europace.de/v2/ergebnisliste/ermittlung/CJAMN4/ergebnisse/30"
+        }
+      }
+    },
+    ....
+  ]
 }
 ```
 
@@ -1268,37 +1269,37 @@ example-response:
 
 ```json
 {
-    "meldungen": [
-        {
-            "text": "Gib bitte an, ob der Finanzierungsvorschlag deiner Empfehlung entspricht.",
-            "code": "pe.speed.vorbehaltsmeldung.angebot.empfohlen",
-            "produktAnbieterId": "MUSTERBANK",
-            "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
-            "bereichsZuordnung": "VORHABEN"
-        },
-        {
-            "text": "Bei einer Verringerung der Darlehenssumme unter 150.000,00 € verändert sich die Kondition um -0,05 %. Bis zu einer Darlehenssumme unter 168.800,00 € bleibt die Kondition gleich.",
-            "code": "pe.speed.machbarkeit.darlehenssumme.optimierung.beideGrenzen",
-            "produktAnbieterId": "MUSTERBANK",
-            "meldungsKategorie": "MACHBARKEITS_HINWEIS",
-            "bereichsZuordnung": "VORHABEN"
-        },
-        {
-            "text": "Die bereitstellungszinsfreie Zeit für das Annuitätendarlehen über 150.000,00 € wurde auf die maximal kostenfreie Zeit von 3 Monaten erhöht.",
-            "code": "pe.speed.machbarkeit.annuitaetendarlehen.bereitstellungszins.erhoeht.anpassung",
-            "produktAnbieterId": "MUSTERBANK",
-            "meldungsKategorie": "ANPASSUNG_KUNDENWUNSCH",
-            "bereichsZuordnung": "VORHABEN"
-        },
-        {
-            "text": "Es wurde keine Person angegeben.",
-            "code": "pe.speed.vorbehaltsmeldung.darlehensnehmer",
-            "produktAnbieterId": "MUSTERBANK",
-            "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
-            "bereichsZuordnung": "VORHABEN"
-        },
-        ...
-    ]
+  "meldungen": [
+    {
+      "text": "Gib bitte an, ob der Finanzierungsvorschlag deiner Empfehlung entspricht.",
+      "code": "pe.speed.vorbehaltsmeldung.angebot.empfohlen",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    {
+      "text": "Bei einer Verringerung der Darlehenssumme unter 150.000,00 € verändert sich die Kondition um -0,05 %. Bis zu einer Darlehenssumme unter 168.800,00 € bleibt die Kondition gleich.",
+      "code": "pe.speed.machbarkeit.darlehenssumme.optimierung.beideGrenzen",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEITS_HINWEIS",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    {
+      "text": "Die bereitstellungszinsfreie Zeit für das Annuitätendarlehen über 150.000,00 € wurde auf die maximal kostenfreie Zeit von 3 Monaten erhöht.",
+      "code": "pe.speed.machbarkeit.annuitaetendarlehen.bereitstellungszins.erhoeht.anpassung",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "ANPASSUNG_KUNDENWUNSCH",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    {
+      "text": "Es wurde keine Person angegeben.",
+      "code": "pe.speed.vorbehaltsmeldung.darlehensnehmer",
+      "produktAnbieterId": "MUSTERBANK",
+      "meldungsKategorie": "MACHBARKEIT_UNTER_VORBEHALT_VOLLSTAENDIGER_DATEN",
+      "bereichsZuordnung": "VORHABEN"
+    },
+    ...
+  ]
 }
 ```
 
@@ -1319,25 +1320,25 @@ example-response:
 
 ```json
 {
-    "unterlagen": [
-        {
-            "bezugsObjektId": "620d2b1aa64cfa08e9ef171b",
-            "code": "093f65e0-80a2-35f8-876b-1c5722a46aa2",
-            "produktAnbieterId": "MUSTERBANK",
-            "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
-            "zuordnung": "ANTRAGSTELLER",
-            "text": "Jahreskontoauszug vom letzten Jahr"
-        },
-        {
-            "bezugsObjektId": "620d2b1aa52cfa0adc3f172e",
-            "code": "e2c420d9-28d4-3f8c-a0ff-2ec19b371514",
-            "produktAnbieterId": "MUSTERBANK",
-            "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
-            "zuordnung": "IMMOBILIE",
-            "text": "Grundbuchauszug"
-        },
+  "unterlagen": [
+    {
+      "bezugsObjektId": "620d2b1aa64cfa08e9ef171b",
+      "code": "093f65e0-80a2-35f8-876b-1c5722a46aa2",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "ANTRAGSTELLER",
+      "text": "Jahreskontoauszug vom letzten Jahr"
+    },
+    {
+      "bezugsObjektId": "620d2b1aa52cfa0adc3f172e",
+      "code": "e2c420d9-28d4-3f8c-a0ff-2ec19b371514",
+      "produktAnbieterId": "MUSTERBANK",
+      "faelligkeit": "ZUR_VERBINDLICHEN_ANGEBOTSANNAHME",
+      "zuordnung": "IMMOBILIE",
+      "text": "Grundbuchauszug"
+    },
     ...
-}
+    }
 ```
 
 ### get redemption plan
@@ -1357,50 +1358,50 @@ example-response:
 
 ```json
 {
-    "zahlungsplaene": [
+  "zahlungsplaene": [
+    {
+      "identifier": "U5BT3T1XKB",
+      "typ": "TILGUNGSPLAN",
+      "bausteinTyp": "ANNUITAETEN_DARLEHEN",
+      "zahlungen": [
         {
-            "identifier": "U5BT3T1XKB",
-            "typ": "TILGUNGSPLAN",
-            "bausteinTyp": "ANNUITAETEN_DARLEHEN",
-            "zahlungen": [
-                {
-                    "datum": "2022-03-31",
-                    "zahlung": -150000.00,
-                    "tilgung": -150000.00,
-                    "zinsen": 0.00,
-                    "saldo": -150000.00
-                },
-                {
-                    "datum": "2022-04-30",
-                    "zahlung": 736.25,
-                    "tilgung": 250.00,
-                    "zinsen": 486.25,
-                    "saldo": -149750.00
-                },
-                {
-                    "datum": "2022-05-31",
-                    "zahlung": 736.25,
-                    "tilgung": 250.81,
-                    "zinsen": 485.44,
-                    "saldo": -149499.19
-                },
-                ....
-                ],
-            "summeEndeDerZinsbindung": {
-                "datum": "2032-03-31",
-                "zahlung": 88350.00,
-                "tilgung": 36599.68,
-                "zinsen": 51750.32,
-                "saldo": -113400.32
-            },
-            "gesamtSumme": {
-                "zahlung": 245713.04,
-                "tilgung": 150000.00,
-                "zinsen": 95713.04,
-                "saldo": 0.00
-            }
-        }
-    ]
+          "datum": "2022-03-31",
+          "zahlung": -150000.00,
+          "tilgung": -150000.00,
+          "zinsen": 0.00,
+          "saldo": -150000.00
+        },
+        {
+          "datum": "2022-04-30",
+          "zahlung": 736.25,
+          "tilgung": 250.00,
+          "zinsen": 486.25,
+          "saldo": -149750.00
+        },
+        {
+          "datum": "2022-05-31",
+          "zahlung": 736.25,
+          "tilgung": 250.81,
+          "zinsen": 485.44,
+          "saldo": -149499.19
+        },
+        ....
+      ],
+      "summeEndeDerZinsbindung": {
+        "datum": "2032-03-31",
+        "zahlung": 88350.00,
+        "tilgung": 36599.68,
+        "zinsen": 51750.32,
+        "saldo": -113400.32
+      },
+      "gesamtSumme": {
+        "zahlung": 245713.04,
+        "tilgung": 150000.00,
+        "zinsen": 95713.04,
+        "saldo": 0.00
+      }
+    }
+  ]
 }
 ```
 
@@ -1435,8 +1436,8 @@ example-response:
 
 ```json
 {
-    betrag: 100000,    // amount in cents
-    partnerId: "WER03" // PartnerId of the recipient
+  betrag: 100000,    // amount in cents
+  partnerId: "WER03" // PartnerId of the recipient
 }
 ```
 
