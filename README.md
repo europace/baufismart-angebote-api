@@ -42,26 +42,26 @@ Please use [![Authentication](https://img.shields.io/badge/Auth-OAuth2-green)](h
 
 # Angebote API versions and functionalities
 
-| Use case                                                                | Version 1 | Version 2 | Version 3 |
-|-------------------------------------------------------------------------|-----------|-----------|-----------|
-| calculate new offers without case                                       | ✅         | ✅         |           |
-| calculate new offers with case                                          | ✅         | ✅         | ✅         |
-| get offer details (Unterlagen, Meldungen, ...)                          |           | ✅         | ✅         |
-| get calculation overviews (Haushaltsrechnung, Kondition, ...)           |           |           | ✅         |
-| save newly calculated offer (favorite)                                  |           |           | ✅         |
-| get all saved offers from case                                          |           |           | ✅         |
-| get details of saved offers from case                                   |           |           | ✅         |
-| delete saved offer in case                                              |           |           | ✅         |
-| recalculate saved offer in case                                         |           |           | ✅         |
-| get offer details (offer documents)                                     |           |           | ✅ v 3.1   |
-| patch metadata to a saved offer                                         |           |           | ✅ v 3.1   |
-| get financing documents of saved offer                                  |           |           | ✅ v 3.1   |
-| get offer documents of saved offer                                      |           |           | ✅ v 3.1   |
-| create proof offer request (anfrage) for saved offer at a loan provider |           |           | ✅ v 3.1   |
-| get condition information for saved offer in case                       |           |           | ✅ v 3.1   |
-| set condition for saved offer in case                                   |           |           | ✅ v 3.1   |
-| validate/check saved offer in case                                      |           |           | ✅ v 3.1   |
-| accept saved offer in case                                              |           |           | ✅ v 3.1   |
+| Use case                                                                                                                                                   | Version 1 | Version 2 | Version 3 |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|-----------|
+| [calculate new offers without case](#b-find-offers-without-case)                                                                                           | ✅         | ✅         |           |
+| [calculate new offers with case](#findOffers)                                                                                                              | ✅         | ✅         | ✅         |
+| [get offer details (Unterlagen, Meldungen, ...)](#use-case-get-offer-details-of-single-offer)                                                              |           | ✅         | ✅         |
+| [get calculation overviews (Haushaltsrechnung, Kondition, ...)](#use-case-get-details-uebersichten-of-offer)                                               |           |           | ✅         |
+| [save newly calculated offer (favorite)](#use-case-save-calculated-offer)                                                                                  |           |           | ✅         |
+| [get all saved offers from case](#use-case-get-saved-offers)                                                                                               |           |           | ✅         |
+| [get details of saved offers from case](#use-case-get-details-of-saved-offers)                                                                             |           |           | ✅         |
+| [delete saved offer in case](#use-case-delete-saved-offer)                                                                                                 |           |           | ✅         |
+| [recalculate saved offer in case](#findOffers)                                                                                                             |           |           | ✅         |
+| [get offer details (offer documents)](#use-case-get-details-offer-documents-of-offer)                                                                      |           |           | ✅ v 3.1   |
+| [patch documentation to a saved offer](#patch-documentation-to-a-saved-offer)                                                                              |           |           | ✅ v 3.1   |
+| [get financing documents of saved offer](#use-case-get-financing-proposal-documents)                                                                       |           |           | ✅ v 3.1   |
+| [get offer documents of saved offer](#use-case-get-offer-documents-of-saved-offer)                                                                         |           |           | ✅ v 3.1   |
+| [create proof offer request (anfrage) for saved offer at a loan provider](#use-case-create-proof-offer-request-anfrage-for-saved-offer-at-a-loan-provider) |           |           | ✅ v 3.1   |
+| [get condition information for saved offer in case](#use-case-get-conditions-adjustment)                                                                   |           |           | ✅ v 3.1   |
+| [set condition for saved offer in case](#use-case-set-conditions-adjustment)                                                                               |           |           | ✅ v 3.1   |
+| [validate/check saved offer in case](#use-case-checkvalidate-saved-offer)                                                                                  |           |           | ✅ v 3.1   |
+| [accept saved offer in case](#use-case-accept-saved-offer)                                                                                                 |           |           | ✅ v 3.1   |
 
 ## Offer lifecycle
 
@@ -746,7 +746,7 @@ Authorization: Bearer {{access-token}}
 ```
 Example results are similar to Zahlungsplaene for fresh offers.
 
-### get offer documents of saved offer
+### Use case get offer documents of saved offer
 
 Get documents related to a specific saved offer.
 

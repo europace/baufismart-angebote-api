@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.1.0"
+    "version" : "3.1.1"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -4382,6 +4382,26 @@
               }
             },
             "description" : "Method Not Allowed"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AngebotAnnahmeErgebnis"
+                }
+              }
+            },
+            "description" : "Das Angebot wurde nicht angenommen. Überpruefen Sie den Status des Angebots."
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AngebotAnnahmeErgebnis"
+                }
+              }
+            },
+            "description" : "Das Angebot konnte nicht angenommen werden."
           },
           "429" : {
             "content" : {
