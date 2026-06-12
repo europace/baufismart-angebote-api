@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.1.1
+  version: 3.1.2
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -5452,6 +5452,10 @@ components:
           - NRW_BANK_WOHNEIGENTUM
           - NRW_BANK_GEBAEUDESANIERUNG
           - NRW_BANK_NACHHALTIG_WOHNEN
+          - IBSH_IMMOEIGENTUM
+          - IBSH_IMMOFIX
+          - IBSH_IMMOFLEX
+          - IBSH_IMMOKONSTANT
         sollZins:
           type: number
         summeGebuehrenUeberGesamtlaufzeit:
@@ -6890,6 +6894,10 @@ components:
           - NRW_BANK_WOHNEIGENTUM
           - NRW_BANK_GEBAEUDESANIERUNG
           - NRW_BANK_NACHHALTIG_WOHNEN
+          - IBSH_IMMOEIGENTUM
+          - IBSH_IMMOFIX
+          - IBSH_IMMOFLEX
+          - IBSH_IMMOKONSTANT
         tilgungsfreieAnlaufjahre:
           type: integer
           format: int32
