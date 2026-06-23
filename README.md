@@ -109,7 +109,7 @@ If an empty body is given default parameters are used.
 
 ```http
 POST /v3/vorgaenge/{{case-id}}/ergebnisliste HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -190,7 +190,7 @@ The sample response with a fresh calculated offer.
       "produktFeatures": [],
       "_links": {
         "_self": {
-          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+          "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
         }
       }
     },
@@ -198,7 +198,7 @@ The sample response with a fresh calculated offer.
   ],  
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B"
     }
   }
 ```
@@ -321,14 +321,14 @@ Refreshed offers occur only in a result list if there are saved offers "gemerkte
       },
       "_links": {
         "_self": {
-          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/15"
+          "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/15"
         }
       }
     }
   ],
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT"
     }
   }
 }
@@ -339,7 +339,7 @@ Refreshed offers occur only in a result list if there are saved offers "gemerkte
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/ HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -361,22 +361,22 @@ example-response:
   ..,
   "_links": {
     "berechnungsuebersichten": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/berechnungsuebersichten"
     },
     "zahlungsplaene": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
     },
     "meldungen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
     },
     "unterlagen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
     },
     "provision": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/provision?repeat=0"
     },
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1"
     }
   }
 }
@@ -386,7 +386,7 @@ example-response:
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/meldungen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -414,7 +414,7 @@ example-response:
   ],
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/meldungen"
     }
   }
 }
@@ -424,7 +424,7 @@ example-response:
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/zahlungsplaene HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -435,7 +435,7 @@ example-response:
 {
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene"
     }
   },
   "zahlungsplaene": [
@@ -453,7 +453,7 @@ example-response:
       ..., 
       "_links": {
         "_self": {
-          "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
+          "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/zahlungsplaene/64799f25ce9d3daff2f7335a"
         }
       }
     }
@@ -465,7 +465,7 @@ example-response:
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/unterlagen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -495,7 +495,7 @@ example-response:
   ],
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/LAPF9B/1/unterlagen"
     }
   }
 }
@@ -507,7 +507,7 @@ The return of the provision data is dependent on the `provisionsAusgabe` field s
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/provision HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -527,7 +527,7 @@ Uebersichten are HTML snippets of Loan provider calculation details. These detai
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/berechnungsuebersichten HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -587,7 +587,7 @@ example-response:
   ],
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/1/berechnungsuebersichten"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/ergebnisliste/Z4WQVT/1/berechnungsuebersichten"
     }
   }
 }
@@ -599,7 +599,7 @@ Get documents related to a specific saved offer.
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/angebotsdokumente HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -624,7 +624,7 @@ Get all gemerkte Angebote (saved offers) within a case.
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/gemerkteangebote HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -658,7 +658,7 @@ Get one gemerktes Angebote (saved offer) based on ```laufendeNummerAmVorgang``` 
 
 ```http
 GET /v3/vorgaenge/{{case-id}}/gemerkteangebote/{{laufendeNummerAmVorgang}} HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -685,19 +685,19 @@ example-response:
   "zuGrundeLiegendesAngebot": "66546eb62be3aa29807adad9",
   "_links": {
     "_self": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6"
     },
     "meldungen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/meldungen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/meldungen"
     },
     "berechnungsuebersichten": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/berechnungsuebersichten"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/berechnungsuebersichten"
     },
     "unterlagen": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/unterlagen"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/unterlagen"
     },
     "zahlungsplaene": {
-      "href": "https://api.europace2.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/zahlungsplaene"
+      "href": "https://baufinanzierung.api.europace.de/v3/vorgaenge/EU9VWS/gemerkteangebote/6/zahlungsplaene"
     }
   }
 }
@@ -712,7 +712,7 @@ This number is increasing with each new saved offer and for deleted saved offer 
 ### get Meldungen for saved offer
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/meldungen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -721,7 +721,7 @@ Example results are similar to Meldungen for fresh offers.
 ### get Berechungsuebersichten for saved offer
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/berechnungsuebersichten HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -730,7 +730,7 @@ Example results are similar to berechnungsuebersichten for fresh offers.
 ### get Unterlagen for saved offer
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/unterlagen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -740,7 +740,7 @@ Example results are similar to Unterlagen for fresh offers.
 ### get Zahlungplaene for saved offer
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/zahlungsplaene HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -752,7 +752,7 @@ Get documents related to a specific saved offer.
 
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/angebotsdokumente HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -777,7 +777,7 @@ Newly calculated and refreshed offers can be saved in a case and turned into gem
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/ergebnisliste/{{ergebnislisteId}}/{{offer-number}}/merken HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -797,7 +797,7 @@ A saved offers can be deleted in a case. Its ```laufendeNummerAmVorgang``` is no
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/entmerken HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -835,7 +835,7 @@ Each saved offer is identified by its laufendeNummer within the case and multipl
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/finanzierungsvorschlagsdokumente HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -875,7 +875,7 @@ If the saved offer is not complete information is given regarding the necessary 
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/anfragen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -912,7 +912,7 @@ If "zulaessigeEinstandWunschDaten" values are given a date based "Rückdatierung
 
 ```http
 GET /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/konditionsanpassung HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -998,7 +998,7 @@ If the response "pruefungsStatus" is "ANNEHMBAR" the offer can be accepted via /
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/pruefen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
@@ -1030,7 +1030,7 @@ It is recommended to check the offer for completeness and accuracy via the `/pru
 
 ```http
 POST /v3/vorgaenge/{{vorgangsnummer}}/gemerkteangebote/{{laufendeNummerAmVorgang}}/annehmen HTTP/1.1
-Host: api.europace2.de
+Host: baufinanzierung.api.europace.de
 Content-Type: application/json
 Authorization: Bearer {{access-token}}
 ```
