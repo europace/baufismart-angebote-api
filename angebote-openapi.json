@@ -9,7 +9,7 @@
     "description" : "Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln",
     "termsOfService" : "https://docs.api.europace.de/nutzungsbedingungen/",
     "title" : "Angebote API",
-    "version" : "3.1.2"
+    "version" : "3.1.3"
   },
   "externalDocs" : {
     "url" : "https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/"
@@ -7011,8 +7011,10 @@
           },
           "marker" : {
             "type" : "array",
+            "description" : "Markiert Einträge mit besonderer fachlicher Bedeutung. Bekannte Werte: 'EZB' (Ende der Zinsbindung) – dieser Eintrag markiert den Zeitpunkt des Endes der Zinsbindung. 'SUMME_EZB' – **Deprecated**: dieser Eintrag enthält die kumulierte Summe bis zum Ende der Zinsbindung und ist nur bei gemerkten Angeboten vorhanden; bitte stattdessen das Feld 'summeEndeDerZinsbindung' am Zahlungsplan verwenden.",
             "items" : {
-              "type" : "string"
+              "type" : "string",
+              "description" : "Markiert Einträge mit besonderer fachlicher Bedeutung. Bekannte Werte: 'EZB' (Ende der Zinsbindung) – dieser Eintrag markiert den Zeitpunkt des Endes der Zinsbindung. 'SUMME_EZB' – **Deprecated**: dieser Eintrag enthält die kumulierte Summe bis zum Ende der Zinsbindung und ist nur bei gemerkten Angeboten vorhanden; bitte stattdessen das Feld 'summeEndeDerZinsbindung' am Zahlungsplan verwenden."
             }
           },
           "saldo" : {

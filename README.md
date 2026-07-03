@@ -746,6 +746,13 @@ Authorization: Bearer {{access-token}}
 ```
 Example results are similar to Zahlungsplaene for fresh offers.
 
+> **Note on `marker` values in `zahlungen`:**
+> Each entry in `zahlungen` may contain a `marker` field with the following known values:
+> - `EZB` – marks the entry at the point in time when the fixed-interest period ends.
+> - `SUMME_EZB` (**deprecated**) – marks the cumulative sum entry up to the end of the fixed-interest period.
+>   This entry is only present in saved offers and will be removed in a future API version.
+>   Use the dedicated top-level field `summeEndeDerZinsbindung` on the `Zahlungsplan` instead.
+
 ### Use case get offer documents of saved offer
 
 Get documents related to a specific saved offer.
