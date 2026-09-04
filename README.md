@@ -100,6 +100,7 @@ If an empty body is given default parameters are used.
   // default parameters 
   "ermitteln": true, // calculate fresh new offers
   "aktualisieren": true, // recalculate gemerkte (saved) offers in case
+  "aktualisierteAngeboteMerken": false, // save aktualisierte Angebote after recalculation 
   "alternativen": false, // no alternative offers are generated
   "produktAnbieter": [],  // default: loan providers of calling partner are used
   "exkludierteProduktAnbieter": [], // default: no loan provider is excluded
