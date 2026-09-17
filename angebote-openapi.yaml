@@ -7,7 +7,7 @@ info:
   description: Ein Service um eine Ergebnisliste mit Finanzierungsvorschlägen zu ermitteln
   termsOfService: https://docs.api.europace.de/nutzungsbedingungen/
   title: Angebote API
-  version: 3.1.4
+  version: 3.1.5
 externalDocs:
   url: https://docs.api.europace.de/baufinanzierung/angebote/angebote-api/
 servers:
@@ -3882,6 +3882,8 @@ components:
           - ANGENOMMEN
           - NICHT_ANGENOMMEN_RUECKFRAGE
           - NICHT_ANGENOMMEN_ANFRAGBAR
+        beschreibung:
+          type: string
         gemerktesAngebot:
           $ref: "#/components/schemas/V3GemerktesAngebot"
         teilAntragIds:
@@ -4363,6 +4365,7 @@ components:
             - LBS_SUED_SPRINTER_RIESTER
             - LBS_SUED_SPRINTER_E_RIESTER
             - LBS_SUED_VORSORGER_RIESTER
+            - LBS_SUED_FLEX
             - LBS_HT_CLASSIC_S_2015
             - LBS_HT_CLASSIC_F_2015
             - LBS_HT_CLASSIC_L_2015
@@ -5499,11 +5502,15 @@ components:
         effektivZins:
           type: number
           format: double
+          exclusiveMinimum: true
+          minimum: 0
         empty:
           type: boolean
         sollZins:
           type: number
           format: double
+          exclusiveMinimum: true
+          minimum: 0
       required:
       - darlehensId
     DarlehensWunsch:
@@ -5795,10 +5802,16 @@ components:
       properties:
         aktualisieren:
           type: boolean
+          default: true
+        aktualisierteAngeboteMerken:
+          type: boolean
+          default: false
         alternativen:
           type: boolean
+          default: false
         ermitteln:
           type: boolean
+          default: true
         exkludierteProduktAnbieter:
           type: array
           items:
@@ -5809,6 +5822,7 @@ components:
             type: string
         provisionsAusgabe:
           type: boolean
+          default: false
     Ermittlung:
       type: object
       properties:
@@ -5991,6 +6005,8 @@ components:
             type: integer
             format: int32
             description: Die laufende Nummer oder die Nummern des gemerkten Angebots.
+            exclusiveMinimum: true
+            minimum: 0
           minItems: 1
         produktAnbieterAnzeigen:
           type: boolean
