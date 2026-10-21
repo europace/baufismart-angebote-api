@@ -6097,6 +6097,8 @@ components:
           type: boolean
         ausstattung:
           type: string
+          deprecated: true
+          description: Deprecated. Property belWertVAusstattung nutzen.
           enum:
           - EINFACH
           - MITTEL
@@ -6114,6 +6116,14 @@ components:
           - GLAS_STAHL
           - HOLZ
           - MASSIV
+        belWertVAusstattung:
+          type: string
+          enum:
+          - SEHR_EINFACH
+          - EINFACH
+          - MITTEL
+          - GEHOBEN
+          - STARK_GEHOBEN
         bezeichnungWohneinheit:
           type: string
           description: Nur bei ObjektArt == EIGENTUMSWOHNUNG.
@@ -6133,6 +6143,8 @@ components:
           description: Nur bei ObjektArt == HAUS.
         energieEffizienzAusweis:
           $ref: "#/components/schemas/EnergieEffizienzAusweis"
+        geplanteModernisierungsAngaben:
+          $ref: "#/components/schemas/GeplanteModernisierungsAngaben"
         geschossLage:
           type: string
           description: Nur bei ObjektArt == EIGENTUMSWOHNUNG.
@@ -6213,6 +6225,44 @@ components:
           pattern: ANGEBOT_ENTSPRICHT_MEINER_EMPFEHLUNG|ANGEBOT_ENTSPRICHT_DEM_WUNSCH_DES_KUNDEN|
         fazit:
           type: string
+    GeplanteModernisierungsAngaben:
+      type: object
+      description: Angaben zu einer geplanten Modernisierung
+      properties:
+        wirdModernisiert:
+          type: boolean
+        belWertVAusstattung:
+          type: string
+          description: Geplante Ausstattung nach BelWertV
+          enum:
+          - SEHR_EINFACH
+          - EINFACH
+          - MITTEL
+          - GEHOBEN
+          - STARK_GEHOBEN
+        belWertVModernisierungsGrad:
+          type: string
+          description: Geplanter Modernisierungsgrad nach BelWertV
+          enum:
+          - KERNSANIERUNG
+          - UMFASSEND
+          - UEBERWIEGEND
+          - MITTEL
+          - GERING
+          - UNERHEBLICH
+        modernisierungsJahr:
+          type: string
+          description: Die Jahreszahl wird als vierstellig repräsentiert.
+          example: "2028"
+        zustand:
+          type: string
+          description: Geplanter Zustand
+          enum:
+          - SEHR_GUT
+          - GUT
+          - MITTEL
+          - MAESSIG
+          - SCHLECHT
     GeprueftesAngebot:
       type: object
       properties:
@@ -6727,6 +6777,15 @@ components:
       properties:
         badWc:
           type: boolean
+        belWertVModernisierungsGrad:
+          type: string
+          enum:
+          - KERNSANIERUNG
+          - UMFASSEND
+          - UEBERWIEGEND
+          - MITTEL
+          - GERING
+          - UNERHEBLICH
         bodenWandTreppe:
           type: boolean
         dach:
@@ -6737,6 +6796,8 @@ components:
           type: boolean
         modernisierungsGrad:
           type: string
+          deprecated: true
+          description: Deprecated. Property belWertVModernisierungsGrad nutzen.
           enum:
           - GERING
           - MITTEL
